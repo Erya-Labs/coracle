@@ -8,20 +8,23 @@
   import MarketListItem from "src/app/shared/MarketListItem.svelte"
   import {router} from "src/app/util/router"
   import {marketFilters, readListing} from "src/domain"
-  import {env, myLoad} from "src/engine"
+  import {env, myLoad, userSettings} from "src/engine"
   import {deriveEvents, pubkey, resolveRelays, signer} from "src/engine/core"
 
   const createRequest = () => router.at("market/create").open()
 
   const events = deriveEvents(marketFilters)
 
-  const relaySelections = $pubkey ? resolveRelays([inbox($pubkey)]) : Promise.resolve([])
+  // Nothing is fetched unless the user has turned the marketplace on.
+  if (userSettings.get().enable_market) {
+    const relaySelections = $pubkey ? resolveRelays([inbox($pubkey)]) : Promise.resolve([])
 
-  relaySelections
-    .then(relays =>
-      myLoad({relays: uniq([...relays, ...env.DEFAULT_RELAYS]), filters: marketFilters}),
-    )
-    .catch(noop)
+    relaySelections
+      .then(relays =>
+        myLoad({relays: uniq([...relays, ...env.DEFAULT_RELAYS]), filters: marketFilters}),
+      )
+      .catch(noop)
+  }
 
   $: decoded = $events.map(event => ({event, result: readListing(event)}))
   $: listings = decoded.filter(d => d.result.ok).map(d => d.result.listing)
@@ -43,6 +46,14 @@
       </Button>
     </div>
   </div>
+  {#if !$userSettings.enable_market}
+    <Card>
+      <p class="py-8 text-center text-neutral-400">
+        The marketplace is off, and nothing is fetched while it stays off. Turn on "Enable the
+        marketplace" in Settings to use it.
+      </p>
+    </Card>
+  {/if}
   <p class="text-sm text-neutral-400">
     Requests and offers for commissioned work, paid in sats. Everything shown here passed the nenya
     library's checks; anything that failed them is counted below, never rendered as good.

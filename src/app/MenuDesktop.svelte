@@ -15,7 +15,7 @@
   import MenuDesktopSecondary from "src/app/MenuDesktopSecondary.svelte"
   import {slowConnections} from "src/app/state"
   import {router} from "src/app/util/router"
-  import {hasNewMessages, hasNewNotifications} from "src/engine"
+  import {hasNewMessages, hasNewNotifications, userSettings} from "src/engine"
 
   const {page} = router
 
@@ -117,8 +117,11 @@
   </MenuDesktopItem>
   <MenuDesktopItem modal path="/groups" disabled={!$signer}>Groups</MenuDesktopItem>
   <MenuDesktopItem modal path="/lists" disabled={!$signer}>Lists</MenuDesktopItem>
-  <MenuDesktopItem path="/market" isActive={$page?.path.startsWith("/market")}
-    >Market</MenuDesktopItem>
+  {#if $userSettings.enable_market}
+    <MenuDesktopItem path="/market" isActive={$page?.path.startsWith("/market")}>
+      Market
+    </MenuDesktopItem>
+  {/if}
   <FlexColumn small class="absolute bottom-0 w-72">
     <Button
       class="staatliches px-8 text-start text-tinted-400 hover:text-tinted-100"

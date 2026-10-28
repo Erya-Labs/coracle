@@ -181,6 +181,7 @@ export const defaultSettings = {
   min_wot_score: 0,
   min_pow_difficulty: 0,
   enable_client_tag: false,
+  enable_market: false,
   auto_authenticate2: true,
   note_actions: ["zaps", "replies", "reactions", "reposts", "recommended_apps"],
   upload_type: "blossom",

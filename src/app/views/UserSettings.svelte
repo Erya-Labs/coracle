@@ -164,6 +164,13 @@
         with troubleshooting, and allows other people to find out about {appName}.
       </p>
     </FieldInline>
+    <FieldInline label="Enable the marketplace">
+      <Toggle bind:value={values.enable_market} />
+      <p slot="info">
+        Shows the Market section: listings, bids and private orders, settled over Lightning and
+        checked by the nenya library. When this is off, {appName} fetches no marketplace data at all.
+      </p>
+    </FieldInline>
     {#if !$hasNip44}
       <p class="text-center">
         Your signer doesn't support encryption, so {appName} can't save your settings.

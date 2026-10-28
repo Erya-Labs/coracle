@@ -11,7 +11,7 @@
   import MenuMobileItem from "src/app/MenuMobileItem.svelte"
   import {slowConnections, menuIsOpen} from "src/app/state"
   import {router} from "src/app/util/router"
-  import {hasNewMessages, hasNewNotifications} from "src/engine"
+  import {hasNewMessages, hasNewNotifications, userSettings} from "src/engine"
 
   const closeSubMenu = () => {
     subMenu = null
@@ -92,9 +92,11 @@
       <MenuMobileItem modal disabled={!$signer} href="/groups" on:click={closeMenu}>
         <i class="fa fa-circle-nodes" /> Groups
       </MenuMobileItem>
-      <MenuMobileItem href="/market" on:click={closeMenu}>
-        <i class="fa fa-store" /> Market
-      </MenuMobileItem>
+      {#if $userSettings.enable_market}
+        <MenuMobileItem href="/market" on:click={closeMenu}>
+          <i class="fa fa-store" /> Market
+        </MenuMobileItem>
+      {/if}
       <MenuMobileItem disabled={!$signer} href="/channels" on:click={closeMenu}>
         <i class="fa fa-message" />
         <div class="relative inline-block">
