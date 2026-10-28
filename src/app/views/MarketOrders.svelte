@@ -77,9 +77,26 @@
     )
   }
 
-  const bill = async thread => report(await sendBill(thread), "Bill and payment voucher sent.")
+  const invoices = {}
+  const preimages = {}
 
-  const pay = thread => report(payAndProve(thread), "Paid (pretend) and payment proof sent.")
+  const bill = async thread => {
+    const real = invoices[thread.orderId]?.trim()
+
+    report(
+      await sendBill(thread, real || ""),
+      real ? "Your wallet's bill sent." : "Pretend bill and payment voucher sent.",
+    )
+  }
+
+  const pay = thread => {
+    const real = preimages[thread.orderId]?.trim()
+
+    report(
+      payAndProve(thread, real || ""),
+      real ? "Payment proof sent." : "Paid (pretend) and payment proof sent.",
+    )
+  }
 
   const release = thread => report(releaseKey(thread), "Key sent to the buyer.")
 
@@ -161,7 +178,17 @@
             </Button>
           </div>
         {:else if thread.order?.state === "COMMITTED" && !thread.requests.provider}
-          <Button class="btn btn-accent mt-2" on:click={() => bill(thread)}>Send the bill</Button>
+          <div class="mt-2 flex flex-col gap-2">
+            <input
+              class="rounded border border-solid border-neutral-600 bg-transparent px-3 py-2 text-sm"
+              bind:value={invoices[thread.orderId]}
+              placeholder="Real trade: paste a bolt11 invoice from your wallet for exactly {msatToSats(
+                thread.order.priceMsat,
+              ).toLocaleString()} sats (leave empty for a pretend bill)" />
+            <Button class="btn btn-accent self-start" on:click={() => bill(thread)}>
+              Send the bill
+            </Button>
+          </div>
         {:else if thread.order?.state === "PAID" && !thread.release}
           <Button class="btn btn-accent mt-2" on:click={() => release(thread)}>
             Release the key
@@ -169,10 +196,20 @@
         {/if}
       {/if}
       {#if roleIn(thread) === "buyer"}
-        {#if thread.order?.state === "AWAITING_PAYMENT" && thread.vouchers.provider && !thread.settlements.provider}
-          <Button class="btn btn-accent mt-2" on:click={() => pay(thread)}>
-            Pay {msatToSats(thread.order.totalMsat).toLocaleString()} sats (pretend) and send proof
-          </Button>
+        {#if thread.order?.state === "AWAITING_PAYMENT" && !thread.settlements.provider && thread.requests.provider}
+          <div class="mt-2 flex flex-col gap-2">
+            {#if !thread.vouchers.provider}
+              <input
+                class="rounded border border-solid border-neutral-600 bg-transparent px-3 py-2 text-sm"
+                bind:value={preimages[thread.orderId]}
+                placeholder="Real trade: pay the bill in your wallet, then paste the payment preimage (64 hex characters)" />
+            {/if}
+            <Button class="btn btn-accent self-start" on:click={() => pay(thread)}>
+              {thread.vouchers.provider
+                ? `Pay ${msatToSats(thread.order.totalMsat).toLocaleString()} sats (pretend) and send proof`
+                : "Send the payment proof"}
+            </Button>
+          </div>
         {/if}
         {#if thread.delivered}
           <div class="mt-2">

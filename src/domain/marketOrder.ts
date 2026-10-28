@@ -754,10 +754,20 @@ export const commitFile = async (thread: any, plain: Uint8Array, mimeType: strin
   return sendRumor(built, [thread.buyerKey])
 }
 
-export const sendBill = async (thread: any) => {
-  const writer = await getBillWriter()
-  const preimage = crypto.getRandomValues(new Uint8Array(32))
-  const invoice = writer.write(BigInt(thread.order.priceMsat), await sha256(preimage), clock())
+export const sendBill = async (thread: any, realInvoice = "") => {
+  // With a real invoice from the seller's own wallet, the trade is a real one: the
+  // buyer pays it in their wallet and proves it with the preimage the wallet shows.
+  // Without one, the demo writes a pretend bill and vouchers its preimage across.
+  let invoice = realInvoice.trim()
+  let preimage: Uint8Array | null = null
+
+  if (!invoice) {
+    const writer = await getBillWriter()
+
+    preimage = crypto.getRandomValues(new Uint8Array(32))
+    invoice = writer.write(BigInt(thread.order.priceMsat), await sha256(preimage), clock())
+  }
+
   const built = nenya.buildPaymentRequest(
     envelope([thread.buyerKey]),
     thread.orderId,
@@ -766,9 +776,8 @@ export const sendBill = async (thread: any) => {
   )
   const sent = sendRumor(built, [thread.buyerKey])
 
-  if (!sent.sent) return sent
+  if (!sent.sent || !preimage) return sent
 
-  // The pretend lightning rail: the voucher that "paying" this bill will reveal.
   const voucher = JSON.stringify({lnsim: 1, payee: "provider", invoice, preimageHex: hex(preimage)})
 
   return sendRumor(nenya.buildChat(envelope([thread.buyerKey], voucher), thread.orderId), [
@@ -776,23 +785,33 @@ export const sendBill = async (thread: any) => {
   ])
 }
 
-export const payAndProve = (thread: any) => {
-  const voucher = thread.vouchers.provider
+export const payAndProve = (thread: any, realPreimageHex = "") => {
   const stored = thread.requests.provider
 
-  if (!voucher || !stored) return {sent: false, words: "no accepted bill or voucher yet"}
-  if (voucher.invoice !== stored.invoice) {
-    return {sent: false, words: "the voucher's bill is not the bill nenya accepted"}
+  if (!stored) return {sent: false, words: "no accepted bill yet"}
+
+  let preimageHex = realPreimageHex.trim().toLowerCase()
+
+  if (!preimageHex) {
+    const voucher = thread.vouchers.provider
+
+    if (!voucher)
+      return {sent: false, words: "no voucher yet — for a real bill, paste the preimage"}
+    if (voucher.invoice !== stored.invoice) {
+      return {sent: false, words: "the voucher's bill is not the bill nenya accepted"}
+    }
+
+    preimageHex = voucher.preimageHex
   }
 
-  saveSecret(thread.orderId, {paidPreimageHex: voucher.preimageHex})
+  saveSecret(thread.orderId, {paidPreimageHex: preimageHex})
 
   const built = nenya.buildReceipt(
     envelope([thread.providerKey]),
     thread.orderId,
     "provider",
     stored.invoice,
-    voucher.preimageHex,
+    preimageHex,
   )
 
   return sendRumor(built, [thread.providerKey])
