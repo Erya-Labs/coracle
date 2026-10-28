@@ -35,6 +35,18 @@ export default defineConfig(async () => {
       },
     },
     plugins: [
+      {
+        // The marketplace order channel needs a synchronous signer, which no
+        // extension provides yet, so the dev server injects a throwaway one.
+        // Builds are untouched. See MARKETPLACE.md.
+        name: "dev-test-signer",
+        apply: "serve",
+        transformIndexHtml: html =>
+          html.replace(
+            '<script type="module" src="/src/main.js">',
+            '<script type="module" src="/e2e-signer.js"></script><script type="module" src="/src/main.js">',
+          ),
+      },
       htmlPlugin({
         title: process.env.VITE_APP_NAME,
         metas: [
