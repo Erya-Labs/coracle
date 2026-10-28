@@ -51,6 +51,9 @@
   import LoginBunker from "src/app/views/LoginBunker.svelte"
   import LoginConnect from "src/app/views/LoginConnect.svelte"
   import Logout from "src/app/views/Logout.svelte"
+  import MarketCreate from "src/app/views/MarketCreate.svelte"
+  import MarketDetail from "src/app/views/MarketDetail.svelte"
+  import MarketList from "src/app/views/MarketList.svelte"
   import MediaDetail from "src/app/views/MediaDetail.svelte"
   import NoteCreate from "src/app/views/NoteCreate.svelte"
   import NoteDelete from "src/app/views/NoteDelete.svelte"
@@ -170,6 +173,14 @@
   })
 
   router.register("/login", Login)
+
+  router.register("/market", MarketList)
+  router.register("/market/create", MarketCreate, {requireSigner: true})
+  router.register("/market/:address", MarketDetail, {
+    serializers: {
+      address: asNaddr("address"),
+    },
+  })
   router.register("/login/bunker", LoginBunker)
   router.register("/login/connect", LoginConnect, {
     requireUser: true,

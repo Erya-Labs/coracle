@@ -117,6 +117,8 @@
   </MenuDesktopItem>
   <MenuDesktopItem modal path="/groups" disabled={!$signer}>Groups</MenuDesktopItem>
   <MenuDesktopItem modal path="/lists" disabled={!$signer}>Lists</MenuDesktopItem>
+  <MenuDesktopItem path="/market" isActive={$page?.path.startsWith("/market")}
+    >Market</MenuDesktopItem>
   <FlexColumn small class="absolute bottom-0 w-72">
     <Button
       class="staatliches px-8 text-start text-tinted-400 hover:text-tinted-100"

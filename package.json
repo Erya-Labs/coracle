@@ -68,6 +68,7 @@
     "idb": "^8.0.2",
     "insane": "^2.6.2",
     "marked": "^14.1.4",
+    "nenya": "file:vendor/nenya",
     "normalize-url": "^8.0.1",
     "nostr-signer-capacitor-plugin": "github:coracle-social/nostr-signer-capacitor-plugin#main",
     "nostr-tools": "^2.19.4",

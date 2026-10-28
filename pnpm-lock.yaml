@@ -149,6 +149,9 @@ importers:
       marked:
         specifier: ^14.1.4
         version: 14.1.4
+      nenya:
+        specifier: file:vendor/nenya
+        version: file:vendor/nenya
       normalize-url:
         specifier: ^8.0.1
         version: 8.0.1
@@ -3113,6 +3116,9 @@ packages:
     resolution: {integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==}
     engines: {node: '>=14'}
 
+  format-util@1.0.5:
+    resolution: {integrity: sha512-varLbTj0e0yVyRpqQhuWV+8hlePAgaoFRhNFj50BNjEIrw1/DphHSObtqwskVCPWNgzwPoQrZAbfa/SBiicNeg==}
+
   formidable@3.5.4:
     resolution: {integrity: sha512-YikH+7CUTOtP44ZTnUhR7Ic2UASBPOqmaRkRKxRbywPTe5VxF7RRCck4af9wutiZ/QKM5nME9Bie2fFaPz5Gug==}
     engines: {node: '>=14.0.0'}
@@ -3908,6 +3914,10 @@ packages:
 
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
+
+  nenya@file:vendor/nenya:
+    resolution: {directory: vendor/nenya, type: directory}
+    bundledDependencies: []
 
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
@@ -8925,6 +8935,8 @@ snapshots:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
+  format-util@1.0.5: {}
+
   formidable@3.5.4:
     dependencies:
       '@paralleldrive/cuid2': 2.2.2
@@ -9693,6 +9705,10 @@ snapshots:
       - supports-color
 
   natural-compare@1.4.0: {}
+
+  nenya@file:vendor/nenya:
+    dependencies:
+      format-util: 1.0.5
 
   neo-async@2.6.2: {}
 
