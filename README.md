@@ -1,3 +1,31 @@
+# Nenya marketplace fork
+
+This fork adds an opt-in **Market** section to Coracle, built on the
+[nenya](https://github.com/Erya-Labs/nenya) marketplace library: offers and requests, bids,
+and a private order flow — a sealed order channel, Lightning settlement, and a delivery the
+buyer's client verifies before it will decrypt. How a trade works, with pictures:
+[nenya's README](https://github.com/Erya-Labs/nenya#readme).
+
+Try it:
+
+1. `pnpm install && pnpm run dev`
+2. Open the printed address → **Log In → Use Browser Extension**, then skip the profile
+   search. A dev signer is wired in; if you run a real signer extension (nos2x, Alby, …),
+   disable it for this site first — the two fight over `window.nostr`.
+3. **Settings → Enable the marketplace** → Save. A Market item appears in the menu. While
+   the setting is off, the app fetches no marketplace data at all.
+4. Browse, post a listing, or run a full two-person trade:
+   [MARKETPLACE.md](./MARKETPLACE.md).
+
+The marketplace code is deliberately small and reviewable: [src/domain/market.ts](src/domain/market.ts)
+(listings and bids), [src/domain/marketOrder.ts](src/domain/marketOrder.ts) (the order
+channel — the only file that talks to nenya's private flow), the `Market*` views in
+[src/app/views](src/app/views), and the vendored library in [vendor/nenya](vendor/nenya).
+
+Everything below this line is Coracle's own README.
+
+---
+
 # What is this?
 
 Coracle is a web client for the Nostr protocol focused on pushing the boundaries of what's unique about nostr, including relay selection and management, web-of-trust based moderation and content recommendations, and privacy protection. Check it out at [coracle.social](https://coracle.social).
