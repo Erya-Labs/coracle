@@ -11,17 +11,22 @@
   import Spinner from "src/partials/Spinner.svelte"
   import PersonBadge from "src/app/shared/PersonBadge.svelte"
   import {showInfo, showWarning} from "src/partials/Toast.svelte"
+  import {router} from "src/app/util/router"
   import {
     bidFilters,
     bidActivity,
+    connectOrderChannel,
     listingActivity,
     makeMarketBid,
     msatToSats,
+    orderChannelReady,
+    proposeOrder,
     readBid,
     readListing,
   } from "src/domain"
   import {env, myLoad, sign} from "src/engine"
   import {
+    app,
     deriveEvents,
     getWriteRelays,
     pubkey,
@@ -31,6 +36,24 @@
   } from "src/engine/core"
 
   export let address
+
+  connectOrderChannel(
+    event => publisher.get().publish({event, relays: env.DEFAULT_RELAYS}),
+    async filters => {
+      await myLoad({relays: env.DEFAULT_RELAYS, filters, skipCache: true}).catch(noop)
+
+      return app.get().repository.query(filters)
+    },
+  )
+
+  const orderThis = () => {
+    const {sent, words} = proposeOrder(listing)
+
+    if (!sent) return showWarning(`Nenya refused the proposal: ${words}`)
+
+    showInfo("Order proposed — the maker has it now.")
+    router.at("market/orders").push()
+  }
 
   const [kind, author, dValue] = address.split(":")
 
@@ -110,6 +133,14 @@
         <span class="text-xs uppercase text-neutral-400">{listingActivity(listing)}</span>
       </div>
     </div>
+    {#if listing.kind === 30402 && $signer && listing.authorPubkey !== $pubkey}
+      <Button class="btn btn-accent" disabled={!orderChannelReady} on:click={orderThis}>
+        <i class="fa fa-handshake" /> Order this
+      </Button>
+      {#if !orderChannelReady}
+        <p class="text-sm text-neutral-400">Ordering needs the dev test signer.</p>
+      {/if}
+    {/if}
     <PersonBadge pubkey={listing.authorPubkey} />
     {#if listing.summary}
       <p class="text-neutral-400">{listing.summary}</p>

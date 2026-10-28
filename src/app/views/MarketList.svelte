@@ -34,9 +34,14 @@
       <i class="fa fa-store fa-lg text-accent" />
       <h2 class="staatliches text-2xl">Marketplace</h2>
     </div>
-    <Button class="btn btn-accent" disabled={!$signer} on:click={createRequest}>
-      <i class="fa fa-plus" /> Request
-    </Button>
+    <div class="flex gap-2">
+      <Button class="btn" disabled={!$signer} on:click={() => router.at("market/orders").push()}>
+        <i class="fa fa-handshake" /> Orders
+      </Button>
+      <Button class="btn btn-accent" disabled={!$signer} on:click={createRequest}>
+        <i class="fa fa-plus" /> Listing
+      </Button>
+    </div>
   </div>
   <p class="text-sm text-neutral-400">
     Requests and offers for commissioned work, paid in sats. Everything shown here passed the nenya

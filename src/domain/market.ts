@@ -38,26 +38,40 @@ const asTemplate = (event: any) => ({
 const buildWords = (result: any) =>
   [result.reason, result.tagReason, result.detail].filter(Boolean).join(" — ")
 
-export const makeMarketRequest = ({pubkey, title, summary, priceSats, content = ""}) => {
+const authoredListing = ({pubkey, title, summary, priceSats, content}) => {
   const now = String(Math.floor(Date.now() / 1000))
-  const result = nenya.buildListingRequest(
-    new nenya.JsAuthoredListing(
-      pubkey,
-      now,
-      `nenya-${now}`,
-      title,
-      satsToMsat(priceSats),
-      content,
-      summary || null,
-      now,
-      null,
-      null,
-      [],
-      [],
-      null,
-      `Nenya marketplace request: ${title}`,
-    ),
+
+  return new nenya.JsAuthoredListing(
+    pubkey,
+    now,
+    `nenya-${now}`,
+    title,
+    satsToMsat(priceSats),
+    content,
+    summary || null,
+    now,
+    null,
+    null,
+    [],
+    [],
+    null,
+    `Nenya marketplace listing: ${title}`,
   )
+}
+
+export const makeMarketRequest = ({pubkey, title, summary, priceSats, content = ""}) => {
+  const result = nenya.buildListingRequest(
+    authoredListing({pubkey, title, summary, priceSats, content}),
+  )
+
+  return result.ok ? {template: asTemplate(result.event)} : {error: buildWords(result)}
+}
+
+export const makeMarketOffer = ({pubkey, title, summary, priceSats, content = ""}) => {
+  const result = nenya.buildListingOffer(
+    authoredListing({pubkey, title, summary, priceSats, content}),
+  )
+
   return result.ok ? {template: asTemplate(result.event)} : {error: buildWords(result)}
 }
 

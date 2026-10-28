@@ -54,6 +54,7 @@
   import MarketCreate from "src/app/views/MarketCreate.svelte"
   import MarketDetail from "src/app/views/MarketDetail.svelte"
   import MarketList from "src/app/views/MarketList.svelte"
+  import MarketOrders from "src/app/views/MarketOrders.svelte"
   import MediaDetail from "src/app/views/MediaDetail.svelte"
   import NoteCreate from "src/app/views/NoteCreate.svelte"
   import NoteDelete from "src/app/views/NoteDelete.svelte"
@@ -176,6 +177,7 @@
 
   router.register("/market", MarketList)
   router.register("/market/create", MarketCreate, {requireSigner: true})
+  router.register("/market/orders", MarketOrders, {requireSigner: true})
   router.register("/market/:address", MarketDetail, {
     serializers: {
       address: asNaddr("address"),
