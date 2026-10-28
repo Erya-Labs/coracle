@@ -30,7 +30,10 @@ Read the honesty box first.
 2. Open the printed address. The dev signer is already wired in; click **Log In →
    Use Browser Extension**, then **skip** the profile search (the key is new).
 
-3. Pick relays. By default `.env.template` points at public relays; both people must share at
+3. Turn the marketplace on: **Settings → Enable the marketplace**. It is off by default, and
+   while it is off the app fetches no marketplace data.
+
+4. Pick relays. By default `.env.template` points at public relays; both people must share at
    least one **write-enabled relay that accepts kinds 1059, 30402, 30404, 1111 and 9876**
    (Relays → Add Relay). For a private trade, run your own —
    [`nak serve`](https://github.com/fiatjaf/nak) gives you one in one command — and have both
