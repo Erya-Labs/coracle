@@ -30,6 +30,10 @@ Read the honesty box first.
 2. Open the printed address. The dev signer is already wired in; click **Log In →
    Use Browser Extension**, then **skip** the profile search (the key is new).
 
+   If a real signer extension (nos2x, Alby, …) is installed, disable it for this site
+   first. Both it and the dev signer claim `window.nostr`, and whatever one key encrypts
+   the other cannot read — which shows up as settings and messages silently resetting.
+
 3. Turn the marketplace on: **Settings → Enable the marketplace**. It is off by default, and
    while it is off the app fetches no marketplace data.
 
@@ -71,6 +75,8 @@ judges anything itself. If a step is refused, the log quotes the library's reaso
 
 - A refused bill, proof, or delivery is not a bug — it is the library catching a mismatch.
   Read the quoted reason.
+- Settings or messages reset after a reload → a signer extension is fighting the dev signer
+  over `window.nostr`. Disable the extension for this site and log in again.
 - Both sides hold signed, timestamped evidence of every step (the proposal, the acceptance,
   the commitment, the proof). A trade that stops leaves no ambiguity about who stopped it.
 - Nenya never holds funds and there is no operator: a Lightning payment, once made, is final.
