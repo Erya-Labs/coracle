@@ -7,8 +7,9 @@
   import Button from "src/partials/Button.svelte"
   import {showInfo, showWarning} from "src/partials/Toast.svelte"
   import {router} from "src/app/util/router"
+  import {uniq} from "@welshman/lib"
   import {makeMarketRequest} from "src/domain"
-  import {sign} from "src/engine"
+  import {env, sign} from "src/engine"
   import {getWriteRelays, pubkey, publisher} from "src/engine/core"
 
   let title = ""
@@ -35,7 +36,9 @@
     try {
       const event = await sign(template)
 
-      publisher.get().publish({event, relays: getWriteRelays($pubkey)})
+      publisher
+        .get()
+        .publish({event, relays: uniq([...getWriteRelays($pubkey), ...env.DEFAULT_RELAYS])})
       showInfo("Your request has been published!")
       router.pop()
     } finally {

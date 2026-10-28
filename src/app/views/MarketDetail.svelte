@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {noop} from "@welshman/lib"
+  import {noop, uniq} from "@welshman/lib"
   import {inbox} from "@welshman/util"
   import {fly} from "src/util/transition"
   import FlexColumn from "src/partials/FlexColumn.svelte"
@@ -20,7 +20,7 @@
     readBid,
     readListing,
   } from "src/domain"
-  import {myLoad, sign} from "src/engine"
+  import {env, myLoad, sign} from "src/engine"
   import {
     deriveEvents,
     getWriteRelays,
@@ -40,8 +40,15 @@
 
   const bidEvents = deriveEvents(bidFilters(address))
 
-  resolveRelays([inbox($pubkey)])
-    .then(relays => myLoad({relays, filters: [...listingFilters, ...bidFilters(address)]}))
+  const relaySelections = $pubkey ? resolveRelays([inbox($pubkey)]) : Promise.resolve([])
+
+  relaySelections
+    .then(relays =>
+      myLoad({
+        relays: uniq([...relays, ...env.DEFAULT_RELAYS]),
+        filters: [...listingFilters, ...bidFilters(address)],
+      }),
+    )
     .catch(noop)
 
   let bidSats = 0
@@ -69,7 +76,9 @@
     try {
       const event = await sign(template)
 
-      publisher.get().publish({event, relays: getWriteRelays($pubkey)})
+      publisher
+        .get()
+        .publish({event, relays: uniq([...getWriteRelays($pubkey), ...env.DEFAULT_RELAYS])})
       showInfo("Your bid has been published!")
       bidContent = ""
     } finally {

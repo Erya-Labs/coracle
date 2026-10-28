@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {noop} from "@welshman/lib"
+  import {noop, uniq} from "@welshman/lib"
   import {inbox} from "@welshman/util"
   import {fly} from "src/util/transition"
   import FlexColumn from "src/partials/FlexColumn.svelte"
@@ -8,15 +8,19 @@
   import MarketListItem from "src/app/shared/MarketListItem.svelte"
   import {router} from "src/app/util/router"
   import {marketFilters, readListing} from "src/domain"
-  import {myLoad} from "src/engine"
+  import {env, myLoad} from "src/engine"
   import {deriveEvents, pubkey, resolveRelays, signer} from "src/engine/core"
 
   const createRequest = () => router.at("market/create").open()
 
   const events = deriveEvents(marketFilters)
 
-  resolveRelays([inbox($pubkey)])
-    .then(relays => myLoad({relays, filters: marketFilters}))
+  const relaySelections = $pubkey ? resolveRelays([inbox($pubkey)]) : Promise.resolve([])
+
+  relaySelections
+    .then(relays =>
+      myLoad({relays: uniq([...relays, ...env.DEFAULT_RELAYS]), filters: marketFilters}),
+    )
     .catch(noop)
 
   $: decoded = $events.map(event => ({event, result: readListing(event)}))
