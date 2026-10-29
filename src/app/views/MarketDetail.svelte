@@ -19,7 +19,6 @@
     listingActivity,
     makeMarketBid,
     msatToSats,
-    orderChannelReady,
     proposeOrder,
     readBid,
     readListing,
@@ -37,6 +36,8 @@
 
   export let address
 
+  let orderReady = false
+
   connectOrderChannel(
     event => publisher.get().publish({event, relays: env.DEFAULT_RELAYS}),
     async filters => {
@@ -44,10 +45,12 @@
 
       return app.get().repository.query(filters)
     },
-  )
+  ).then(pk => {
+    orderReady = Boolean(pk)
+  })
 
-  const orderThis = () => {
-    const {sent, words} = proposeOrder(listing)
+  const orderThis = async () => {
+    const {sent, words} = await proposeOrder(listing)
 
     if (!sent) return showWarning(`Nenya refused the proposal: ${words}`)
 
@@ -134,11 +137,13 @@
       </div>
     </div>
     {#if listing.kind === 30402 && $signer && listing.authorPubkey !== $pubkey}
-      <Button class="btn btn-accent" disabled={!orderChannelReady} on:click={orderThis}>
+      <Button class="btn btn-accent" disabled={!orderReady} on:click={orderThis}>
         <i class="fa fa-handshake" /> Order this
       </Button>
-      {#if !orderChannelReady}
-        <p class="text-sm text-neutral-400">Ordering needs the dev test signer.</p>
+      {#if !orderReady}
+        <p class="text-sm text-neutral-400">
+          Ordering needs a NIP-07 signer with nip44 — nos2x, Alby, or the dev test signer.
+        </p>
       {/if}
     {/if}
     <PersonBadge pubkey={listing.authorPubkey} />

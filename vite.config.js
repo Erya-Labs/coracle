@@ -36,16 +36,14 @@ export default defineConfig(async () => {
     },
     plugins: [
       {
-        // The marketplace order channel needs a synchronous signer, which no
-        // extension provides yet, so the dev server injects a throwaway one.
-        // Builds are untouched. See MARKETPLACE.md.
+        // The dev server injects a throwaway NIP-07 signer so one person can
+        // rehearse both sides of a trade in two windows. Builds are untouched;
+        // they use a real extension. See MARKETPLACE.md.
         name: "dev-test-signer",
         apply: "serve",
-        transformIndexHtml: html =>
-          html.replace(
-            '<script type="module" src="/src/main.js">',
-            '<script type="module" src="/e2e-signer.js"></script><script type="module" src="/src/main.js">',
-          ),
+        transformIndexHtml: () => [
+          {tag: "script", attrs: {type: "module", src: "/e2e-signer.js"}, injectTo: "head-prepend"},
+        ],
       },
       htmlPlugin({
         title: process.env.VITE_APP_NAME,

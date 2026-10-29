@@ -9,11 +9,13 @@ Read the honesty box first.
 
 > **What is real and what is not.**
 > Everything cryptographic is real: the sealed order channel, the fingerprint commitment, the
-> payment-proof check, the verified delivery. Two things are PoC shortcuts:
-> **(1) The signer.** The order channel needs synchronous signing and decryption, which browser
-> signer extensions cannot do yet, so this build ships a dev signer that creates a key in your
-> browser's storage. The key is a real nostr key, but treat it as a hot, throwaway identity:
-> don't reuse your main key, and don't send funds to it.
+> payment-proof check, the verified delivery. Two notes:
+> **(1) The signer.** A real NIP-07 signer extension drives the whole trade, as long as it
+> supports nip44 encryption (recent nos2x, Alby): the library's async entry points sign and
+> decrypt through `window.nostr`, so the extension will prompt — grant it lasting permission
+> or the order polling gets noisy. The dev server (`pnpm run dev`) instead injects a
+> throwaway-key test signer so one person can rehearse both sides in two browser windows;
+> that key is a real nostr key, but treat it as hot and disposable.
 > **(2) The default bill is pretend.** If the seller doesn't paste a real invoice, the app
 > writes a valid-format Lightning bill nobody can actually pay, and "paying" it is simulated.
 > For a real trade, use the real-invoice path below — then the money is real and so is the proof.

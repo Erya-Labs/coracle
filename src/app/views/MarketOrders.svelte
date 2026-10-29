@@ -9,8 +9,7 @@
     acceptOrder,
     commitFile,
     connectOrderChannel,
-    myOrderPubkey,
-    orderChannelReady,
+    orderChannelCapable,
     orderThreads,
     payAndProve,
     processWraps,
@@ -22,30 +21,34 @@
   import {app, publisher} from "src/engine/core"
 
   let timer
+  let myPubkey = ""
+  let ready = false
   const fileInputs = {}
   const verifying = new Set()
 
-  const wrapFilters = [{kinds: [1059], "#p": [myOrderPubkey]}]
-
   const poll = async () => {
-    await myLoad({relays: env.DEFAULT_RELAYS, filters: wrapFilters, skipCache: true}).catch(
-      () => null,
-    )
-    processWraps(app.get().repository.query(wrapFilters))
+    const filters = [{kinds: [1059], "#p": [myPubkey]}]
+
+    await myLoad({relays: env.DEFAULT_RELAYS, filters, skipCache: true}).catch(() => null)
+    await processWraps(app.get().repository.query(filters))
   }
 
-  onMount(() => {
-    if (!orderChannelReady) return
+  onMount(async () => {
+    if (!orderChannelCapable()) return
 
-    connectOrderChannel(
-      event => publisher.get().publish({event, relays: env.DEFAULT_RELAYS}),
-      async filters => {
-        await myLoad({relays: env.DEFAULT_RELAYS, filters, skipCache: true}).catch(() => null)
+    myPubkey =
+      (await connectOrderChannel(
+        event => publisher.get().publish({event, relays: env.DEFAULT_RELAYS}),
+        async filters => {
+          await myLoad({relays: env.DEFAULT_RELAYS, filters, skipCache: true}).catch(() => null)
 
-        return app.get().repository.query(filters)
-      },
-    )
+          return app.get().repository.query(filters)
+        },
+      )) ?? ""
 
+    if (!myPubkey) return
+
+    ready = true
     poll()
     timer = setInterval(poll, 3000)
   })
@@ -53,16 +56,12 @@
   onDestroy(() => clearInterval(timer))
 
   const roleIn = thread =>
-    myOrderPubkey === thread.providerKey
-      ? "maker"
-      : myOrderPubkey === thread.buyerKey
-        ? "buyer"
-        : "watcher"
+    myPubkey === thread.providerKey ? "maker" : myPubkey === thread.buyerKey ? "buyer" : "watcher"
 
   const report = ({sent, words}, did) =>
     sent ? showInfo(did) : showWarning(`Nenya refused: ${words}`)
 
-  const accept = thread => report(acceptOrder(thread), "Acceptance sent.")
+  const accept = async thread => report(await acceptOrder(thread), "Acceptance sent.")
 
   const commit = async thread => {
     const file = fileInputs[thread.orderId]?.files?.[0]
@@ -89,16 +88,16 @@
     )
   }
 
-  const pay = thread => {
+  const pay = async thread => {
     const real = preimages[thread.orderId]?.trim()
 
     report(
-      payAndProve(thread, real || ""),
+      await payAndProve(thread, real || ""),
       real ? "Payment proof sent." : "Paid (pretend) and payment proof sent.",
     )
   }
 
-  const release = thread => report(releaseKey(thread), "Key sent to the buyer.")
+  const release = async thread => report(await releaseKey(thread), "Key sent to the buyer.")
 
   $: for (const thread of $orderThreads.values()) {
     if (
@@ -124,11 +123,12 @@
     <i class="fa fa-handshake fa-lg text-accent" />
     <h2 class="staatliches text-2xl">Orders</h2>
   </div>
-  {#if !orderChannelReady}
+  {#if !ready}
     <Card>
       <p class="text-neutral-400">
-        The order channel needs the dev test signer (it signs and decrypts synchronously, which a
-        browser extension cannot). Open this build with the test signer installed.
+        The order channel needs a NIP-07 signer with nip44 encryption — a recent nos2x or Alby, or
+        this build's dev test signer. If your extension is asking for permission, approve it and
+        reload.
       </p>
     </Card>
   {:else if $orderThreads.size === 0}

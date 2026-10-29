@@ -7,11 +7,12 @@ import {writable} from "svelte/store"
 // commitment, release, delivery checks. Every rule is the nenya library's; this file
 // only moves its results around. Ported from the stage-1 demo page's trade flow.
 //
-// PoC constraints, on purpose: the signer needs a raw key (nenya's signer callbacks
-// are synchronous, which a NIP-07 extension cannot be), so this only works with the
-// dev test signer; money is pretend (bills are real BOLT-11, preimages are genuine
-// proofs, nothing is actually paid); the encrypted file and the payment voucher ride
-// the relay, so two browser windows can trade with no other infrastructure.
+// The signer is any NIP-07 extension with nip44 support (window.nostr): nenya's
+// sealAsync/openAsync drive the sealed channel through its promises, so the dev test
+// signer and a real extension like nos2x work alike. Remaining PoC shortcuts: the
+// default bill is pretend (real BOLT-11, genuine preimage, nothing actually paid)
+// unless the seller pastes a real invoice; the encrypted file and the payment voucher
+// ride the relay, so two browser windows can trade with no other infrastructure.
 
 const hex = (bytes: Uint8Array) =>
   Array.from(bytes)
@@ -39,8 +40,12 @@ const clock = () => Math.floor(Date.now() / 1000)
 
 // --- keys, signer, environment -------------------------------------------------
 
-const skHex = () => (window as any).__e2eSecretKeyHex as string | undefined
+const nostr = () => (window as any).nostr
 
+// The order channel is sealed with nip44 end to end, so the signer must support it.
+export const orderChannelCapable = () => Boolean(nostr()?.nip44)
+
+// Throwaway signers for the wrap layer are minted locally, so these stay synchronous.
 const makeSigner = (sk: Uint8Array) => {
   const pk = getPublicKey(sk)
 
@@ -78,12 +83,45 @@ const makeSigner = (sk: Uint8Array) => {
   )
 }
 
-const state = (() => {
-  const sk = skHex() ? unhex(skHex()!) : null
+// nenya's async signer: the same four calls in completion form, each answered by the
+// extension's promise, null meaning unavailable.
+const makeAsyncSigner = (n: any) =>
+  new nenya.JsAsyncSigner(
+    (complete: any) => n.getPublicKey().then(complete, () => complete(null)),
+    (serialisation: string, complete: any) => {
+      try {
+        const [, , created_at, kind, tags, content] = JSON.parse(serialisation)
 
-  if (!sk) return null
+        n.signEvent({kind, created_at, tags, content}).then(
+          (e: any) => complete(e.sig),
+          () => complete(null),
+        )
+      } catch {
+        complete(null)
+      }
+    },
+    (counterparty: string, plaintext: string, complete: any) =>
+      n.nip44.encrypt(counterparty, plaintext).then(complete, () => complete(null)),
+    (counterparty: string, payload: string, complete: any) =>
+      n.nip44.decrypt(counterparty, payload).then(
+        (pt: string) => complete(new nenya.JsDecryption(true, pt)),
+        () => complete(new nenya.JsDecryption(false)),
+      ),
+  )
 
-  const signer = makeSigner(sk)
+let state: any = null
+
+const initState = async () => {
+  if (state) return state
+
+  const n = nostr()
+
+  if (!n?.nip44) return null
+
+  const pk = await n.getPublicKey().catch(() => null)
+
+  if (!pk) return null
+
   const env = new nenya.JsEnvironment(
     () => String(clock()),
     count => {
@@ -109,21 +147,18 @@ const state = (() => {
     (record: any) => records.set(`${record.orderIdHex}:${record.payee}`, record),
   )
 
-  return {
-    sk,
-    pk: getPublicKey(sk),
-    signer,
+  state = {
+    pk,
+    signer: makeAsyncSigner(n),
     env,
     machine: new nenya.JsOrderMachine(env),
     store,
     seenWraps: new Set<string>(),
     seenRumors: new Set<string>(),
   }
-})()
 
-export const orderChannelReady = Boolean(state)
-
-export const myOrderPubkey = state?.pk
+  return state
+}
 
 // --- per-order secrets that only this window knows ------------------------------
 
@@ -205,18 +240,23 @@ let publish: Publish = () => {
 }
 let loadByFilter: LoadByFilter = async () => []
 
-export const connectOrderChannel = (p: Publish, l: LoadByFilter) => {
+export const connectOrderChannel = async (p: Publish, l: LoadByFilter) => {
   publish = p
   loadByFilter = l
+
+  return (await initState())?.pk ?? null
 }
 
-const sendRumor = (built: any, recipients: string[]) => {
+const sealOne = (event: any, to: string) =>
+  new Promise<any>(resolve => nenya.sealAsync(event, to, state!.signer, resolve, state!.env))
+
+const sendRumor = async (built: any, recipients: string[]) => {
   if (!built.ok) return {sent: false, words: buildWords(built)}
 
   const wraps = []
 
   for (const to of recipients) {
-    const sealed = nenya.seal(built.event, to, state!.signer, state!.env)
+    const sealed = await sealOne(built.event, to)
 
     if (!sealed.ok) return {sent: false, words: buildWords(sealed)}
 
@@ -234,11 +274,13 @@ const sendRumor = (built: any, recipients: string[]) => {
 
 const BLOB_KIND = 9876
 
-const uploadBlob = (bytes: Uint8Array) => {
-  const event = finalizeEvent(
-    {kind: BLOB_KIND, created_at: clock(), tags: [], content: b64(bytes)},
-    state!.sk,
-  )
+const uploadBlob = async (bytes: Uint8Array) => {
+  const event = await nostr().signEvent({
+    kind: BLOB_KIND,
+    created_at: clock(),
+    tags: [],
+    content: b64(bytes),
+  })
 
   publish(event)
 
@@ -666,7 +708,10 @@ const getThreads = () => {
   return value
 }
 
-export const processWraps = (events: any[]) => {
+const openOne = (wrapJson: string) =>
+  new Promise<any>(resolve => nenya.openAsync(wrapJson, state!.signer, resolve, state!.env))
+
+export const processWraps = async (events: any[]) => {
   if (!state) return
 
   const opened = []
@@ -676,7 +721,7 @@ export const processWraps = (events: any[]) => {
 
     state.seenWraps.add(wrap.id)
 
-    const result = nenya.open(JSON.stringify(wrap), state.signer, state.env)
+    const result = await openOne(JSON.stringify(wrap))
 
     if (!result.ok) continue
 
@@ -699,7 +744,7 @@ export const processWraps = (events: any[]) => {
 
 // --- the actions each role takes, in order ---------------------------------------
 
-export const proposeOrder = (listing: any) => {
+export const proposeOrder = async (listing: any) => {
   const orderId = hex(crypto.getRandomValues(new Uint8Array(32)))
   const terms = new nenya.JsOrderTerms(
     listing.priceMsat,
@@ -718,7 +763,7 @@ export const proposeOrder = (listing: any) => {
   return sendRumor(built, [listing.authorPubkey])
 }
 
-export const acceptOrder = (thread: any) => {
+export const acceptOrder = async (thread: any) => {
   const built = nenya.buildStatusUpdate(
     envelope([thread.buyerKey]),
     thread.orderId,
@@ -733,7 +778,7 @@ export const acceptOrder = (thread: any) => {
 
 export const commitFile = async (thread: any, plain: Uint8Array, mimeType: string) => {
   const locked = await lockFile(plain)
-  const url = uploadBlob(locked.blob)
+  const url = await uploadBlob(locked.blob)
 
   saveSecret(thread.orderId, {
     keyHex: hex(locked.key),
@@ -774,7 +819,7 @@ export const sendBill = async (thread: any, realInvoice = "") => {
     "provider",
     invoice,
   )
-  const sent = sendRumor(built, [thread.buyerKey])
+  const sent = await sendRumor(built, [thread.buyerKey])
 
   if (!sent.sent || !preimage) return sent
 
@@ -785,7 +830,7 @@ export const sendBill = async (thread: any, realInvoice = "") => {
   ])
 }
 
-export const payAndProve = (thread: any, realPreimageHex = "") => {
+export const payAndProve = async (thread: any, realPreimageHex = "") => {
   const stored = thread.requests.provider
 
   if (!stored) return {sent: false, words: "no accepted bill yet"}
@@ -817,7 +862,7 @@ export const payAndProve = (thread: any, realPreimageHex = "") => {
   return sendRumor(built, [thread.providerKey])
 }
 
-export const releaseKey = (thread: any) => {
+export const releaseKey = async (thread: any) => {
   const secret = secrets()[thread.orderId]
 
   if (!secret?.keyHex) return {sent: false, words: "this window never locked the file"}
