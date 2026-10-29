@@ -1,4 +1,14 @@
 type Nullable<T> = T | null | undefined
+export declare class JsAsyncSigner {
+    constructor(publicKeyHex: (p0: (p0: Nullable<string>) => void) => void, signEvent: (p0: string, p1: (p0: Nullable<string>) => void) => void, nip44Encrypt: (p0: string, p1: string, p2: (p0: Nullable<string>) => void) => void, nip44Decrypt: (p0: string, p1: string, p2: (p0: Nullable<JsDecryption>) => void) => void);
+    get publicKeyHex(): (p0: (p0: Nullable<string>) => void) => void;
+    get signEvent(): (p0: string, p1: (p0: Nullable<string>) => void) => void;
+    get nip44Encrypt(): (p0: string, p1: string, p2: (p0: Nullable<string>) => void) => void;
+    get nip44Decrypt(): (p0: string, p1: string, p2: (p0: Nullable<JsDecryption>) => void) => void;
+    toString(): string;
+}
+export declare function sealAsync(rumor: JsWireEvent, recipientPubkey: string, sender: JsAsyncSigner, onResult: (p0: JsSealResult) => void, environment?: JsEnvironment, recipientRelayHint?: Nullable<string>): void;
+export declare function openAsync(wrapJson: string, me: JsAsyncSigner, onResult: (p0: JsOpenResult) => void, environment?: JsEnvironment): void;
 export declare class JsSeamAnswer {
     private constructor();
     get ok(): boolean;
@@ -94,6 +104,8 @@ export declare class JsRelease {
 }
 export declare function buildChat(envelope: JsRumorEnvelope, orderIdHex?: Nullable<string>): JsBuildResult;
 export declare function buildProposal(envelope: JsRumorEnvelope, orderIdHex: string, itemCoordinate: string, terms: JsOrderTerms, feeRecipient?: Nullable<string>, amountSat?: Nullable<string>): JsBuildResult;
+export declare function buildProposalAgainst(listing: JsListing, environment: JsEnvironment, envelope: JsRumorEnvelope, orderIdHex: string, terms: JsOrderTerms, feeRecipient?: Nullable<string>, amountSat?: Nullable<string>): JsBuildResult;
+export declare function buildAgreementAgainst(listing: JsListing, environment: JsEnvironment, envelope: JsRumorEnvelope, proposalRumor: JsRumor): JsBuildResult;
 export declare function buildStatusUpdate(envelope: JsRumorEnvelope, orderIdHex: string, statusToken: string, itemCoordinate?: Nullable<string>, terms?: Nullable<JsOrderTerms>, feeRecipient?: Nullable<string>): JsBuildResult;
 export declare function buildCommitment(envelope: JsRumorEnvelope, orderIdHex: string, commitment: JsCommitment, url: string): JsBuildResult;
 export declare function buildRelease(envelope: JsRumorEnvelope, orderIdHex: string, release: JsRelease, decryptionKeyHex: string, decryptionNonceHex: string): JsBuildResult;
@@ -164,6 +176,7 @@ export declare function buildBid(bid: JsAuthoredBid): JsBuildResult;
 export declare function listingActivity(listing: JsListing, environment: JsEnvironment): string;
 export declare function bidActivity(bid: JsBid, environment: JsEnvironment): string;
 export declare function checkDeadlines(listing: JsListing, bid: Nullable<JsBid>, environment: JsEnvironment): JsDeadlineCheck;
+export declare function matchesBoard(listing: JsListing, query: JsBoardQuery): boolean;
 export declare class JsListing {
     private constructor();
     get idHex(): string;
@@ -224,6 +237,14 @@ export declare class JsDeadlineCheck {
     get permitted(): boolean;
     get side(): Nullable<string>;
     get reason(): Nullable<string>;
+    toString(): string;
+}
+export declare class JsBoardQuery {
+    constructor(kinds: Array<number>, topics?: Array<string>, mimeType?: Nullable<string>, directedTo?: Nullable<string>);
+    get kinds(): Array<number>;
+    get topics(): Array<string>;
+    get mimeType(): Nullable<string>;
+    get directedTo(): Nullable<string>;
     toString(): string;
 }
 export declare class JsListingResult {

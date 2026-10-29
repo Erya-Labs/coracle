@@ -83,23 +83,23 @@ initMetadataForClass(arrayIterator$1);
 initMetadataForObject(Digit, 'Digit');
 initMetadataForInterface(Comparator, 'Comparator');
 initMetadataForClass(AbstractCollection, 'AbstractCollection', VOID, VOID, [Collection]);
-initMetadataForClass(AbstractMutableCollection, 'AbstractMutableCollection', VOID, AbstractCollection, [AbstractCollection, MutableIterable, Collection]);
+initMetadataForClass(AbstractMutableCollection, 'AbstractMutableCollection', VOID, AbstractCollection, [AbstractCollection, Collection, MutableIterable]);
 initMetadataForClass(IteratorImpl, 'IteratorImpl');
 initMetadataForClass(ListIteratorImpl, 'ListIteratorImpl', VOID, IteratorImpl);
-initMetadataForClass(AbstractMutableList, 'AbstractMutableList', VOID, AbstractMutableCollection, [AbstractMutableCollection, MutableIterable, KtList, Collection]);
+initMetadataForClass(AbstractMutableList, 'AbstractMutableList', VOID, AbstractMutableCollection, [AbstractMutableCollection, Collection, KtList, MutableIterable]);
 initMetadataForClass(SubList, 'SubList', VOID, AbstractMutableList);
 initMetadataForClass(AbstractMap, 'AbstractMap', VOID, VOID, [KtMap]);
 initMetadataForClass(AbstractMutableMap, 'AbstractMutableMap', VOID, AbstractMap, [AbstractMap, KtMap]);
-initMetadataForClass(AbstractMutableSet, 'AbstractMutableSet', VOID, AbstractMutableCollection, [AbstractMutableCollection, KtSet, MutableIterable, Collection]);
+initMetadataForClass(AbstractMutableSet, 'AbstractMutableSet', VOID, AbstractMutableCollection, [AbstractMutableCollection, KtSet, Collection, MutableIterable]);
 initMetadataForCompanion(Companion_2);
-initMetadataForClass(ArrayList, 'ArrayList', ArrayList_init_$Create$, AbstractMutableList, [AbstractMutableList, MutableIterable, KtList, Collection]);
+initMetadataForClass(ArrayList, 'ArrayList', ArrayList_init_$Create$, AbstractMutableList, [AbstractMutableList, Collection, KtList, MutableIterable]);
 initMetadataForClass(HashMap, 'HashMap', HashMap_init_$Create$, AbstractMutableMap, [AbstractMutableMap, KtMap]);
-initMetadataForClass(HashMapKeys, 'HashMapKeys', VOID, AbstractMutableSet, [KtSet, MutableIterable, Collection, AbstractMutableSet]);
-initMetadataForClass(HashMapEntrySetBase, 'HashMapEntrySetBase', VOID, AbstractMutableSet, [KtSet, MutableIterable, Collection, AbstractMutableSet]);
+initMetadataForClass(HashMapKeys, 'HashMapKeys', VOID, AbstractMutableSet, [KtSet, Collection, MutableIterable, AbstractMutableSet]);
+initMetadataForClass(HashMapEntrySetBase, 'HashMapEntrySetBase', VOID, AbstractMutableSet, [KtSet, Collection, MutableIterable, AbstractMutableSet]);
 initMetadataForClass(HashMapEntrySet, 'HashMapEntrySet', VOID, HashMapEntrySetBase);
 initMetadataForClass(HashMapKeysDefault$iterator$1);
 initMetadataForClass(HashMapKeysDefault, 'HashMapKeysDefault', VOID, AbstractMutableSet);
-initMetadataForClass(HashSet, 'HashSet', HashSet_init_$Create$, AbstractMutableSet, [AbstractMutableSet, KtSet, MutableIterable, Collection]);
+initMetadataForClass(HashSet, 'HashSet', HashSet_init_$Create$, AbstractMutableSet, [AbstractMutableSet, KtSet, Collection, MutableIterable]);
 initMetadataForCompanion(Companion_3);
 initMetadataForClass(Itr, 'Itr');
 initMetadataForClass(KeysItr, 'KeysItr', VOID, Itr);
@@ -146,7 +146,7 @@ initMetadataForClass(InternalHashMap, 'InternalHashMap', InternalHashMap_init_$C
 initMetadataForObject(EmptyHolder, 'EmptyHolder');
 initMetadataForClass(LinkedHashMap, 'LinkedHashMap', LinkedHashMap_init_$Create$, HashMap, [HashMap, KtMap]);
 initMetadataForObject(EmptyHolder_0, 'EmptyHolder');
-initMetadataForClass(LinkedHashSet, 'LinkedHashSet', LinkedHashSet_init_$Create$, HashSet, [HashSet, KtSet, MutableIterable, Collection]);
+initMetadataForClass(LinkedHashSet, 'LinkedHashSet', LinkedHashSet_init_$Create$, HashSet, [HashSet, KtSet, Collection, MutableIterable]);
 initMetadataForClass(Exception, 'Exception', Exception_init_$Create$, Error);
 initMetadataForClass(RuntimeException, 'RuntimeException', RuntimeException_init_$Create$, Exception);
 initMetadataForClass(IllegalArgumentException, 'IllegalArgumentException', IllegalArgumentException_init_$Create$, RuntimeException);
@@ -225,16 +225,6 @@ function toList(_this__u8e3s4) {
       return toMutableList(_this__u8e3s4);
   }
 }
-function toCollection(_this__u8e3s4, destination) {
-  var inductionVariable = 0;
-  var last = _this__u8e3s4.length;
-  while (inductionVariable < last) {
-    var item = _this__u8e3s4[inductionVariable];
-    inductionVariable = inductionVariable + 1 | 0;
-    destination.e(item);
-  }
-  return destination;
-}
 function toSet(_this__u8e3s4) {
   switch (_this__u8e3s4.length) {
     case 0:
@@ -244,6 +234,16 @@ function toSet(_this__u8e3s4) {
     default:
       return toCollection(_this__u8e3s4, LinkedHashSet_init_$Create$_1(mapCapacity(_this__u8e3s4.length)));
   }
+}
+function toCollection(_this__u8e3s4, destination) {
+  var inductionVariable = 0;
+  var last = _this__u8e3s4.length;
+  while (inductionVariable < last) {
+    var item = _this__u8e3s4[inductionVariable];
+    inductionVariable = inductionVariable + 1 | 0;
+    destination.e(item);
+  }
+  return destination;
 }
 function contains(_this__u8e3s4, element) {
   return indexOf_0(_this__u8e3s4, element) >= 0;
@@ -6505,6 +6505,7 @@ export {
   toList as toList383f556t1dixk,
   toMap as toMap1vec9topfei08,
   toSet_0 as toSet2orjxp16sotqu,
+  toSet as toSet1glep2u1u9tcb,
   enumEntries as enumEntries20mr21zbe3az4,
   captureStack as captureStack1fzi4aczwc4hg,
   charArrayOf as charArrayOf27f4r3dozbrk1,

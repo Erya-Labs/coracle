@@ -47,8 +47,8 @@ import {
   minus1djrl64vbav3y as minus,
   UnsupportedOperationException_init_$Create$1usmxm8d6ijjz as UnsupportedOperationException_init_$Create$,
   hashCodeq5arwsb9dgti as hashCode,
-  MutableIterablez3x4ksk1fmrm as MutableIterable,
   KtList3hktaavzmj137 as KtList,
+  MutableIterablez3x4ksk1fmrm as MutableIterable,
   KtSetjrjc7fhfd6b9 as KtSet,
   ArrayList_init_$Create$3c5f9d0lbt4oq as ArrayList_init_$Create$_1,
   emptySetcxexqki71qfa as emptySet,
@@ -75,6 +75,7 @@ import {
   RuntimeException_init_$Init$2i94smf8ys3t6 as RuntimeException_init_$Init$,
   toList383f556t1dixk as toList_0,
   ensureNotNull1e947j3ixpazm as ensureNotNull,
+  toSet1glep2u1u9tcb as toSet_0,
   distinct10qe1scfdvu5k as distinct,
   singleOrNullrknfaxokm1sl as singleOrNull,
   KtMap140uvy3s5zad8 as KtMap,
@@ -155,6 +156,11 @@ initMetadataForCompanion(Companion_2);
 initMetadataForClass(DeliveryCommitmentMessage, 'DeliveryCommitmentMessage');
 initMetadataForCompanion(Companion_3);
 initMetadataForClass(DeliverableReleaseMessage, 'DeliverableReleaseMessage');
+initMetadataForClass(Built_0, 'Built');
+initMetadataForObject(ForAnotherListing, 'ForAnotherListing');
+initMetadataForClass(DeadlineRefused, 'DeadlineRefused');
+initMetadataForClass(Refused_1, 'Refused');
+initMetadataForObject(ListingOrderWriter, 'ListingOrderWriter');
 initMetadataForClass(SignedTerms, 'SignedTerms');
 initMetadataForObject(ChannelTerms, 'ChannelTerms');
 initMetadataForCompanion(Companion_4);
@@ -171,12 +177,12 @@ initMetadataForClass(OrderMessageKind, 'OrderMessageKind', VOID, Enum);
 initMetadataForClass(Attribution, 'Attribution', VOID, Enum);
 initMetadataForObject(ChannelTags, 'ChannelTags');
 initMetadataForClass(RumorEnvelope, 'RumorEnvelope');
-initMetadataForClass(Built_0, 'Built');
-initMetadataForClass(Refused_1, 'Refused');
+initMetadataForClass(Built_1, 'Built');
+initMetadataForClass(Refused_2, 'Refused');
 initMetadataForClass(Message, 'Message');
 initMetadataForObject(RumorWriter, 'RumorWriter');
-initMetadataForClass(ReadOnlyList, 'ReadOnlyList', VOID, VOID, [MutableIterable, KtList, Collection]);
-initMetadataForClass(ReadOnlySet, 'ReadOnlySet', VOID, VOID, [KtSet, MutableIterable, Collection]);
+initMetadataForClass(ReadOnlyList, 'ReadOnlyList', VOID, VOID, [Collection, KtList, MutableIterable]);
+initMetadataForClass(ReadOnlySet, 'ReadOnlySet', VOID, VOID, [KtSet, Collection, MutableIterable]);
 initMetadataForClass(ReadOnlyIterator, 'ReadOnlyIterator');
 initMetadataForClass(ReadOnlyListIterator, 'ReadOnlyListIterator');
 initMetadataForClass(ConformanceStatus, 'ConformanceStatus', VOID, Enum);
@@ -206,6 +212,10 @@ initMetadataForClass(OneShotSigner, 'OneShotSigner');
 initMetadataForClass(Wrap, 'Wrap');
 initMetadataForClass(Sealed, 'Sealed');
 initMetadataForObject(GiftWrap, 'GiftWrap');
+initMetadataForClass(JsAsyncSigner, 'JsAsyncSigner');
+initMetadataForClass(ReplayDriver, 'ReplayDriver');
+initMetadataForClass(Filed, 'Filed');
+initMetadataForClass(ReplayMemo, 'ReplayMemo');
 initMetadataForClass(JsSeamAnswer, 'JsSeamAnswer');
 initMetadataForClass(JsWireEvent, 'JsWireEvent');
 initMetadataForClass(JsText, 'JsText');
@@ -228,6 +238,7 @@ initMetadataForClass(JsOpenResult, 'JsOpenResult');
 initMetadataForClass(JsListing, 'JsListing');
 initMetadataForClass(JsBid, 'JsBid');
 initMetadataForClass(JsDeadlineCheck, 'JsDeadlineCheck');
+initMetadataForClass(JsBoardQuery, 'JsBoardQuery');
 initMetadataForClass(JsListingResult, 'JsListingResult');
 initMetadataForClass(JsBidResult, 'JsBidResult');
 initMetadataForClass(JsAuthoredListing, 'JsAuthoredListing');
@@ -262,6 +273,7 @@ initMetadataForClass(JsAcceptedRequestResult, 'JsAcceptedRequestResult');
 initMetadataForClass(JsPaymentRequestStore, 'JsPaymentRequestStore', JsPaymentRequestStore);
 initMetadataForClass(JsFeeTermSighting, 'JsFeeTermSighting');
 initMetadataForClass(CrossedPaymentRequestStore, 'CrossedPaymentRequestStore');
+initMetadataForClass(BoardQuery, 'BoardQuery');
 initMetadataForClass(ListingActivity, 'ListingActivity', VOID, Enum);
 initMetadataForCompanion(Companion_13);
 initMetadataForClass(Listing, 'Listing');
@@ -274,16 +286,16 @@ initMetadataForCompanion(Companion_14);
 initMetadataForClass(ListingSide, 'ListingSide', VOID, Enum);
 initMetadataForObject(ListingStatusCodec, 'ListingStatusCodec');
 initMetadataForClass(AuthoredListing, 'AuthoredListing');
-initMetadataForClass(Built_1, 'Built');
-initMetadataForClass(Refused_2, 'Refused');
+initMetadataForClass(Built_2, 'Built');
+initMetadataForClass(Refused_3, 'Refused');
 initMetadataForObject(ListingWriter, 'ListingWriter');
 function feeOn(price) {
   Msat__requireWithinSupply_impl_sk6ubr(price);
   var priceMsat = _Msat___get_millisatoshis__impl__rjbnyg(price);
-  var bps = toLong(this.l19());
+  var bps = toLong(this.u1a());
   var whole = priceMsat.g2(new Long(10000, 0)).f2(bps);
   var remainder = priceMsat.h2(new Long(10000, 0)).f2(bps).g2(new Long(10000, 0));
-  return Companion_getInstance_16().en(whole.d2(remainder));
+  return Companion_getInstance_16().go(whole.d2(remainder));
 }
 function splitOn(price) {
   return new FeeSplit(price, this);
@@ -316,18 +328,18 @@ initMetadataForObject(ClockChecked, 'ClockChecked');
 initMetadataForObject(LocallyDisputed, 'LocallyDisputed');
 initMetadataForClass(TransitionRejection, 'TransitionRejection', VOID, Enum);
 initMetadataForClass(DisputeGround, 'DisputeGround', VOID, Enum);
-initMetadataForInterface(Refused_3, 'Refused');
-initMetadataForInterface(ChecksNotPerformed, 'ChecksNotPerformed', VOID, VOID, [Refused_3]);
+initMetadataForInterface(Refused_4, 'Refused');
+initMetadataForInterface(ChecksNotPerformed, 'ChecksNotPerformed', VOID, VOID, [Refused_4]);
 initMetadataForInterface(Advanced, 'Advanced');
 initMetadataForClass(At, 'At');
-initMetadataForInterface(Refused_4, 'Refused');
-initMetadataForObject(Unavailable, 'Unavailable', VOID, VOID, [Refused_4]);
-initMetadataForObject(BeforeEpoch, 'BeforeEpoch', VOID, VOID, [Refused_4]);
+initMetadataForInterface(Refused_5, 'Refused');
+initMetadataForObject(Unavailable, 'Unavailable', VOID, VOID, [Refused_5]);
+initMetadataForObject(BeforeEpoch, 'BeforeEpoch', VOID, VOID, [Refused_5]);
 initMetadataForCompanion(Companion_19);
 initMetadataForClass(OrderMachine, 'OrderMachine', OrderMachine);
 initMetadataForClass(OpenOrder, 'OpenOrder');
 initMetadataForClass(Moved, 'Moved', VOID, VOID, [Advanced]);
-initMetadataForClass(NotMoved, 'NotMoved', VOID, VOID, [Refused_3]);
+initMetadataForClass(NotMoved, 'NotMoved', VOID, VOID, [Refused_4]);
 initMetadataForClass(ChecksMissing, 'ChecksMissing', VOID, VOID, [ChecksNotPerformed]);
 initMetadataForClass(OrderStateRejection, 'OrderStateRejection', VOID, Enum);
 initMetadataForClass(OrderStateException, 'OrderStateException', VOID, IllegalArgumentException);
@@ -357,7 +369,7 @@ initMetadataForClass(Provided, 'Provided');
 initMetadataForClass(Unavailable_0, 'Unavailable');
 initMetadataForCompanion(Companion_26);
 initMetadataForClass(Decrypted, 'Decrypted');
-initMetadataForObject(Refused_5, 'Refused');
+initMetadataForObject(Refused_6, 'Refused');
 initMetadataForCompanion(Companion_27);
 initMetadataForCompanion(Companion_28);
 initMetadataForCompanion(Companion_29);
@@ -394,8 +406,8 @@ initMetadataForCompanion(Companion_38);
 initMetadataForClass(PaymentRequest, 'PaymentRequest');
 initMetadataForClass(Record, 'Record');
 initMetadataForCompanion(Companion_39);
-initMetadataForClass(Built_2, 'Built');
-initMetadataForClass(Refused_6, 'Refused');
+initMetadataForClass(Built_3, 'Built');
+initMetadataForClass(Refused_7, 'Refused');
 initMetadataForObject(PaymentWriter, 'PaymentWriter');
 initMetadataForCompanion(Companion_40);
 initMetadataForClass(PaymentReceipt, 'PaymentReceipt');
@@ -2835,29 +2847,120 @@ protoOf(DeliverableReleaseMessage).ak = function () {
 protoOf(DeliverableReleaseMessage).toString = function () {
   return 'DeliverableReleaseMessage(redacted)';
 };
-function SignedTerms(item, amountMsat, fee, deliverBy) {
-  this.lm_1 = item;
-  this.mm_1 = amountMsat;
-  this.nm_1 = fee;
-  this.om_1 = deliverBy;
+function Built_0(event) {
+  this.lm_1 = event;
 }
-protoOf(SignedTerms).pm = function (other) {
+protoOf(Built_0).toString = function () {
+  return 'ListingOrderBuild.Built(kind=' + this.lm_1.dd_1 + ', tags=' + this.lm_1.gd_1.j() + ')';
+};
+function ForAnotherListing() {
+}
+protoOf(ForAnotherListing).toString = function () {
+  return 'ListingOrderBuild.ForAnotherListing';
+};
+var ForAnotherListing_instance;
+function ForAnotherListing_getInstance() {
+  return ForAnotherListing_instance;
+}
+function DeadlineRefused(reason) {
+  this.mm_1 = reason;
+}
+protoOf(DeadlineRefused).equals = function (other) {
+  var tmp;
+  if (other instanceof DeadlineRefused) {
+    tmp = other.mm_1.equals(this.mm_1);
+  } else {
+    tmp = false;
+  }
+  return tmp;
+};
+protoOf(DeadlineRefused).hashCode = function () {
+  return this.mm_1.hashCode();
+};
+protoOf(DeadlineRefused).toString = function () {
+  return 'ListingOrderBuild.DeadlineRefused(' + this.mm_1.toString() + ')';
+};
+function Refused_1(refusal) {
+  this.nm_1 = refusal;
+}
+protoOf(Refused_1).toString = function () {
+  return 'ListingOrderBuild.Refused(reason=' + this.nm_1.om_1.toString() + ', tag=' + this.nm_1.pm_1 + ')';
+};
+function ListingOrderWriter() {
+}
+protoOf(ListingOrderWriter).rm = function (listing, clock, envelope, order, terms, feeRecipient, amountSat) {
+  var gate = Companion_instance_0.rh(listing, null, clock);
+  if (!equals(gate, Permitted_getInstance())) {
+    if (gate instanceof Refused_0)
+      return new DeadlineRefused(gate.ph_1);
+    else {
+      noWhenBranchMatchedException();
+    }
+  }
+  var built = RumorWriter_getInstance().cn(envelope, order, new ItemRef(listing.xh_1), terms, feeRecipient, amountSat);
+  var tmp;
+  if (built instanceof Built_1) {
+    tmp = new Built_0(built.dn_1);
+  } else {
+    if (built instanceof Refused_2) {
+      tmp = new Refused_1(built);
+    } else {
+      noWhenBranchMatchedException();
+    }
+  }
+  return tmp;
+};
+protoOf(ListingOrderWriter).en = function (listing, clock, envelope, proposal) {
+  if (!proposal.jn_1.fn_1.equals(listing.xh_1))
+    return ForAnotherListing_instance;
+  var gate = Companion_instance_0.rh(listing, null, clock);
+  if (!equals(gate, Permitted_getInstance())) {
+    if (gate instanceof Refused_0)
+      return new DeadlineRefused(gate.ph_1);
+    else {
+      noWhenBranchMatchedException();
+    }
+  }
+  var built = RumorWriter_getInstance().mn(envelope, proposal.in_1, OrderState_ACCEPTED_getInstance(), proposal.jn_1, proposal.kn_1, proposal.re());
+  var tmp;
+  if (built instanceof Built_1) {
+    tmp = new Built_0(built.dn_1);
+  } else {
+    if (built instanceof Refused_2) {
+      tmp = new Refused_1(built);
+    } else {
+      noWhenBranchMatchedException();
+    }
+  }
+  return tmp;
+};
+var ListingOrderWriter_instance;
+function ListingOrderWriter_getInstance() {
+  return ListingOrderWriter_instance;
+}
+function SignedTerms(item, amountMsat, fee, deliverBy) {
+  this.nn_1 = item;
+  this.on_1 = amountMsat;
+  this.pn_1 = fee;
+  this.qn_1 = deliverBy;
+}
+protoOf(SignedTerms).rn = function (other) {
   // Inline function 'kotlin.collections.mutableListOf' call
   var out = ArrayList_init_$Create$_0();
-  if (!equals(this.lm_1, other.lm_1)) {
+  if (!equals(this.nn_1, other.nn_1)) {
     // Inline function 'kotlin.collections.plusAssign' call
     out.e('item');
   }
-  if (!equals(this.mm_1, other.mm_1)) {
+  if (!equals(this.on_1, other.on_1)) {
     // Inline function 'kotlin.collections.plusAssign' call
     var element = 'amount_msat';
     out.e(element);
   }
-  if (!equals(this.nm_1, other.nm_1)) {
+  if (!equals(this.pn_1, other.pn_1)) {
     // Inline function 'kotlin.collections.plusAssign' call
     out.e('fee');
   }
-  if (!equals(this.om_1, other.om_1)) {
+  if (!equals(this.qn_1, other.qn_1)) {
     // Inline function 'kotlin.collections.plusAssign' call
     var element_0 = 'deliver_by';
     out.e(element_0);
@@ -2865,7 +2968,7 @@ protoOf(SignedTerms).pm = function (other) {
   return out;
 };
 protoOf(SignedTerms).toString = function () {
-  return 'SignedTerms(item=' + !(this.lm_1 == null) + ', amount_msat=' + !(this.mm_1 == null) + ', ' + ('fee=' + !(this.nm_1 == null) + ', deliver_by=' + !(this.om_1 == null) + ')');
+  return 'SignedTerms(item=' + !(this.nn_1 == null) + ', amount_msat=' + !(this.on_1 == null) + ', ' + ('fee=' + !(this.pn_1 == null) + ', deliver_by=' + !(this.qn_1 == null) + ')');
 };
 function decimal($this, text, name) {
   var tmp;
@@ -2884,7 +2987,7 @@ function decimal($this, text, name) {
 }
 function asChannelRejection_0(_this__u8e3s4, $this, name) {
   var tmp;
-  switch (_this__u8e3s4.qm_1.u1_1) {
+  switch (_this__u8e3s4.sn_1.u1_1) {
     case 1:
       tmp = ChannelRejection_AMOUNT_ABOVE_SUPPLY_getInstance();
       break;
@@ -2914,24 +3017,24 @@ protoOf(ChannelTerms).bl = function (rumor, name) {
   }
   return firstOrNull(found);
 };
-protoOf(ChannelTerms).rm = function (rumor) {
+protoOf(ChannelTerms).tn = function (rumor) {
   return new SignedTerms(firstOrNull(rumor.rj().cl('item')), this.bl(rumor, 'amount_msat'), firstOrNull(rumor.rj().cl('fee')), firstOrNull(rumor.rj().cl('deliver_by')));
 };
-protoOf(ChannelTerms).sm = function (rumor) {
+protoOf(ChannelTerms).un = function (rumor) {
   var tmp0_elvis_lhs = this.bl(rumor, 'amount_msat');
   var tmp;
   if (tmp0_elvis_lhs == null) {
-    throw this.tm('amount_msat');
+    throw this.vn('amount_msat');
   } else {
     tmp = tmp0_elvis_lhs;
   }
   var tag = tmp;
   if (tag.j() < 2)
-    throw this.tm('amount_msat');
+    throw this.vn('amount_msat');
   var millisatoshis = decimal(this, tag.k(1), 'amount_msat');
   var tmp_0;
   try {
-    tmp_0 = Companion_getInstance_16().en(millisatoshis);
+    tmp_0 = Companion_getInstance_16().go(millisatoshis);
   } catch ($p) {
     var tmp_1;
     if ($p instanceof MoneyException) {
@@ -2943,7 +3046,7 @@ protoOf(ChannelTerms).sm = function (rumor) {
   }
   return tmp_0;
 };
-protoOf(ChannelTerms).fn = function (rumor, price) {
+protoOf(ChannelTerms).ho = function (rumor, price) {
   var tmp0_elvis_lhs = this.bl(rumor, 'amount');
   var tmp;
   if (tmp0_elvis_lhs == null) {
@@ -2958,7 +3061,7 @@ protoOf(ChannelTerms).fn = function (rumor, price) {
   var satoshis = decimal(this, tag.k(1), 'amount');
   var tmp_0;
   try {
-    tmp_0 = Companion_getInstance_16().gn(satoshis);
+    tmp_0 = Companion_getInstance_16().io(satoshis);
   } catch ($p) {
     var tmp_1;
     if ($p instanceof MoneyException) {
@@ -2973,7 +3076,7 @@ protoOf(ChannelTerms).fn = function (rumor, price) {
     throw new ChannelException(ChannelRejection_AMOUNT_DISAGREEMENT_getInstance(), 'amount', '\xA77.5: `amount` and `amount_msat` are both present and disagree by a factor this implementation MUST NOT resolve \u2014 \xA77.5 says the message MUST be rejected and that an implementation MUST NOT prefer one and continue');
   }
 };
-protoOf(ChannelTerms).hn = function (expiration, deliverBy) {
+protoOf(ChannelTerms).jo = function (expiration, deliverBy) {
   if (expiration == null || deliverBy == null)
     return Unit_instance;
   if (expiration.c2(deliverBy) >= 0) {
@@ -2989,7 +3092,7 @@ protoOf(ChannelTerms).wl = function (rumor, expected, reason) {
   var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.t1_1;
   throw new ChannelException(reason, 'type', tmp + ('kind:' + tmp_0 + ' ' + (tmp1_elvis_lhs == null ? 'rumor carrying no type' : tmp1_elvis_lhs) + '. A ') + 'well-formed message of another kind is not a malformed one');
 };
-protoOf(ChannelTerms).tm = function (tag) {
+protoOf(ChannelTerms).vn = function (tag) {
   return new ChannelException(ChannelRejection_MISSING_REQUIRED_TAG_getInstance(), tag, '\xA77.5 marks `' + tag + '` REQUIRED on a kind:' + RumorKind_ORDER_MESSAGE_getInstance().hi_1 + ' ' + ('`type=' + OrderMessageKind_PROPOSAL_getInstance().dj_1 + '` and this event carries ') + 'no readable one');
 };
 var ChannelTerms_instance;
@@ -2998,15 +3101,15 @@ function ChannelTerms_getInstance() {
 }
 function Companion_4() {
   Companion_instance_4 = this;
-  this.in_1 = readOnlyListOf(plus(Companion_getInstance_1().ae(), listOf(['type', 'item', 'amount_msat'])));
-  this.jn_1 = readOnlyListOf(plus(this.in_1, listOf(['amount', 'fee', 'deliver_by', 'expiration', 'subject'])));
+  this.ko_1 = readOnlyListOf(plus(Companion_getInstance_1().ae(), listOf(['type', 'item', 'amount_msat'])));
+  this.lo_1 = readOnlyListOf(plus(this.ko_1, listOf(['amount', 'fee', 'deliver_by', 'expiration', 'subject'])));
 }
 protoOf(Companion_4).sl = function (rumor) {
   ChannelTerms_instance.wl(rumor, OrderMessageKind_PROPOSAL_getInstance(), ChannelRejection_NOT_A_PROPOSAL_getInstance());
   var tmp0_elvis_lhs = rumor.lk();
   var tmp;
   if (tmp0_elvis_lhs == null) {
-    throw ChannelTerms_instance.tm('order');
+    throw ChannelTerms_instance.vn('order');
   } else {
     tmp = tmp0_elvis_lhs;
   }
@@ -3014,21 +3117,21 @@ protoOf(Companion_4).sl = function (rumor) {
   var tmp1_elvis_lhs = rumor.rj().uc_1;
   var tmp_0;
   if (tmp1_elvis_lhs == null) {
-    throw ChannelTerms_instance.tm('item');
+    throw ChannelTerms_instance.vn('item');
   } else {
     tmp_0 = tmp1_elvis_lhs;
   }
   var item = tmp_0;
-  var price = ChannelTerms_instance.sm(rumor);
-  ChannelTerms_instance.fn(rumor, price);
+  var price = ChannelTerms_instance.un(rumor);
+  ChannelTerms_instance.ho(rumor, price);
   var expiration = rumor.rj().mc_1;
   var deliverBy = rumor.rj().tc_1;
-  ChannelTerms_instance.hn(expiration, deliverBy);
-  var terms = Companion_instance_20.kn(price, rumor.rj().qc_1, expiration, deliverBy);
-  return new OrderProposal(rumor, order, item, terms, ChannelTerms_instance.rm(rumor));
+  ChannelTerms_instance.jo(expiration, deliverBy);
+  var terms = Companion_instance_20.mo(price, rumor.rj().qc_1, expiration, deliverBy);
+  return new OrderProposal(rumor, order, item, terms, ChannelTerms_instance.tn(rumor));
 };
 protoOf(Companion_4).ae = function () {
-  return this.in_1;
+  return this.ko_1;
 };
 var Companion_instance_4;
 function Companion_getInstance_4() {
@@ -3038,31 +3141,31 @@ function Companion_getInstance_4() {
 }
 function OrderProposal(rumor, order, item, terms, signedTerms) {
   Companion_getInstance_4();
-  this.ln_1 = rumor;
-  this.mn_1 = order;
-  this.nn_1 = item;
-  this.on_1 = terms;
-  this.pn_1 = signedTerms;
+  this.hn_1 = rumor;
+  this.in_1 = order;
+  this.jn_1 = item;
+  this.kn_1 = terms;
+  this.ln_1 = signedTerms;
 }
-protoOf(OrderProposal).qn = function () {
-  return this.ln_1.qj();
+protoOf(OrderProposal).no = function () {
+  return this.hn_1.qj();
 };
 protoOf(OrderProposal).re = function () {
-  return this.ln_1.rj().rc_1;
+  return this.hn_1.rj().rc_1;
 };
 protoOf(OrderProposal).zj = function () {
-  return this.ln_1.zj();
+  return this.hn_1.zj();
 };
 protoOf(OrderProposal).wd = function () {
-  return this.ln_1.wd();
+  return this.hn_1.wd();
 };
 protoOf(OrderProposal).tj = function () {
-  return this.ln_1.tj();
+  return this.hn_1.tj();
 };
 protoOf(OrderProposal).ak = function () {
-  return this.ln_1.ak();
+  return this.hn_1.ak();
 };
-protoOf(OrderProposal).rn = function (update, provider) {
+protoOf(OrderProposal).oo = function (update, provider) {
   var tmp;
   try {
     tmp = readPubkeyHex(provider, "the provider's pubkey");
@@ -3076,19 +3179,19 @@ protoOf(OrderProposal).rn = function (update, provider) {
     }
   }
   var resolved = tmp;
-  if (resolved === this.qn()) {
+  if (resolved === this.no()) {
     throw new ChannelException(ChannelRejection_PROVIDER_IS_BUYER_getInstance(), 'p', "\xA77.6 requires the provider's key be established independently of the proposal and says an acceptance sealed by the buyer MUST be rejected even where every term is byte-identical: an acceptance is the counterparty's act. A resolution that returned this proposal's own author has read the provider out of the message being judged, which is the one place \xA77.6 forbids taking it from");
   }
-  if (!update.tn_1.equals(this.mn_1)) {
+  if (!update.qo_1.equals(this.in_1)) {
     throw new ChannelException(ChannelRejection_DIFFERENT_ORDER_getInstance(), 'order', '\xA77.6 fixes an acceptance as a status update carrying **the same** `order` id; this one names a different order and is not about this one at all');
   }
-  if (!update.un_1.equals(OrderState_ACCEPTED_getInstance()))
-    return new NotAnAcceptance(update.un_1);
+  if (!update.ro_1.equals(OrderState_ACCEPTED_getInstance()))
+    return new NotAnAcceptance(update.ro_1);
   if (!(update.cm() === resolved)) {
-    throw new ChannelException(ChannelRejection_ACCEPTANCE_NOT_FROM_PROVIDER_getInstance(), 'status', '\xA77.6: acceptance is a `status=' + OrderState_ACCEPTED_getInstance().yn_1 + '` ' + ("update **from the provider**, and \xA711.2's `" + OrderState_PROPOSED_getInstance().yn_1 + ' \u2192 ') + ('' + OrderState_ACCEPTED_getInstance().yn_1 + "` row says from the provider's **key**. This one ") + "was sealed by another. \xA77.2's equality still holds \u2014 the rumor's claimed " + "pubkey is the seal's \u2014 so this is not impersonation; it is a real key " + 'belonging to the wrong party, and the four terms being byte-identical is ' + 'exactly what a buyer accepting its own order would achieve');
+    throw new ChannelException(ChannelRejection_ACCEPTANCE_NOT_FROM_PROVIDER_getInstance(), 'status', '\xA77.6: acceptance is a `status=' + OrderState_ACCEPTED_getInstance().vo_1 + '` ' + ("update **from the provider**, and \xA711.2's `" + OrderState_PROPOSED_getInstance().vo_1 + ' \u2192 ') + ('' + OrderState_ACCEPTED_getInstance().vo_1 + "` row says from the provider's **key**. This one ") + "was sealed by another. \xA77.2's equality still holds \u2014 the rumor's claimed " + "pubkey is the seal's \u2014 so this is not impersonation; it is a real key " + 'belonging to the wrong party, and the four terms being byte-identical is ' + 'exactly what a buyer accepting its own order would achieve');
   }
-  var divergent = this.pn_1.pm(update.vn_1);
-  return divergent.p() ? new Accepted(this.mn_1, this.on_1, resolved) : new CounterProposal(readOnlyListOf(divergent));
+  var divergent = this.ln_1.rn(update.so_1);
+  return divergent.p() ? new Accepted(this.in_1, this.kn_1, resolved) : new CounterProposal(readOnlyListOf(divergent));
 };
 protoOf(OrderProposal).toString = function () {
   return 'OrderProposal(redacted)';
@@ -3113,52 +3216,52 @@ protoOf(Companion_5).sl = function (rumor) {
     tmp_0 = tmp1_elvis_lhs;
   }
   var token = tmp_0;
-  return new OrderStatusMessage(rumor, order, OrderStatusCodec_getInstance().bo(token), ChannelTerms_instance.rm(rumor));
+  return new OrderStatusMessage(rumor, order, OrderStatusCodec_getInstance().yo(token), ChannelTerms_instance.tn(rumor));
 };
 var Companion_instance_5;
 function Companion_getInstance_5() {
   return Companion_instance_5;
 }
 function OrderStatusMessage(rumor, order, status, signedTerms) {
-  this.sn_1 = rumor;
-  this.tn_1 = order;
-  this.un_1 = status;
-  this.vn_1 = signedTerms;
+  this.po_1 = rumor;
+  this.qo_1 = order;
+  this.ro_1 = status;
+  this.so_1 = signedTerms;
 }
 protoOf(OrderStatusMessage).cm = function () {
-  return this.sn_1.qj();
+  return this.po_1.qj();
 };
 protoOf(OrderStatusMessage).wd = function () {
-  return this.sn_1.wd();
+  return this.po_1.wd();
 };
 protoOf(OrderStatusMessage).tj = function () {
-  return this.sn_1.tj();
+  return this.po_1.tj();
 };
 protoOf(OrderStatusMessage).ak = function () {
-  return this.sn_1.ak();
+  return this.po_1.ak();
 };
 protoOf(OrderStatusMessage).toString = function () {
-  return 'OrderStatusMessage(status=' + this.un_1.t1_1 + ')';
+  return 'OrderStatusMessage(status=' + this.ro_1.t1_1 + ')';
 };
 function Accepted(order, terms, provider) {
-  this.co_1 = order;
-  this.do_1 = terms;
-  this.eo_1 = provider;
+  this.zo_1 = order;
+  this.ap_1 = terms;
+  this.bp_1 = provider;
 }
 protoOf(Accepted).toString = function () {
   return 'Acceptance.Accepted(redacted)';
 };
 function CounterProposal(divergentTerms) {
-  this.fo_1 = divergentTerms;
+  this.cp_1 = divergentTerms;
 }
 protoOf(CounterProposal).toString = function () {
-  return 'Acceptance.CounterProposal(differing=' + toString(this.fo_1) + ')';
+  return 'Acceptance.CounterProposal(differing=' + toString(this.cp_1) + ')';
 };
 function NotAnAcceptance(status) {
-  this.go_1 = status;
+  this.dp_1 = status;
 }
 protoOf(NotAnAcceptance).toString = function () {
-  return 'Acceptance.NotAnAcceptance(status=' + this.go_1.t1_1 + ')';
+  return 'Acceptance.NotAnAcceptance(status=' + this.dp_1.t1_1 + ')';
 };
 var RumorKind_CHAT_instance;
 var RumorKind_FILE_MESSAGE_instance;
@@ -3288,18 +3391,18 @@ function Attribution_initEntries() {
 }
 function Attribution(name, ordinal, what) {
   Enum.call(this, name, ordinal);
-  this.jo_1 = what;
+  this.gp_1 = what;
 }
 function ChannelTags() {
-  this.ko_1 = 'order';
-  this.lo_1 = 'type';
-  this.mo_1 = 'amount_msat';
-  this.no_1 = 'amount';
+  this.hp_1 = 'order';
+  this.ip_1 = 'type';
+  this.jp_1 = 'amount_msat';
+  this.kp_1 = 'amount';
 }
-protoOf(ChannelTags).oo = function (id) {
-  return listOf(['order', id.qo()]);
+protoOf(ChannelTags).lp = function (id) {
+  return listOf(['order', id.np()]);
 };
-protoOf(ChannelTags).ro = function (message) {
+protoOf(ChannelTags).op = function (message) {
   if (message.equals(OrderMessageKind_SHIPPING_getInstance())) {
     throw new ChannelException(ChannelRejection_RESERVED_TYPE_getInstance(), 'type', '\xA77.4 reserves `type=' + message.dj_1 + '` for GammaMarkets physical shipping: Nenya v1 ' + 'MUST NOT emit it and MUST ignore it on read');
   }
@@ -3374,29 +3477,29 @@ function RumorEnvelope(authorPubkey, createdAt, counterparties, content, nenyaVe
   content = content === VOID ? '' : content;
   nenyaVersion = nenyaVersion === VOID ? 1 : nenyaVersion;
   extraTags = extraTags === VOID ? emptyList() : extraTags;
-  this.so_1 = authorPubkey;
-  this.to_1 = createdAt;
-  this.uo_1 = counterparties;
-  this.vo_1 = content;
-  this.wo_1 = nenyaVersion;
-  this.xo_1 = extraTags;
+  this.pp_1 = authorPubkey;
+  this.qp_1 = createdAt;
+  this.rp_1 = counterparties;
+  this.sp_1 = content;
+  this.tp_1 = nenyaVersion;
+  this.up_1 = extraTags;
 }
 protoOf(RumorEnvelope).toString = function () {
-  return 'RumorEnvelope(counterparties=' + this.uo_1.j() + ', extraTags=' + this.xo_1.j() + ')';
+  return 'RumorEnvelope(counterparties=' + this.rp_1.j() + ', extraTags=' + this.up_1.j() + ')';
 };
-function Built_0(event) {
-  this.yo_1 = event;
+function Built_1(event) {
+  this.dn_1 = event;
 }
-protoOf(Built_0).toString = function () {
-  return 'RumorBuild.Built(kind=' + this.yo_1.dd_1 + ', tags=' + this.yo_1.gd_1.j() + ')';
+protoOf(Built_1).toString = function () {
+  return 'RumorBuild.Built(kind=' + this.dn_1.dd_1 + ', tags=' + this.dn_1.gd_1.j() + ')';
 };
-function Refused_1(reason, tag, detail) {
-  this.zo_1 = reason;
-  this.ap_1 = tag;
-  this.bp_1 = detail;
+function Refused_2(reason, tag, detail) {
+  this.om_1 = reason;
+  this.pm_1 = tag;
+  this.qm_1 = detail;
 }
-protoOf(Refused_1).toString = function () {
-  return 'RumorBuild.Refused(reason=' + this.zo_1.toString() + ', tag=' + this.ap_1 + ')';
+protoOf(Refused_2).toString = function () {
+  return 'RumorBuild.Refused(reason=' + this.om_1.toString() + ', tag=' + this.pm_1 + ')';
 };
 function Message(kind, type, order, tagOrder, required, item, terms, feeRecipient, amountSat, status, commitment, url, release, decryptionKey, decryptionNonce, rows) {
   item = item === VOID ? null : item;
@@ -3410,27 +3513,27 @@ function Message(kind, type, order, tagOrder, required, item, terms, feeRecipien
   decryptionKey = decryptionKey === VOID ? null : decryptionKey;
   decryptionNonce = decryptionNonce === VOID ? null : decryptionNonce;
   rows = rows === VOID ? emptyMap() : rows;
-  this.cp_1 = kind;
-  this.dp_1 = type;
-  this.ep_1 = order;
-  this.fp_1 = tagOrder;
-  this.gp_1 = required;
-  this.hp_1 = item;
-  this.ip_1 = terms;
-  this.jp_1 = feeRecipient;
-  this.kp_1 = amountSat;
-  this.lp_1 = status;
-  this.mp_1 = commitment;
-  this.np_1 = url;
-  this.op_1 = release;
-  this.pp_1 = decryptionKey;
-  this.qp_1 = decryptionNonce;
-  this.rp_1 = rows;
+  this.vp_1 = kind;
+  this.wp_1 = type;
+  this.xp_1 = order;
+  this.yp_1 = tagOrder;
+  this.zp_1 = required;
+  this.aq_1 = item;
+  this.bq_1 = terms;
+  this.cq_1 = feeRecipient;
+  this.dq_1 = amountSat;
+  this.eq_1 = status;
+  this.fq_1 = commitment;
+  this.gq_1 = url;
+  this.hq_1 = release;
+  this.iq_1 = decryptionKey;
+  this.jq_1 = decryptionNonce;
+  this.kq_1 = rows;
 }
 function assemble($this, message, envelope) {
   var tmp;
   try {
-    tmp = readPubkeyHex(envelope.so_1, "the author's pubkey");
+    tmp = readPubkeyHex(envelope.pp_1, "the author's pubkey");
   } catch ($p) {
     var tmp_0;
     if ($p instanceof TagException) {
@@ -3441,13 +3544,13 @@ function assemble($this, message, envelope) {
     }
   }
   var author = tmp;
-  if (envelope.to_1.c2(new Long(0, 0)) < 0) {
+  if (envelope.qp_1.c2(new Long(0, 0)) < 0) {
     return refusal_0($this, ChannelRejection_MALFORMED_EVENT_FIELD_getInstance(), null, '\xA74.3 fixes a timestamp as a non-negative integer and `created_at` is one');
   }
-  if (!(envelope.wo_1 === 1)) {
+  if (!(envelope.tp_1 === 1)) {
     return refusal_0($this, ChannelRejection_UNSUPPORTED_VERSION_getInstance(), 'nenya', "\xA74.5's `nenya` tag states the major version of the document a message implements, and this build implements 1; \xA77.4 requires an implementation ignore a `type=" + ('' + OrderMessageKind_DELIVERY_COMMITMENT_getInstance().dj_1 + '` or ') + ('`type=' + OrderMessageKind_PRIVATE_BID_getInstance().dj_1 + '` carrying any ') + 'other, so this writer would be emitting a rumor its own decoder discards');
   }
-  var tmp0_safe_receiver = forbiddenExtra($this, message, envelope.xo_1);
+  var tmp0_safe_receiver = forbiddenExtra($this, message, envelope.up_1);
   if (tmp0_safe_receiver == null)
     null;
   else {
@@ -3457,7 +3560,7 @@ function assemble($this, message, envelope) {
   }
   // Inline function 'kotlin.collections.mutableListOf' call
   var tags = ArrayList_init_$Create$_0();
-  var _iterator__ex2g4s = message.fp_1.g();
+  var _iterator__ex2g4s = message.yp_1.g();
   while (_iterator__ex2g4s.h()) {
     var name = _iterator__ex2g4s.i();
     var tmp_1;
@@ -3499,7 +3602,7 @@ function assemble($this, message, envelope) {
     var tmp$ret$2 = item.k(0);
     destination.e(tmp$ret$2);
   }
-  var tmp3_safe_receiver = extraTagProblem_0($this, message, envelope.xo_1, toSet(destination));
+  var tmp3_safe_receiver = extraTagProblem_0($this, message, envelope.up_1, toSet(destination));
   if (tmp3_safe_receiver == null)
     null;
   else {
@@ -3507,7 +3610,7 @@ function assemble($this, message, envelope) {
     // Inline function 'kotlin.contracts.contract' call
     return tmp3_safe_receiver;
   }
-  var _iterator__ex2g4s_0 = envelope.xo_1.g();
+  var _iterator__ex2g4s_0 = envelope.up_1.g();
   while (_iterator__ex2g4s_0.h()) {
     var tag = _iterator__ex2g4s_0.i();
     // Inline function 'kotlin.collections.plusAssign' call
@@ -3524,7 +3627,7 @@ function assemble($this, message, envelope) {
   }
   var tmp_4;
   try {
-    tmp_4 = new WireEvent(author, envelope.to_1, message.cp_1.hi_1, tags, envelope.vo_1);
+    tmp_4 = new WireEvent(author, envelope.qp_1, message.vp_1.hi_1, tags, envelope.sp_1);
   } catch ($p) {
     var tmp_5;
     if ($p instanceof WireException) {
@@ -3535,24 +3638,24 @@ function assemble($this, message, envelope) {
     }
   }
   var event = tmp_4;
-  return new Built_0(event);
+  return new Built_1(event);
 }
 function row_0($this, name, message, envelope, author) {
-  var tmp0_elvis_lhs = message.rp_1.q1(name);
+  var tmp0_elvis_lhs = message.kq_1.q1(name);
   var tmp;
   if (tmp0_elvis_lhs == null) {
     var tmp_0;
     switch (name) {
       case 'order':
-        tmp_0 = optional_0($this, message.ep_1, RumorWriter$row$lambda);
+        tmp_0 = optional_0($this, message.xp_1, RumorWriter$row$lambda);
         break;
       case 'type':
-        tmp_0 = optional_0($this, message.dp_1, RumorWriter$row$lambda_0);
+        tmp_0 = optional_0($this, message.wp_1, RumorWriter$row$lambda_0);
         break;
       case 'p':
         // Inline function 'kotlin.collections.map' call
 
-        var this_0 = envelope.uo_1;
+        var this_0 = envelope.rp_1;
         // Inline function 'kotlin.collections.mapTo' call
 
         var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
@@ -3567,46 +3670,46 @@ function row_0($this, name, message, envelope, author) {
         tmp_0 = destination;
         break;
       case 'nenya':
-        tmp_0 = listOf_0(TagWriter_instance.wg(envelope.wo_1));
+        tmp_0 = listOf_0(TagWriter_instance.wg(envelope.tp_1));
         break;
       case 'item':
-        tmp_0 = optional_0($this, message.hp_1, RumorWriter$row$lambda_1);
+        tmp_0 = optional_0($this, message.aq_1, RumorWriter$row$lambda_1);
         break;
       case 'amount_msat':
-        tmp_0 = optional_0($this, message.ip_1, RumorWriter$row$lambda_2(name));
+        tmp_0 = optional_0($this, message.bq_1, RumorWriter$row$lambda_2(name));
         break;
       case 'amount':
-        tmp_0 = optional_0($this, message.kp_1, RumorWriter$row$lambda_3(message, name));
+        tmp_0 = optional_0($this, message.dq_1, RumorWriter$row$lambda_3(message, name));
         break;
       case 'price':
-        tmp_0 = optional_0($this, message.ip_1, RumorWriter$row$lambda_4);
+        tmp_0 = optional_0($this, message.bq_1, RumorWriter$row$lambda_4);
         break;
       case 'fee':
         tmp_0 = feeRow($this, message);
         break;
       case 'deliver_by':
-        var tmp2_safe_receiver = message.ip_1;
-        var tmp_1 = tmp2_safe_receiver == null ? null : tmp2_safe_receiver.up_1;
+        var tmp2_safe_receiver = message.bq_1;
+        var tmp_1 = tmp2_safe_receiver == null ? null : tmp2_safe_receiver.nq_1;
         tmp_0 = optional_0($this, tmp_1, RumorWriter$row$lambda_5(name));
         break;
       case 'expiration':
-        var tmp3_safe_receiver = message.ip_1;
-        var tmp_2 = tmp3_safe_receiver == null ? null : tmp3_safe_receiver.tp_1;
+        var tmp3_safe_receiver = message.bq_1;
+        var tmp_2 = tmp3_safe_receiver == null ? null : tmp3_safe_receiver.mq_1;
         tmp_0 = optional_0($this, tmp_2, RumorWriter$row$lambda_6(name));
         break;
       case 'status':
-        tmp_0 = optional_0($this, message.lp_1, RumorWriter$row$lambda_7(name));
+        tmp_0 = optional_0($this, message.eq_1, RumorWriter$row$lambda_7(name));
         break;
       case 'url':
-        tmp_0 = optional_0($this, message.np_1, RumorWriter$row$lambda_8(name));
+        tmp_0 = optional_0($this, message.gq_1, RumorWriter$row$lambda_8(name));
         break;
       case 'x':
-        var tmp4_safe_receiver = message.mp_1;
-        var tmp5_elvis_lhs = tmp4_safe_receiver == null ? null : tmp4_safe_receiver.vp_1;
+        var tmp4_safe_receiver = message.fq_1;
+        var tmp5_elvis_lhs = tmp4_safe_receiver == null ? null : tmp4_safe_receiver.oq_1;
         var tmp_3;
         if (tmp5_elvis_lhs == null) {
-          var tmp6_safe_receiver = message.op_1;
-          tmp_3 = tmp6_safe_receiver == null ? null : tmp6_safe_receiver.zp_1;
+          var tmp6_safe_receiver = message.hq_1;
+          tmp_3 = tmp6_safe_receiver == null ? null : tmp6_safe_receiver.sq_1;
         } else {
           tmp_3 = tmp5_elvis_lhs;
         }
@@ -3615,12 +3718,12 @@ function row_0($this, name, message, envelope, author) {
         tmp_0 = optional_0($this, tmp_4, RumorWriter$row$lambda_9(name));
         break;
       case 'ox':
-        var tmp7_safe_receiver = message.mp_1;
-        var tmp8_elvis_lhs = tmp7_safe_receiver == null ? null : tmp7_safe_receiver.wp_1;
+        var tmp7_safe_receiver = message.fq_1;
+        var tmp8_elvis_lhs = tmp7_safe_receiver == null ? null : tmp7_safe_receiver.pq_1;
         var tmp_5;
         if (tmp8_elvis_lhs == null) {
-          var tmp9_safe_receiver = message.op_1;
-          tmp_5 = tmp9_safe_receiver == null ? null : tmp9_safe_receiver.aq_1;
+          var tmp9_safe_receiver = message.hq_1;
+          tmp_5 = tmp9_safe_receiver == null ? null : tmp9_safe_receiver.tq_1;
         } else {
           tmp_5 = tmp8_elvis_lhs;
         }
@@ -3629,22 +3732,22 @@ function row_0($this, name, message, envelope, author) {
         tmp_0 = optional_0($this, tmp_6, RumorWriter$row$lambda_10(name));
         break;
       case 'm':
-        var tmp10_safe_receiver = message.mp_1;
-        var tmp_7 = tmp10_safe_receiver == null ? null : tmp10_safe_receiver.xp_1;
+        var tmp10_safe_receiver = message.fq_1;
+        var tmp_7 = tmp10_safe_receiver == null ? null : tmp10_safe_receiver.qq_1;
         tmp_0 = optional_0($this, tmp_7, RumorWriter$row$lambda_11(name));
         break;
       case 'file-type':
-        var tmp11_safe_receiver = message.op_1;
-        var tmp_8 = tmp11_safe_receiver == null ? null : tmp11_safe_receiver.bq_1;
+        var tmp11_safe_receiver = message.hq_1;
+        var tmp_8 = tmp11_safe_receiver == null ? null : tmp11_safe_receiver.uq_1;
         tmp_0 = optional_0($this, tmp_8, RumorWriter$row$lambda_12(name));
         break;
       case 'size':
-        var tmp12_safe_receiver = message.mp_1;
-        var tmp13_elvis_lhs = tmp12_safe_receiver == null ? null : tmp12_safe_receiver.yp_1;
+        var tmp12_safe_receiver = message.fq_1;
+        var tmp13_elvis_lhs = tmp12_safe_receiver == null ? null : tmp12_safe_receiver.rq_1;
         var tmp_9;
         if (tmp13_elvis_lhs == null) {
-          var tmp14_safe_receiver = message.op_1;
-          tmp_9 = tmp14_safe_receiver == null ? null : tmp14_safe_receiver.cq_1;
+          var tmp14_safe_receiver = message.hq_1;
+          tmp_9 = tmp14_safe_receiver == null ? null : tmp14_safe_receiver.vq_1;
         } else {
           tmp_9 = tmp13_elvis_lhs;
         }
@@ -3656,13 +3759,13 @@ function row_0($this, name, message, envelope, author) {
         tmp_0 = onDelivery($this, message, RumorWriter$row$lambda_14(name));
         break;
       case 'decryption-key':
-        tmp_0 = optional_0($this, message.pp_1, RumorWriter$row$lambda_15(name));
+        tmp_0 = optional_0($this, message.iq_1, RumorWriter$row$lambda_15(name));
         break;
       case 'decryption-nonce':
-        tmp_0 = optional_0($this, message.qp_1, RumorWriter$row$lambda_16(name));
+        tmp_0 = optional_0($this, message.jq_1, RumorWriter$row$lambda_16(name));
         break;
       default:
-        throw new TagException(TagRejection_MALFORMED_CONTEXT_getInstance(), '`' + name + "` is in this writer's emission order for a kind:" + message.cp_1.hi_1 + ' and it has ' + 'no row here; a tag this writer cannot spell is a message it must not emit');
+        throw new TagException(TagRejection_MALFORMED_CONTEXT_getInstance(), '`' + name + "` is in this writer's emission order for a kind:" + message.vp_1.hi_1 + ' and it has ' + 'no row here; a tag this writer cannot spell is a message it must not emit');
     }
     tmp = tmp_0;
   } else {
@@ -3674,20 +3777,20 @@ function optional_0($this, value, tag) {
   return value == null ? emptyList() : listOf_0(tag(value));
 }
 function onDelivery($this, message, tag) {
-  return message.mp_1 == null && message.op_1 == null ? emptyList() : listOf_0(tag());
+  return message.fq_1 == null && message.hq_1 == null ? emptyList() : listOf_0(tag());
 }
 function feeRow($this, message) {
-  var tmp0_safe_receiver = message.ip_1;
-  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.sp_1;
-  var tmp2_elvis_lhs = tmp1_safe_receiver == null ? null : tmp1_safe_receiver.eq_1;
+  var tmp0_safe_receiver = message.bq_1;
+  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.lq_1;
+  var tmp2_elvis_lhs = tmp1_safe_receiver == null ? null : tmp1_safe_receiver.xq_1;
   var term = tmp2_elvis_lhs == null ? Absent_instance : tmp2_elvis_lhs;
   if (equals(term, Absent_instance)) {
-    if (!(message.jp_1 == null)) {
+    if (!(message.cq_1 == null)) {
       throw new TagException(TagRejection_WRONG_ARITY_getInstance(), '\xA78.1 makes the `fee` recipient a part of the term; an absent term has no wire form at all, so there is nothing for a recipient to belong to');
     }
     return emptyList();
   }
-  return listOf_0(TagWriter_instance.ah(term, message.jp_1));
+  return listOf_0(TagWriter_instance.ah(term, message.cq_1));
 }
 function lowercaseHex($this, name, value, bytes) {
   var expected = imul(bytes, 2);
@@ -3738,8 +3841,8 @@ function forbiddenExtra($this, message, extraTags) {
     }
   }
   var names = toSet(destination);
-  if (equals(message.dp_1, OrderMessageKind_DELIVERY_COMMITMENT_getInstance())) {
-    var _iterator__ex2g4s = $this.oq_1.g();
+  if (equals(message.wp_1, OrderMessageKind_DELIVERY_COMMITMENT_getInstance())) {
+    var _iterator__ex2g4s = $this.ym_1.g();
     $l$loop: while (_iterator__ex2g4s.h()) {
       var name = _iterator__ex2g4s.i();
       if (!names.w(name))
@@ -3747,8 +3850,8 @@ function forbiddenExtra($this, message, extraTags) {
       return refusal_0($this, ChannelRejection_COMMITMENT_CARRIES_KEY_getInstance(), name, '\xA710.1: a commitment MUST NOT contain `' + name + '`, and an implementation MUST ' + 'reject one that does. \xA710.5 is why the rule is absolute: ' + '`ox` binds the provider only because the key ' + "does not exist in the buyer's hands until after payment, and a commitment " + 'that ships the key has already released the deliverable. This writer has ' + 'no parameter for it, so an extension tag is the only way in and it is ' + 'closed here');
     }
   }
-  if (equals(message.dp_1, OrderMessageKind_PRIVATE_BID_getInstance()) && names.w('order')) {
-    return refusal_0($this, ChannelRejection_FORBIDDEN_ORDER_TAG_getInstance(), 'order', '\xA77.4: a kind:' + message.cp_1.hi_1 + ' `type=' + ('' + OrderMessageKind_PRIVATE_BID_getInstance().dj_1 + '` is the one message that MUST NOT carry ') + '`order`, because no order id exists until the buyer ' + 'proposes; \xA76.1 adds that a bid that looks like a proposal invites an ' + 'implementation to advance state on it');
+  if (equals(message.wp_1, OrderMessageKind_PRIVATE_BID_getInstance()) && names.w('order')) {
+    return refusal_0($this, ChannelRejection_FORBIDDEN_ORDER_TAG_getInstance(), 'order', '\xA77.4: a kind:' + message.vp_1.hi_1 + ' `type=' + ('' + OrderMessageKind_PRIVATE_BID_getInstance().dj_1 + '` is the one message that MUST NOT carry ') + '`order`, because no order id exists until the buyer ' + 'proposes; \xA76.1 adds that a bid that looks like a proposal invites an ' + 'implementation to advance state on it');
   }
   return null;
 }
@@ -3760,13 +3863,13 @@ function extraTagProblem_0($this, message, extraTags, emitted) {
       return refusal_0($this, ChannelRejection_MALFORMED_TAG_getInstance(), null, '\xA74.3 says a tag is an array of one or more strings and requires rejecting an event carrying an empty tag array');
     }
     var name = tag.k(0);
-    if (!message.fp_1.w(name))
+    if (!message.yp_1.w(name))
       continue $l$loop;
     var tmp;
-    if (emitted.w(name) && !$this.pq_1.w(name)) {
+    if (emitted.w(name) && !$this.zm_1.w(name)) {
       tmp = refusal_0($this, ChannelRejection_DUPLICATE_TAG_getInstance(), name, 'this message already carries `' + name + '` from the parameter this writer spells ' + 'that row from, so the extra tag is a second occurrence of it; \xA74.3 ' + 'requires rejecting that rather than resolving it by taking the first or ' + 'the last, and the decoder for this kind does');
     } else {
-      tmp = refusal_0($this, ChannelRejection_ROW_IS_NOT_AN_EXTENSION_getInstance(), name, '`' + name + '` is a row this writer spells for a kind:' + message.cp_1.hi_1 + ', not an ' + 'extension: pass the value to the parameter it is spelled from, so the ' + 'Encoding column is applied to it and it lands in the position \xA74.1 ' + 'hashes it in');
+      tmp = refusal_0($this, ChannelRejection_ROW_IS_NOT_AN_EXTENSION_getInstance(), name, '`' + name + '` is a row this writer spells for a kind:' + message.vp_1.hi_1 + ', not an ' + 'extension: pass the value to the parameter it is spelled from, so the ' + 'Encoding column is applied to it and it lands in the position \xA74.1 ' + 'hashes it in');
     }
     return tmp;
   }
@@ -3784,15 +3887,15 @@ function vocabularyProblem($this, message, tags) {
     var value = (tmp0_elvis_lhs == null ? 0 : tmp0_elvis_lhs) + 1 | 0;
     counts.v2(key, value);
   }
-  var _iterator__ex2g4s_0 = message.gp_1.g();
+  var _iterator__ex2g4s_0 = message.zp_1.g();
   $l$loop: while (_iterator__ex2g4s_0.h()) {
     var name = _iterator__ex2g4s_0.i();
     var tmp1_elvis_lhs = counts.q1(name);
     if ((tmp1_elvis_lhs == null ? 0 : tmp1_elvis_lhs) > 0)
       continue $l$loop;
     var tmp = ChannelRejection_MISSING_REQUIRED_TAG_getInstance();
-    var tmp_0 = 'the decoder that reads a kind:' + message.cp_1.hi_1;
-    var tmp2_safe_receiver = message.dp_1;
+    var tmp_0 = 'the decoder that reads a kind:' + message.vp_1.hi_1;
+    var tmp2_safe_receiver = message.wp_1;
     var tmp_1;
     if (tmp2_safe_receiver == null) {
       tmp_1 = null;
@@ -3824,23 +3927,23 @@ function singleOccurrence($this, message) {
   var this_0 = LinkedHashSet_init_$Create$();
   // Inline function 'kotlin.contracts.contract' call
   // Inline function 'dev.eryalabs.nenya.channel.RumorWriter.singleOccurrence.<anonymous>' call
-  if (!message.cp_1.equals(RumorKind_CHAT_getInstance())) {
+  if (!message.vp_1.equals(RumorKind_CHAT_getInstance())) {
     this_0.o(ChannelVocabulary_getInstance().aj_1);
   }
-  if (message.cp_1.equals(RumorKind_ORDER_MESSAGE_getInstance())) {
+  if (message.vp_1.equals(RumorKind_ORDER_MESSAGE_getInstance())) {
     this_0.e('amount_msat');
   }
-  if (!(message.mp_1 == null) || !(message.op_1 == null)) {
-    this_0.o(RumorWriter_getInstance().rq_1);
+  if (!(message.fq_1 == null) || !(message.hq_1 == null)) {
+    this_0.o(RumorWriter_getInstance().bn_1);
   }
-  this_0.o(message.rp_1.r1());
+  this_0.o(message.kq_1.r1());
   return this_0.g4();
 }
 function tagFailure($this, reason, name) {
-  return reason.equals(TagRejection_ABOVE_SUPPLY_getInstance()) ? ChannelRejection_AMOUNT_ABOVE_SUPPLY_getInstance() : reason.equals(TagRejection_NOT_HEX_getInstance()) && $this.qq_1.w(name) ? ChannelRejection_MALFORMED_KEY_MATERIAL_getInstance() : ChannelRejection_MALFORMED_TAG_getInstance();
+  return reason.equals(TagRejection_ABOVE_SUPPLY_getInstance()) ? ChannelRejection_AMOUNT_ABOVE_SUPPLY_getInstance() : reason.equals(TagRejection_NOT_HEX_getInstance()) && $this.an_1.w(name) ? ChannelRejection_MALFORMED_KEY_MATERIAL_getInstance() : ChannelRejection_MALFORMED_TAG_getInstance();
 }
 function refusal_0($this, reason, tag, detail) {
-  return new Refused_1(reason, tag, detail);
+  return new Refused_2(reason, tag, detail);
 }
 function withAmountAfterAmountMsat(_this__u8e3s4, $this) {
   // Inline function 'kotlin.collections.buildList' call
@@ -3861,24 +3964,24 @@ function withAmountAfterAmountMsat(_this__u8e3s4, $this) {
   return this_0.g4();
 }
 function RumorWriter$row$lambda(it) {
-  return ChannelTags_instance.oo(it);
+  return ChannelTags_instance.lp(it);
 }
 function RumorWriter$row$lambda_0(it) {
-  return ChannelTags_instance.ro(it);
+  return ChannelTags_instance.op(it);
 }
 function RumorWriter$row$lambda_1(it) {
   return it.zg();
 }
 function RumorWriter$row$lambda_2($name) {
   return function (it) {
-    return listOf([$name, _Msat___get_millisatoshis__impl__rjbnyg(it.sp_1.dq_1).toString()]);
+    return listOf([$name, _Msat___get_millisatoshis__impl__rjbnyg(it.lq_1.wq_1).toString()]);
   };
 }
 function RumorWriter$row$lambda_3($message, $name) {
   return function (satoshis) {
     var tmp;
     try {
-      tmp = Companion_getInstance_16().gn(satoshis);
+      tmp = Companion_getInstance_16().io(satoshis);
     } catch ($p) {
       var tmp_0;
       if ($p instanceof MoneyException) {
@@ -3889,9 +3992,9 @@ function RumorWriter$row$lambda_3($message, $name) {
       }
     }
     var stated = tmp;
-    var tmp0_safe_receiver = $message.ip_1;
-    var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.sp_1;
-    var price = tmp1_safe_receiver == null ? null : tmp1_safe_receiver.dq_1;
+    var tmp0_safe_receiver = $message.bq_1;
+    var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.lq_1;
+    var price = tmp1_safe_receiver == null ? null : tmp1_safe_receiver.wq_1;
     var tmp_1;
     var tmp_2;
     var tmp_3 = price;
@@ -3908,7 +4011,7 @@ function RumorWriter$row$lambda_3($message, $name) {
   };
 }
 function RumorWriter$row$lambda_4(it) {
-  return TagWriter_instance.ug(it.sp_1.dq_1);
+  return TagWriter_instance.ug(it.lq_1.wq_1);
 }
 function RumorWriter$row$lambda_5($name) {
   return function (it) {
@@ -3922,7 +4025,7 @@ function RumorWriter$row$lambda_6($name) {
 }
 function RumorWriter$row$lambda_7($name) {
   return function (it) {
-    return listOf([$name, OrderStatusCodec_getInstance().uq(it)]);
+    return listOf([$name, OrderStatusCodec_getInstance().br(it)]);
   };
 }
 function RumorWriter$row$lambda_8($name) {
@@ -3932,12 +4035,12 @@ function RumorWriter$row$lambda_8($name) {
 }
 function RumorWriter$row$lambda_9($name) {
   return function (it) {
-    return listOf([$name, it.qo()]);
+    return listOf([$name, it.np()]);
   };
 }
 function RumorWriter$row$lambda_10($name) {
   return function (it) {
-    return listOf([$name, it.qo()]);
+    return listOf([$name, it.np()]);
   };
 }
 function RumorWriter$row$lambda_11($name) {
@@ -3972,36 +4075,36 @@ function RumorWriter$row$lambda_16($name) {
 }
 function RumorWriter() {
   RumorWriter_instance = this;
-  this.iq_1 = readOnlyListOf(listOf(['order', 'type', 'p', 'item', 'amount_msat', 'fee', 'deliver_by', 'expiration', 'nenya']));
-  this.jq_1 = readOnlyListOf(listOf(['order', 'type', 'url', 'x', 'ox', 'm', 'size', 'encryption-algorithm', 'nenya', 'p']));
-  this.kq_1 = readOnlyListOf(listOf(['p', 'order', 'file-type', 'encryption-algorithm', 'decryption-key', 'decryption-nonce', 'x', 'ox', 'size', 'nenya']));
-  this.lq_1 = readOnlyListOf(listOf(['order', 'type', 'p', 'item', 'amount_msat', 'fee', 'deliver_by', 'expiration', 'status', 'nenya']));
-  this.mq_1 = readOnlyListOf(listOf(['type', 'item', 'price', 'fee', 'deliver_by', 'expiration', 'nenya', 'p']));
-  this.nq_1 = readOnlyListOf(listOf(['order', 'p', 'nenya']));
-  this.oq_1 = listOf(['decryption-key', 'decryption-nonce']);
-  this.pq_1 = setOf('p');
-  this.qq_1 = setOf_0(['decryption-key', 'decryption-nonce']);
-  this.rq_1 = setOf_0(['url', 'x', 'ox', 'size', 'encryption-algorithm', 'decryption-key', 'decryption-nonce', 'file-type', 'm']);
+  this.sm_1 = readOnlyListOf(listOf(['order', 'type', 'p', 'item', 'amount_msat', 'fee', 'deliver_by', 'expiration', 'nenya']));
+  this.tm_1 = readOnlyListOf(listOf(['order', 'type', 'url', 'x', 'ox', 'm', 'size', 'encryption-algorithm', 'nenya', 'p']));
+  this.um_1 = readOnlyListOf(listOf(['p', 'order', 'file-type', 'encryption-algorithm', 'decryption-key', 'decryption-nonce', 'x', 'ox', 'size', 'nenya']));
+  this.vm_1 = readOnlyListOf(listOf(['order', 'type', 'p', 'item', 'amount_msat', 'fee', 'deliver_by', 'expiration', 'status', 'nenya']));
+  this.wm_1 = readOnlyListOf(listOf(['type', 'item', 'price', 'fee', 'deliver_by', 'expiration', 'nenya', 'p']));
+  this.xm_1 = readOnlyListOf(listOf(['order', 'p', 'nenya']));
+  this.ym_1 = listOf(['decryption-key', 'decryption-nonce']);
+  this.zm_1 = setOf('p');
+  this.an_1 = setOf_0(['decryption-key', 'decryption-nonce']);
+  this.bn_1 = setOf_0(['url', 'x', 'ox', 'size', 'encryption-algorithm', 'decryption-key', 'decryption-nonce', 'file-type', 'm']);
 }
-protoOf(RumorWriter).wq = function (envelope, order) {
-  return assemble(this, new Message(RumorKind_CHAT_getInstance(), null, order, this.nq_1, emptyList()), envelope);
+protoOf(RumorWriter).dr = function (envelope, order) {
+  return assemble(this, new Message(RumorKind_CHAT_getInstance(), null, order, this.xm_1, emptyList()), envelope);
 };
-protoOf(RumorWriter).xq = function (envelope, order, item, terms, feeRecipient, amountSat) {
-  return assemble(this, new Message(RumorKind_ORDER_MESSAGE_getInstance(), OrderMessageKind_PROPOSAL_getInstance(), order, amountSat == null ? this.iq_1 : withAmountAfterAmountMsat(this.iq_1, this), Companion_getInstance_4().ae(), item, terms, feeRecipient, amountSat), envelope);
+protoOf(RumorWriter).cn = function (envelope, order, item, terms, feeRecipient, amountSat) {
+  return assemble(this, new Message(RumorKind_ORDER_MESSAGE_getInstance(), OrderMessageKind_PROPOSAL_getInstance(), order, amountSat == null ? this.sm_1 : withAmountAfterAmountMsat(this.sm_1, this), Companion_getInstance_4().ae(), item, terms, feeRecipient, amountSat), envelope);
 };
-protoOf(RumorWriter).yq = function (envelope, order, status, item, terms, feeRecipient) {
-  return assemble(this, new Message(RumorKind_ORDER_MESSAGE_getInstance(), OrderMessageKind_STATUS_UPDATE_getInstance(), order, this.lq_1, plus(Companion_getInstance_1().ae(), listOf_0('type')), item, terms, feeRecipient, VOID, status), envelope);
+protoOf(RumorWriter).mn = function (envelope, order, status, item, terms, feeRecipient) {
+  return assemble(this, new Message(RumorKind_ORDER_MESSAGE_getInstance(), OrderMessageKind_STATUS_UPDATE_getInstance(), order, this.vm_1, plus(Companion_getInstance_1().ae(), listOf_0('type')), item, terms, feeRecipient, VOID, status), envelope);
 };
-protoOf(RumorWriter).zq = function (envelope, order, commitment, url) {
-  return assemble(this, new Message(RumorKind_ORDER_MESSAGE_getInstance(), OrderMessageKind_DELIVERY_COMMITMENT_getInstance(), order, this.jq_1, Companion_getInstance_2().ae(), VOID, VOID, VOID, VOID, VOID, commitment, url), envelope);
+protoOf(RumorWriter).er = function (envelope, order, commitment, url) {
+  return assemble(this, new Message(RumorKind_ORDER_MESSAGE_getInstance(), OrderMessageKind_DELIVERY_COMMITMENT_getInstance(), order, this.tm_1, Companion_getInstance_2().ae(), VOID, VOID, VOID, VOID, VOID, commitment, url), envelope);
 };
-protoOf(RumorWriter).ar = function (envelope, order, release, decryptionKey, decryptionNonce) {
-  return assemble(this, new Message(RumorKind_FILE_MESSAGE_getInstance(), null, order, this.kq_1, Companion_getInstance_3().ae(), VOID, VOID, VOID, VOID, VOID, VOID, VOID, release, decryptionKey, decryptionNonce), envelope);
+protoOf(RumorWriter).fr = function (envelope, order, release, decryptionKey, decryptionNonce) {
+  return assemble(this, new Message(RumorKind_FILE_MESSAGE_getInstance(), null, order, this.um_1, Companion_getInstance_3().ae(), VOID, VOID, VOID, VOID, VOID, VOID, VOID, release, decryptionKey, decryptionNonce), envelope);
 };
-protoOf(RumorWriter).br = function (envelope, item, terms, feeRecipient) {
-  return assemble(this, new Message(RumorKind_ORDER_MESSAGE_getInstance(), OrderMessageKind_PRIVATE_BID_getInstance(), null, this.mq_1, plus(minus(Companion_getInstance_1().ae(), 'order'), listOf(['type', 'item', 'price'])), item, terms, feeRecipient), envelope);
+protoOf(RumorWriter).gr = function (envelope, item, terms, feeRecipient) {
+  return assemble(this, new Message(RumorKind_ORDER_MESSAGE_getInstance(), OrderMessageKind_PRIVATE_BID_getInstance(), null, this.wm_1, plus(minus(Companion_getInstance_1().ae(), 'order'), listOf(['type', 'item', 'price'])), item, terms, feeRecipient), envelope);
 };
-protoOf(RumorWriter).cr = function (kind, type, envelope, order, tagOrder, required, rows) {
+protoOf(RumorWriter).hr = function (kind, type, envelope, order, tagOrder, required, rows) {
   return assemble(this, new Message(kind, type, order, tagOrder, required, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, VOID, rows), envelope);
 };
 var RumorWriter_instance;
@@ -4011,46 +4114,46 @@ function RumorWriter_getInstance() {
   return RumorWriter_instance;
 }
 function ReadOnlyList(delegate) {
-  this.dr_1 = delegate;
+  this.ir_1 = delegate;
 }
 protoOf(ReadOnlyList).g = function () {
-  return new ReadOnlyListIterator(this.dr_1.l1());
+  return new ReadOnlyListIterator(this.ir_1.l1());
 };
 protoOf(ReadOnlyList).l1 = function () {
-  return new ReadOnlyListIterator(this.dr_1.l1());
+  return new ReadOnlyListIterator(this.ir_1.l1());
 };
 protoOf(ReadOnlyList).m1 = function (fromIndex, toIndex) {
-  return new ReadOnlyList(this.dr_1.m1(fromIndex, toIndex));
+  return new ReadOnlyList(this.ir_1.m1(fromIndex, toIndex));
 };
-protoOf(ReadOnlyList).er = function (element) {
+protoOf(ReadOnlyList).jr = function (element) {
   throw UnsupportedOperationException_init_$Create$('this collection is read-only; Nenya never hands out mutable state');
 };
 protoOf(ReadOnlyList).e = function (element) {
-  return this.er((element == null ? true : !(element == null)) ? element : THROW_CCE());
+  return this.jr((element == null ? true : !(element == null)) ? element : THROW_CCE());
 };
-protoOf(ReadOnlyList).fr = function (elements) {
+protoOf(ReadOnlyList).kr = function (elements) {
   throw UnsupportedOperationException_init_$Create$('this collection is read-only; Nenya never hands out mutable state');
 };
 protoOf(ReadOnlyList).o = function (elements) {
-  return this.fr(elements);
+  return this.kr(elements);
 };
-protoOf(ReadOnlyList).gr = function (index, element) {
+protoOf(ReadOnlyList).lr = function (index, element) {
   throw UnsupportedOperationException_init_$Create$('this collection is read-only; Nenya never hands out mutable state');
 };
 protoOf(ReadOnlyList).w2 = function (index, element) {
-  return this.gr(index, (element == null ? true : !(element == null)) ? element : THROW_CCE());
+  return this.lr(index, (element == null ? true : !(element == null)) ? element : THROW_CCE());
 };
 protoOf(ReadOnlyList).equals = function (other) {
-  return other === this || equals(this.dr_1, other);
+  return other === this || equals(this.ir_1, other);
 };
 protoOf(ReadOnlyList).hashCode = function () {
-  return hashCode(this.dr_1);
+  return hashCode(this.ir_1);
 };
 protoOf(ReadOnlyList).toString = function () {
-  return toString(this.dr_1);
+  return toString(this.ir_1);
 };
 protoOf(ReadOnlyList).m9 = function (element) {
-  return this.dr_1.w(element);
+  return this.ir_1.w(element);
 };
 protoOf(ReadOnlyList).w = function (element) {
   if (!(element == null ? true : !(element == null)))
@@ -4058,49 +4161,49 @@ protoOf(ReadOnlyList).w = function (element) {
   return this.m9((element == null ? true : !(element == null)) ? element : THROW_CCE());
 };
 protoOf(ReadOnlyList).n9 = function (elements) {
-  return this.dr_1.k1(elements);
+  return this.ir_1.k1(elements);
 };
 protoOf(ReadOnlyList).k1 = function (elements) {
   return this.n9(elements);
 };
 protoOf(ReadOnlyList).k = function (index) {
-  return this.dr_1.k(index);
+  return this.ir_1.k(index);
 };
 protoOf(ReadOnlyList).p = function () {
-  return this.dr_1.p();
+  return this.ir_1.p();
 };
 protoOf(ReadOnlyList).j = function () {
-  return this.dr_1.j();
+  return this.ir_1.j();
 };
 function ReadOnlySet(delegate) {
-  this.hr_1 = delegate;
+  this.mr_1 = delegate;
 }
 protoOf(ReadOnlySet).g = function () {
-  return new ReadOnlyIterator(this.hr_1.g());
+  return new ReadOnlyIterator(this.mr_1.g());
 };
-protoOf(ReadOnlySet).er = function (element) {
+protoOf(ReadOnlySet).jr = function (element) {
   throw UnsupportedOperationException_init_$Create$('this collection is read-only; Nenya never hands out mutable state');
 };
 protoOf(ReadOnlySet).e = function (element) {
-  return this.er((element == null ? true : !(element == null)) ? element : THROW_CCE());
+  return this.jr((element == null ? true : !(element == null)) ? element : THROW_CCE());
 };
-protoOf(ReadOnlySet).fr = function (elements) {
+protoOf(ReadOnlySet).kr = function (elements) {
   throw UnsupportedOperationException_init_$Create$('this collection is read-only; Nenya never hands out mutable state');
 };
 protoOf(ReadOnlySet).o = function (elements) {
-  return this.fr(elements);
+  return this.kr(elements);
 };
 protoOf(ReadOnlySet).equals = function (other) {
-  return other === this || equals(this.hr_1, other);
+  return other === this || equals(this.mr_1, other);
 };
 protoOf(ReadOnlySet).hashCode = function () {
-  return hashCode(this.hr_1);
+  return hashCode(this.mr_1);
 };
 protoOf(ReadOnlySet).toString = function () {
-  return toString(this.hr_1);
+  return toString(this.mr_1);
 };
 protoOf(ReadOnlySet).m9 = function (element) {
-  return this.hr_1.w(element);
+  return this.mr_1.w(element);
 };
 protoOf(ReadOnlySet).w = function (element) {
   if (!(element == null ? true : !(element == null)))
@@ -4108,40 +4211,40 @@ protoOf(ReadOnlySet).w = function (element) {
   return this.m9((element == null ? true : !(element == null)) ? element : THROW_CCE());
 };
 protoOf(ReadOnlySet).n9 = function (elements) {
-  return this.hr_1.k1(elements);
+  return this.mr_1.k1(elements);
 };
 protoOf(ReadOnlySet).k1 = function (elements) {
   return this.n9(elements);
 };
 protoOf(ReadOnlySet).p = function () {
-  return this.hr_1.p();
+  return this.mr_1.p();
 };
 protoOf(ReadOnlySet).j = function () {
-  return this.hr_1.j();
+  return this.mr_1.j();
 };
 function ReadOnlyIterator(delegate) {
-  this.ir_1 = delegate;
+  this.nr_1 = delegate;
 }
 protoOf(ReadOnlyIterator).d3 = function () {
   throw UnsupportedOperationException_init_$Create$('this collection is read-only; Nenya never hands out mutable state');
 };
 protoOf(ReadOnlyIterator).h = function () {
-  return this.ir_1.h();
+  return this.nr_1.h();
 };
 protoOf(ReadOnlyIterator).i = function () {
-  return this.ir_1.i();
+  return this.nr_1.i();
 };
 function ReadOnlyListIterator(delegate) {
-  this.jr_1 = delegate;
+  this.or_1 = delegate;
 }
 protoOf(ReadOnlyListIterator).d3 = function () {
   throw UnsupportedOperationException_init_$Create$('this collection is read-only; Nenya never hands out mutable state');
 };
 protoOf(ReadOnlyListIterator).h = function () {
-  return this.jr_1.h();
+  return this.or_1.h();
 };
 protoOf(ReadOnlyListIterator).i = function () {
-  return this.jr_1.i();
+  return this.or_1.i();
 };
 function readOnlyListOf(values) {
   return new ReadOnlyList(ArrayList_init_$Create$_1(values));
@@ -4172,7 +4275,7 @@ function ConformanceStatus(name, ordinal) {
 }
 function Companion_8() {
 }
-protoOf(Companion_8).kr = function (values) {
+protoOf(Companion_8).pr = function (values) {
   return readOnlySetOf(values);
 };
 var Companion_instance_8;
@@ -4180,15 +4283,15 @@ function Companion_getInstance_8() {
   return Companion_instance_8;
 }
 function ConformanceItem(number, status, specSections, evidenceClasses, notPerformed, note) {
-  this.lr_1 = number;
-  this.mr_1 = status;
-  this.nr_1 = note;
-  this.or_1 = Companion_instance_8.kr(specSections);
-  this.pr_1 = Companion_instance_8.kr(evidenceClasses);
-  this.qr_1 = Companion_instance_8.kr(notPerformed);
+  this.qr_1 = number;
+  this.rr_1 = status;
+  this.sr_1 = note;
+  this.tr_1 = Companion_instance_8.pr(specSections);
+  this.ur_1 = Companion_instance_8.pr(evidenceClasses);
+  this.vr_1 = Companion_instance_8.pr(notPerformed);
 }
 protoOf(ConformanceItem).toString = function () {
-  return 'ConformanceItem(#' + this.lr_1 + ', ' + this.mr_1.toString() + ', sections=' + toString(sorted(this.or_1)) + ', ' + ('classes=' + this.pr_1.j() + ', notPerformed=' + this.qr_1.j() + ')');
+  return 'ConformanceItem(#' + this.qr_1 + ', ' + this.rr_1.toString() + ', sections=' + toString(sorted(this.tr_1)) + ', ' + ('classes=' + this.ur_1.j() + ', notPerformed=' + this.vr_1.j() + ')');
 };
 function unmodifiable($this, values) {
   return readOnlySetOf(values);
@@ -4198,7 +4301,7 @@ function Capabilities$report$lambda(it) {
 }
 function Capabilities() {
   Capabilities_instance = this;
-  this.rr_1 = 'NENYA-1';
+  this.wr_1 = 'NENYA-1';
   var tmp = this;
   // Inline function 'kotlin.collections.filterNot' call
   // Inline function 'kotlin.collections.filterNotTo' call
@@ -4208,11 +4311,11 @@ function Capabilities() {
   while (tmp0_iterator.h()) {
     var element = tmp0_iterator.i();
     // Inline function 'dev.eryalabs.nenya.conformance.Capabilities.PAYMENT_CHECKS_NOT_PERFORMED.<anonymous>' call
-    if (!Companion_getInstance_24().xr_1.w(element)) {
+    if (!Companion_getInstance_24().cs_1.w(element)) {
       destination.e(element);
     }
   }
-  tmp.sr_1 = unmodifiable(this, destination);
+  tmp.xr_1 = unmodifiable(this, destination);
   var tmp_0 = this;
   // Inline function 'kotlin.collections.filterNot' call
   // Inline function 'kotlin.collections.filterNotTo' call
@@ -4222,43 +4325,43 @@ function Capabilities() {
   while (tmp0_iterator_0.h()) {
     var element_0 = tmp0_iterator_0.i();
     // Inline function 'dev.eryalabs.nenya.conformance.Capabilities.DELIVERY_CHECKS_NOT_PERFORMED.<anonymous>' call
-    if (!Companion_getInstance_11().as_1.w(element_0)) {
+    if (!Companion_getInstance_11().fs_1.w(element_0)) {
       destination_0.e(element_0);
     }
   }
-  tmp_0.tr_1 = unmodifiable(this, destination_0);
-  this.ur_1 = unmodifiable(this, toList(get_entries_9()));
-  this.vr_1 = unmodifiable(this, plus(plus(toList(this.sr_1), toList(this.tr_1)), toList(this.ur_1)));
-  this.wr_1 = readOnlyListOf(listOf([new ConformanceItem(1, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf_0(['4.1', '4.3']), setOf_0(['dev.eryalabs.nenya.wire.WireEvent', 'dev.eryalabs.nenya.wire.EventId', 'dev.eryalabs.nenya.wire.CheckedEvent', 'dev.eryalabs.nenya.wire.WireLimits', 'dev.eryalabs.nenya.wire.EventJson', 'dev.eryalabs.nenya.tag.TagLimits']), emptySet(), "\xA74.1's canonical serialisation is emitted byte for byte and the id is recomputed with this library's own FIPS 180-4 SHA-256; nothing downstream reads an event that did not pass that check, because every decoder takes a CheckedEvent. \xA74.3's hex, timestamp, tag-shape, duplicate, unknown-tag and resource rules are all enforced, the fifth bound in the tag layer where the `image` vocabulary lives. Both halves of this item are closed: EventJson.read turns a relay's bytes into a WireEvent under \xA77.1's object rules \u2014 strictly, bounded before it scans, with no JSON library, which STOP RULE 11's budget does not hold \u2014 and it hands back the claimed id as a claim, so CheckedEvent remains the only thing that has checked one. The earlier narrowing, that reading was the embedding client's step, no longer applies; the behaviour it was visible in does, and is stated rather than implied. The 64 KiB bound WireEvent enforces is measured over the canonical serialisation, which omits `id`, `sig` and the JSON object's field names, so it is a lower bound on the true serialised size and under-rejects by of the order of two hundred bytes; EventJson.read measures the same bound over the object form, which is the exact bytes, so the reading path does not under-reject at all. \xA74.3 requires a bound and requires reject-never-truncate; both hold on both paths. A client that needs WireEvent's own bound measured over the exact bytes a relay sent it should inject a correspondingly smaller WireLimits."), new ConformanceItem(2, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf_0(['5.3', '4.4']), setOf_0(['dev.eryalabs.nenya.tag.TagSet', 'dev.eryalabs.nenya.tag.NenyaTags', 'dev.eryalabs.nenya.tag.TagWriter', 'dev.eryalabs.nenya.tag.TagSpec', 'dev.eryalabs.nenya.money.Msat']), emptySet(), "\xA75.3's table is not transcribed: NenyaTags is held equal to the table parsed out of the document at test time. Both `fee` arities are read and written. The Card. and Requirement columns are applied to listings only and the kind is taken as an input everywhere else, which is the half \xA75.3 says rejects this document's own bid example when it is got wrong. Money is strict on write and permissive on read across \xA74.4's eight unit tokens, and there is no floating-point amount anywhere: Msat is a value class over a Long. One judgement call, recorded here rather than left to be discovered: \xA75.3's Encoding cell for `image` prints three elements while \xA75.1 calls a Nenya offer an unmodified NIP-99 listing, where the dimensions element is optional. This library reads and writes both arities, because refusing the two-element form would refuse a conformant NIP-99 offer. That is a disagreement inside the document and a human has been asked to settle it."), new ConformanceItem(3, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf_0(['6', '6.1']), setOf('dev.eryalabs.nenya.bid.Bid'), emptySet(), "Public bidding is implemented and is the only bidding there is, which is what \xA717 asks for: `A`/`a`, `K`/`k` and `P`/`p` all REQUIRED, all cross-checked against the coordinate they scope to, and `E`/`e` scoping refused by name. \xA76.1's private bidding is OPTIONAL and is not implemented; \xA717 says in as many words that only the reverse omission is non-conformant, so this item is not PARTIAL on account of it."), new ConformanceItem(4, ConformanceStatus_PARTIAL_getInstance(), setOf_0(['7.2', '7.3']), setOf_0(['dev.eryalabs.nenya.channel.AttributedRumor', 'dev.eryalabs.nenya.channel.Attribution', 'dev.eryalabs.nenya.channel.RumorKind', 'dev.eryalabs.nenya.channel.OrderMessageKind', 'dev.eryalabs.nenya.envelope.GiftWrap', 'dev.eryalabs.nenya.envelope.SealedMessage', 'dev.eryalabs.nenya.envelope.OpenedMessage', 'dev.eryalabs.nenya.envelope.OutgoingWrap', 'dev.eryalabs.nenya.envelope.SignatureCheck', 'dev.eryalabs.nenya.envelope.EnvelopeLimits']), setOf_0([SeamCapability_NIP44_ENCRYPTION_getInstance(), SeamCapability_NIP44_DECRYPTION_getInstance(), SeamCapability_RELAY_PUBLISH_getInstance()]), "Done: \xA77.2's pubkey-equality check, which \xA77.2 requires even of an implementation that cannot verify the seal's signature \u2014 a rumor whose claimed `pubkey` is not the seal's is discarded, no value is produced for it, and a message that survives without a verdict on the seal is reported as authenticated-by-decryption only. Attribution carries a second constant, SIGNATURE_VERIFIED, and the door to it is narrow rather than wide: the channel codec cannot return it at all \u2014 it is handed two keys and a rumor, never a seal or a verifier \u2014 and it is reachable only from GiftWrap.open, after the injected Secp256k1Ops answered VALID for the kind:13 seal's signature over the id that package recomputed. Never on the strength of the gift wrap's signature, whatever its verdict (\xA77.2). \xA77.4's envelope with it: the four rumor kinds and the six `type` values are held equal to \xA77.4's own tables parsed at test time, an unimplemented `type` lands in a sink rather than on the nearest known value, `type=4` is readable and unemittable, and the required-tag rule and its one `type=6` exception are both enforced. The gift wrap's throwaway pubkey stays unrepresentable across both packages, and what holds it there is pinned rather than argued: the channel codec's entry point has no parameter one could arrive in, and in the envelope package no published member is named after one and the members of the three \xA77.1 result types that hand back text are exactly two, both listed by name. ChannelStructureTest and EnvelopeStructureTest assert that by reflection rather than by review. The one honest edge: a wrap's own `pubkey` field is inside the bytes OutgoingWrap.json publishes, because \xA77.1 step 3 signs the wrap with that key and a relay has to receive it \u2014 reading it back out is a JSON parse a client writes on purpose, not a value the API hands over. And \xA77.1's two procedures are now here, which is what changed: GiftWrap.seal orchestrates rumor \u2192 seal \u2192 wrap twice, once to the recipient and once to the sender's own key, all or nothing; GiftWrap.open orchestrates wrap \u2192 seal \u2192 rumor in the step order \xA77.1 fixes, refusing with a named reason and reporting nothing below a failed step. Not done, and all three constants stay: sealing, wrapping and opening are *orchestrated* here and none of their cryptography is performed here \u2014 every encryption and decryption is the injected signer's and every signature verdict the injected Secp256k1Ops', so NIP44_ENCRYPTION and NIP44_DECRYPTION are still not performed by this library; and \xA77.3's `kind:10050` publication needs a relay, which nothing here opens a socket to."), new ConformanceItem(5, ConformanceStatus_PARTIAL_getInstance(), setOf_0(['8.1', '8.3', '8.4', '8.5', '8.6']), setOf_0(['dev.eryalabs.nenya.money.FeeSplit', 'dev.eryalabs.nenya.money.FeeTerm', 'dev.eryalabs.nenya.order.OrderMachine', 'dev.eryalabs.nenya.settlement.FeeTermAgreement', 'dev.eryalabs.nenya.settlement.FeeTermPoint']), setOf_0([SeamCapability_BIP340_VERIFICATION_getInstance(), SeamCapability_RELAY_REQUEST_getInstance()]), "Done: the fee is computed by \xA78.3's published 64-bit decomposition and checked against BigInteger over a sampled corpus, so it does not overflow; a fee payment is refused before `awaiting_payment` while the fee payment *request* is accepted as part of `committed \u2192 awaiting_payment` and never earlier (\xA78.5); a payee whose computed amount is 0 requires no invoice (\xA78.3), which is the clause that deadlocks an order when it is missed; \xA78.6's two invoices are two payees and there is no combined-invoice shape to refuse because there is none to build. \xA78.4 is done too, and that is what changed here: the `(bps, recipient)` pair is compared over the **raw tag elements**, which is what byte-identical means, across all four points \xA78.4 marks REQUIRED and the three it marks OPTIONAL \u2014 with the MUST NOT on those three honoured, so a `payee=provider` message carrying no `fee` tag is accepted and one carrying a disagreeing tag is not. The answer names which point diverged and which half of the pair, because \xA78.4 requires a divergence be surfaced as a terms mismatch, and the point set is held equal to \xA78.4 parsed out of the document at test time. \xA78.7's sealing key is compared too, against the seal the `type=2` arrived under. Not done, and both constants stay: `requires a signed fee term` needs BIP-340 verification, which this library does not have \u2014 so the \xA78.7 binding is only as strong as the decryption the caller performed, and no signature behind any of these terms is verified by anybody here; and \xA78.1's reachability check on a named fee recipient needs a relay query, which nothing here opens a socket for."), new ConformanceItem(6, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf('9.2'), setOf_0(['dev.eryalabs.nenya.payment.VerifiedPayment', 'dev.eryalabs.nenya.payment.Payee', 'dev.eryalabs.nenya.order.OrderMachine', 'dev.eryalabs.nenya.settlement.PaymentRequestStore', 'dev.eryalabs.nenya.settlement.Settlement', 'dev.eryalabs.nenya.settlement.Bolt11Invoice']), emptySet(), "All six of \xA79.2's checks are now performed on the path OrderMachine consumes, which is why this item moved off PARTIAL. `awaiting_payment \u2192 paid` takes a Settlement.Evidenced per required payee \u2014 a bare VerifiedPayment is not expressible there \u2014 and Settlement.verify performs check 1 (the receipt's BOLT-11 string compared byte-identically against the stored one, with a receipt nothing was stored for rejected outright), check 2 (lowercase hex decoding to exactly 32 bytes), check 3 in full, check 4 (the amount against `price_msat` for a provider receipt and \xA78.3's `fee_msat` for a fee one, in either direction, with an any-amount invoice rejected) and check 5 (`timestamp + expiry` against the clock reading persisted at acceptance, never against the clock at verification, because \xA79.2 says an invoice that was live when the buyer paid it does not become unpaid because it has since expired). Settlement.verifyFeeReceipt performs check 6's three besides: \xA78.4's byte-identical fee term across every point it marks REQUIRED, \xA78.7's sealing key against the seal the stored `type=2` arrived under, and \xA78.5's state precondition read off this implementation's own order rather than off a status token a counterparty sent. What closed last was check 3's PROVENANCE, and it closed by SUBTRACTION of a parameter: neither entry point takes a payment hash any more, so check 3's operand is the 256-bit `p` field of the stored invoice, read off the same parse checks 4 and 5 are made against. There is no argument left through which a caller could hand in the SHA-256 of a preimage it chose and get a true comparison about an invoice nobody issued. Parsing the invoice for its AMOUNT never established that and was never claimed to. Two narrowings, stated plainly rather than implied, because this item is the one that governs reaching `paid`. FIRST, DURABLE PERSISTENCE IS THE EMBEDDING CLIENT'S: \xA717 item 6 is about what an implementation has KEPT, and PaymentRequestStore is an injected interface \u2014 keyed by (order, payee), holding the BOLT-11 string verbatim alongside the value the injected clock held when the request was accepted, and refusing to accept at all rather than storing against a fabricated time when the clock is fail-closed \u2014 whose one shipped implementation, PaymentRequestStore.inMemory, survives no restart. A client that needs an order to be checkable after a process dies MUST implement that interface over something durable; nothing here will tell it that it has not, because a store is the client's own persistence and \xA713 says this library does not defend its user against the client embedding it. There is no enum constant for that gap, which is why this item is PERFORMED_HERE with the narrowing written out rather than PARTIAL with nothing to point at \u2014 the structural limit ConformanceStatus.PARTIAL records, and the same shape items 1 and 9 take. SECOND, NO SIGNATURE IS VERIFIED ANYWHERE: SeamCapability.BIP340_VERIFICATION stays in the union, so check 6's sealing-key equality and \xA77.2's attribution are only as strong as the decryption the caller performed. PaymentCheck.INVOICE_IDENTITY, PAYMENT_HASH_PROVENANCE, INVOICE_AMOUNT and INVOICE_EXPIRY all remain in Capabilities.NOT_PERFORMED_HERE, and that is deliberate and is not a contradiction of this item's status: that union is derived from VerifiedPayment.CHECKS_PERFORMED_HERE and is a claim about a BARE VerifiedPayment.verify, which holds no store, parses no invoice and takes its payment hash as a parameter. The machine-readable record of what the store path did is each result's own Settlement.checksPerformed, which composes checks 1, 3, 4 and 5 with T3's two rather than widening VerifiedPayment's global claim. Decision B's gate is unchanged and still bites: `awaiting_payment \u2192 paid` REFUSES with TransitionRejection.PAYMENT_CHECKS_NOT_PERFORMED while any check that applies to the receipts offered was performed by nobody, computed from what applies to each payee minus what that receipt recorded as PERFORMED and never from its checksNotPerformedHere, so a record that wrongly subtracted a check cannot hide its own omission from it. What changed is that a priced order can now pass that gate rather than only a free one: a fee receipt put through plain Settlement.verify is still refused, missing exactly check 6's three. Every order in `paid`, `released` or `settled` carries an empty paymentChecksNotPerformedHere, and that emptiness is an invariant of the gate \u2014 now one that six performed checks satisfy rather than one only an order owing no receipt could reach. It is still not a warrant: \xA79.1 stands one layer above this surface, and the thing that establishes a particular payment is VerifiedPayment over a preimage this library hashed itself, not a status read off this item."), new ConformanceItem(7, ConformanceStatus_PARTIAL_getInstance(), setOf_0(['10', '10.2']), setOf_0(['dev.eryalabs.nenya.delivery.DeliverableCommitment', 'dev.eryalabs.nenya.delivery.ServedBytesVerified', 'dev.eryalabs.nenya.delivery.DeliveryEvidence', 'dev.eryalabs.nenya.channel.DeliveryCommitmentMessage', 'dev.eryalabs.nenya.channel.DeliverableReleaseMessage', 'dev.eryalabs.nenya.channel.DeliveryTags']), setOf_0([DeliveryCheck_GCM_AUTHENTICATION_getInstance(), DeliveryCheck_ENCRYPTION_PARAMETERS_getInstance(), DeliveryCheck_COMMITMENT_CARRIES_NO_KEY_getInstance(), DeliveryCheck_SERVED_BYTES_PROVENANCE_getInstance()]), '`x` and `ox` are both computed here with this library\'s own FIPS 180-4 SHA-256, in \xA710.4\'s order, enforced by the type system rather than by a comment \u2014 there is no way to reach the `ox` check without having passed the `x` check. \xA710.3\'s four-operand identity check is implemented as its own call, now in both of the shapes \xA710.3 and \xA710.4 need: over parsed values, which is what the state machine runs, and over the raw tag value elements, which is what \xA710.3 actually says \u2014 `["size", "018342912"]` against `["size", "18342912"]` is a divergence there and cannot be one in a numeric comparison. What changed here is that the two delivery messages are now decoded rather than assembled from typed parameters: a `kind:16` `type=5` is refused by name if it carries `decryption-key` or `decryption-nonce` (\xA710.1), a `kind:15` has both values held to \xA710.2\'s encodings \u2014 lowercase hex of 64 and 24 characters, or standard base64 decoding to 32 and 12 bytes, refused when it is the wrong length under both \u2014 and both messages are refused for an `encryption-algorithm` other than `aes-gcm`. \xA710.3\'s binding is enforced where \xA710.3 puts it, on the `order` tag and not on hash equality: building the `paid \u2192 released` event takes the open `Order`, refuses a release naming another order, and refuses one naming an order this implementation\'s own view does not hold in `paid`. Neither key nor nonce is published by any member or any `toString`: they are checked and dropped, because this library does not decrypt and the caller already holds the rumor it decrypted (\xA712 item 11). THE FOUR CONSTANTS BELOW ALL STAY, AND THE TWO THAT LOOK LIKE CONTRADICTIONS ARE NOT ONE. `Capabilities.NOT_PERFORMED_HERE` is derived from `DeliveryEvidence.CHECKS_PERFORMED_HERE`, so it is a claim about the VERIFICATION CHAIN \u2014 a commitment and two byte arrays \u2014 which holds no tags and no order and genuinely performs neither COMMITMENT_CARRIES_NO_KEY nor RELEASE_ORDER_BINDING. The machine-readable record of what the DECODED path did is the order\'s own `deliveryChecksPerformed`, which the two message types fill through `asOrderEvent` and which an order built from a bare `DeliverableCommitment` or `DeliverableRelease` leaves empty, because nobody checked. The same shape \xA717 item 6 takes for the payment store, and for the same reason: widening the global claim on the strength of a path a caller may not have taken is the over-claim this surface exists to prevent. ENCRYPTION_PARAMETERS stays for a second reason too \u2014 the algorithm token matches and the key and nonce are the right lengths, but \xA710.2 is AES-256-GCM whole, including a nonce never reused with the same key, a 128-bit tag appended to the ciphertext and no AAD, and this library performs no encryption at all. GCM_AUTHENTICATION and SERVED_BYTES_PROVENANCE are unchanged and unreachable from here: \xA710.4 step 2 is the caller\'s decryption, and nothing in this library opens a socket.'), new ConformanceItem(8, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf('11'), setOf_0(['dev.eryalabs.nenya.order.OrderMachine', 'dev.eryalabs.nenya.order.OrderState', 'dev.eryalabs.nenya.order.OrderEvent']), emptySet(), "The transition function is total over the whole state-by-event cross-product and every unlisted pair is a named rejection rather than a fall-through. The legal set is held **equal** to \xA711.2's table, transcribed line by line with spec line numbers and itself parsed back out of the document at test time, so neither a truncated transcription nor an invented edge passes. \xA711.1's eleventh case \u2014 an unrecognised status reads as `unknown` and transitions nowhere \u2014 is implemented as \xA711.1 requires."), new ConformanceItem(9, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf('12'), setOf_0(['dev.eryalabs.nenya.seam.OrderId', 'dev.eryalabs.nenya.payment.VerifiedPayment', 'dev.eryalabs.nenya.tag.TagSet']), emptySet(), "The clause is read as being about order-scoped identifiers, and that reading is stated rather than assumed, because the literal one is unsatisfiable: \xA712 item 2 names the listing coordinate, the `d` value, the title and the counterparty pubkey, and \xA75.3 REQUIRES `d` and `title` on a public listing while \xA76 REQUIRES `a` and `p` on a public bid. A specification cannot forbid in one section what it mandates in another, so the values the clause closes a channel for are the ones a *public* event has no reason to carry. On that reading: this library writes nothing into a payment layer \u2014 it builds no BOLT-11 description and no wallet memo \u2014 logs nothing at all, and emits only listings and public bids, neither of which has a field an order id, an invoice or a preimage could reach. \xA712 item 5's `g` and `location` are refused on read and unemittable on write. Every type holding one of \xA712 item 11's values redacts it from its string representation, with a control per type asserting the full hex is absent. The negative obligation is what is claimed here; the positive one \u2014 that no future caller writes one somewhere \u2014 is not something a library can assert about its embedder."), new ConformanceItem(10, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf('14'), setOf_0(['dev.eryalabs.nenya.money.Msat', 'dev.eryalabs.nenya.order.OrderState', 'dev.eryalabs.nenya.seam.Wallet']), emptySet(), "\xA714 is a list of things not to do, and this library does none of them: no custody, because it never holds a balance and the wallet is the client's; no escrow, because \xA711.4's seam is reserved and OrderState declares no `held`; no arbitration role; no index server, no relay, no blob server and no mint, because nothing here opens a socket; no hardcoded fee recipient, because the recipient is a field of the signed term and nothing here supplies a default for it; no identity field to write a real name into; no NIP-04, no NIP-90 and no NIP-15 anywhere on the dependency budget; no zap receipt read as evidence, because the only evidence is a hashed preimage; and no floating-point money \u2014 Msat is a Long and no published signature in this library mentions a Double or a Float.")]));
+  tmp_0.yr_1 = unmodifiable(this, destination_0);
+  this.zr_1 = unmodifiable(this, toList(get_entries_9()));
+  this.as_1 = unmodifiable(this, plus(plus(toList(this.xr_1), toList(this.yr_1)), toList(this.zr_1)));
+  this.bs_1 = readOnlyListOf(listOf([new ConformanceItem(1, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf_0(['4.1', '4.3']), setOf_0(['dev.eryalabs.nenya.wire.WireEvent', 'dev.eryalabs.nenya.wire.EventId', 'dev.eryalabs.nenya.wire.CheckedEvent', 'dev.eryalabs.nenya.wire.WireLimits', 'dev.eryalabs.nenya.wire.EventJson', 'dev.eryalabs.nenya.tag.TagLimits']), emptySet(), "\xA74.1's canonical serialisation is emitted byte for byte and the id is recomputed with this library's own FIPS 180-4 SHA-256; nothing downstream reads an event that did not pass that check, because every decoder takes a CheckedEvent. \xA74.3's hex, timestamp, tag-shape, duplicate, unknown-tag and resource rules are all enforced, the fifth bound in the tag layer where the `image` vocabulary lives. Both halves of this item are closed: EventJson.read turns a relay's bytes into a WireEvent under \xA77.1's object rules \u2014 strictly, bounded before it scans, with no JSON library, which STOP RULE 11's budget does not hold \u2014 and it hands back the claimed id as a claim, so CheckedEvent remains the only thing that has checked one. The earlier narrowing, that reading was the embedding client's step, no longer applies; the behaviour it was visible in does, and is stated rather than implied. The 64 KiB bound WireEvent enforces is measured over the canonical serialisation, which omits `id`, `sig` and the JSON object's field names, so it is a lower bound on the true serialised size and under-rejects by of the order of two hundred bytes; EventJson.read measures the same bound over the object form, which is the exact bytes, so the reading path does not under-reject at all. \xA74.3 requires a bound and requires reject-never-truncate; both hold on both paths. A client that needs WireEvent's own bound measured over the exact bytes a relay sent it should inject a correspondingly smaller WireLimits."), new ConformanceItem(2, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf_0(['5.3', '4.4']), setOf_0(['dev.eryalabs.nenya.tag.TagSet', 'dev.eryalabs.nenya.tag.NenyaTags', 'dev.eryalabs.nenya.tag.TagWriter', 'dev.eryalabs.nenya.tag.TagSpec', 'dev.eryalabs.nenya.money.Msat']), emptySet(), "\xA75.3's table is not transcribed: NenyaTags is held equal to the table parsed out of the document at test time. Both `fee` arities are read and written. The Card. and Requirement columns are applied to listings only and the kind is taken as an input everywhere else, which is the half \xA75.3 says rejects this document's own bid example when it is got wrong. Money is strict on write and permissive on read across \xA74.4's eight unit tokens, and there is no floating-point amount anywhere: Msat is a value class over a Long. One judgement call, recorded here rather than left to be discovered: \xA75.3's Encoding cell for `image` prints three elements while \xA75.1 calls a Nenya offer an unmodified NIP-99 listing, where the dimensions element is optional. This library reads and writes both arities, because refusing the two-element form would refuse a conformant NIP-99 offer. That is a disagreement inside the document and a human has been asked to settle it."), new ConformanceItem(3, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf_0(['6', '6.1']), setOf('dev.eryalabs.nenya.bid.Bid'), emptySet(), "Public bidding is implemented and is the only bidding there is, which is what \xA717 asks for: `A`/`a`, `K`/`k` and `P`/`p` all REQUIRED, all cross-checked against the coordinate they scope to, and `E`/`e` scoping refused by name. \xA76.1's private bidding is OPTIONAL and is not implemented; \xA717 says in as many words that only the reverse omission is non-conformant, so this item is not PARTIAL on account of it."), new ConformanceItem(4, ConformanceStatus_PARTIAL_getInstance(), setOf_0(['7.2', '7.3']), setOf_0(['dev.eryalabs.nenya.channel.AttributedRumor', 'dev.eryalabs.nenya.channel.Attribution', 'dev.eryalabs.nenya.channel.RumorKind', 'dev.eryalabs.nenya.channel.OrderMessageKind', 'dev.eryalabs.nenya.envelope.GiftWrap', 'dev.eryalabs.nenya.envelope.SealedMessage', 'dev.eryalabs.nenya.envelope.OpenedMessage', 'dev.eryalabs.nenya.envelope.OutgoingWrap', 'dev.eryalabs.nenya.envelope.SignatureCheck', 'dev.eryalabs.nenya.envelope.EnvelopeLimits']), setOf_0([SeamCapability_NIP44_ENCRYPTION_getInstance(), SeamCapability_NIP44_DECRYPTION_getInstance(), SeamCapability_RELAY_PUBLISH_getInstance()]), "Done: \xA77.2's pubkey-equality check, which \xA77.2 requires even of an implementation that cannot verify the seal's signature \u2014 a rumor whose claimed `pubkey` is not the seal's is discarded, no value is produced for it, and a message that survives without a verdict on the seal is reported as authenticated-by-decryption only. Attribution carries a second constant, SIGNATURE_VERIFIED, and the door to it is narrow rather than wide: the channel codec cannot return it at all \u2014 it is handed two keys and a rumor, never a seal or a verifier \u2014 and it is reachable only from GiftWrap.open, after the injected Secp256k1Ops answered VALID for the kind:13 seal's signature over the id that package recomputed. Never on the strength of the gift wrap's signature, whatever its verdict (\xA77.2). \xA77.4's envelope with it: the four rumor kinds and the six `type` values are held equal to \xA77.4's own tables parsed at test time, an unimplemented `type` lands in a sink rather than on the nearest known value, `type=4` is readable and unemittable, and the required-tag rule and its one `type=6` exception are both enforced. The gift wrap's throwaway pubkey stays unrepresentable across both packages, and what holds it there is pinned rather than argued: the channel codec's entry point has no parameter one could arrive in, and in the envelope package no published member is named after one and the members of the three \xA77.1 result types that hand back text are exactly two, both listed by name. ChannelStructureTest and EnvelopeStructureTest assert that by reflection rather than by review. The one honest edge: a wrap's own `pubkey` field is inside the bytes OutgoingWrap.json publishes, because \xA77.1 step 3 signs the wrap with that key and a relay has to receive it \u2014 reading it back out is a JSON parse a client writes on purpose, not a value the API hands over. And \xA77.1's two procedures are now here, which is what changed: GiftWrap.seal orchestrates rumor \u2192 seal \u2192 wrap twice, once to the recipient and once to the sender's own key, all or nothing; GiftWrap.open orchestrates wrap \u2192 seal \u2192 rumor in the step order \xA77.1 fixes, refusing with a named reason and reporting nothing below a failed step. Not done, and all three constants stay: sealing, wrapping and opening are *orchestrated* here and none of their cryptography is performed here \u2014 every encryption and decryption is the injected signer's and every signature verdict the injected Secp256k1Ops', so NIP44_ENCRYPTION and NIP44_DECRYPTION are still not performed by this library; and \xA77.3's `kind:10050` publication needs a relay, which nothing here opens a socket to."), new ConformanceItem(5, ConformanceStatus_PARTIAL_getInstance(), setOf_0(['8.1', '8.3', '8.4', '8.5', '8.6']), setOf_0(['dev.eryalabs.nenya.money.FeeSplit', 'dev.eryalabs.nenya.money.FeeTerm', 'dev.eryalabs.nenya.order.OrderMachine', 'dev.eryalabs.nenya.settlement.FeeTermAgreement', 'dev.eryalabs.nenya.settlement.FeeTermPoint']), setOf_0([SeamCapability_BIP340_VERIFICATION_getInstance(), SeamCapability_RELAY_REQUEST_getInstance()]), "Done: the fee is computed by \xA78.3's published 64-bit decomposition and checked against BigInteger over a sampled corpus, so it does not overflow; a fee payment is refused before `awaiting_payment` while the fee payment *request* is accepted as part of `committed \u2192 awaiting_payment` and never earlier (\xA78.5); a payee whose computed amount is 0 requires no invoice (\xA78.3), which is the clause that deadlocks an order when it is missed; \xA78.6's two invoices are two payees and there is no combined-invoice shape to refuse because there is none to build. \xA78.4 is done too, and that is what changed here: the `(bps, recipient)` pair is compared over the **raw tag elements**, which is what byte-identical means, across all four points \xA78.4 marks REQUIRED and the three it marks OPTIONAL \u2014 with the MUST NOT on those three honoured, so a `payee=provider` message carrying no `fee` tag is accepted and one carrying a disagreeing tag is not. The answer names which point diverged and which half of the pair, because \xA78.4 requires a divergence be surfaced as a terms mismatch, and the point set is held equal to \xA78.4 parsed out of the document at test time. \xA78.7's sealing key is compared too, against the seal the `type=2` arrived under. Not done, and both constants stay: `requires a signed fee term` needs BIP-340 verification, which this library does not have \u2014 so the \xA78.7 binding is only as strong as the decryption the caller performed, and no signature behind any of these terms is verified by anybody here; and \xA78.1's reachability check on a named fee recipient needs a relay query, which nothing here opens a socket for."), new ConformanceItem(6, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf('9.2'), setOf_0(['dev.eryalabs.nenya.payment.VerifiedPayment', 'dev.eryalabs.nenya.payment.Payee', 'dev.eryalabs.nenya.order.OrderMachine', 'dev.eryalabs.nenya.settlement.PaymentRequestStore', 'dev.eryalabs.nenya.settlement.Settlement', 'dev.eryalabs.nenya.settlement.Bolt11Invoice']), emptySet(), "All six of \xA79.2's checks are now performed on the path OrderMachine consumes, which is why this item moved off PARTIAL. `awaiting_payment \u2192 paid` takes a Settlement.Evidenced per required payee \u2014 a bare VerifiedPayment is not expressible there \u2014 and Settlement.verify performs check 1 (the receipt's BOLT-11 string compared byte-identically against the stored one, with a receipt nothing was stored for rejected outright), check 2 (lowercase hex decoding to exactly 32 bytes), check 3 in full, check 4 (the amount against `price_msat` for a provider receipt and \xA78.3's `fee_msat` for a fee one, in either direction, with an any-amount invoice rejected) and check 5 (`timestamp + expiry` against the clock reading persisted at acceptance, never against the clock at verification, because \xA79.2 says an invoice that was live when the buyer paid it does not become unpaid because it has since expired). Settlement.verifyFeeReceipt performs check 6's three besides: \xA78.4's byte-identical fee term across every point it marks REQUIRED, \xA78.7's sealing key against the seal the stored `type=2` arrived under, and \xA78.5's state precondition read off this implementation's own order rather than off a status token a counterparty sent. What closed last was check 3's PROVENANCE, and it closed by SUBTRACTION of a parameter: neither entry point takes a payment hash any more, so check 3's operand is the 256-bit `p` field of the stored invoice, read off the same parse checks 4 and 5 are made against. There is no argument left through which a caller could hand in the SHA-256 of a preimage it chose and get a true comparison about an invoice nobody issued. Parsing the invoice for its AMOUNT never established that and was never claimed to. Two narrowings, stated plainly rather than implied, because this item is the one that governs reaching `paid`. FIRST, DURABLE PERSISTENCE IS THE EMBEDDING CLIENT'S: \xA717 item 6 is about what an implementation has KEPT, and PaymentRequestStore is an injected interface \u2014 keyed by (order, payee), holding the BOLT-11 string verbatim alongside the value the injected clock held when the request was accepted, and refusing to accept at all rather than storing against a fabricated time when the clock is fail-closed \u2014 whose one shipped implementation, PaymentRequestStore.inMemory, survives no restart. A client that needs an order to be checkable after a process dies MUST implement that interface over something durable; nothing here will tell it that it has not, because a store is the client's own persistence and \xA713 says this library does not defend its user against the client embedding it. There is no enum constant for that gap, which is why this item is PERFORMED_HERE with the narrowing written out rather than PARTIAL with nothing to point at \u2014 the structural limit ConformanceStatus.PARTIAL records, and the same shape items 1 and 9 take. SECOND, NO SIGNATURE IS VERIFIED ANYWHERE: SeamCapability.BIP340_VERIFICATION stays in the union, so check 6's sealing-key equality and \xA77.2's attribution are only as strong as the decryption the caller performed. PaymentCheck.INVOICE_IDENTITY, PAYMENT_HASH_PROVENANCE, INVOICE_AMOUNT and INVOICE_EXPIRY all remain in Capabilities.NOT_PERFORMED_HERE, and that is deliberate and is not a contradiction of this item's status: that union is derived from VerifiedPayment.CHECKS_PERFORMED_HERE and is a claim about a BARE VerifiedPayment.verify, which holds no store, parses no invoice and takes its payment hash as a parameter. The machine-readable record of what the store path did is each result's own Settlement.checksPerformed, which composes checks 1, 3, 4 and 5 with T3's two rather than widening VerifiedPayment's global claim. Decision B's gate is unchanged and still bites: `awaiting_payment \u2192 paid` REFUSES with TransitionRejection.PAYMENT_CHECKS_NOT_PERFORMED while any check that applies to the receipts offered was performed by nobody, computed from what applies to each payee minus what that receipt recorded as PERFORMED and never from its checksNotPerformedHere, so a record that wrongly subtracted a check cannot hide its own omission from it. What changed is that a priced order can now pass that gate rather than only a free one: a fee receipt put through plain Settlement.verify is still refused, missing exactly check 6's three. Every order in `paid`, `released` or `settled` carries an empty paymentChecksNotPerformedHere, and that emptiness is an invariant of the gate \u2014 now one that six performed checks satisfy rather than one only an order owing no receipt could reach. It is still not a warrant: \xA79.1 stands one layer above this surface, and the thing that establishes a particular payment is VerifiedPayment over a preimage this library hashed itself, not a status read off this item."), new ConformanceItem(7, ConformanceStatus_PARTIAL_getInstance(), setOf_0(['10', '10.2']), setOf_0(['dev.eryalabs.nenya.delivery.DeliverableCommitment', 'dev.eryalabs.nenya.delivery.ServedBytesVerified', 'dev.eryalabs.nenya.delivery.DeliveryEvidence', 'dev.eryalabs.nenya.channel.DeliveryCommitmentMessage', 'dev.eryalabs.nenya.channel.DeliverableReleaseMessage', 'dev.eryalabs.nenya.channel.DeliveryTags']), setOf_0([DeliveryCheck_GCM_AUTHENTICATION_getInstance(), DeliveryCheck_ENCRYPTION_PARAMETERS_getInstance(), DeliveryCheck_COMMITMENT_CARRIES_NO_KEY_getInstance(), DeliveryCheck_SERVED_BYTES_PROVENANCE_getInstance()]), '`x` and `ox` are both computed here with this library\'s own FIPS 180-4 SHA-256, in \xA710.4\'s order, enforced by the type system rather than by a comment \u2014 there is no way to reach the `ox` check without having passed the `x` check. \xA710.3\'s four-operand identity check is implemented as its own call, now in both of the shapes \xA710.3 and \xA710.4 need: over parsed values, which is what the state machine runs, and over the raw tag value elements, which is what \xA710.3 actually says \u2014 `["size", "018342912"]` against `["size", "18342912"]` is a divergence there and cannot be one in a numeric comparison. What changed here is that the two delivery messages are now decoded rather than assembled from typed parameters: a `kind:16` `type=5` is refused by name if it carries `decryption-key` or `decryption-nonce` (\xA710.1), a `kind:15` has both values held to \xA710.2\'s encodings \u2014 lowercase hex of 64 and 24 characters, or standard base64 decoding to 32 and 12 bytes, refused when it is the wrong length under both \u2014 and both messages are refused for an `encryption-algorithm` other than `aes-gcm`. \xA710.3\'s binding is enforced where \xA710.3 puts it, on the `order` tag and not on hash equality: building the `paid \u2192 released` event takes the open `Order`, refuses a release naming another order, and refuses one naming an order this implementation\'s own view does not hold in `paid`. Neither key nor nonce is published by any member or any `toString`: they are checked and dropped, because this library does not decrypt and the caller already holds the rumor it decrypted (\xA712 item 11). THE FOUR CONSTANTS BELOW ALL STAY, AND THE TWO THAT LOOK LIKE CONTRADICTIONS ARE NOT ONE. `Capabilities.NOT_PERFORMED_HERE` is derived from `DeliveryEvidence.CHECKS_PERFORMED_HERE`, so it is a claim about the VERIFICATION CHAIN \u2014 a commitment and two byte arrays \u2014 which holds no tags and no order and genuinely performs neither COMMITMENT_CARRIES_NO_KEY nor RELEASE_ORDER_BINDING. The machine-readable record of what the DECODED path did is the order\'s own `deliveryChecksPerformed`, which the two message types fill through `asOrderEvent` and which an order built from a bare `DeliverableCommitment` or `DeliverableRelease` leaves empty, because nobody checked. The same shape \xA717 item 6 takes for the payment store, and for the same reason: widening the global claim on the strength of a path a caller may not have taken is the over-claim this surface exists to prevent. ENCRYPTION_PARAMETERS stays for a second reason too \u2014 the algorithm token matches and the key and nonce are the right lengths, but \xA710.2 is AES-256-GCM whole, including a nonce never reused with the same key, a 128-bit tag appended to the ciphertext and no AAD, and this library performs no encryption at all. GCM_AUTHENTICATION and SERVED_BYTES_PROVENANCE are unchanged and unreachable from here: \xA710.4 step 2 is the caller\'s decryption, and nothing in this library opens a socket.'), new ConformanceItem(8, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf('11'), setOf_0(['dev.eryalabs.nenya.order.OrderMachine', 'dev.eryalabs.nenya.order.OrderState', 'dev.eryalabs.nenya.order.OrderEvent']), emptySet(), "The transition function is total over the whole state-by-event cross-product and every unlisted pair is a named rejection rather than a fall-through. The legal set is held **equal** to \xA711.2's table, transcribed line by line with spec line numbers and itself parsed back out of the document at test time, so neither a truncated transcription nor an invented edge passes. \xA711.1's eleventh case \u2014 an unrecognised status reads as `unknown` and transitions nowhere \u2014 is implemented as \xA711.1 requires."), new ConformanceItem(9, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf('12'), setOf_0(['dev.eryalabs.nenya.seam.OrderId', 'dev.eryalabs.nenya.payment.VerifiedPayment', 'dev.eryalabs.nenya.tag.TagSet']), emptySet(), "The clause is read as being about order-scoped identifiers, and that reading is stated rather than assumed, because the literal one is unsatisfiable: \xA712 item 2 names the listing coordinate, the `d` value, the title and the counterparty pubkey, and \xA75.3 REQUIRES `d` and `title` on a public listing while \xA76 REQUIRES `a` and `p` on a public bid. A specification cannot forbid in one section what it mandates in another, so the values the clause closes a channel for are the ones a *public* event has no reason to carry. On that reading: this library writes nothing into a payment layer \u2014 it builds no BOLT-11 description and no wallet memo \u2014 logs nothing at all, and emits only listings and public bids, neither of which has a field an order id, an invoice or a preimage could reach. \xA712 item 5's `g` and `location` are refused on read and unemittable on write. Every type holding one of \xA712 item 11's values redacts it from its string representation, with a control per type asserting the full hex is absent. The negative obligation is what is claimed here; the positive one \u2014 that no future caller writes one somewhere \u2014 is not something a library can assert about its embedder."), new ConformanceItem(10, ConformanceStatus_PERFORMED_HERE_getInstance(), setOf('14'), setOf_0(['dev.eryalabs.nenya.money.Msat', 'dev.eryalabs.nenya.order.OrderState', 'dev.eryalabs.nenya.seam.Wallet']), emptySet(), "\xA714 is a list of things not to do, and this library does none of them: no custody, because it never holds a balance and the wallet is the client's; no escrow, because \xA711.4's seam is reserved and OrderState declares no `held`; no arbitration role; no index server, no relay, no blob server and no mint, because nothing here opens a socket; no hardcoded fee recipient, because the recipient is a field of the signed term and nothing here supplies a default for it; no identity field to write a real name into; no NIP-04, no NIP-90 and no NIP-15 anywhere on the dependency budget; no zap receipt read as evidence, because the only evidence is a hashed preimage; and no floating-point money \u2014 Msat is a Long and no published signature in this library mentions a Double or a Float.")]));
 }
-protoOf(Capabilities).cs = function () {
+protoOf(Capabilities).hs = function () {
   var out = StringBuilder_init_$Create$();
-  var _iterator__ex2g4s = this.wr_1.g();
+  var _iterator__ex2g4s = this.bs_1.g();
   while (_iterator__ex2g4s.h()) {
     var item = _iterator__ex2g4s.i();
-    var tmp = out.k6('NENYA-1').k6(' \xA717.').f8(item.lr_1).l6(_Char___init__impl__6a9atx(32)).k6(item.mr_1.t1_1).k6(' sections=');
-    var tmp_0 = sorted(item.or_1);
-    var tmp_1 = tmp.k6(joinToString(tmp_0, ',', VOID, VOID, VOID, VOID, Capabilities$report$lambda)).k6(' classes=').k6(joinToString(sorted(item.pr_1), ',')).k6(' notPerformed=');
+    var tmp = out.k6('NENYA-1').k6(' \xA717.').f8(item.qr_1).l6(_Char___init__impl__6a9atx(32)).k6(item.rr_1.t1_1).k6(' sections=');
+    var tmp_0 = sorted(item.tr_1);
+    var tmp_1 = tmp.k6(joinToString(tmp_0, ',', VOID, VOID, VOID, VOID, Capabilities$report$lambda)).k6(' classes=').k6(joinToString(sorted(item.ur_1), ',')).k6(' notPerformed=');
     // Inline function 'kotlin.collections.map' call
-    var this_0 = item.qr_1;
+    var this_0 = item.vr_1;
     // Inline function 'kotlin.collections.mapTo' call
     var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
     var tmp0_iterator = this_0.g();
     while (tmp0_iterator.h()) {
       var item_0 = tmp0_iterator.i();
-      var tmp$ret$0 = this.ds(item_0);
+      var tmp$ret$0 = this.is(item_0);
       destination.e(tmp$ret$0);
     }
     tmp_1.k6(joinToString(sorted(destination), ',')).l6(_Char___init__impl__6a9atx(10));
   }
-  var _iterator__ex2g4s_0 = this.vr_1.g();
+  var _iterator__ex2g4s_0 = this.as_1.g();
   while (_iterator__ex2g4s_0.h()) {
     var constant = _iterator__ex2g4s_0.i();
-    out.k6('NENYA-1').k6(' not-performed ').k6(this.ds(constant)).l6(_Char___init__impl__6a9atx(10));
+    out.k6('NENYA-1').k6(' not-performed ').k6(this.is(constant)).l6(_Char___init__impl__6a9atx(10));
   }
   return out.toString();
 };
-protoOf(Capabilities).ds = function (constant) {
+protoOf(Capabilities).is = function (constant) {
   return declaringEnumSimpleName(constant) + '.' + constant.t1_1;
 };
 var Capabilities_instance;
@@ -4490,45 +4593,45 @@ function DeliverableHash(value) {
   var tmp = this;
   // Inline function 'kotlin.collections.copyOf' call
   // Inline function 'kotlin.js.asDynamic' call
-  tmp.vq_1 = value.slice();
+  tmp.cr_1 = value.slice();
 }
-protoOf(DeliverableHash).es = function () {
+protoOf(DeliverableHash).js = function () {
   // Inline function 'kotlin.collections.copyOf' call
   // Inline function 'kotlin.js.asDynamic' call
-  return this.vq_1.slice();
+  return this.cr_1.slice();
 };
-protoOf(DeliverableHash).qo = function () {
-  return encodeLowerHex(this.vq_1);
+protoOf(DeliverableHash).np = function () {
+  return encodeLowerHex(this.cr_1);
 };
 protoOf(DeliverableHash).equals = function (other) {
   var tmp;
   if (other instanceof DeliverableHash) {
-    tmp = constantTimeEquals(this.vq_1, other.vq_1);
+    tmp = constantTimeEquals(this.cr_1, other.cr_1);
   } else {
     tmp = false;
   }
   return tmp;
 };
 protoOf(DeliverableHash).hashCode = function () {
-  return contentHashCode(this.vq_1);
+  return contentHashCode(this.cr_1);
 };
 protoOf(DeliverableHash).toString = function () {
   return 'DeliverableHash(redacted)';
 };
 function DeliverableCommitment(x, ox, mimeType, sizeBytes) {
-  this.vp_1 = x;
-  this.wp_1 = ox;
-  this.xp_1 = mimeType;
-  this.yp_1 = sizeBytes;
-  requireNonNegativeSize(this.yp_1, "a commitment's size");
+  this.oq_1 = x;
+  this.pq_1 = ox;
+  this.qq_1 = mimeType;
+  this.rq_1 = sizeBytes;
+  requireNonNegativeSize(this.rq_1, "a commitment's size");
   // Inline function 'kotlin.text.isEmpty' call
-  var this_0 = this.xp_1;
+  var this_0 = this.qq_1;
   if (charSequenceLength(this_0) === 0) {
     throw new DeliveryException(DeliveryRejection_MIME_TYPE_ABSENT_getInstance(), '\xA710.1 requires a commitment to carry an ["m", ...] value, and \xA710.3 forbids skipping the identity check because a tag it looked for was absent');
   }
 }
-protoOf(DeliverableCommitment).fs = function (release) {
-  var tmp0_elvis_lhs = release.bq_1;
+protoOf(DeliverableCommitment).ks = function (release) {
+  var tmp0_elvis_lhs = release.uq_1;
   var tmp;
   if (tmp0_elvis_lhs == null) {
     throw new DeliveryException(DeliveryRejection_FILE_TYPE_ABSENT_getInstance(), 'the release carries no ["file-type", ...] tag, and \xA710.3 says an implementation MUST NOT skip the check because the tag it looked for was absent');
@@ -4536,31 +4639,31 @@ protoOf(DeliverableCommitment).fs = function (release) {
     tmp = tmp0_elvis_lhs;
   }
   var fileType = tmp;
-  if (!(fileType === this.xp_1)) {
+  if (!(fileType === this.qq_1)) {
     throw new DeliveryException(DeliveryRejection_FILE_TYPE_MISMATCH_getInstance(), "the release's file-type is not byte-identical to the commitment's m (\xA710.3)");
   }
-  if (!release.zp_1.equals(this.vp_1)) {
+  if (!release.sq_1.equals(this.oq_1)) {
     throw new DeliveryException(DeliveryRejection_SERVED_HASH_MISMATCH_getInstance(), "the release's x is not byte-identical to the commitment's x (\xA710.3)");
   }
-  if (!release.aq_1.equals(this.wp_1)) {
+  if (!release.tq_1.equals(this.pq_1)) {
     throw new DeliveryException(DeliveryRejection_PLAINTEXT_HASH_MISMATCH_getInstance(), "the release's ox is not byte-identical to the commitment's ox (\xA710.3)");
   }
-  if (!release.cq_1.equals(this.yp_1)) {
+  if (!release.vq_1.equals(this.rq_1)) {
     throw new DeliveryException(DeliveryRejection_SIZE_MISMATCH_getInstance(), "the release's size is not byte-identical to the commitment's size (\xA710.3)");
   }
 };
 protoOf(DeliverableCommitment).toString = function () {
-  return 'DeliverableCommitment(sizeBytes=' + this.yp_1.toString() + ')';
+  return 'DeliverableCommitment(sizeBytes=' + this.rq_1.toString() + ')';
 };
 function DeliverableRelease(x, ox, fileType, sizeBytes) {
-  this.zp_1 = x;
-  this.aq_1 = ox;
-  this.bq_1 = fileType;
-  this.cq_1 = sizeBytes;
-  requireNonNegativeSize(this.cq_1, "a release's size");
+  this.sq_1 = x;
+  this.tq_1 = ox;
+  this.uq_1 = fileType;
+  this.vq_1 = sizeBytes;
+  requireNonNegativeSize(this.vq_1, "a release's size");
 }
 protoOf(DeliverableRelease).toString = function () {
-  return 'DeliverableRelease(sizeBytes=' + this.cq_1.toString() + ')';
+  return 'DeliverableRelease(sizeBytes=' + this.vq_1.toString() + ')';
 };
 function requireNonNegativeSize(sizeBytes, what) {
   if (sizeBytes.c2(new Long(0, 0)) < 0) {
@@ -4697,35 +4800,35 @@ function DeliveryCheck(name, ordinal) {
   Enum.call(this, name, ordinal);
 }
 function ServedBytes(commitment, servedBytesLength, maxServedBytes) {
-  this.gs_1 = commitment;
-  this.hs_1 = servedBytesLength;
-  this.is_1 = maxServedBytes;
+  this.ls_1 = commitment;
+  this.ms_1 = servedBytesLength;
+  this.ns_1 = maxServedBytes;
 }
-protoOf(ServedBytes).js = function () {
-  return this.gs_1;
+protoOf(ServedBytes).os = function () {
+  return this.ls_1;
 };
-protoOf(ServedBytes).ks = function () {
-  return this.hs_1;
+protoOf(ServedBytes).ps = function () {
+  return this.ms_1;
 };
-protoOf(ServedBytes).ls = function () {
-  return this.is_1;
+protoOf(ServedBytes).qs = function () {
+  return this.ns_1;
 };
 protoOf(ServedBytes).toString = function () {
-  return 'ServedBytesVerified(servedBytesLength=' + this.hs_1.toString() + ', ' + ('maxServedBytes=' + this.is_1.toString() + ')');
+  return 'ServedBytesVerified(servedBytesLength=' + this.ms_1.toString() + ', ' + ('maxServedBytes=' + this.ns_1.toString() + ')');
 };
 function Companion_10() {
   Companion_instance_10 = this;
-  this.ms_1 = new Long(67108864, 0);
+  this.rs_1 = new Long(67108864, 0);
 }
-protoOf(Companion_10).ns = function (commitment, servedBytes, maxServedBytes) {
-  if (commitment.yp_1.c2(maxServedBytes) > 0) {
-    throw new DeliveryException(DeliveryRejection_SIZE_LIMIT_EXCEEDED_getInstance(), 'the commitment declares ' + commitment.yp_1.toString() + " bytes and this caller's bound " + ('is ' + maxServedBytes.toString() + '; \xA74.3 requires refusing rather than truncating when a ') + 'bound is exceeded');
+protoOf(Companion_10).ss = function (commitment, servedBytes, maxServedBytes) {
+  if (commitment.rq_1.c2(maxServedBytes) > 0) {
+    throw new DeliveryException(DeliveryRejection_SIZE_LIMIT_EXCEEDED_getInstance(), 'the commitment declares ' + commitment.rq_1.toString() + " bytes and this caller's bound " + ('is ' + maxServedBytes.toString() + '; \xA74.3 requires refusing rather than truncating when a ') + 'bound is exceeded');
   }
-  if (!toLong(servedBytes.length).equals(commitment.yp_1)) {
-    throw new DeliveryException(DeliveryRejection_SIZE_DISAGREEMENT_getInstance(), 'the commitment declares ' + commitment.yp_1.toString() + ' bytes and ' + servedBytes.length + ' ' + 'were supplied; \xA710.4 requires refusing a blob whose length disagrees with size');
+  if (!toLong(servedBytes.length).equals(commitment.rq_1)) {
+    throw new DeliveryException(DeliveryRejection_SIZE_DISAGREEMENT_getInstance(), 'the commitment declares ' + commitment.rq_1.toString() + ' bytes and ' + servedBytes.length + ' ' + 'were supplied; \xA710.4 requires refusing a blob whose length disagrees with size');
   }
   var digest = sha256(servedBytes);
-  if (!constantTimeEquals(digest, commitment.vp_1.es())) {
+  if (!constantTimeEquals(digest, commitment.oq_1.js())) {
     throw new DeliveryException(DeliveryRejection_SERVED_BYTES_MISMATCH_getInstance(), "the SHA-256 of the served bytes is not the commitment's x (\xA710.4 step 1); this is the wrong or a tampered blob, and it MUST NOT be decrypted");
   }
   return new ServedBytes(commitment, toLong(servedBytes.length), maxServedBytes);
@@ -4737,35 +4840,35 @@ function Companion_getInstance_10() {
   return Companion_instance_10;
 }
 function HashedDelivery(commitment, servedBytesLength, plaintextBytesLength, maxServedBytes) {
-  this.os_1 = commitment;
-  this.ps_1 = servedBytesLength;
-  this.qs_1 = plaintextBytesLength;
-  this.rs_1 = maxServedBytes;
+  this.ts_1 = commitment;
+  this.us_1 = servedBytesLength;
+  this.vs_1 = plaintextBytesLength;
+  this.ws_1 = maxServedBytes;
 }
-protoOf(HashedDelivery).js = function () {
-  return this.os_1;
+protoOf(HashedDelivery).os = function () {
+  return this.ts_1;
 };
-protoOf(HashedDelivery).ss = function () {
-  return Companion_getInstance_11().as_1;
+protoOf(HashedDelivery).xs = function () {
+  return Companion_getInstance_11().fs_1;
 };
-protoOf(HashedDelivery).ts = function () {
-  return Companion_getInstance_11().bs_1;
+protoOf(HashedDelivery).ys = function () {
+  return Companion_getInstance_11().gs_1;
 };
 protoOf(HashedDelivery).toString = function () {
-  return 'DeliveryEvidence(servedBytesLength=' + this.ps_1.toString() + ', ' + ('plaintextBytesLength=' + this.qs_1.toString() + ', maxServedBytes=' + this.rs_1.toString() + ', ') + ('performed=' + toString(this.ss()) + ', notPerformedHere=' + toString(this.ts()) + ')');
+  return 'DeliveryEvidence(servedBytesLength=' + this.us_1.toString() + ', ' + ('plaintextBytesLength=' + this.vs_1.toString() + ', maxServedBytes=' + this.ws_1.toString() + ', ') + ('performed=' + toString(this.xs()) + ', notPerformedHere=' + toString(this.ys()) + ')');
 };
 function Companion_11() {
   Companion_instance_11 = this;
-  this.as_1 = readOnlySetOf(linkedSetOf([DeliveryCheck_SERVED_BYTES_SIZE_getInstance(), DeliveryCheck_SERVED_BYTES_HASH_getInstance(), DeliveryCheck_PLAINTEXT_BYTES_HASH_getInstance()]));
-  this.bs_1 = readOnlySetOf(linkedSetOf([DeliveryCheck_GCM_AUTHENTICATION_getInstance(), DeliveryCheck_SERVED_BYTES_PROVENANCE_getInstance(), DeliveryCheck_RELEASE_IDENTITY_getInstance(), DeliveryCheck_RELEASE_ORDER_BINDING_getInstance(), DeliveryCheck_COMMITMENT_CARRIES_NO_KEY_getInstance(), DeliveryCheck_ENCRYPTION_PARAMETERS_getInstance()]));
+  this.fs_1 = readOnlySetOf(linkedSetOf([DeliveryCheck_SERVED_BYTES_SIZE_getInstance(), DeliveryCheck_SERVED_BYTES_HASH_getInstance(), DeliveryCheck_PLAINTEXT_BYTES_HASH_getInstance()]));
+  this.gs_1 = readOnlySetOf(linkedSetOf([DeliveryCheck_GCM_AUTHENTICATION_getInstance(), DeliveryCheck_SERVED_BYTES_PROVENANCE_getInstance(), DeliveryCheck_RELEASE_IDENTITY_getInstance(), DeliveryCheck_RELEASE_ORDER_BINDING_getInstance(), DeliveryCheck_COMMITMENT_CARRIES_NO_KEY_getInstance(), DeliveryCheck_ENCRYPTION_PARAMETERS_getInstance()]));
 }
-protoOf(Companion_11).us = function (servedBytes, plaintextBytes) {
-  var commitment = servedBytes.js();
+protoOf(Companion_11).zs = function (servedBytes, plaintextBytes) {
+  var commitment = servedBytes.os();
   var digest = sha256(plaintextBytes);
-  if (!constantTimeEquals(digest, commitment.wp_1.es())) {
+  if (!constantTimeEquals(digest, commitment.pq_1.js())) {
     throw new DeliveryException(DeliveryRejection_PLAINTEXT_BYTES_MISMATCH_getInstance(), "the SHA-256 of the plaintext is not the commitment's ox (\xA710.4 step 3); the order MUST move to disputed");
   }
-  return new HashedDelivery(commitment, servedBytes.ks(), toLong(plaintextBytes.length), servedBytes.ls());
+  return new HashedDelivery(commitment, servedBytes.ps(), toLong(plaintextBytes.length), servedBytes.qs());
 };
 var Companion_instance_11;
 function Companion_getInstance_11() {
@@ -4932,13 +5035,13 @@ function EnvelopeRejection_initEntries() {
 }
 function EnvelopeRejection(name, ordinal, side) {
   Enum.call(this, name, ordinal);
-  this.xs_1 = side;
+  this.ct_1 = side;
 }
 function EnvelopeException(reason, message, cause) {
   cause = cause === VOID ? null : cause;
   IllegalStateException_init_$Init$(message, cause, this);
   captureStack(this, EnvelopeException);
-  this.ys_1 = reason;
+  this.dt_1 = reason;
 }
 var SignatureCheck_VERIFIED_instance;
 var SignatureCheck_NOT_CHECKED_instance;
@@ -4954,7 +5057,7 @@ function SignatureCheck(name, ordinal) {
   Enum.call(this, name, ordinal);
 }
 function notPerformed($this) {
-  return $this.vt_1 ? GiftWrap_getInstance().gt_1 : GiftWrap_getInstance().ht_1;
+  return $this.au_1 ? GiftWrap_getInstance().lt_1 : GiftWrap_getInstance().mt_1;
 }
 function boundBeforeParsing($this, text, bound, tooLarge, malformed, what) {
   if (text.length > bound)
@@ -4976,7 +5079,7 @@ function tooLargeFor($this, reason, what, size, bound) {
 function readEvent($this, text, layerLimits, malformed) {
   var tmp;
   try {
-    tmp = EventJson_instance.gu(text, layerLimits);
+    tmp = EventJson_instance.lu(text, layerLimits);
   } catch ($p) {
     var tmp_0;
     if ($p instanceof IllegalArgumentException) {
@@ -4991,12 +5094,12 @@ function readEvent($this, text, layerLimits, malformed) {
 function readRumor($this, text) {
   var tmp;
   try {
-    tmp = EventJson_instance.gu(text, $this.tt_1);
+    tmp = EventJson_instance.lu(text, $this.yt_1);
   } catch ($p) {
     var tmp_0;
     if ($p instanceof JsonException) {
       var refused = $p;
-      if (refused.hu_1.equals(JsonRejection_SIGNATURE_MALFORMED_getInstance())) {
+      if (refused.mu_1.equals(JsonRejection_SIGNATURE_MALFORMED_getInstance())) {
         throw refuse(GiftWrap_getInstance(), EnvelopeRejection_RUMOR_SIGNED_getInstance(), "\xA77.1 step 8 rejects a rumor carrying a `sig` key with any value at all, including an empty string, and this one carries a `sig` that is not even a signature's shape", refused);
       }
       throw malformedLayer($this, EnvelopeRejection_MALFORMED_RUMOR_getInstance(), refused);
@@ -5014,7 +5117,7 @@ function readRumor($this, text) {
 function checkId($this, read, layerLimits, mismatch, malformed) {
   var tmp;
   try {
-    tmp = Companion_instance_51.lu(read.ju_1, read.iu_1, layerLimits);
+    tmp = Companion_instance_51.qu(read.ou_1, read.nu_1, layerLimits);
   } catch ($p) {
     var tmp_0;
     if ($p instanceof WireException) {
@@ -5070,13 +5173,13 @@ function missingRecipient($this, what) {
   return refuse$default(GiftWrap_getInstance(), EnvelopeRejection_MISSING_RECIPIENT_getInstance(), '\xA77.1 step 3 requires exactly one `p` tag naming the reader, with the ' + ("recipient's pubkey as its value, and this wrap carries " + what));
 }
 function readerKey($this) {
-  var answer = $this.rt_1.mu();
+  var answer = $this.wt_1.ru();
   var tmp;
   if (answer instanceof Provided) {
     tmp = answer.ye_1;
   } else {
     if (answer instanceof Unavailable_0) {
-      throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_READER_PUBLIC_KEY_UNAVAILABLE_getInstance(), "\xA77.1 step 3 compares the wrap's `p` tag against the reader's own public key " + ('and the injected signer answered unavailable (' + answer.nu_1.t1_1 + ')'));
+      throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_READER_PUBLIC_KEY_UNAVAILABLE_getInstance(), "\xA77.1 step 3 compares the wrap's `p` tag against the reader's own public key " + ('and the injected signer answered unavailable (' + answer.su_1.t1_1 + ')'));
     } else {
       noWhenBranchMatchedException();
     }
@@ -5092,10 +5195,10 @@ function readerKey($this) {
   return tmp_0;
 }
 function verify($this, publicKeyHex, id, signatureHex, invalid) {
-  var verdict = $this.st_1.qu(decodeHex(GiftWrap_getInstance(), publicKeyHex), id.es(), decodeHex(GiftWrap_getInstance(), signatureHex));
+  var verdict = $this.xt_1.vu(decodeHex(GiftWrap_getInstance(), publicKeyHex), id.js(), decodeHex(GiftWrap_getInstance(), signatureHex));
   var tmp;
   if (verdict instanceof Unavailable_0) {
-    $this.vt_1 = false;
+    $this.au_1 = false;
     tmp = SignatureCheck_NOT_CHECKED_getInstance();
   } else {
     if (verdict instanceof Provided) {
@@ -5113,13 +5216,13 @@ function verify($this, publicKeyHex, id, signatureHex, invalid) {
   return tmp;
 }
 function decrypt($this, counterpartyPublicKeyHex, payload, notPerformed, refused) {
-  var answer = $this.rt_1.ru(counterpartyPublicKeyHex, payload);
+  var answer = $this.wt_1.wu(counterpartyPublicKeyHex, payload);
   var tmp;
   if (answer instanceof Provided) {
     tmp = answer.ye_1;
   } else {
     if (answer instanceof Unavailable_0) {
-      throw refuse$default(GiftWrap_getInstance(), notPerformed, '\xA77.1 decrypts at both layers through the injected signer and it answered ' + ('unavailable (' + answer.nu_1.t1_1 + '): the decryption was **not ') + 'attempted**, which \xA717 requires be reported as such rather than as a ' + 'negative result');
+      throw refuse$default(GiftWrap_getInstance(), notPerformed, '\xA77.1 decrypts at both layers through the injected signer and it answered ' + ('unavailable (' + answer.su_1.t1_1 + '): the decryption was **not ') + 'attempted**, which \xA717 requires be reported as such rather than as a ' + 'negative result');
     } else {
       noWhenBranchMatchedException();
     }
@@ -5127,7 +5230,7 @@ function decrypt($this, counterpartyPublicKeyHex, payload, notPerformed, refused
   var decryption = tmp;
   var tmp_0;
   if (decryption instanceof Decrypted) {
-    tmp_0 = decryption.su_1;
+    tmp_0 = decryption.xu_1;
   } else {
     if (equals(decryption, Refused_instance)) {
       throw refuse$default(GiftWrap_getInstance(), refused, "\xA77.1 decrypts at both layers through the injected signer, and it performed this decryption and refused the payload: NIP-44 v2 is authenticated encryption, so a `content` whose MAC does not match under the reader's conversation with the key this layer carries is refused rather than decoded; \xA717 requires a check that ran and failed be distinguished from one that did not run");
@@ -5143,10 +5246,10 @@ function attribute_0($this, sealPubkey, rumor, sealCheck) {
     var tmp_0;
     switch (sealCheck.u1_1) {
       case 0:
-        tmp_0 = Companion_getInstance_1().nk(sealPubkey, rumor, $this.ut_1);
+        tmp_0 = Companion_getInstance_1().nk(sealPubkey, rumor, $this.zt_1);
         break;
       case 1:
-        tmp_0 = Companion_getInstance_1().mk(sealPubkey, rumor, $this.ut_1);
+        tmp_0 = Companion_getInstance_1().mk(sealPubkey, rumor, $this.zt_1);
         break;
       default:
         noWhenBranchMatchedException();
@@ -5166,21 +5269,21 @@ function attribute_0($this, sealPubkey, rumor, sealCheck) {
 }
 function sealFor($this, addressee) {
   var createdAt = randomisedCreatedAt($this);
-  var content = ciphertext($this, $this.wu_1, addressee, $this.tu_1);
+  var content = ciphertext($this, $this.bv_1, addressee, $this.yu_1);
   if (content.length > 65535) {
     throw sealTooLarge($this, content.length, null);
   }
-  var seal = new WireEvent($this.uu_1, createdAt, 13, emptyList(), content);
-  var written = write($this, seal, $this.wu_1, GiftWrap_getInstance().ct_1, EnvelopeRejection_SEAL_TOO_LARGE_TO_EMIT_getInstance());
-  var bytes = written.ev_1.length;
+  var seal = new WireEvent($this.zu_1, createdAt, 13, emptyList(), content);
+  var written = write($this, seal, $this.bv_1, GiftWrap_getInstance().ht_1, EnvelopeRejection_SEAL_TOO_LARGE_TO_EMIT_getInstance());
+  var bytes = written.jv_1.length;
   if (bytes > 65535)
     throw sealTooLarge($this, bytes, null);
-  return written.ev_1;
+  return written.jv_1;
 }
 function write($this, event, signer, limits, tooLarge) {
   var tmp;
   try {
-    tmp = event.gv(limits);
+    tmp = event.lv(limits);
   } catch ($p) {
     var tmp_0;
     if ($p instanceof IllegalArgumentException) {
@@ -5191,12 +5294,12 @@ function write($this, event, signer, limits, tooLarge) {
     }
   }
   var serialisation = tmp;
-  var id = Companion_instance_50.jv(event, limits);
+  var id = Companion_instance_50.ov(event, limits);
   var signature_0 = signature($this, signer, serialisation);
   verifyOnEmit($this, event.fd_1, id, signature_0);
   var tmp_1;
   try {
-    tmp_1 = EventJson_instance.kv(event, id, signature_0, limits);
+    tmp_1 = EventJson_instance.pv(event, id, signature_0, limits);
   } catch ($p) {
     var tmp_2;
     if ($p instanceof IllegalArgumentException) {
@@ -5210,9 +5313,9 @@ function write($this, event, signer, limits, tooLarge) {
   return new Written(json, id);
 }
 function verifyOnEmit($this, publicKeyHex, id, signature) {
-  var verdict = $this.zu_1.qu(decodeHex(GiftWrap_getInstance(), publicKeyHex), id.es(), decodeHex(GiftWrap_getInstance(), signature));
+  var verdict = $this.ev_1.vu(decodeHex(GiftWrap_getInstance(), publicKeyHex), id.js(), decodeHex(GiftWrap_getInstance(), signature));
   if (verdict instanceof Unavailable_0)
-    $this.dv_1 = false;
+    $this.iv_1 = false;
   else {
     if (verdict instanceof Provided) {
       if (!verdict.ye_1.equals(SignatureVerdict_VALID_getInstance())) {
@@ -5224,13 +5327,13 @@ function verifyOnEmit($this, publicKeyHex, id, signature) {
   }
 }
 function freshSigner($this) {
-  var answer = $this.xu_1.lv();
+  var answer = $this.cv_1.qv();
   var tmp;
   if (answer instanceof Provided) {
     tmp = answer.ye_1;
   } else {
     if (answer instanceof Unavailable_0) {
-      throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_EPHEMERAL_SIGNER_UNAVAILABLE_getInstance(), '\xA77.1 step 3 requires a freshly generated keypair for every single wrap and the ' + ('injected one-time signer answered unavailable (' + answer.nu_1.t1_1 + '); ') + 'a library that minted one itself would be performing key generation it has ' + 'no dependency for');
+      throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_EPHEMERAL_SIGNER_UNAVAILABLE_getInstance(), '\xA77.1 step 3 requires a freshly generated keypair for every single wrap and the ' + ('injected one-time signer answered unavailable (' + answer.su_1.t1_1 + '); ') + 'a library that minted one itself would be performing key generation it has ' + 'no dependency for');
     } else {
       noWhenBranchMatchedException();
     }
@@ -5238,13 +5341,13 @@ function freshSigner($this) {
   return tmp;
 }
 function ciphertext($this, signer, addressee, plaintext) {
-  var answer = signer.mv(addressee, plaintext);
+  var answer = signer.rv(addressee, plaintext);
   var tmp;
   if (answer instanceof Provided) {
     tmp = answer.ye_1;
   } else {
     if (answer instanceof Unavailable_0) {
-      throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_ENCRYPTION_UNAVAILABLE_getInstance(), '\xA77.1 encrypts at both layers through the injected signer, and it answered ' + ('unavailable (' + answer.nu_1.t1_1 + ')'));
+      throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_ENCRYPTION_UNAVAILABLE_getInstance(), '\xA77.1 encrypts at both layers through the injected signer, and it answered ' + ('unavailable (' + answer.su_1.t1_1 + ')'));
     } else {
       noWhenBranchMatchedException();
     }
@@ -5274,13 +5377,13 @@ function ciphertext($this, signer, addressee, plaintext) {
   return payload;
 }
 function signature($this, signer, serialisation) {
-  var answer = signer.nv(serialisation);
+  var answer = signer.sv(serialisation);
   var tmp;
   if (answer instanceof Provided) {
     tmp = answer.ye_1;
   } else {
     if (answer instanceof Unavailable_0) {
-      throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_SIGNATURE_UNAVAILABLE_getInstance(), "\xA77.1 signs the seal with the sender's key and the wrap with the throwaway one, " + ('and the injected signer answered unavailable (' + answer.nu_1.t1_1 + ')'));
+      throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_SIGNATURE_UNAVAILABLE_getInstance(), "\xA77.1 signs the seal with the sender's key and the wrap with the throwaway one, " + ('and the injected signer answered unavailable (' + answer.su_1.t1_1 + ')'));
     } else {
       noWhenBranchMatchedException();
     }
@@ -5292,8 +5395,8 @@ function signature($this, signer, serialisation) {
   return signature;
 }
 function randomisedCreatedAt($this) {
-  var floor = $this.bv_1.c2(new Long(172800, 0)) > 0 ? $this.bv_1.e2(new Long(172800, 0)) : new Long(0, 0);
-  var width = $this.bv_1.e2(floor).d2(new Long(1, 0));
+  var floor = $this.gv_1.c2(new Long(172800, 0)) > 0 ? $this.gv_1.e2(new Long(172800, 0)) : new Long(0, 0);
+  var width = $this.gv_1.e2(floor).d2(new Long(1, 0));
   var ceiling = (new Long(0, 1)).g2(width).f2(width);
   var attempt = 0;
   while (attempt < 64) {
@@ -5305,13 +5408,13 @@ function randomisedCreatedAt($this) {
   throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_RANDOMNESS_UNUSABLE_getInstance(), 'the injected randomness source produced 64 draws in a row outside the range a uniform value can be taken from; \xA77.1 step 5 requires a uniform draw into the past and forbids substituting the true time for one');
 }
 function unsignedDraw($this) {
-  var answer = $this.yu_1.ov(4);
+  var answer = $this.dv_1.tv(4);
   var tmp;
   if (answer instanceof Provided) {
     tmp = answer.ye_1;
   } else {
     if (answer instanceof Unavailable_0) {
-      throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_RANDOMNESS_UNAVAILABLE_getInstance(), "\xA77.1 step 5 randomises every seal's and every wrap's created_at from the injected source and the source answered unavailable " + ('(' + answer.nu_1.t1_1 + '); there is no fallback'));
+      throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_RANDOMNESS_UNAVAILABLE_getInstance(), "\xA77.1 step 5 randomises every seal's and every wrap's created_at from the injected source and the source answered unavailable " + ('(' + answer.su_1.t1_1 + '); there is no fallback'));
     } else {
       noWhenBranchMatchedException();
     }
@@ -5340,16 +5443,16 @@ function reused($this, what) {
   return refuse$default(GiftWrap_getInstance(), EnvelopeRejection_THROWAWAY_SIGNER_REUSED_getInstance(), 'a throwaway signer was asked to ' + what + '; \xA77.1 step 3 gives every gift wrap its own ' + 'keypair, so each is used for exactly one encryption and one signature and never ' + 'for a decryption');
 }
 function Opening(me, secp, limits, tagLimits) {
-  this.rt_1 = me;
-  this.st_1 = secp;
-  this.tt_1 = limits;
-  this.ut_1 = tagLimits;
-  this.vt_1 = true;
+  this.wt_1 = me;
+  this.xt_1 = secp;
+  this.yt_1 = limits;
+  this.zt_1 = tagLimits;
+  this.au_1 = true;
 }
-protoOf(Opening).bo = function (wrapJson) {
+protoOf(Opening).yo = function (wrapJson) {
   boundBeforeParsing(this, wrapJson, 90112, EnvelopeRejection_WRAP_TOO_LARGE_getInstance(), EnvelopeRejection_MALFORMED_WRAP_getInstance(), "the gift wrap's JSON");
-  var wrap = readEvent(this, wrapJson, GiftWrap_getInstance().et_1, EnvelopeRejection_MALFORMED_WRAP_getInstance());
-  var tmp0_elvis_lhs = wrap.ku_1;
+  var wrap = readEvent(this, wrapJson, GiftWrap_getInstance().jt_1, EnvelopeRejection_MALFORMED_WRAP_getInstance());
+  var tmp0_elvis_lhs = wrap.pu_1;
   var tmp;
   if (tmp0_elvis_lhs == null) {
     throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_WRAP_UNSIGNED_getInstance(), '\xA77.1 step 3 signs every gift wrap with its throwaway keypair and this object carries no `sig` key at all; the presence of the signature is not the part \xA77.1 makes conditional on secp256k1');
@@ -5357,19 +5460,19 @@ protoOf(Opening).bo = function (wrapJson) {
     tmp = tmp0_elvis_lhs;
   }
   var wrapSignature = tmp;
-  var wrapChecked = checkId(this, wrap, GiftWrap_getInstance().et_1, EnvelopeRejection_WRAP_ID_MISMATCH_getInstance(), EnvelopeRejection_MALFORMED_WRAP_getInstance());
-  if (!(wrap.iu_1.dd_1 === 1059)) {
-    throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_NOT_A_GIFT_WRAP_getInstance(), '\xA77.1 step 3: the kind is 1059 and only ' + ('1059, and this event is kind:' + wrap.iu_1.dd_1 + '; ') + '21059 is defined elsewhere for another purpose and MUST NOT be used here');
+  var wrapChecked = checkId(this, wrap, GiftWrap_getInstance().jt_1, EnvelopeRejection_WRAP_ID_MISMATCH_getInstance(), EnvelopeRejection_MALFORMED_WRAP_getInstance());
+  if (!(wrap.nu_1.dd_1 === 1059)) {
+    throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_NOT_A_GIFT_WRAP_getInstance(), '\xA77.1 step 3: the kind is 1059 and only ' + ('1059, and this event is kind:' + wrap.nu_1.dd_1 + '; ') + '21059 is defined elsewhere for another purpose and MUST NOT be used here');
   }
-  var addressee = soleRecipient(this, wrap.iu_1.gd_1);
+  var addressee = soleRecipient(this, wrap.nu_1.gd_1);
   if (!(addressee === readerKey(this))) {
     throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_NOT_ADDRESSED_TO_ME_getInstance(), "\xA77.1 step 3: the wrap's `p` tag names a key that is not this reader's, and the step requires rejecting before any decryption \u2014 so no ciphertext a stranger addressed elsewhere is ever handed to the signer");
   }
-  var wrapCheck = verify(this, wrap.iu_1.fd_1, wrapChecked.wd(), wrapSignature, EnvelopeRejection_WRAP_SIGNATURE_INVALID_getInstance());
-  var sealJson = decrypt(this, wrap.iu_1.fd_1, wrap.iu_1.ed_1, EnvelopeRejection_COULD_NOT_DECRYPT_WRAP_getInstance(), EnvelopeRejection_WRAP_DECRYPTION_REFUSED_getInstance());
+  var wrapCheck = verify(this, wrap.nu_1.fd_1, wrapChecked.wd(), wrapSignature, EnvelopeRejection_WRAP_SIGNATURE_INVALID_getInstance());
+  var sealJson = decrypt(this, wrap.nu_1.fd_1, wrap.nu_1.ed_1, EnvelopeRejection_COULD_NOT_DECRYPT_WRAP_getInstance(), EnvelopeRejection_WRAP_DECRYPTION_REFUSED_getInstance());
   boundBeforeParsing(this, sealJson, 65535, EnvelopeRejection_SEAL_TOO_LARGE_getInstance(), EnvelopeRejection_MALFORMED_SEAL_getInstance(), 'the decrypted seal');
-  var seal = readEvent(this, sealJson, GiftWrap_getInstance().ft_1, EnvelopeRejection_MALFORMED_SEAL_getInstance());
-  var tmp1_elvis_lhs = seal.ku_1;
+  var seal = readEvent(this, sealJson, GiftWrap_getInstance().kt_1, EnvelopeRejection_MALFORMED_SEAL_getInstance());
+  var tmp1_elvis_lhs = seal.pu_1;
   var tmp_0;
   if (tmp1_elvis_lhs == null) {
     throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_SEAL_UNSIGNED_getInstance(), "\xA77.2 makes the kind:13 seal's signature the thing that binds every term in the rumor to a key, and this seal carries no `sig` key at all; a seal with none has nothing for a better equipped reader to check either");
@@ -5377,51 +5480,51 @@ protoOf(Opening).bo = function (wrapJson) {
     tmp_0 = tmp1_elvis_lhs;
   }
   var sealSignature = tmp_0;
-  var sealChecked = checkId(this, seal, GiftWrap_getInstance().ft_1, EnvelopeRejection_SEAL_ID_MISMATCH_getInstance(), EnvelopeRejection_MALFORMED_SEAL_getInstance());
-  if (!(seal.iu_1.dd_1 === 13)) {
-    throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_NOT_A_SEAL_getInstance(), '\xA77.1 step 6 rejects any kind other than 13 inside a gift wrap, ' + ('and this one is kind:' + seal.iu_1.dd_1));
+  var sealChecked = checkId(this, seal, GiftWrap_getInstance().kt_1, EnvelopeRejection_SEAL_ID_MISMATCH_getInstance(), EnvelopeRejection_MALFORMED_SEAL_getInstance());
+  if (!(seal.nu_1.dd_1 === 13)) {
+    throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_NOT_A_SEAL_getInstance(), '\xA77.1 step 6 rejects any kind other than 13 inside a gift wrap, ' + ('and this one is kind:' + seal.nu_1.dd_1));
   }
   // Inline function 'kotlin.collections.isNotEmpty' call
-  if (!seal.iu_1.gd_1.p()) {
-    throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_SEAL_HAS_TAGS_getInstance(), "\xA77.1 step 2 requires a seal's `tags` be empty and step 6 rejects a seal whose " + ('are not; this one carries ' + seal.iu_1.gd_1.j()));
+  if (!seal.nu_1.gd_1.p()) {
+    throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_SEAL_HAS_TAGS_getInstance(), "\xA77.1 step 2 requires a seal's `tags` be empty and step 6 rejects a seal whose " + ('are not; this one carries ' + seal.nu_1.gd_1.j()));
   }
-  var sealCheck = verify(this, seal.iu_1.fd_1, sealChecked.wd(), sealSignature, EnvelopeRejection_SEAL_SIGNATURE_INVALID_getInstance());
-  var rumorJson = decrypt(this, seal.iu_1.fd_1, seal.iu_1.ed_1, EnvelopeRejection_COULD_NOT_DECRYPT_SEAL_getInstance(), EnvelopeRejection_SEAL_DECRYPTION_REFUSED_getInstance());
+  var sealCheck = verify(this, seal.nu_1.fd_1, sealChecked.wd(), sealSignature, EnvelopeRejection_SEAL_SIGNATURE_INVALID_getInstance());
+  var rumorJson = decrypt(this, seal.nu_1.fd_1, seal.nu_1.ed_1, EnvelopeRejection_COULD_NOT_DECRYPT_SEAL_getInstance(), EnvelopeRejection_SEAL_DECRYPTION_REFUSED_getInstance());
   boundBeforeParsing(this, rumorJson, 65535, EnvelopeRejection_RUMOR_TOO_LARGE_TO_OPEN_getInstance(), EnvelopeRejection_MALFORMED_RUMOR_getInstance(), 'the decrypted rumor');
   var rumor = readRumor(this, rumorJson);
-  if (!(rumor.ku_1 == null)) {
+  if (!(rumor.pu_1 == null)) {
     throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_RUMOR_SIGNED_getInstance(), '\xA77.1 step 8 rejects a rumor carrying a `sig` key with any value at all: it is either a sender that does not understand the construction or an attempt to have the rumor treated as independently signed');
   }
-  var rumorChecked = checkId(this, rumor, this.tt_1, EnvelopeRejection_RUMOR_ID_MISMATCH_getInstance(), EnvelopeRejection_MALFORMED_RUMOR_getInstance());
-  var attributed = attribute_0(this, seal.iu_1.fd_1, rumorChecked, sealCheck);
+  var rumorChecked = checkId(this, rumor, this.yt_1, EnvelopeRejection_RUMOR_ID_MISMATCH_getInstance(), EnvelopeRejection_MALFORMED_RUMOR_getInstance());
+  var attributed = attribute_0(this, seal.nu_1.fd_1, rumorChecked, sealCheck);
   return new Opened(attributed, sealCheck, wrapCheck, wrapChecked.wd(), notPerformed(this));
 };
 function Opened(rumor, sealSignature, wrapSignature, wrapId, notPerformedHere) {
-  this.pv_1 = rumor;
-  this.qv_1 = sealSignature;
-  this.rv_1 = wrapSignature;
-  this.sv_1 = wrapId;
-  this.tv_1 = notPerformedHere;
+  this.uv_1 = rumor;
+  this.vv_1 = sealSignature;
+  this.wv_1 = wrapSignature;
+  this.xv_1 = wrapId;
+  this.yv_1 = notPerformedHere;
 }
-protoOf(Opened).uv = function () {
-  return this.pv_1;
+protoOf(Opened).zv = function () {
+  return this.uv_1;
 };
-protoOf(Opened).vv = function () {
-  return this.qv_1;
+protoOf(Opened).aw = function () {
+  return this.vv_1;
 };
-protoOf(Opened).wv = function () {
-  return this.rv_1;
+protoOf(Opened).bw = function () {
+  return this.wv_1;
 };
-protoOf(Opened).xv = function () {
-  return this.sv_1;
+protoOf(Opened).cw = function () {
+  return this.xv_1;
 };
 protoOf(Opened).vj = function () {
-  return this.tv_1;
+  return this.yv_1;
 };
 protoOf(Opened).toString = function () {
-  var tmp = 'OpenedMessage(attribution=' + this.pv_1.sj().t1_1 + ', seal=' + this.qv_1.t1_1 + ', ';
+  var tmp = 'OpenedMessage(attribution=' + this.uv_1.sj().t1_1 + ', seal=' + this.vv_1.t1_1 + ', ';
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.tv_1;
+  var this_0 = this.yv_1;
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -5431,119 +5534,119 @@ protoOf(Opened).toString = function () {
     var tmp$ret$0 = item.t1_1;
     destination.e(tmp$ret$0);
   }
-  return tmp + ('wrap=' + this.rv_1.t1_1 + ', notPerformedHere=' + toString(destination) + ')');
+  return tmp + ('wrap=' + this.wv_1.t1_1 + ', notPerformedHere=' + toString(destination) + ')');
 };
 function Emission(rumorJson, senderKey, recipientKey, sender, ephemeral, randomness, secp, relayHint, now) {
-  this.tu_1 = rumorJson;
-  this.uu_1 = senderKey;
-  this.vu_1 = recipientKey;
-  this.wu_1 = sender;
-  this.xu_1 = ephemeral;
-  this.yu_1 = randomness;
-  this.zu_1 = secp;
-  this.av_1 = relayHint;
-  this.bv_1 = now;
+  this.yu_1 = rumorJson;
+  this.zu_1 = senderKey;
+  this.av_1 = recipientKey;
+  this.bv_1 = sender;
+  this.cv_1 = ephemeral;
+  this.dv_1 = randomness;
+  this.ev_1 = secp;
+  this.fv_1 = relayHint;
+  this.gv_1 = now;
   var tmp = this;
   // Inline function 'kotlin.collections.mutableListOf' call
-  tmp.cv_1 = ArrayList_init_$Create$_0();
-  this.dv_1 = true;
+  tmp.hv_1 = ArrayList_init_$Create$_0();
+  this.iv_1 = true;
 }
-protoOf(Emission).yv = function () {
-  return this.dv_1 ? GiftWrap_getInstance().gt_1 : GiftWrap_getInstance().ht_1;
+protoOf(Emission).dw = function () {
+  return this.iv_1 ? GiftWrap_getInstance().lt_1 : GiftWrap_getInstance().mt_1;
 };
-protoOf(Emission).zv = function (addressee) {
+protoOf(Emission).ew = function (addressee) {
   var sealJson = sealFor(this, addressee);
   var throwaway = new OneShotSigner(freshSigner(this));
   var throwawayKey = publicKeyOf(GiftWrap_getInstance(), throwaway);
-  if (throwawayKey === this.uu_1 || throwawayKey === this.vu_1) {
+  if (throwawayKey === this.zu_1 || throwawayKey === this.av_1) {
     throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_EPHEMERAL_KEY_IS_IDENTITY_getInstance(), "\xA77.1 step 4: the throwaway keypair MUST equal neither party's key; a wrap signed by a key either party uses elsewhere links the two, which is the correlation the construction exists to remove");
   }
-  if (this.cv_1.w(throwawayKey)) {
+  if (this.hv_1.w(throwawayKey)) {
     throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_EPHEMERAL_KEY_REUSED_getInstance(), '\xA77.1 steps 3 and 4: a freshly generated keypair, new for every single wrap, and different between the two copies of one message; this one-time signer handed out a key it had already handed out');
   }
   // Inline function 'kotlin.collections.plusAssign' call
-  this.cv_1.e(throwawayKey);
+  this.hv_1.e(throwawayKey);
   var createdAt = randomisedCreatedAt(this);
   var content = ciphertext(this, throwaway, addressee, sealJson);
   if (content.length > 87472) {
     throw refuse$default(GiftWrap_getInstance(), EnvelopeRejection_WRAP_TOO_LARGE_TO_EMIT_getInstance(), "the wrap's content is " + content.length + ' characters and \xA74.3 bounds a ' + 'kind:1059 content at ' + '87472, which is the base64 of the ' + 'largest payload NIP-44 can produce');
   }
   var tmp;
-  if (this.av_1 == null) {
+  if (this.fv_1 == null) {
     tmp = listOf(['p', addressee]);
   } else {
-    tmp = listOf(['p', addressee, this.av_1]);
+    tmp = listOf(['p', addressee, this.fv_1]);
   }
   var tag = tmp;
   var wrap = new WireEvent(throwawayKey, createdAt, 1059, listOf_0(tag), content);
-  var written = write(this, wrap, throwaway, GiftWrap_getInstance().dt_1, EnvelopeRejection_WRAP_TOO_LARGE_TO_EMIT_getInstance());
-  return new Wrap(written.ev_1, written.fv_1, addressee);
+  var written = write(this, wrap, throwaway, GiftWrap_getInstance().it_1, EnvelopeRejection_WRAP_TOO_LARGE_TO_EMIT_getInstance());
+  return new Wrap(written.jv_1, written.kv_1, addressee);
 };
 function Written(json, id) {
-  this.ev_1 = json;
-  this.fv_1 = id;
+  this.jv_1 = json;
+  this.kv_1 = id;
 }
 function OneShotSigner(delegate) {
-  this.aw_1 = delegate;
-  this.bw_1 = false;
-  this.cw_1 = false;
+  this.fw_1 = delegate;
+  this.gw_1 = false;
+  this.hw_1 = false;
 }
-protoOf(OneShotSigner).mu = function () {
-  return this.aw_1.mu();
+protoOf(OneShotSigner).ru = function () {
+  return this.fw_1.ru();
 };
-protoOf(OneShotSigner).nv = function (canonicalSerialisation) {
-  if (this.cw_1)
+protoOf(OneShotSigner).sv = function (canonicalSerialisation) {
+  if (this.hw_1)
     throw reused(this, 'sign a second event');
-  this.cw_1 = true;
-  return this.aw_1.nv(canonicalSerialisation);
+  this.hw_1 = true;
+  return this.fw_1.sv(canonicalSerialisation);
 };
-protoOf(OneShotSigner).mv = function (counterpartyPublicKeyHex, plaintext) {
-  if (this.bw_1)
+protoOf(OneShotSigner).rv = function (counterpartyPublicKeyHex, plaintext) {
+  if (this.gw_1)
     throw reused(this, 'encrypt a second payload');
-  this.bw_1 = true;
-  return this.aw_1.mv(counterpartyPublicKeyHex, plaintext);
+  this.gw_1 = true;
+  return this.fw_1.rv(counterpartyPublicKeyHex, plaintext);
 };
-protoOf(OneShotSigner).ru = function (counterpartyPublicKeyHex, payload) {
+protoOf(OneShotSigner).wu = function (counterpartyPublicKeyHex, payload) {
   throw reused(this, 'decrypt');
 };
 protoOf(OneShotSigner).toString = function () {
-  return 'GiftWrap.OneShotSigner(used=' + this.cw_1 + ')';
+  return 'GiftWrap.OneShotSigner(used=' + this.hw_1 + ')';
 };
 function Wrap(json, id, addressee) {
-  this.dw_1 = json;
-  this.ew_1 = id;
-  this.fw_1 = addressee;
+  this.iw_1 = json;
+  this.jw_1 = id;
+  this.kw_1 = addressee;
 }
-protoOf(Wrap).gw = function () {
-  return this.dw_1;
-};
-protoOf(Wrap).wd = function () {
-  return this.ew_1;
-};
-protoOf(Wrap).hw = function () {
-  return this.fw_1;
-};
-protoOf(Wrap).toString = function () {
-  return 'OutgoingWrap(jsonChars=' + this.dw_1.length + ')';
-};
-function Sealed(toRecipient, toSelf, notPerformedHere) {
-  this.iw_1 = toRecipient;
-  this.jw_1 = toSelf;
-  this.kw_1 = notPerformedHere;
-}
-protoOf(Sealed).lw = function () {
+protoOf(Wrap).lw = function () {
   return this.iw_1;
 };
-protoOf(Sealed).mw = function () {
+protoOf(Wrap).wd = function () {
   return this.jw_1;
 };
-protoOf(Sealed).vj = function () {
+protoOf(Wrap).mw = function () {
   return this.kw_1;
 };
+protoOf(Wrap).toString = function () {
+  return 'OutgoingWrap(jsonChars=' + this.iw_1.length + ')';
+};
+function Sealed(toRecipient, toSelf, notPerformedHere) {
+  this.nw_1 = toRecipient;
+  this.ow_1 = toSelf;
+  this.pw_1 = notPerformedHere;
+}
+protoOf(Sealed).qw = function () {
+  return this.nw_1;
+};
+protoOf(Sealed).rw = function () {
+  return this.ow_1;
+};
+protoOf(Sealed).vj = function () {
+  return this.pw_1;
+};
 protoOf(Sealed).toString = function () {
-  var tmp = 'SealedMessage(toRecipient=' + toString(this.iw_1) + ', toSelf=' + toString(this.jw_1) + ', ';
+  var tmp = 'SealedMessage(toRecipient=' + toString(this.nw_1) + ', toSelf=' + toString(this.ow_1) + ', ';
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.kw_1;
+  var this_0 = this.pw_1;
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -5556,13 +5659,13 @@ protoOf(Sealed).toString = function () {
   return tmp + ('notPerformedHere=' + toString(destination) + ')');
 };
 function publicKeyOf($this, signer) {
-  var answer = signer.mu();
+  var answer = signer.ru();
   var tmp;
   if (answer instanceof Provided) {
     tmp = answer.ye_1;
   } else {
     if (answer instanceof Unavailable_0) {
-      throw refuse$default($this, EnvelopeRejection_SIGNER_PUBLIC_KEY_UNAVAILABLE_getInstance(), "\xA77.1 needs a signer's own public key for the event it is about to sign, and the " + ('signer answered unavailable (' + answer.nu_1.t1_1 + ')'));
+      throw refuse$default($this, EnvelopeRejection_SIGNER_PUBLIC_KEY_UNAVAILABLE_getInstance(), "\xA77.1 needs a signer's own public key for the event it is about to sign, and the " + ('signer answered unavailable (' + answer.su_1.t1_1 + ')'));
     } else {
       noWhenBranchMatchedException();
     }
@@ -5579,7 +5682,7 @@ function checkedKey($this, key, reason) {
 function rumorJson($this, rumor, limits) {
   var tmp;
   try {
-    tmp = EventJson_instance.nw(rumor, Companion_instance_50.jv(rumor, limits), limits);
+    tmp = EventJson_instance.sw(rumor, Companion_instance_50.ov(rumor, limits), limits);
   } catch ($p) {
     var tmp_0;
     if ($p instanceof IllegalArgumentException) {
@@ -5607,7 +5710,7 @@ function clockReading($this, clock) {
     tmp = answer.ye_1;
   } else {
     if (answer instanceof Unavailable_0) {
-      throw refuse$default($this, EnvelopeRejection_CLOCK_UNAVAILABLE_getInstance(), '\xA77.1 step 5 randomises every timestamp in the envelope relative to the injected ' + ('clock and it answered unavailable (' + answer.nu_1.t1_1 + '); \xA74.6 makes that ') + 'clock the only time this library is allowed to know');
+      throw refuse$default($this, EnvelopeRejection_CLOCK_UNAVAILABLE_getInstance(), '\xA77.1 step 5 randomises every timestamp in the envelope relative to the injected ' + ('clock and it answered unavailable (' + answer.su_1.t1_1 + '); \xA74.6 makes that ') + 'clock the only time this library is allowed to know');
     } else {
       noWhenBranchMatchedException();
     }
@@ -5686,26 +5789,26 @@ function refuse$default($this, reason, message, cause, $super) {
 }
 function GiftWrap() {
   GiftWrap_instance = this;
-  this.zs_1 = new Long(172800, 0);
-  this.at_1 = 'p';
-  this.bt_1 = 1;
-  this.ct_1 = new WireLimits(65535, 1, 1024, 65535);
-  this.dt_1 = new WireLimits(90112, 1, 1024, 87472);
-  this.et_1 = new WireLimits(90112, 512, 1024, 87472);
-  this.ft_1 = new WireLimits(65535, 512, 1024, 65535);
-  this.gt_1 = readOnlySetOf(emptyList());
-  this.ht_1 = readOnlySetOf(listOf_0(SeamCapability_BIP340_VERIFICATION_getInstance()));
-  this.it_1 = 4;
-  this.jt_1 = new Long(0, 1);
-  this.kt_1 = 64;
-  this.lt_1 = 8;
-  this.mt_1 = new Long(255, 0);
+  this.et_1 = new Long(172800, 0);
+  this.ft_1 = 'p';
+  this.gt_1 = 1;
+  this.ht_1 = new WireLimits(65535, 1, 1024, 65535);
+  this.it_1 = new WireLimits(90112, 1, 1024, 87472);
+  this.jt_1 = new WireLimits(90112, 512, 1024, 87472);
+  this.kt_1 = new WireLimits(65535, 512, 1024, 65535);
+  this.lt_1 = readOnlySetOf(emptyList());
+  this.mt_1 = readOnlySetOf(listOf_0(SeamCapability_BIP340_VERIFICATION_getInstance()));
   this.nt_1 = 4;
-  this.ot_1 = 10;
-  this.pt_1 = 33;
-  this.qt_1 = 126;
+  this.ot_1 = new Long(0, 1);
+  this.pt_1 = 64;
+  this.qt_1 = 8;
+  this.rt_1 = new Long(255, 0);
+  this.st_1 = 4;
+  this.tt_1 = 10;
+  this.ut_1 = 33;
+  this.vt_1 = 126;
 }
-protoOf(GiftWrap).ow = function (rumor, recipientPubkey, sender, ephemeral, clock, randomness, secp, recipientRelayHint, limits) {
+protoOf(GiftWrap).tw = function (rumor, recipientPubkey, sender, ephemeral, clock, randomness, secp, recipientRelayHint, limits) {
   var senderKey = publicKeyOf(this, sender);
   var recipient = checkedKey(this, recipientPubkey, EnvelopeRejection_RECIPIENT_KEY_MALFORMED_getInstance());
   if (recipient === senderKey) {
@@ -5722,27 +5825,27 @@ protoOf(GiftWrap).ow = function (rumor, recipientPubkey, sender, ephemeral, cloc
   var hint = checkedRelayHint(this, recipientRelayHint);
   var now = clockReading(this, clock);
   var state = new Emission(rumorJson_0, senderKey, recipient, sender, ephemeral, randomness, secp, hint, now);
-  var toRecipient = state.zv(recipient);
-  var toSelf = state.zv(senderKey);
-  return new Sealed(toRecipient, toSelf, state.yv());
+  var toRecipient = state.ew(recipient);
+  var toSelf = state.ew(senderKey);
+  return new Sealed(toRecipient, toSelf, state.dw());
 };
-protoOf(GiftWrap).pw = function (rumor, recipientPubkey, sender, ephemeral, clock, randomness, secp, recipientRelayHint, limits, $super) {
-  ephemeral = ephemeral === VOID ? Companion_getInstance_27().qw_1 : ephemeral;
-  clock = clock === VOID ? Companion_getInstance_28().rw_1 : clock;
-  randomness = randomness === VOID ? Companion_getInstance_29().sw_1 : randomness;
-  secp = secp === VOID ? Companion_getInstance_30().tw_1 : secp;
+protoOf(GiftWrap).uw = function (rumor, recipientPubkey, sender, ephemeral, clock, randomness, secp, recipientRelayHint, limits, $super) {
+  ephemeral = ephemeral === VOID ? Companion_getInstance_27().vw_1 : ephemeral;
+  clock = clock === VOID ? Companion_getInstance_28().ww_1 : clock;
+  randomness = randomness === VOID ? Companion_getInstance_29().xw_1 : randomness;
+  secp = secp === VOID ? Companion_getInstance_30().yw_1 : secp;
   recipientRelayHint = recipientRelayHint === VOID ? null : recipientRelayHint;
-  limits = limits === VOID ? Companion_getInstance_53().yw_1 : limits;
-  return $super === VOID ? this.ow(rumor, recipientPubkey, sender, ephemeral, clock, randomness, secp, recipientRelayHint, limits) : $super.ow.call(this, rumor, recipientPubkey, sender, ephemeral, clock, randomness, secp, recipientRelayHint, limits);
+  limits = limits === VOID ? Companion_getInstance_53().dx_1 : limits;
+  return $super === VOID ? this.tw(rumor, recipientPubkey, sender, ephemeral, clock, randomness, secp, recipientRelayHint, limits) : $super.tw.call(this, rumor, recipientPubkey, sender, ephemeral, clock, randomness, secp, recipientRelayHint, limits);
 };
-protoOf(GiftWrap).zw = function (wrapJson, me, secp, limits, tagLimits) {
-  return (new Opening(me, secp, limits, tagLimits)).bo(wrapJson);
+protoOf(GiftWrap).ex = function (wrapJson, me, secp, limits, tagLimits) {
+  return (new Opening(me, secp, limits, tagLimits)).yo(wrapJson);
 };
-protoOf(GiftWrap).ax = function (wrapJson, me, secp, limits, tagLimits, $super) {
-  secp = secp === VOID ? Companion_getInstance_30().tw_1 : secp;
-  limits = limits === VOID ? Companion_getInstance_53().yw_1 : limits;
+protoOf(GiftWrap).fx = function (wrapJson, me, secp, limits, tagLimits, $super) {
+  secp = secp === VOID ? Companion_getInstance_30().yw_1 : secp;
+  limits = limits === VOID ? Companion_getInstance_53().dx_1 : limits;
   tagLimits = tagLimits === VOID ? Companion_getInstance_44().zd_1 : tagLimits;
-  return $super === VOID ? this.zw(wrapJson, me, secp, limits, tagLimits) : $super.zw.call(this, wrapJson, me, secp, limits, tagLimits);
+  return $super === VOID ? this.ex(wrapJson, me, secp, limits, tagLimits) : $super.ex.call(this, wrapJson, me, secp, limits, tagLimits);
 };
 var GiftWrap_instance;
 function GiftWrap_getInstance() {
@@ -5970,22 +6073,397 @@ function SignatureCheck_NOT_CHECKED_getInstance() {
   SignatureCheck_initEntries();
   return SignatureCheck_NOT_CHECKED_instance;
 }
+function JsAsyncSigner(publicKeyHex, signEvent, nip44Encrypt, nip44Decrypt) {
+  this.publicKeyHex = publicKeyHex;
+  this.signEvent = signEvent;
+  this.nip44Encrypt = nip44Encrypt;
+  this.nip44Decrypt = nip44Decrypt;
+}
+protoOf(JsAsyncSigner).gx = function () {
+  return this.publicKeyHex;
+};
+protoOf(JsAsyncSigner).hx = function () {
+  return this.signEvent;
+};
+protoOf(JsAsyncSigner).ix = function () {
+  return this.nip44Encrypt;
+};
+protoOf(JsAsyncSigner).jx = function () {
+  return this.nip44Decrypt;
+};
+protoOf(JsAsyncSigner).toString = function () {
+  return 'JsAsyncSigner(redacted)';
+};
+function sealAsync(rumor, recipientPubkey, sender, onResult, environment, recipientRelayHint) {
+  environment = environment === VOID ? new JsEnvironment() : environment;
+  recipientRelayHint = recipientRelayHint === VOID ? null : recipientRelayHint;
+  (new ReplayDriver(onResult, sealAsync$lambda(rumor, recipientPubkey, sender, environment, recipientRelayHint))).qx();
+}
+function openAsync(wrapJson, me, onResult, environment) {
+  environment = environment === VOID ? new JsEnvironment() : environment;
+  (new ReplayDriver(onResult, openAsync$lambda(wrapJson, me, environment))).qx();
+}
+function runOnce($this) {
+  $this.mx_1.xx();
+  var answer = $this.lx_1($this.mx_1);
+  var ask = $this.mx_1.vx_1;
+  if (!(ask == null))
+    ask();
+  else if (!$this.mx_1.wx_1) {
+    $this.nx_1 = true;
+    $this.kx_1(answer);
+  }
+}
+function ReplayDriver$drive$ref($boundThis) {
+  var l = function () {
+    $boundThis.qx();
+    return Unit_instance;
+  };
+  l.callableName = 'drive';
+  return l;
+}
+function ReplayDriver(onResult, attempt) {
+  this.kx_1 = onResult;
+  this.lx_1 = attempt;
+  var tmp = this;
+  tmp.mx_1 = new ReplayMemo(ReplayDriver$drive$ref(this));
+  this.nx_1 = false;
+  this.ox_1 = false;
+  this.px_1 = false;
+}
+protoOf(ReplayDriver).qx = function () {
+  if (this.ox_1) {
+    this.px_1 = true;
+    return Unit_instance;
+  }
+  this.ox_1 = true;
+  try {
+    do {
+      this.px_1 = false;
+      if (this.nx_1)
+        return Unit_instance;
+      runOnce(this);
+    }
+     while (this.px_1);
+  }finally {
+    this.ox_1 = false;
+  }
+};
+protoOf(ReplayDriver).toString = function () {
+  return 'ReplayDriver(redacted)';
+};
+function Filed(question, answered, answer) {
+  this.yx_1 = question;
+  this.zx_1 = answered;
+  this.ay_1 = answer;
+}
+function filedAnswer($this, at, question) {
+  var entry = $this.sx_1.k(at);
+  if (!equals(entry.yx_1, question) || !entry.zx_1) {
+    $this.ux_1 = true;
+    $this.wx_1 = true;
+    return null;
+  }
+  var tmp = entry.ay_1;
+  return (tmp == null ? true : !(tmp == null)) ? tmp : THROW_CCE();
+}
+function throwaway($this, minted) {
+  var tmp = ReplayMemo$throwaway$lambda($this, minted);
+  var tmp_0 = ReplayMemo$throwaway$lambda_0($this, minted);
+  var tmp_1 = ReplayMemo$throwaway$lambda_1($this, minted);
+  return new JsSigner(tmp, tmp_0, tmp_1, ReplayMemo$throwaway$lambda_2($this, minted));
+}
+function ReplayMemo$await$lambda$lambda($entry, this$0) {
+  return function (answer) {
+    var tmp;
+    if (!$entry.zx_1) {
+      $entry.zx_1 = true;
+      $entry.ay_1 = answer;
+      tmp = this$0.rx_1();
+    }
+    return Unit_instance;
+  };
+}
+function ReplayMemo$await$lambda($fire, $entry, this$0) {
+  return function () {
+    $fire(ReplayMemo$await$lambda$lambda($entry, this$0));
+    return Unit_instance;
+  };
+}
+function ReplayMemo$signer$lambda$lambda($async) {
+  return function (done) {
+    $async.publicKeyHex(done);
+    return Unit_instance;
+  };
+}
+function ReplayMemo$signer$lambda(this$0, $async) {
+  return function () {
+    var tmp = listOf_0('publicKeyHex');
+    return this$0.by(tmp, ReplayMemo$signer$lambda$lambda($async));
+  };
+}
+function ReplayMemo$signer$lambda$lambda_0($async, $serialisation) {
+  return function (done) {
+    $async.signEvent($serialisation, done);
+    return Unit_instance;
+  };
+}
+function ReplayMemo$signer$lambda_0(this$0, $async) {
+  return function (serialisation) {
+    var tmp = listOf(['signEvent', serialisation]);
+    return this$0.by(tmp, ReplayMemo$signer$lambda$lambda_0($async, serialisation));
+  };
+}
+function ReplayMemo$signer$lambda$lambda_1($async, $key, $plaintext) {
+  return function (done) {
+    $async.nip44Encrypt($key, $plaintext, done);
+    return Unit_instance;
+  };
+}
+function ReplayMemo$signer$lambda_1(this$0, $async) {
+  return function (key, plaintext) {
+    var tmp = listOf(['nip44Encrypt', key, plaintext]);
+    return this$0.by(tmp, ReplayMemo$signer$lambda$lambda_1($async, key, plaintext));
+  };
+}
+function ReplayMemo$signer$lambda$lambda_2($async, $key, $payload) {
+  return function (done) {
+    $async.nip44Decrypt($key, $payload, done);
+    return Unit_instance;
+  };
+}
+function ReplayMemo$signer$lambda_2(this$0, $async) {
+  return function (key, payload) {
+    var tmp = listOf(['nip44Decrypt', key, payload]);
+    return this$0.by(tmp, ReplayMemo$signer$lambda$lambda_2($async, key, payload));
+  };
+}
+function ReplayMemo$environment$lambda$lambda($this) {
+  return function () {
+    return $this();
+  };
+}
+function ReplayMemo$environment$lambda(this$0, $this) {
+  return function () {
+    var tmp = listOf_0('nowSeconds');
+    return this$0.cy(tmp, ReplayMemo$environment$lambda$lambda($this));
+  };
+}
+function ReplayMemo$environment$lambda$lambda_0($this, $count) {
+  return function () {
+    return $this($count);
+  };
+}
+function ReplayMemo$environment$lambda_0(this$0, $this) {
+  return function (count) {
+    var tmp = listOf(['randomBytesHex', count.toString()]);
+    return this$0.cy(tmp, ReplayMemo$environment$lambda$lambda_0($this, count));
+  };
+}
+function ReplayMemo$environment$lambda$lambda_1($this, $key, $message, $signature) {
+  return function () {
+    return $this($key, $message, $signature);
+  };
+}
+function ReplayMemo$environment$lambda_1(this$0, $this) {
+  return function (key, message, signature) {
+    var tmp = listOf(['verifySchnorr', key, message, signature]);
+    return this$0.cy(tmp, ReplayMemo$environment$lambda$lambda_1($this, key, message, signature));
+  };
+}
+function ReplayMemo$environment$lambda$lambda_2($this, this$0) {
+  return function () {
+    var tmp0_safe_receiver = $this();
+    var tmp;
+    if (tmp0_safe_receiver == null) {
+      tmp = null;
+    } else {
+      // Inline function 'kotlin.let' call
+      // Inline function 'kotlin.contracts.contract' call
+      // Inline function 'dev.eryalabs.nenya.js.ReplayMemo.environment.<anonymous>.<anonymous>.<anonymous>.<anonymous>' call
+      tmp = throwaway(this$0, tmp0_safe_receiver);
+    }
+    return tmp;
+  };
+}
+function ReplayMemo$environment$lambda_2(this$0, $this) {
+  return function () {
+    var tmp = listOf_0('freshSigner');
+    return this$0.cy(tmp, ReplayMemo$environment$lambda$lambda_2($this, this$0));
+  };
+}
+function ReplayMemo$throwaway$lambda$lambda($minted) {
+  return function () {
+    return $minted.publicKeyHex();
+  };
+}
+function ReplayMemo$throwaway$lambda(this$0, $minted) {
+  return function () {
+    var tmp = listOf_0('throwaway.publicKeyHex');
+    return this$0.cy(tmp, ReplayMemo$throwaway$lambda$lambda($minted));
+  };
+}
+function ReplayMemo$throwaway$lambda$lambda_0($minted, $serialisation) {
+  return function () {
+    return $minted.signEvent($serialisation);
+  };
+}
+function ReplayMemo$throwaway$lambda_0(this$0, $minted) {
+  return function (serialisation) {
+    var tmp = listOf(['throwaway.signEvent', serialisation]);
+    return this$0.cy(tmp, ReplayMemo$throwaway$lambda$lambda_0($minted, serialisation));
+  };
+}
+function ReplayMemo$throwaway$lambda$lambda_1($minted, $key, $plaintext) {
+  return function () {
+    return $minted.nip44Encrypt($key, $plaintext);
+  };
+}
+function ReplayMemo$throwaway$lambda_1(this$0, $minted) {
+  return function (key, plaintext) {
+    var tmp = listOf(['throwaway.nip44Encrypt', key, plaintext]);
+    return this$0.cy(tmp, ReplayMemo$throwaway$lambda$lambda_1($minted, key, plaintext));
+  };
+}
+function ReplayMemo$throwaway$lambda$lambda_2($minted, $key, $payload) {
+  return function () {
+    return $minted.nip44Decrypt($key, $payload);
+  };
+}
+function ReplayMemo$throwaway$lambda_2(this$0, $minted) {
+  return function (key, payload) {
+    var tmp = listOf(['throwaway.nip44Decrypt', key, payload]);
+    return this$0.cy(tmp, ReplayMemo$throwaway$lambda$lambda_2($minted, key, payload));
+  };
+}
+function ReplayMemo(rerun) {
+  this.rx_1 = rerun;
+  var tmp = this;
+  // Inline function 'kotlin.collections.mutableListOf' call
+  tmp.sx_1 = ArrayList_init_$Create$_0();
+  this.tx_1 = 0;
+  this.ux_1 = false;
+  this.vx_1 = null;
+  this.wx_1 = false;
+}
+protoOf(ReplayMemo).xx = function () {
+  this.tx_1 = 0;
+  this.ux_1 = false;
+  this.vx_1 = null;
+  this.wx_1 = false;
+};
+protoOf(ReplayMemo).cy = function (question, ask) {
+  if (this.ux_1)
+    return null;
+  var _unary__edvuaz = this.tx_1;
+  this.tx_1 = _unary__edvuaz + 1 | 0;
+  var at = _unary__edvuaz;
+  if (at < this.sx_1.j())
+    return filedAnswer(this, at, question);
+  var answer = ask();
+  // Inline function 'kotlin.collections.plusAssign' call
+  var this_0 = this.sx_1;
+  var element = new Filed(question, true, answer);
+  this_0.e(element);
+  return answer;
+};
+protoOf(ReplayMemo).by = function (question, fire) {
+  if (this.ux_1)
+    return null;
+  var _unary__edvuaz = this.tx_1;
+  this.tx_1 = _unary__edvuaz + 1 | 0;
+  var at = _unary__edvuaz;
+  if (at < this.sx_1.j())
+    return filedAnswer(this, at, question);
+  var entry = new Filed(question, false, null);
+  // Inline function 'kotlin.collections.plusAssign' call
+  this.sx_1.e(entry);
+  this.ux_1 = true;
+  var tmp = this;
+  tmp.vx_1 = ReplayMemo$await$lambda(fire, entry, this);
+  return null;
+};
+protoOf(ReplayMemo).dy = function (async) {
+  var tmp = ReplayMemo$signer$lambda(this, async);
+  var tmp_0 = ReplayMemo$signer$lambda_0(this, async);
+  var tmp_1 = ReplayMemo$signer$lambda_1(this, async);
+  return new JsSigner(tmp, tmp_0, tmp_1, ReplayMemo$signer$lambda_2(this, async));
+};
+protoOf(ReplayMemo).ey = function (page) {
+  var tmp0_safe_receiver = page.nowSeconds;
+  var tmp;
+  if (tmp0_safe_receiver == null) {
+    tmp = null;
+  } else {
+    // Inline function 'kotlin.let' call
+    // Inline function 'kotlin.contracts.contract' call
+    // Inline function 'dev.eryalabs.nenya.js.ReplayMemo.environment.<anonymous>' call
+    tmp = ReplayMemo$environment$lambda(this, tmp0_safe_receiver);
+  }
+  var tmp_0 = tmp;
+  var tmp1_safe_receiver = page.randomBytesHex;
+  var tmp_1;
+  if (tmp1_safe_receiver == null) {
+    tmp_1 = null;
+  } else {
+    // Inline function 'kotlin.let' call
+    // Inline function 'kotlin.contracts.contract' call
+    // Inline function 'dev.eryalabs.nenya.js.ReplayMemo.environment.<anonymous>' call
+    tmp_1 = ReplayMemo$environment$lambda_0(this, tmp1_safe_receiver);
+  }
+  var tmp_2 = tmp_1;
+  var tmp2_safe_receiver = page.verifySchnorr;
+  var tmp_3;
+  if (tmp2_safe_receiver == null) {
+    tmp_3 = null;
+  } else {
+    // Inline function 'kotlin.let' call
+    // Inline function 'kotlin.contracts.contract' call
+    // Inline function 'dev.eryalabs.nenya.js.ReplayMemo.environment.<anonymous>' call
+    tmp_3 = ReplayMemo$environment$lambda_1(this, tmp2_safe_receiver);
+  }
+  var tmp_4 = tmp_3;
+  var tmp3_safe_receiver = page.freshSigner;
+  var tmp_5;
+  if (tmp3_safe_receiver == null) {
+    tmp_5 = null;
+  } else {
+    // Inline function 'kotlin.let' call
+    // Inline function 'kotlin.contracts.contract' call
+    // Inline function 'dev.eryalabs.nenya.js.ReplayMemo.environment.<anonymous>' call
+    tmp_5 = ReplayMemo$environment$lambda_2(this, tmp3_safe_receiver);
+  }
+  return new JsEnvironment(tmp_0, tmp_2, tmp_4, tmp_5);
+};
+protoOf(ReplayMemo).toString = function () {
+  return 'ReplayMemo(redacted)';
+};
+function sealAsync$lambda($rumor, $recipientPubkey, $sender, $environment, $recipientRelayHint) {
+  return function (memo) {
+    return seal($rumor, $recipientPubkey, memo.dy($sender), memo.ey($environment), $recipientRelayHint);
+  };
+}
+function openAsync$lambda($wrapJson, $me, $environment) {
+  return function (memo) {
+    return open($wrapJson, memo.dy($me), memo.ey($environment));
+  };
+}
 function JsSeamAnswer(ok, value, capability, detail) {
   this.ok = ok;
   this.value = value;
   this.capability = capability;
   this.detail = detail;
 }
-protoOf(JsSeamAnswer).bx = function () {
+protoOf(JsSeamAnswer).fy = function () {
   return this.ok;
 };
 protoOf(JsSeamAnswer).o1 = function () {
   return this.value;
 };
-protoOf(JsSeamAnswer).cx = function () {
+protoOf(JsSeamAnswer).gy = function () {
   return this.capability;
 };
-protoOf(JsSeamAnswer).dx = function () {
+protoOf(JsSeamAnswer).hy = function () {
   return this.detail;
 };
 protoOf(JsSeamAnswer).toString = function () {
@@ -5993,36 +6471,36 @@ protoOf(JsSeamAnswer).toString = function () {
 };
 function JsWireEvent$unsignedJson$lambda(this$0) {
   return function () {
-    return EventJson_instance.gx(this$0.ex_1, Companion_instance_50.fx(this$0.ex_1));
+    return EventJson_instance.ky(this$0.iy_1, Companion_instance_50.jy(this$0.iy_1));
   };
 }
 function JsWireEvent(event) {
-  this.ex_1 = event;
+  this.iy_1 = event;
 }
-protoOf(JsWireEvent).hx = function () {
-  return this.ex_1;
+protoOf(JsWireEvent).ly = function () {
+  return this.iy_1;
 };
 protoOf(JsWireEvent).ke = function () {
-  return this.ex_1.dd_1;
+  return this.iy_1.dd_1;
 };
-protoOf(JsWireEvent).ix = function () {
-  return this.ex_1.fd_1;
+protoOf(JsWireEvent).my = function () {
+  return this.iy_1.fd_1;
 };
-protoOf(JsWireEvent).jx = function () {
-  return JsDecimal_instance.kx(this.ex_1.cd_1);
+protoOf(JsWireEvent).ny = function () {
+  return JsDecimal_instance.oy(this.iy_1.cd_1);
 };
 protoOf(JsWireEvent).uj = function () {
-  return this.ex_1.ed_1;
+  return this.iy_1.ed_1;
 };
 protoOf(JsWireEvent).rj = function () {
   var tmp = 0;
-  var tmp_0 = this.ex_1.gd_1.j();
+  var tmp_0 = this.iy_1.gd_1.j();
   // Inline function 'kotlin.arrayOfNulls' call
   var tmp_1 = fillArrayVal(Array(tmp_0), null);
   while (tmp < tmp_0) {
     var tmp_2 = tmp;
     // Inline function 'kotlin.collections.toTypedArray' call
-    var this_0 = this.ex_1.gd_1.k(tmp_2);
+    var this_0 = this.iy_1.gd_1.k(tmp_2);
     tmp_1[tmp_2] = copyToArray(this_0);
     tmp = tmp + 1 | 0;
   }
@@ -6032,7 +6510,7 @@ protoOf(JsWireEvent).unsignedJson = function () {
   return jsText(JsWireEvent$unsignedJson$lambda(this));
 };
 protoOf(JsWireEvent).toString = function () {
-  return 'JsWireEvent(kind=' + this.kind + ', tags=' + this.ex_1.gd_1.j() + ')';
+  return 'JsWireEvent(kind=' + this.kind + ', tags=' + this.iy_1.gd_1.j() + ')';
 };
 function JsText(kind, ok, value, reason, reasonVocabulary, detail) {
   this.kind = kind;
@@ -6045,19 +6523,19 @@ function JsText(kind, ok, value, reason, reasonVocabulary, detail) {
 protoOf(JsText).ke = function () {
   return this.kind;
 };
-protoOf(JsText).bx = function () {
+protoOf(JsText).fy = function () {
   return this.ok;
 };
 protoOf(JsText).o1 = function () {
   return this.value;
 };
-protoOf(JsText).lx = function () {
+protoOf(JsText).py = function () {
   return this.reason;
 };
-protoOf(JsText).mx = function () {
+protoOf(JsText).qy = function () {
   return this.reasonVocabulary;
 };
-protoOf(JsText).dx = function () {
+protoOf(JsText).hy = function () {
   return this.detail;
 };
 protoOf(JsText).toString = function () {
@@ -6076,25 +6554,25 @@ function JsBuildResult(kind, ok, event, reason, reasonVocabulary, tag, tagReason
 protoOf(JsBuildResult).ke = function () {
   return this.kind;
 };
-protoOf(JsBuildResult).bx = function () {
+protoOf(JsBuildResult).fy = function () {
   return this.ok;
 };
 protoOf(JsBuildResult).hd = function () {
   return this.event;
 };
-protoOf(JsBuildResult).lx = function () {
+protoOf(JsBuildResult).py = function () {
   return this.reason;
 };
-protoOf(JsBuildResult).mx = function () {
+protoOf(JsBuildResult).qy = function () {
   return this.reasonVocabulary;
 };
-protoOf(JsBuildResult).nx = function () {
+protoOf(JsBuildResult).ry = function () {
   return this.tag;
 };
-protoOf(JsBuildResult).ox = function () {
+protoOf(JsBuildResult).sy = function () {
   return this.tagReason;
 };
-protoOf(JsBuildResult).dx = function () {
+protoOf(JsBuildResult).hy = function () {
   return this.detail;
 };
 protoOf(JsBuildResult).toString = function () {
@@ -6109,13 +6587,13 @@ protoOf(JsBuildResult).toString = function () {
 };
 function JsDecimal() {
 }
-protoOf(JsDecimal).kx = function (value) {
+protoOf(JsDecimal).oy = function (value) {
   return value.toString();
 };
-protoOf(JsDecimal).px = function (value) {
+protoOf(JsDecimal).ty = function (value) {
   return value == null ? null : value.toString();
 };
-protoOf(JsDecimal).qx = function (text) {
+protoOf(JsDecimal).uy = function (text) {
   // Inline function 'kotlin.text.isEmpty' call
   if (charSequenceLength(text) === 0)
     return null;
@@ -6155,7 +6633,7 @@ function digit($this, c) {
 }
 function JsHex() {
 }
-protoOf(JsHex).rx = function (text) {
+protoOf(JsHex).vy = function (text) {
   if (!((text.length % 2 | 0) === 0))
     return null;
   var out = new Int8Array(text.length / 2 | 0);
@@ -6205,7 +6683,7 @@ function jsText(compute) {
     } else {
       if ($p instanceof JsonException) {
         var refused_0 = $p;
-        tmp_0 = new JsText('refused', false, null, refused_0.hu_1.t1_1, 'JsonRejection', refused_0.message);
+        tmp_0 = new JsText('refused', false, null, refused_0.mu_1.t1_1, 'JsonRejection', refused_0.message);
       } else {
         throw $p;
       }
@@ -6225,13 +6703,13 @@ function jsRefused(reason, reasonVocabulary, tag, tagReason, detail) {
 }
 function Companion_12() {
   Companion_instance_12 = this;
-  this.sx_1 = 'MALFORMED_DECIMAL';
-  this.tx_1 = 'WRONG_ROW_ARITY';
-  this.ux_1 = 'UNKNOWN_PAYEE_TOKEN';
-  this.vx_1 = 'NOT_A_BOUND_RUMOR';
-  this.wx_1 = 'UNCONSTRUCTIBLE_VALUE';
-  this.xx_1 = 'JsCrossing';
-  this.yx_1 = setOf_0(['MALFORMED_DECIMAL', 'WRONG_ROW_ARITY', 'UNKNOWN_PAYEE_TOKEN', 'NOT_A_BOUND_RUMOR', 'UNCONSTRUCTIBLE_VALUE']);
+  this.wy_1 = 'MALFORMED_DECIMAL';
+  this.xy_1 = 'WRONG_ROW_ARITY';
+  this.yy_1 = 'UNKNOWN_PAYEE_TOKEN';
+  this.zy_1 = 'NOT_A_BOUND_RUMOR';
+  this.az_1 = 'UNCONSTRUCTIBLE_VALUE';
+  this.bz_1 = 'JsCrossing';
+  this.cz_1 = setOf_0(['MALFORMED_DECIMAL', 'WRONG_ROW_ARITY', 'UNKNOWN_PAYEE_TOKEN', 'NOT_A_BOUND_RUMOR', 'UNCONSTRUCTIBLE_VALUE']);
 }
 var Companion_instance_12;
 function Companion_getInstance_12() {
@@ -6243,22 +6721,22 @@ function JsCrossing(reason, field, why) {
   Companion_getInstance_12();
   RuntimeException_init_$Init$(why, this);
   captureStack(this, JsCrossing);
-  this.zx_1 = reason;
-  this.ay_1 = field;
-  this.by_1 = why;
+  this.dz_1 = reason;
+  this.ez_1 = field;
+  this.fz_1 = why;
 }
 function JsRefusal(reason, vocabulary, tag, tagReason, detail) {
   tag = tag === VOID ? null : tag;
   tagReason = tagReason === VOID ? null : tagReason;
   detail = detail === VOID ? null : detail;
-  this.cy_1 = reason;
-  this.dy_1 = vocabulary;
-  this.ey_1 = tag;
-  this.fy_1 = tagReason;
-  this.gy_1 = detail;
+  this.gz_1 = reason;
+  this.hz_1 = vocabulary;
+  this.iz_1 = tag;
+  this.jz_1 = tagReason;
+  this.kz_1 = detail;
 }
 function crossedNumber(field, text) {
-  var tmp0_elvis_lhs = JsDecimal_instance.qx(text);
+  var tmp0_elvis_lhs = JsDecimal_instance.uy(text);
   var tmp;
   if (tmp0_elvis_lhs == null) {
     throw new JsCrossing('MALFORMED_DECIMAL', field, "this boundary carries a number as an exact decimal string \u2014 ASCII digits, an optional leading `-`, no `+`, no leading zeros, no exponent and no decimal point \u2014 because a JavaScript number holds neither \xA74.4's supply cap nor a 64-bit timestamp exactly; " + ('the value crossed for `' + field + '` is not that form'));
@@ -6313,17 +6791,17 @@ function capabilities() {
 }
 function JsCapabilities() {
 }
-protoOf(JsCapabilities).hy = function () {
+protoOf(JsCapabilities).lz = function () {
   return 'NENYA-1';
 };
-protoOf(JsCapabilities).iy = function () {
+protoOf(JsCapabilities).mz = function () {
   var tmp = 0;
-  var tmp_0 = Capabilities_getInstance().wr_1.j();
+  var tmp_0 = Capabilities_getInstance().bs_1.j();
   // Inline function 'kotlin.arrayOfNulls' call
   var tmp_1 = fillArrayVal(Array(tmp_0), null);
   while (tmp < tmp_0) {
     var tmp_2 = tmp;
-    tmp_1[tmp_2] = new JsConformanceItem(Capabilities_getInstance().wr_1.k(tmp_2));
+    tmp_1[tmp_2] = new JsConformanceItem(Capabilities_getInstance().bs_1.k(tmp_2));
     tmp = tmp + 1 | 0;
   }
   return tmp_1;
@@ -6331,60 +6809,60 @@ protoOf(JsCapabilities).iy = function () {
 protoOf(JsCapabilities).vj = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
   // Inline function 'kotlin.collections.map' call
-  var this_0 = Capabilities_getInstance().vr_1;
+  var this_0 = Capabilities_getInstance().as_1;
   var tmp1_map_$receiver = Capabilities_getInstance();
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
   while (tmp0_iterator.h()) {
     var item = tmp0_iterator.i();
-    var tmp$ret$0 = tmp1_map_$receiver.ds(item);
+    var tmp$ret$0 = tmp1_map_$receiver.is(item);
     destination.e(tmp$ret$0);
   }
   return copyToArray(destination);
 };
-protoOf(JsCapabilities).jy = function () {
-  return Capabilities_getInstance().cs();
+protoOf(JsCapabilities).nz = function () {
+  return Capabilities_getInstance().hs();
 };
 protoOf(JsCapabilities).toString = function () {
-  return 'JsCapabilities(' + Capabilities_getInstance().wr_1.j() + ' items)';
+  return 'JsCapabilities(' + Capabilities_getInstance().bs_1.j() + ' items)';
 };
 function JsConformanceItem(item) {
-  this.ky_1 = item;
+  this.oz_1 = item;
 }
-protoOf(JsConformanceItem).ly = function () {
-  return this.ky_1.lr_1;
+protoOf(JsConformanceItem).pz = function () {
+  return this.oz_1.qr_1;
 };
-protoOf(JsConformanceItem).my = function () {
-  return this.ky_1.mr_1.t1_1;
+protoOf(JsConformanceItem).qz = function () {
+  return this.oz_1.rr_1.t1_1;
 };
-protoOf(JsConformanceItem).ny = function () {
+protoOf(JsConformanceItem).rz = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
-  var this_0 = this.ky_1.or_1;
+  var this_0 = this.oz_1.tr_1;
   return copyToArray(this_0);
 };
-protoOf(JsConformanceItem).oy = function () {
+protoOf(JsConformanceItem).sz = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
-  var this_0 = this.ky_1.pr_1;
+  var this_0 = this.oz_1.ur_1;
   return copyToArray(this_0);
 };
-protoOf(JsConformanceItem).py = function () {
+protoOf(JsConformanceItem).tz = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.ky_1.qr_1;
+  var this_0 = this.oz_1.vr_1;
   var tmp1_map_$receiver = Capabilities_getInstance();
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
   while (tmp0_iterator.h()) {
     var item = tmp0_iterator.i();
-    var tmp$ret$0 = tmp1_map_$receiver.ds(item);
+    var tmp$ret$0 = tmp1_map_$receiver.is(item);
     destination.e(tmp$ret$0);
   }
   return copyToArray(destination);
 };
-protoOf(JsConformanceItem).qy = function () {
-  return this.ky_1.nr_1;
+protoOf(JsConformanceItem).uz = function () {
+  return this.oz_1.sr_1;
 };
 protoOf(JsConformanceItem).toString = function () {
   return 'JsConformanceItem(#' + this.number + ', ' + this.status + ')';
@@ -6415,10 +6893,10 @@ function JsRumorEnvelope(authorPubkey, createdAtSeconds, counterparties, content
   this.nenyaVersion = nenyaVersion;
   this.extraTags = extraTags;
 }
-protoOf(JsRumorEnvelope).ry = function () {
+protoOf(JsRumorEnvelope).vz = function () {
   return this.authorPubkey;
 };
-protoOf(JsRumorEnvelope).jx = function () {
+protoOf(JsRumorEnvelope).ny = function () {
   return this.createdAtSeconds;
 };
 protoOf(JsRumorEnvelope).zj = function () {
@@ -6430,7 +6908,7 @@ protoOf(JsRumorEnvelope).uj = function () {
 protoOf(JsRumorEnvelope).te = function () {
   return this.nenyaVersion;
 };
-protoOf(JsRumorEnvelope).sy = function () {
+protoOf(JsRumorEnvelope).wz = function () {
   return this.extraTags;
 };
 protoOf(JsRumorEnvelope).toString = function () {
@@ -6445,16 +6923,16 @@ function JsOrderTerms(priceMsat, feeBasisPoints, expirationSeconds, deliverBySec
   this.expirationSeconds = expirationSeconds;
   this.deliverBySeconds = deliverBySeconds;
 }
-protoOf(JsOrderTerms).ty = function () {
+protoOf(JsOrderTerms).xz = function () {
   return this.priceMsat;
 };
-protoOf(JsOrderTerms).uy = function () {
+protoOf(JsOrderTerms).yz = function () {
   return this.feeBasisPoints;
 };
-protoOf(JsOrderTerms).vy = function () {
+protoOf(JsOrderTerms).zz = function () {
   return this.expirationSeconds;
 };
-protoOf(JsOrderTerms).wy = function () {
+protoOf(JsOrderTerms).a10 = function () {
   return this.deliverBySeconds;
 };
 protoOf(JsOrderTerms).toString = function () {
@@ -6466,16 +6944,16 @@ function JsCommitment(xHex, oxHex, mimeType, sizeBytes) {
   this.mimeType = mimeType;
   this.sizeBytes = sizeBytes;
 }
-protoOf(JsCommitment).xy = function () {
+protoOf(JsCommitment).b10 = function () {
   return this.xHex;
 };
-protoOf(JsCommitment).yy = function () {
+protoOf(JsCommitment).c10 = function () {
   return this.oxHex;
 };
-protoOf(JsCommitment).zy = function () {
+protoOf(JsCommitment).d10 = function () {
   return this.mimeType;
 };
-protoOf(JsCommitment).az = function () {
+protoOf(JsCommitment).e10 = function () {
   return this.sizeBytes;
 };
 protoOf(JsCommitment).toString = function () {
@@ -6487,16 +6965,16 @@ function JsRelease(xHex, oxHex, fileType, sizeBytes) {
   this.fileType = fileType;
   this.sizeBytes = sizeBytes;
 }
-protoOf(JsRelease).xy = function () {
+protoOf(JsRelease).b10 = function () {
   return this.xHex;
 };
-protoOf(JsRelease).yy = function () {
+protoOf(JsRelease).c10 = function () {
   return this.oxHex;
 };
-protoOf(JsRelease).bz = function () {
+protoOf(JsRelease).f10 = function () {
   return this.fileType;
 };
-protoOf(JsRelease).az = function () {
+protoOf(JsRelease).e10 = function () {
   return this.sizeBytes;
 };
 protoOf(JsRelease).toString = function () {
@@ -6520,14 +6998,14 @@ function buildChat(envelope, orderIdHex) {
       // Inline function 'dev.eryalabs.nenya.js.buildChat.<anonymous>.<anonymous>' call
       tmp_2 = Companion_instance_25.hj(orderIdHex);
     }
-    tmp = asJsBuildResult(tmp_0.wq(tmp_1, tmp_2));
+    tmp = asJsBuildResult(tmp_0.dr(tmp_1, tmp_2));
   } catch ($p) {
     var tmp_3;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
-      tmp_3 = jsRefused(it.cy_1, it.dy_1, it.ey_1, it.fy_1, it.gy_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
+      tmp_3 = jsRefused(it.gz_1, it.hz_1, it.iz_1, it.jz_1, it.kz_1);
     } else {
       if ($p instanceof ListingException) {
         var refused_0 = $p;
@@ -6535,80 +7013,80 @@ function buildChat(envelope, orderIdHex) {
         var tmp_4 = refused_0.cause;
         var tmp0_safe_receiver = tmp_4 instanceof TagException ? tmp_4 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
-        tmp_3 = jsRefused(it_0.cy_1, it_0.dy_1, it_0.ey_1, it_0.fy_1, it_0.gy_1);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        tmp_3 = jsRefused(it_0.gz_1, it_0.hz_1, it_0.iz_1, it_0.jz_1, it_0.kz_1);
       } else {
         if ($p instanceof BidException) {
           var refused_1 = $p;
           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
           var it_1 = new JsRefusal(refused_1.ze_1.t1_1, 'BidRejection', refused_1.af_1, null, refused_1.message);
-          tmp_3 = jsRefused(it_1.cy_1, it_1.dy_1, it_1.ey_1, it_1.fy_1, it_1.gy_1);
+          tmp_3 = jsRefused(it_1.gz_1, it_1.hz_1, it_1.iz_1, it_1.jz_1, it_1.kz_1);
         } else {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
-            tmp_3 = jsRefused(it_2.cy_1, it_2.dy_1, it_2.ey_1, it_2.fy_1, it_2.gy_1);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            tmp_3 = jsRefused(it_2.gz_1, it_2.hz_1, it_2.iz_1, it_2.jz_1, it_2.kz_1);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
-              tmp_3 = jsRefused(it_3.cy_1, it_3.dy_1, it_3.ey_1, it_3.fy_1, it_3.gy_1);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              tmp_3 = jsRefused(it_3.gz_1, it_3.hz_1, it_3.iz_1, it_3.jz_1, it_3.kz_1);
             } else {
               if ($p instanceof TagException) {
                 var refused_4 = $p;
                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                 var it_4 = new JsRefusal(refused_4.bf_1.t1_1, 'TagRejection', null, refused_4.bf_1.t1_1, refused_4.message);
-                tmp_3 = jsRefused(it_4.cy_1, it_4.dy_1, it_4.ey_1, it_4.fy_1, it_4.gy_1);
+                tmp_3 = jsRefused(it_4.gz_1, it_4.hz_1, it_4.iz_1, it_4.jz_1, it_4.kz_1);
               } else {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
-                  tmp_3 = jsRefused(it_5.cy_1, it_5.dy_1, it_5.ey_1, it_5.fy_1, it_5.gy_1);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  tmp_3 = jsRefused(it_5.gz_1, it_5.hz_1, it_5.iz_1, it_5.jz_1, it_5.kz_1);
                 } else {
                   if ($p instanceof SeamException) {
                     var refused_6 = $p;
                     // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                     var it_6 = new JsRefusal(refused_6.ij_1.t1_1, 'SeamRejection', null, null, refused_6.message);
-                    tmp_3 = jsRefused(it_6.cy_1, it_6.dy_1, it_6.ey_1, it_6.fy_1, it_6.gy_1);
+                    tmp_3 = jsRefused(it_6.gz_1, it_6.hz_1, it_6.iz_1, it_6.jz_1, it_6.kz_1);
                   } else {
                     if ($p instanceof DeliveryException) {
                       var refused_7 = $p;
                       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                       var it_7 = new JsRefusal(refused_7.jl_1.t1_1, 'DeliveryRejection', null, null, refused_7.message);
-                      tmp_3 = jsRefused(it_7.cy_1, it_7.dy_1, it_7.ey_1, it_7.fy_1, it_7.gy_1);
+                      tmp_3 = jsRefused(it_7.gz_1, it_7.hz_1, it_7.iz_1, it_7.jz_1, it_7.kz_1);
                     } else {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
-                        tmp_3 = jsRefused(it_8.cy_1, it_8.dy_1, it_8.ey_1, it_8.fy_1, it_8.gy_1);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        tmp_3 = jsRefused(it_8.gz_1, it_8.hz_1, it_8.iz_1, it_8.jz_1, it_8.kz_1);
                       } else {
                         if ($p instanceof ChannelException) {
                           var refused_9 = $p;
                           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                           var it_9 = new JsRefusal(refused_9.ok_1.t1_1, 'ChannelRejection', refused_9.pk_1, null, refused_9.message);
-                          tmp_3 = jsRefused(it_9.cy_1, it_9.dy_1, it_9.ey_1, it_9.fy_1, it_9.gy_1);
+                          tmp_3 = jsRefused(it_9.gz_1, it_9.hz_1, it_9.iz_1, it_9.jz_1, it_9.kz_1);
                         } else {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
-                            tmp_3 = jsRefused(it_10.cy_1, it_10.dy_1, it_10.ey_1, it_10.fy_1, it_10.gy_1);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
+                            tmp_3 = jsRefused(it_10.gz_1, it_10.hz_1, it_10.iz_1, it_10.jz_1, it_10.kz_1);
                           } else {
                             if ($p instanceof WireException) {
                               var refused_11 = $p;
                               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                               var it_11 = new JsRefusal(refused_11.kh_1.t1_1, 'WireRejection', null, null, refused_11.message);
-                              tmp_3 = jsRefused(it_11.cy_1, it_11.dy_1, it_11.ey_1, it_11.fy_1, it_11.gy_1);
+                              tmp_3 = jsRefused(it_11.gz_1, it_11.hz_1, it_11.iz_1, it_11.jz_1, it_11.kz_1);
                             } else {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
-                                tmp_3 = jsRefused(it_12.cy_1, it_12.dy_1, it_12.ey_1, it_12.fy_1, it_12.gy_1);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                tmp_3 = jsRefused(it_12.gz_1, it_12.hz_1, it_12.iz_1, it_12.jz_1, it_12.kz_1);
                               } else {
                                 throw $p;
                               }
@@ -6637,14 +7115,14 @@ function buildProposal(envelope, orderIdHex, itemCoordinate, terms, feeRecipient
   var tmp;
   try {
     // Inline function 'dev.eryalabs.nenya.js.buildProposal.<anonymous>' call
-    tmp = asJsBuildResult(RumorWriter_getInstance().xq(asRumorEnvelope(envelope), Companion_instance_25.hj(orderIdHex), new ItemRef(Companion_instance_46.yc(itemCoordinate)), asOrderTerms(terms), feeRecipient, crossedNumberOrNull('amount', amountSat)));
+    tmp = asJsBuildResult(RumorWriter_getInstance().cn(asRumorEnvelope(envelope), Companion_instance_25.hj(orderIdHex), new ItemRef(Companion_instance_46.yc(itemCoordinate)), asOrderTerms(terms), feeRecipient, crossedNumberOrNull('amount', amountSat)));
   } catch ($p) {
     var tmp_0;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
-      tmp_0 = jsRefused(it.cy_1, it.dy_1, it.ey_1, it.fy_1, it.gy_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
+      tmp_0 = jsRefused(it.gz_1, it.hz_1, it.iz_1, it.jz_1, it.kz_1);
     } else {
       if ($p instanceof ListingException) {
         var refused_0 = $p;
@@ -6652,80 +7130,312 @@ function buildProposal(envelope, orderIdHex, itemCoordinate, terms, feeRecipient
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
-        tmp_0 = jsRefused(it_0.cy_1, it_0.dy_1, it_0.ey_1, it_0.fy_1, it_0.gy_1);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        tmp_0 = jsRefused(it_0.gz_1, it_0.hz_1, it_0.iz_1, it_0.jz_1, it_0.kz_1);
       } else {
         if ($p instanceof BidException) {
           var refused_1 = $p;
           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
           var it_1 = new JsRefusal(refused_1.ze_1.t1_1, 'BidRejection', refused_1.af_1, null, refused_1.message);
-          tmp_0 = jsRefused(it_1.cy_1, it_1.dy_1, it_1.ey_1, it_1.fy_1, it_1.gy_1);
+          tmp_0 = jsRefused(it_1.gz_1, it_1.hz_1, it_1.iz_1, it_1.jz_1, it_1.kz_1);
         } else {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
-            tmp_0 = jsRefused(it_2.cy_1, it_2.dy_1, it_2.ey_1, it_2.fy_1, it_2.gy_1);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            tmp_0 = jsRefused(it_2.gz_1, it_2.hz_1, it_2.iz_1, it_2.jz_1, it_2.kz_1);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
-              tmp_0 = jsRefused(it_3.cy_1, it_3.dy_1, it_3.ey_1, it_3.fy_1, it_3.gy_1);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              tmp_0 = jsRefused(it_3.gz_1, it_3.hz_1, it_3.iz_1, it_3.jz_1, it_3.kz_1);
             } else {
               if ($p instanceof TagException) {
                 var refused_4 = $p;
                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                 var it_4 = new JsRefusal(refused_4.bf_1.t1_1, 'TagRejection', null, refused_4.bf_1.t1_1, refused_4.message);
-                tmp_0 = jsRefused(it_4.cy_1, it_4.dy_1, it_4.ey_1, it_4.fy_1, it_4.gy_1);
+                tmp_0 = jsRefused(it_4.gz_1, it_4.hz_1, it_4.iz_1, it_4.jz_1, it_4.kz_1);
               } else {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
-                  tmp_0 = jsRefused(it_5.cy_1, it_5.dy_1, it_5.ey_1, it_5.fy_1, it_5.gy_1);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  tmp_0 = jsRefused(it_5.gz_1, it_5.hz_1, it_5.iz_1, it_5.jz_1, it_5.kz_1);
                 } else {
                   if ($p instanceof SeamException) {
                     var refused_6 = $p;
                     // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                     var it_6 = new JsRefusal(refused_6.ij_1.t1_1, 'SeamRejection', null, null, refused_6.message);
-                    tmp_0 = jsRefused(it_6.cy_1, it_6.dy_1, it_6.ey_1, it_6.fy_1, it_6.gy_1);
+                    tmp_0 = jsRefused(it_6.gz_1, it_6.hz_1, it_6.iz_1, it_6.jz_1, it_6.kz_1);
                   } else {
                     if ($p instanceof DeliveryException) {
                       var refused_7 = $p;
                       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                       var it_7 = new JsRefusal(refused_7.jl_1.t1_1, 'DeliveryRejection', null, null, refused_7.message);
-                      tmp_0 = jsRefused(it_7.cy_1, it_7.dy_1, it_7.ey_1, it_7.fy_1, it_7.gy_1);
+                      tmp_0 = jsRefused(it_7.gz_1, it_7.hz_1, it_7.iz_1, it_7.jz_1, it_7.kz_1);
                     } else {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
-                        tmp_0 = jsRefused(it_8.cy_1, it_8.dy_1, it_8.ey_1, it_8.fy_1, it_8.gy_1);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        tmp_0 = jsRefused(it_8.gz_1, it_8.hz_1, it_8.iz_1, it_8.jz_1, it_8.kz_1);
                       } else {
                         if ($p instanceof ChannelException) {
                           var refused_9 = $p;
                           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                           var it_9 = new JsRefusal(refused_9.ok_1.t1_1, 'ChannelRejection', refused_9.pk_1, null, refused_9.message);
-                          tmp_0 = jsRefused(it_9.cy_1, it_9.dy_1, it_9.ey_1, it_9.fy_1, it_9.gy_1);
+                          tmp_0 = jsRefused(it_9.gz_1, it_9.hz_1, it_9.iz_1, it_9.jz_1, it_9.kz_1);
                         } else {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
-                            tmp_0 = jsRefused(it_10.cy_1, it_10.dy_1, it_10.ey_1, it_10.fy_1, it_10.gy_1);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
+                            tmp_0 = jsRefused(it_10.gz_1, it_10.hz_1, it_10.iz_1, it_10.jz_1, it_10.kz_1);
                           } else {
                             if ($p instanceof WireException) {
                               var refused_11 = $p;
                               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                               var it_11 = new JsRefusal(refused_11.kh_1.t1_1, 'WireRejection', null, null, refused_11.message);
-                              tmp_0 = jsRefused(it_11.cy_1, it_11.dy_1, it_11.ey_1, it_11.fy_1, it_11.gy_1);
+                              tmp_0 = jsRefused(it_11.gz_1, it_11.hz_1, it_11.iz_1, it_11.jz_1, it_11.kz_1);
                             } else {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
-                                tmp_0 = jsRefused(it_12.cy_1, it_12.dy_1, it_12.ey_1, it_12.fy_1, it_12.gy_1);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                tmp_0 = jsRefused(it_12.gz_1, it_12.hz_1, it_12.iz_1, it_12.jz_1, it_12.kz_1);
+                              } else {
+                                throw $p;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    tmp = tmp_0;
+  }
+  return tmp;
+}
+function buildProposalAgainst(listing, environment, envelope, orderIdHex, terms, feeRecipient, amountSat) {
+  feeRecipient = feeRecipient === VOID ? null : feeRecipient;
+  amountSat = amountSat === VOID ? null : amountSat;
+  // Inline function 'dev.eryalabs.nenya.js.jsBuild' call
+  // Inline function 'dev.eryalabs.nenya.js.jsGuarded' call
+  var tmp;
+  try {
+    // Inline function 'dev.eryalabs.nenya.js.buildProposalAgainst.<anonymous>' call
+    tmp = asListingOrderResult(ListingOrderWriter_instance.rm(listing.n10_1, asClock(environment), asRumorEnvelope(envelope), Companion_instance_25.hj(orderIdHex), asOrderTerms(terms), feeRecipient, crossedNumberOrNull('amount', amountSat)));
+  } catch ($p) {
+    var tmp_0;
+    if ($p instanceof JsCrossing) {
+      var refused = $p;
+      // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
+      tmp_0 = jsRefused(it.gz_1, it.hz_1, it.iz_1, it.jz_1, it.kz_1);
+    } else {
+      if ($p instanceof ListingException) {
+        var refused_0 = $p;
+        // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+        var tmp_1 = refused_0.cause;
+        var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
+        var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        tmp_0 = jsRefused(it_0.gz_1, it_0.hz_1, it_0.iz_1, it_0.jz_1, it_0.kz_1);
+      } else {
+        if ($p instanceof BidException) {
+          var refused_1 = $p;
+          // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+          var it_1 = new JsRefusal(refused_1.ze_1.t1_1, 'BidRejection', refused_1.af_1, null, refused_1.message);
+          tmp_0 = jsRefused(it_1.gz_1, it_1.hz_1, it_1.iz_1, it_1.jz_1, it_1.kz_1);
+        } else {
+          if ($p instanceof OrderStateException) {
+            var refused_2 = $p;
+            // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            tmp_0 = jsRefused(it_2.gz_1, it_2.hz_1, it_2.iz_1, it_2.jz_1, it_2.kz_1);
+          } else {
+            if ($p instanceof EnvelopeException) {
+              var refused_3 = $p;
+              // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              tmp_0 = jsRefused(it_3.gz_1, it_3.hz_1, it_3.iz_1, it_3.jz_1, it_3.kz_1);
+            } else {
+              if ($p instanceof TagException) {
+                var refused_4 = $p;
+                // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                var it_4 = new JsRefusal(refused_4.bf_1.t1_1, 'TagRejection', null, refused_4.bf_1.t1_1, refused_4.message);
+                tmp_0 = jsRefused(it_4.gz_1, it_4.hz_1, it_4.iz_1, it_4.jz_1, it_4.kz_1);
+              } else {
+                if ($p instanceof MoneyException) {
+                  var refused_5 = $p;
+                  // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  tmp_0 = jsRefused(it_5.gz_1, it_5.hz_1, it_5.iz_1, it_5.jz_1, it_5.kz_1);
+                } else {
+                  if ($p instanceof SeamException) {
+                    var refused_6 = $p;
+                    // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                    var it_6 = new JsRefusal(refused_6.ij_1.t1_1, 'SeamRejection', null, null, refused_6.message);
+                    tmp_0 = jsRefused(it_6.gz_1, it_6.hz_1, it_6.iz_1, it_6.jz_1, it_6.kz_1);
+                  } else {
+                    if ($p instanceof DeliveryException) {
+                      var refused_7 = $p;
+                      // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                      var it_7 = new JsRefusal(refused_7.jl_1.t1_1, 'DeliveryRejection', null, null, refused_7.message);
+                      tmp_0 = jsRefused(it_7.gz_1, it_7.hz_1, it_7.iz_1, it_7.jz_1, it_7.kz_1);
+                    } else {
+                      if ($p instanceof PaymentException) {
+                        var refused_8 = $p;
+                        // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        tmp_0 = jsRefused(it_8.gz_1, it_8.hz_1, it_8.iz_1, it_8.jz_1, it_8.kz_1);
+                      } else {
+                        if ($p instanceof ChannelException) {
+                          var refused_9 = $p;
+                          // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                          var it_9 = new JsRefusal(refused_9.ok_1.t1_1, 'ChannelRejection', refused_9.pk_1, null, refused_9.message);
+                          tmp_0 = jsRefused(it_9.gz_1, it_9.hz_1, it_9.iz_1, it_9.jz_1, it_9.kz_1);
+                        } else {
+                          if ($p instanceof SettlementException) {
+                            var refused_10 = $p;
+                            // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
+                            tmp_0 = jsRefused(it_10.gz_1, it_10.hz_1, it_10.iz_1, it_10.jz_1, it_10.kz_1);
+                          } else {
+                            if ($p instanceof WireException) {
+                              var refused_11 = $p;
+                              // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                              var it_11 = new JsRefusal(refused_11.kh_1.t1_1, 'WireRejection', null, null, refused_11.message);
+                              tmp_0 = jsRefused(it_11.gz_1, it_11.hz_1, it_11.iz_1, it_11.jz_1, it_11.kz_1);
+                            } else {
+                              if ($p instanceof JsonException) {
+                                var refused_12 = $p;
+                                // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                tmp_0 = jsRefused(it_12.gz_1, it_12.hz_1, it_12.iz_1, it_12.jz_1, it_12.kz_1);
+                              } else {
+                                throw $p;
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    tmp = tmp_0;
+  }
+  return tmp;
+}
+function buildAgreementAgainst(listing, environment, envelope, proposalRumor) {
+  // Inline function 'dev.eryalabs.nenya.js.jsBuild' call
+  // Inline function 'dev.eryalabs.nenya.js.jsGuarded' call
+  var tmp;
+  try {
+    // Inline function 'dev.eryalabs.nenya.js.buildAgreementAgainst.<anonymous>' call
+    tmp = asListingOrderResult(ListingOrderWriter_instance.en(listing.n10_1, asClock(environment), asRumorEnvelope(envelope), Companion_getInstance_4().sl(asBoundRumor(proposalRumor, 'kind:16 type=1 order proposal'))));
+  } catch ($p) {
+    var tmp_0;
+    if ($p instanceof JsCrossing) {
+      var refused = $p;
+      // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
+      tmp_0 = jsRefused(it.gz_1, it.hz_1, it.iz_1, it.jz_1, it.kz_1);
+    } else {
+      if ($p instanceof ListingException) {
+        var refused_0 = $p;
+        // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+        var tmp_1 = refused_0.cause;
+        var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
+        var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        tmp_0 = jsRefused(it_0.gz_1, it_0.hz_1, it_0.iz_1, it_0.jz_1, it_0.kz_1);
+      } else {
+        if ($p instanceof BidException) {
+          var refused_1 = $p;
+          // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+          var it_1 = new JsRefusal(refused_1.ze_1.t1_1, 'BidRejection', refused_1.af_1, null, refused_1.message);
+          tmp_0 = jsRefused(it_1.gz_1, it_1.hz_1, it_1.iz_1, it_1.jz_1, it_1.kz_1);
+        } else {
+          if ($p instanceof OrderStateException) {
+            var refused_2 = $p;
+            // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            tmp_0 = jsRefused(it_2.gz_1, it_2.hz_1, it_2.iz_1, it_2.jz_1, it_2.kz_1);
+          } else {
+            if ($p instanceof EnvelopeException) {
+              var refused_3 = $p;
+              // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              tmp_0 = jsRefused(it_3.gz_1, it_3.hz_1, it_3.iz_1, it_3.jz_1, it_3.kz_1);
+            } else {
+              if ($p instanceof TagException) {
+                var refused_4 = $p;
+                // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                var it_4 = new JsRefusal(refused_4.bf_1.t1_1, 'TagRejection', null, refused_4.bf_1.t1_1, refused_4.message);
+                tmp_0 = jsRefused(it_4.gz_1, it_4.hz_1, it_4.iz_1, it_4.jz_1, it_4.kz_1);
+              } else {
+                if ($p instanceof MoneyException) {
+                  var refused_5 = $p;
+                  // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  tmp_0 = jsRefused(it_5.gz_1, it_5.hz_1, it_5.iz_1, it_5.jz_1, it_5.kz_1);
+                } else {
+                  if ($p instanceof SeamException) {
+                    var refused_6 = $p;
+                    // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                    var it_6 = new JsRefusal(refused_6.ij_1.t1_1, 'SeamRejection', null, null, refused_6.message);
+                    tmp_0 = jsRefused(it_6.gz_1, it_6.hz_1, it_6.iz_1, it_6.jz_1, it_6.kz_1);
+                  } else {
+                    if ($p instanceof DeliveryException) {
+                      var refused_7 = $p;
+                      // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                      var it_7 = new JsRefusal(refused_7.jl_1.t1_1, 'DeliveryRejection', null, null, refused_7.message);
+                      tmp_0 = jsRefused(it_7.gz_1, it_7.hz_1, it_7.iz_1, it_7.jz_1, it_7.kz_1);
+                    } else {
+                      if ($p instanceof PaymentException) {
+                        var refused_8 = $p;
+                        // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        tmp_0 = jsRefused(it_8.gz_1, it_8.hz_1, it_8.iz_1, it_8.jz_1, it_8.kz_1);
+                      } else {
+                        if ($p instanceof ChannelException) {
+                          var refused_9 = $p;
+                          // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                          var it_9 = new JsRefusal(refused_9.ok_1.t1_1, 'ChannelRejection', refused_9.pk_1, null, refused_9.message);
+                          tmp_0 = jsRefused(it_9.gz_1, it_9.hz_1, it_9.iz_1, it_9.jz_1, it_9.kz_1);
+                        } else {
+                          if ($p instanceof SettlementException) {
+                            var refused_10 = $p;
+                            // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
+                            tmp_0 = jsRefused(it_10.gz_1, it_10.hz_1, it_10.iz_1, it_10.jz_1, it_10.kz_1);
+                          } else {
+                            if ($p instanceof WireException) {
+                              var refused_11 = $p;
+                              // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                              var it_11 = new JsRefusal(refused_11.kh_1.t1_1, 'WireRejection', null, null, refused_11.message);
+                              tmp_0 = jsRefused(it_11.gz_1, it_11.hz_1, it_11.iz_1, it_11.jz_1, it_11.kz_1);
+                            } else {
+                              if ($p instanceof JsonException) {
+                                var refused_12 = $p;
+                                // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                tmp_0 = jsRefused(it_12.gz_1, it_12.hz_1, it_12.iz_1, it_12.jz_1, it_12.kz_1);
                               } else {
                                 throw $p;
                               }
@@ -6758,7 +7468,7 @@ function buildStatusUpdate(envelope, orderIdHex, statusToken, itemCoordinate, te
     var tmp_0 = RumorWriter_getInstance();
     var tmp_1 = asRumorEnvelope(envelope);
     var tmp_2 = Companion_instance_25.hj(orderIdHex);
-    var tmp_3 = OrderStatusCodec_getInstance().bo(statusToken);
+    var tmp_3 = OrderStatusCodec_getInstance().yo(statusToken);
     var tmp_4;
     if (itemCoordinate == null) {
       tmp_4 = null;
@@ -6769,14 +7479,14 @@ function buildStatusUpdate(envelope, orderIdHex, statusToken, itemCoordinate, te
       tmp_4 = new ItemRef(Companion_instance_46.yc(itemCoordinate));
     }
     var tmp_5 = tmp_4;
-    tmp = asJsBuildResult(tmp_0.yq(tmp_1, tmp_2, tmp_3, tmp_5, terms == null ? null : asOrderTerms(terms), feeRecipient));
+    tmp = asJsBuildResult(tmp_0.mn(tmp_1, tmp_2, tmp_3, tmp_5, terms == null ? null : asOrderTerms(terms), feeRecipient));
   } catch ($p) {
     var tmp_6;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
-      tmp_6 = jsRefused(it.cy_1, it.dy_1, it.ey_1, it.fy_1, it.gy_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
+      tmp_6 = jsRefused(it.gz_1, it.hz_1, it.iz_1, it.jz_1, it.kz_1);
     } else {
       if ($p instanceof ListingException) {
         var refused_0 = $p;
@@ -6784,80 +7494,80 @@ function buildStatusUpdate(envelope, orderIdHex, statusToken, itemCoordinate, te
         var tmp_7 = refused_0.cause;
         var tmp0_safe_receiver = tmp_7 instanceof TagException ? tmp_7 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
-        tmp_6 = jsRefused(it_0.cy_1, it_0.dy_1, it_0.ey_1, it_0.fy_1, it_0.gy_1);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        tmp_6 = jsRefused(it_0.gz_1, it_0.hz_1, it_0.iz_1, it_0.jz_1, it_0.kz_1);
       } else {
         if ($p instanceof BidException) {
           var refused_1 = $p;
           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
           var it_1 = new JsRefusal(refused_1.ze_1.t1_1, 'BidRejection', refused_1.af_1, null, refused_1.message);
-          tmp_6 = jsRefused(it_1.cy_1, it_1.dy_1, it_1.ey_1, it_1.fy_1, it_1.gy_1);
+          tmp_6 = jsRefused(it_1.gz_1, it_1.hz_1, it_1.iz_1, it_1.jz_1, it_1.kz_1);
         } else {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
-            tmp_6 = jsRefused(it_2.cy_1, it_2.dy_1, it_2.ey_1, it_2.fy_1, it_2.gy_1);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            tmp_6 = jsRefused(it_2.gz_1, it_2.hz_1, it_2.iz_1, it_2.jz_1, it_2.kz_1);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
-              tmp_6 = jsRefused(it_3.cy_1, it_3.dy_1, it_3.ey_1, it_3.fy_1, it_3.gy_1);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              tmp_6 = jsRefused(it_3.gz_1, it_3.hz_1, it_3.iz_1, it_3.jz_1, it_3.kz_1);
             } else {
               if ($p instanceof TagException) {
                 var refused_4 = $p;
                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                 var it_4 = new JsRefusal(refused_4.bf_1.t1_1, 'TagRejection', null, refused_4.bf_1.t1_1, refused_4.message);
-                tmp_6 = jsRefused(it_4.cy_1, it_4.dy_1, it_4.ey_1, it_4.fy_1, it_4.gy_1);
+                tmp_6 = jsRefused(it_4.gz_1, it_4.hz_1, it_4.iz_1, it_4.jz_1, it_4.kz_1);
               } else {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
-                  tmp_6 = jsRefused(it_5.cy_1, it_5.dy_1, it_5.ey_1, it_5.fy_1, it_5.gy_1);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  tmp_6 = jsRefused(it_5.gz_1, it_5.hz_1, it_5.iz_1, it_5.jz_1, it_5.kz_1);
                 } else {
                   if ($p instanceof SeamException) {
                     var refused_6 = $p;
                     // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                     var it_6 = new JsRefusal(refused_6.ij_1.t1_1, 'SeamRejection', null, null, refused_6.message);
-                    tmp_6 = jsRefused(it_6.cy_1, it_6.dy_1, it_6.ey_1, it_6.fy_1, it_6.gy_1);
+                    tmp_6 = jsRefused(it_6.gz_1, it_6.hz_1, it_6.iz_1, it_6.jz_1, it_6.kz_1);
                   } else {
                     if ($p instanceof DeliveryException) {
                       var refused_7 = $p;
                       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                       var it_7 = new JsRefusal(refused_7.jl_1.t1_1, 'DeliveryRejection', null, null, refused_7.message);
-                      tmp_6 = jsRefused(it_7.cy_1, it_7.dy_1, it_7.ey_1, it_7.fy_1, it_7.gy_1);
+                      tmp_6 = jsRefused(it_7.gz_1, it_7.hz_1, it_7.iz_1, it_7.jz_1, it_7.kz_1);
                     } else {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
-                        tmp_6 = jsRefused(it_8.cy_1, it_8.dy_1, it_8.ey_1, it_8.fy_1, it_8.gy_1);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        tmp_6 = jsRefused(it_8.gz_1, it_8.hz_1, it_8.iz_1, it_8.jz_1, it_8.kz_1);
                       } else {
                         if ($p instanceof ChannelException) {
                           var refused_9 = $p;
                           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                           var it_9 = new JsRefusal(refused_9.ok_1.t1_1, 'ChannelRejection', refused_9.pk_1, null, refused_9.message);
-                          tmp_6 = jsRefused(it_9.cy_1, it_9.dy_1, it_9.ey_1, it_9.fy_1, it_9.gy_1);
+                          tmp_6 = jsRefused(it_9.gz_1, it_9.hz_1, it_9.iz_1, it_9.jz_1, it_9.kz_1);
                         } else {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
-                            tmp_6 = jsRefused(it_10.cy_1, it_10.dy_1, it_10.ey_1, it_10.fy_1, it_10.gy_1);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
+                            tmp_6 = jsRefused(it_10.gz_1, it_10.hz_1, it_10.iz_1, it_10.jz_1, it_10.kz_1);
                           } else {
                             if ($p instanceof WireException) {
                               var refused_11 = $p;
                               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                               var it_11 = new JsRefusal(refused_11.kh_1.t1_1, 'WireRejection', null, null, refused_11.message);
-                              tmp_6 = jsRefused(it_11.cy_1, it_11.dy_1, it_11.ey_1, it_11.fy_1, it_11.gy_1);
+                              tmp_6 = jsRefused(it_11.gz_1, it_11.hz_1, it_11.iz_1, it_11.jz_1, it_11.kz_1);
                             } else {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
-                                tmp_6 = jsRefused(it_12.cy_1, it_12.dy_1, it_12.ey_1, it_12.fy_1, it_12.gy_1);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                tmp_6 = jsRefused(it_12.gz_1, it_12.hz_1, it_12.iz_1, it_12.jz_1, it_12.kz_1);
                               } else {
                                 throw $p;
                               }
@@ -6884,14 +7594,14 @@ function buildCommitment(envelope, orderIdHex, commitment, url) {
   var tmp;
   try {
     // Inline function 'dev.eryalabs.nenya.js.buildCommitment.<anonymous>' call
-    tmp = asJsBuildResult(RumorWriter_getInstance().zq(asRumorEnvelope(envelope), Companion_instance_25.hj(orderIdHex), asDeliverableCommitment(commitment), url));
+    tmp = asJsBuildResult(RumorWriter_getInstance().er(asRumorEnvelope(envelope), Companion_instance_25.hj(orderIdHex), asDeliverableCommitment(commitment), url));
   } catch ($p) {
     var tmp_0;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
-      tmp_0 = jsRefused(it.cy_1, it.dy_1, it.ey_1, it.fy_1, it.gy_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
+      tmp_0 = jsRefused(it.gz_1, it.hz_1, it.iz_1, it.jz_1, it.kz_1);
     } else {
       if ($p instanceof ListingException) {
         var refused_0 = $p;
@@ -6899,80 +7609,80 @@ function buildCommitment(envelope, orderIdHex, commitment, url) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
-        tmp_0 = jsRefused(it_0.cy_1, it_0.dy_1, it_0.ey_1, it_0.fy_1, it_0.gy_1);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        tmp_0 = jsRefused(it_0.gz_1, it_0.hz_1, it_0.iz_1, it_0.jz_1, it_0.kz_1);
       } else {
         if ($p instanceof BidException) {
           var refused_1 = $p;
           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
           var it_1 = new JsRefusal(refused_1.ze_1.t1_1, 'BidRejection', refused_1.af_1, null, refused_1.message);
-          tmp_0 = jsRefused(it_1.cy_1, it_1.dy_1, it_1.ey_1, it_1.fy_1, it_1.gy_1);
+          tmp_0 = jsRefused(it_1.gz_1, it_1.hz_1, it_1.iz_1, it_1.jz_1, it_1.kz_1);
         } else {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
-            tmp_0 = jsRefused(it_2.cy_1, it_2.dy_1, it_2.ey_1, it_2.fy_1, it_2.gy_1);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            tmp_0 = jsRefused(it_2.gz_1, it_2.hz_1, it_2.iz_1, it_2.jz_1, it_2.kz_1);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
-              tmp_0 = jsRefused(it_3.cy_1, it_3.dy_1, it_3.ey_1, it_3.fy_1, it_3.gy_1);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              tmp_0 = jsRefused(it_3.gz_1, it_3.hz_1, it_3.iz_1, it_3.jz_1, it_3.kz_1);
             } else {
               if ($p instanceof TagException) {
                 var refused_4 = $p;
                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                 var it_4 = new JsRefusal(refused_4.bf_1.t1_1, 'TagRejection', null, refused_4.bf_1.t1_1, refused_4.message);
-                tmp_0 = jsRefused(it_4.cy_1, it_4.dy_1, it_4.ey_1, it_4.fy_1, it_4.gy_1);
+                tmp_0 = jsRefused(it_4.gz_1, it_4.hz_1, it_4.iz_1, it_4.jz_1, it_4.kz_1);
               } else {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
-                  tmp_0 = jsRefused(it_5.cy_1, it_5.dy_1, it_5.ey_1, it_5.fy_1, it_5.gy_1);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  tmp_0 = jsRefused(it_5.gz_1, it_5.hz_1, it_5.iz_1, it_5.jz_1, it_5.kz_1);
                 } else {
                   if ($p instanceof SeamException) {
                     var refused_6 = $p;
                     // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                     var it_6 = new JsRefusal(refused_6.ij_1.t1_1, 'SeamRejection', null, null, refused_6.message);
-                    tmp_0 = jsRefused(it_6.cy_1, it_6.dy_1, it_6.ey_1, it_6.fy_1, it_6.gy_1);
+                    tmp_0 = jsRefused(it_6.gz_1, it_6.hz_1, it_6.iz_1, it_6.jz_1, it_6.kz_1);
                   } else {
                     if ($p instanceof DeliveryException) {
                       var refused_7 = $p;
                       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                       var it_7 = new JsRefusal(refused_7.jl_1.t1_1, 'DeliveryRejection', null, null, refused_7.message);
-                      tmp_0 = jsRefused(it_7.cy_1, it_7.dy_1, it_7.ey_1, it_7.fy_1, it_7.gy_1);
+                      tmp_0 = jsRefused(it_7.gz_1, it_7.hz_1, it_7.iz_1, it_7.jz_1, it_7.kz_1);
                     } else {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
-                        tmp_0 = jsRefused(it_8.cy_1, it_8.dy_1, it_8.ey_1, it_8.fy_1, it_8.gy_1);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        tmp_0 = jsRefused(it_8.gz_1, it_8.hz_1, it_8.iz_1, it_8.jz_1, it_8.kz_1);
                       } else {
                         if ($p instanceof ChannelException) {
                           var refused_9 = $p;
                           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                           var it_9 = new JsRefusal(refused_9.ok_1.t1_1, 'ChannelRejection', refused_9.pk_1, null, refused_9.message);
-                          tmp_0 = jsRefused(it_9.cy_1, it_9.dy_1, it_9.ey_1, it_9.fy_1, it_9.gy_1);
+                          tmp_0 = jsRefused(it_9.gz_1, it_9.hz_1, it_9.iz_1, it_9.jz_1, it_9.kz_1);
                         } else {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
-                            tmp_0 = jsRefused(it_10.cy_1, it_10.dy_1, it_10.ey_1, it_10.fy_1, it_10.gy_1);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
+                            tmp_0 = jsRefused(it_10.gz_1, it_10.hz_1, it_10.iz_1, it_10.jz_1, it_10.kz_1);
                           } else {
                             if ($p instanceof WireException) {
                               var refused_11 = $p;
                               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                               var it_11 = new JsRefusal(refused_11.kh_1.t1_1, 'WireRejection', null, null, refused_11.message);
-                              tmp_0 = jsRefused(it_11.cy_1, it_11.dy_1, it_11.ey_1, it_11.fy_1, it_11.gy_1);
+                              tmp_0 = jsRefused(it_11.gz_1, it_11.hz_1, it_11.iz_1, it_11.jz_1, it_11.kz_1);
                             } else {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
-                                tmp_0 = jsRefused(it_12.cy_1, it_12.dy_1, it_12.ey_1, it_12.fy_1, it_12.gy_1);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                tmp_0 = jsRefused(it_12.gz_1, it_12.hz_1, it_12.iz_1, it_12.jz_1, it_12.kz_1);
                               } else {
                                 throw $p;
                               }
@@ -6999,14 +7709,14 @@ function buildRelease(envelope, orderIdHex, release, decryptionKeyHex, decryptio
   var tmp;
   try {
     // Inline function 'dev.eryalabs.nenya.js.buildRelease.<anonymous>' call
-    tmp = asJsBuildResult(RumorWriter_getInstance().ar(asRumorEnvelope(envelope), Companion_instance_25.hj(orderIdHex), asDeliverableRelease(release), decryptionKeyHex, decryptionNonceHex));
+    tmp = asJsBuildResult(RumorWriter_getInstance().fr(asRumorEnvelope(envelope), Companion_instance_25.hj(orderIdHex), asDeliverableRelease(release), decryptionKeyHex, decryptionNonceHex));
   } catch ($p) {
     var tmp_0;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
-      tmp_0 = jsRefused(it.cy_1, it.dy_1, it.ey_1, it.fy_1, it.gy_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
+      tmp_0 = jsRefused(it.gz_1, it.hz_1, it.iz_1, it.jz_1, it.kz_1);
     } else {
       if ($p instanceof ListingException) {
         var refused_0 = $p;
@@ -7014,80 +7724,80 @@ function buildRelease(envelope, orderIdHex, release, decryptionKeyHex, decryptio
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
-        tmp_0 = jsRefused(it_0.cy_1, it_0.dy_1, it_0.ey_1, it_0.fy_1, it_0.gy_1);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        tmp_0 = jsRefused(it_0.gz_1, it_0.hz_1, it_0.iz_1, it_0.jz_1, it_0.kz_1);
       } else {
         if ($p instanceof BidException) {
           var refused_1 = $p;
           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
           var it_1 = new JsRefusal(refused_1.ze_1.t1_1, 'BidRejection', refused_1.af_1, null, refused_1.message);
-          tmp_0 = jsRefused(it_1.cy_1, it_1.dy_1, it_1.ey_1, it_1.fy_1, it_1.gy_1);
+          tmp_0 = jsRefused(it_1.gz_1, it_1.hz_1, it_1.iz_1, it_1.jz_1, it_1.kz_1);
         } else {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
-            tmp_0 = jsRefused(it_2.cy_1, it_2.dy_1, it_2.ey_1, it_2.fy_1, it_2.gy_1);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            tmp_0 = jsRefused(it_2.gz_1, it_2.hz_1, it_2.iz_1, it_2.jz_1, it_2.kz_1);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
-              tmp_0 = jsRefused(it_3.cy_1, it_3.dy_1, it_3.ey_1, it_3.fy_1, it_3.gy_1);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              tmp_0 = jsRefused(it_3.gz_1, it_3.hz_1, it_3.iz_1, it_3.jz_1, it_3.kz_1);
             } else {
               if ($p instanceof TagException) {
                 var refused_4 = $p;
                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                 var it_4 = new JsRefusal(refused_4.bf_1.t1_1, 'TagRejection', null, refused_4.bf_1.t1_1, refused_4.message);
-                tmp_0 = jsRefused(it_4.cy_1, it_4.dy_1, it_4.ey_1, it_4.fy_1, it_4.gy_1);
+                tmp_0 = jsRefused(it_4.gz_1, it_4.hz_1, it_4.iz_1, it_4.jz_1, it_4.kz_1);
               } else {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
-                  tmp_0 = jsRefused(it_5.cy_1, it_5.dy_1, it_5.ey_1, it_5.fy_1, it_5.gy_1);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  tmp_0 = jsRefused(it_5.gz_1, it_5.hz_1, it_5.iz_1, it_5.jz_1, it_5.kz_1);
                 } else {
                   if ($p instanceof SeamException) {
                     var refused_6 = $p;
                     // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                     var it_6 = new JsRefusal(refused_6.ij_1.t1_1, 'SeamRejection', null, null, refused_6.message);
-                    tmp_0 = jsRefused(it_6.cy_1, it_6.dy_1, it_6.ey_1, it_6.fy_1, it_6.gy_1);
+                    tmp_0 = jsRefused(it_6.gz_1, it_6.hz_1, it_6.iz_1, it_6.jz_1, it_6.kz_1);
                   } else {
                     if ($p instanceof DeliveryException) {
                       var refused_7 = $p;
                       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                       var it_7 = new JsRefusal(refused_7.jl_1.t1_1, 'DeliveryRejection', null, null, refused_7.message);
-                      tmp_0 = jsRefused(it_7.cy_1, it_7.dy_1, it_7.ey_1, it_7.fy_1, it_7.gy_1);
+                      tmp_0 = jsRefused(it_7.gz_1, it_7.hz_1, it_7.iz_1, it_7.jz_1, it_7.kz_1);
                     } else {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
-                        tmp_0 = jsRefused(it_8.cy_1, it_8.dy_1, it_8.ey_1, it_8.fy_1, it_8.gy_1);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        tmp_0 = jsRefused(it_8.gz_1, it_8.hz_1, it_8.iz_1, it_8.jz_1, it_8.kz_1);
                       } else {
                         if ($p instanceof ChannelException) {
                           var refused_9 = $p;
                           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                           var it_9 = new JsRefusal(refused_9.ok_1.t1_1, 'ChannelRejection', refused_9.pk_1, null, refused_9.message);
-                          tmp_0 = jsRefused(it_9.cy_1, it_9.dy_1, it_9.ey_1, it_9.fy_1, it_9.gy_1);
+                          tmp_0 = jsRefused(it_9.gz_1, it_9.hz_1, it_9.iz_1, it_9.jz_1, it_9.kz_1);
                         } else {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
-                            tmp_0 = jsRefused(it_10.cy_1, it_10.dy_1, it_10.ey_1, it_10.fy_1, it_10.gy_1);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
+                            tmp_0 = jsRefused(it_10.gz_1, it_10.hz_1, it_10.iz_1, it_10.jz_1, it_10.kz_1);
                           } else {
                             if ($p instanceof WireException) {
                               var refused_11 = $p;
                               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                               var it_11 = new JsRefusal(refused_11.kh_1.t1_1, 'WireRejection', null, null, refused_11.message);
-                              tmp_0 = jsRefused(it_11.cy_1, it_11.dy_1, it_11.ey_1, it_11.fy_1, it_11.gy_1);
+                              tmp_0 = jsRefused(it_11.gz_1, it_11.hz_1, it_11.iz_1, it_11.jz_1, it_11.kz_1);
                             } else {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
-                                tmp_0 = jsRefused(it_12.cy_1, it_12.dy_1, it_12.ey_1, it_12.fy_1, it_12.gy_1);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                tmp_0 = jsRefused(it_12.gz_1, it_12.hz_1, it_12.iz_1, it_12.jz_1, it_12.kz_1);
                               } else {
                                 throw $p;
                               }
@@ -7115,14 +7825,14 @@ function buildPrivateBid(envelope, itemCoordinate, terms, feeRecipient) {
   var tmp;
   try {
     // Inline function 'dev.eryalabs.nenya.js.buildPrivateBid.<anonymous>' call
-    tmp = asJsBuildResult(RumorWriter_getInstance().br(asRumorEnvelope(envelope), new ItemRef(Companion_instance_46.yc(itemCoordinate)), asOrderTerms(terms), feeRecipient));
+    tmp = asJsBuildResult(RumorWriter_getInstance().gr(asRumorEnvelope(envelope), new ItemRef(Companion_instance_46.yc(itemCoordinate)), asOrderTerms(terms), feeRecipient));
   } catch ($p) {
     var tmp_0;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
-      tmp_0 = jsRefused(it.cy_1, it.dy_1, it.ey_1, it.fy_1, it.gy_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
+      tmp_0 = jsRefused(it.gz_1, it.hz_1, it.iz_1, it.jz_1, it.kz_1);
     } else {
       if ($p instanceof ListingException) {
         var refused_0 = $p;
@@ -7130,80 +7840,80 @@ function buildPrivateBid(envelope, itemCoordinate, terms, feeRecipient) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
-        tmp_0 = jsRefused(it_0.cy_1, it_0.dy_1, it_0.ey_1, it_0.fy_1, it_0.gy_1);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        tmp_0 = jsRefused(it_0.gz_1, it_0.hz_1, it_0.iz_1, it_0.jz_1, it_0.kz_1);
       } else {
         if ($p instanceof BidException) {
           var refused_1 = $p;
           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
           var it_1 = new JsRefusal(refused_1.ze_1.t1_1, 'BidRejection', refused_1.af_1, null, refused_1.message);
-          tmp_0 = jsRefused(it_1.cy_1, it_1.dy_1, it_1.ey_1, it_1.fy_1, it_1.gy_1);
+          tmp_0 = jsRefused(it_1.gz_1, it_1.hz_1, it_1.iz_1, it_1.jz_1, it_1.kz_1);
         } else {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
-            tmp_0 = jsRefused(it_2.cy_1, it_2.dy_1, it_2.ey_1, it_2.fy_1, it_2.gy_1);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            tmp_0 = jsRefused(it_2.gz_1, it_2.hz_1, it_2.iz_1, it_2.jz_1, it_2.kz_1);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
-              tmp_0 = jsRefused(it_3.cy_1, it_3.dy_1, it_3.ey_1, it_3.fy_1, it_3.gy_1);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              tmp_0 = jsRefused(it_3.gz_1, it_3.hz_1, it_3.iz_1, it_3.jz_1, it_3.kz_1);
             } else {
               if ($p instanceof TagException) {
                 var refused_4 = $p;
                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                 var it_4 = new JsRefusal(refused_4.bf_1.t1_1, 'TagRejection', null, refused_4.bf_1.t1_1, refused_4.message);
-                tmp_0 = jsRefused(it_4.cy_1, it_4.dy_1, it_4.ey_1, it_4.fy_1, it_4.gy_1);
+                tmp_0 = jsRefused(it_4.gz_1, it_4.hz_1, it_4.iz_1, it_4.jz_1, it_4.kz_1);
               } else {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
-                  tmp_0 = jsRefused(it_5.cy_1, it_5.dy_1, it_5.ey_1, it_5.fy_1, it_5.gy_1);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  tmp_0 = jsRefused(it_5.gz_1, it_5.hz_1, it_5.iz_1, it_5.jz_1, it_5.kz_1);
                 } else {
                   if ($p instanceof SeamException) {
                     var refused_6 = $p;
                     // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                     var it_6 = new JsRefusal(refused_6.ij_1.t1_1, 'SeamRejection', null, null, refused_6.message);
-                    tmp_0 = jsRefused(it_6.cy_1, it_6.dy_1, it_6.ey_1, it_6.fy_1, it_6.gy_1);
+                    tmp_0 = jsRefused(it_6.gz_1, it_6.hz_1, it_6.iz_1, it_6.jz_1, it_6.kz_1);
                   } else {
                     if ($p instanceof DeliveryException) {
                       var refused_7 = $p;
                       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                       var it_7 = new JsRefusal(refused_7.jl_1.t1_1, 'DeliveryRejection', null, null, refused_7.message);
-                      tmp_0 = jsRefused(it_7.cy_1, it_7.dy_1, it_7.ey_1, it_7.fy_1, it_7.gy_1);
+                      tmp_0 = jsRefused(it_7.gz_1, it_7.hz_1, it_7.iz_1, it_7.jz_1, it_7.kz_1);
                     } else {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
-                        tmp_0 = jsRefused(it_8.cy_1, it_8.dy_1, it_8.ey_1, it_8.fy_1, it_8.gy_1);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        tmp_0 = jsRefused(it_8.gz_1, it_8.hz_1, it_8.iz_1, it_8.jz_1, it_8.kz_1);
                       } else {
                         if ($p instanceof ChannelException) {
                           var refused_9 = $p;
                           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                           var it_9 = new JsRefusal(refused_9.ok_1.t1_1, 'ChannelRejection', refused_9.pk_1, null, refused_9.message);
-                          tmp_0 = jsRefused(it_9.cy_1, it_9.dy_1, it_9.ey_1, it_9.fy_1, it_9.gy_1);
+                          tmp_0 = jsRefused(it_9.gz_1, it_9.hz_1, it_9.iz_1, it_9.jz_1, it_9.kz_1);
                         } else {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
-                            tmp_0 = jsRefused(it_10.cy_1, it_10.dy_1, it_10.ey_1, it_10.fy_1, it_10.gy_1);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
+                            tmp_0 = jsRefused(it_10.gz_1, it_10.hz_1, it_10.iz_1, it_10.jz_1, it_10.kz_1);
                           } else {
                             if ($p instanceof WireException) {
                               var refused_11 = $p;
                               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                               var it_11 = new JsRefusal(refused_11.kh_1.t1_1, 'WireRejection', null, null, refused_11.message);
-                              tmp_0 = jsRefused(it_11.cy_1, it_11.dy_1, it_11.ey_1, it_11.fy_1, it_11.gy_1);
+                              tmp_0 = jsRefused(it_11.gz_1, it_11.hz_1, it_11.iz_1, it_11.jz_1, it_11.kz_1);
                             } else {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
-                                tmp_0 = jsRefused(it_12.cy_1, it_12.dy_1, it_12.ey_1, it_12.fy_1, it_12.gy_1);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                tmp_0 = jsRefused(it_12.gz_1, it_12.hz_1, it_12.iz_1, it_12.jz_1, it_12.kz_1);
                               } else {
                                 throw $p;
                               }
@@ -7226,7 +7936,7 @@ function buildPrivateBid(envelope, itemCoordinate, terms, feeRecipient) {
 }
 function buildPaymentRequest(envelope, orderIdHex, payeeToken, invoice, feeRecipient, mediumToken, terms) {
   feeRecipient = feeRecipient === VOID ? null : feeRecipient;
-  mediumToken = mediumToken === VOID ? ensureNotNull(PaymentMedium_LIGHTNING_getInstance().lz_1) : mediumToken;
+  mediumToken = mediumToken === VOID ? ensureNotNull(PaymentMedium_LIGHTNING_getInstance().q10_1) : mediumToken;
   terms = terms === VOID ? null : terms;
   // Inline function 'dev.eryalabs.nenya.js.jsBuild' call
   // Inline function 'dev.eryalabs.nenya.js.jsGuarded' call
@@ -7237,16 +7947,16 @@ function buildPaymentRequest(envelope, orderIdHex, payeeToken, invoice, feeRecip
     var tmp_1 = asRumorEnvelope(envelope);
     var tmp_2 = Companion_instance_25.hj(orderIdHex);
     var tmp_3 = crossedPayee(payeeToken);
-    var tmp_4 = Companion_getInstance_34().vz(invoice);
-    var tmp_5 = Companion_instance_33.wz(mediumToken);
-    tmp = asJsBuildResult_0(tmp_0.h10(tmp_1, tmp_2, tmp_3, tmp_4, feeRecipient, tmp_5, terms == null ? null : asOrderTerms(terms)));
+    var tmp_4 = Companion_getInstance_34().a11(invoice);
+    var tmp_5 = Companion_instance_33.b11(mediumToken);
+    tmp = asJsBuildResult_0(tmp_0.m11(tmp_1, tmp_2, tmp_3, tmp_4, feeRecipient, tmp_5, terms == null ? null : asOrderTerms(terms)));
   } catch ($p) {
     var tmp_6;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
-      tmp_6 = jsRefused(it.cy_1, it.dy_1, it.ey_1, it.fy_1, it.gy_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
+      tmp_6 = jsRefused(it.gz_1, it.hz_1, it.iz_1, it.jz_1, it.kz_1);
     } else {
       if ($p instanceof ListingException) {
         var refused_0 = $p;
@@ -7254,80 +7964,80 @@ function buildPaymentRequest(envelope, orderIdHex, payeeToken, invoice, feeRecip
         var tmp_7 = refused_0.cause;
         var tmp0_safe_receiver = tmp_7 instanceof TagException ? tmp_7 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
-        tmp_6 = jsRefused(it_0.cy_1, it_0.dy_1, it_0.ey_1, it_0.fy_1, it_0.gy_1);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        tmp_6 = jsRefused(it_0.gz_1, it_0.hz_1, it_0.iz_1, it_0.jz_1, it_0.kz_1);
       } else {
         if ($p instanceof BidException) {
           var refused_1 = $p;
           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
           var it_1 = new JsRefusal(refused_1.ze_1.t1_1, 'BidRejection', refused_1.af_1, null, refused_1.message);
-          tmp_6 = jsRefused(it_1.cy_1, it_1.dy_1, it_1.ey_1, it_1.fy_1, it_1.gy_1);
+          tmp_6 = jsRefused(it_1.gz_1, it_1.hz_1, it_1.iz_1, it_1.jz_1, it_1.kz_1);
         } else {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
-            tmp_6 = jsRefused(it_2.cy_1, it_2.dy_1, it_2.ey_1, it_2.fy_1, it_2.gy_1);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            tmp_6 = jsRefused(it_2.gz_1, it_2.hz_1, it_2.iz_1, it_2.jz_1, it_2.kz_1);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
-              tmp_6 = jsRefused(it_3.cy_1, it_3.dy_1, it_3.ey_1, it_3.fy_1, it_3.gy_1);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              tmp_6 = jsRefused(it_3.gz_1, it_3.hz_1, it_3.iz_1, it_3.jz_1, it_3.kz_1);
             } else {
               if ($p instanceof TagException) {
                 var refused_4 = $p;
                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                 var it_4 = new JsRefusal(refused_4.bf_1.t1_1, 'TagRejection', null, refused_4.bf_1.t1_1, refused_4.message);
-                tmp_6 = jsRefused(it_4.cy_1, it_4.dy_1, it_4.ey_1, it_4.fy_1, it_4.gy_1);
+                tmp_6 = jsRefused(it_4.gz_1, it_4.hz_1, it_4.iz_1, it_4.jz_1, it_4.kz_1);
               } else {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
-                  tmp_6 = jsRefused(it_5.cy_1, it_5.dy_1, it_5.ey_1, it_5.fy_1, it_5.gy_1);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  tmp_6 = jsRefused(it_5.gz_1, it_5.hz_1, it_5.iz_1, it_5.jz_1, it_5.kz_1);
                 } else {
                   if ($p instanceof SeamException) {
                     var refused_6 = $p;
                     // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                     var it_6 = new JsRefusal(refused_6.ij_1.t1_1, 'SeamRejection', null, null, refused_6.message);
-                    tmp_6 = jsRefused(it_6.cy_1, it_6.dy_1, it_6.ey_1, it_6.fy_1, it_6.gy_1);
+                    tmp_6 = jsRefused(it_6.gz_1, it_6.hz_1, it_6.iz_1, it_6.jz_1, it_6.kz_1);
                   } else {
                     if ($p instanceof DeliveryException) {
                       var refused_7 = $p;
                       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                       var it_7 = new JsRefusal(refused_7.jl_1.t1_1, 'DeliveryRejection', null, null, refused_7.message);
-                      tmp_6 = jsRefused(it_7.cy_1, it_7.dy_1, it_7.ey_1, it_7.fy_1, it_7.gy_1);
+                      tmp_6 = jsRefused(it_7.gz_1, it_7.hz_1, it_7.iz_1, it_7.jz_1, it_7.kz_1);
                     } else {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
-                        tmp_6 = jsRefused(it_8.cy_1, it_8.dy_1, it_8.ey_1, it_8.fy_1, it_8.gy_1);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        tmp_6 = jsRefused(it_8.gz_1, it_8.hz_1, it_8.iz_1, it_8.jz_1, it_8.kz_1);
                       } else {
                         if ($p instanceof ChannelException) {
                           var refused_9 = $p;
                           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                           var it_9 = new JsRefusal(refused_9.ok_1.t1_1, 'ChannelRejection', refused_9.pk_1, null, refused_9.message);
-                          tmp_6 = jsRefused(it_9.cy_1, it_9.dy_1, it_9.ey_1, it_9.fy_1, it_9.gy_1);
+                          tmp_6 = jsRefused(it_9.gz_1, it_9.hz_1, it_9.iz_1, it_9.jz_1, it_9.kz_1);
                         } else {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
-                            tmp_6 = jsRefused(it_10.cy_1, it_10.dy_1, it_10.ey_1, it_10.fy_1, it_10.gy_1);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
+                            tmp_6 = jsRefused(it_10.gz_1, it_10.hz_1, it_10.iz_1, it_10.jz_1, it_10.kz_1);
                           } else {
                             if ($p instanceof WireException) {
                               var refused_11 = $p;
                               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                               var it_11 = new JsRefusal(refused_11.kh_1.t1_1, 'WireRejection', null, null, refused_11.message);
-                              tmp_6 = jsRefused(it_11.cy_1, it_11.dy_1, it_11.ey_1, it_11.fy_1, it_11.gy_1);
+                              tmp_6 = jsRefused(it_11.gz_1, it_11.hz_1, it_11.iz_1, it_11.jz_1, it_11.kz_1);
                             } else {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
-                                tmp_6 = jsRefused(it_12.cy_1, it_12.dy_1, it_12.ey_1, it_12.fy_1, it_12.gy_1);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                tmp_6 = jsRefused(it_12.gz_1, it_12.hz_1, it_12.iz_1, it_12.jz_1, it_12.kz_1);
                               } else {
                                 throw $p;
                               }
@@ -7350,7 +8060,7 @@ function buildPaymentRequest(envelope, orderIdHex, payeeToken, invoice, feeRecip
 }
 function buildReceipt(envelope, orderIdHex, payeeToken, reference, proof, feeRecipient, mediumToken, terms) {
   feeRecipient = feeRecipient === VOID ? null : feeRecipient;
-  mediumToken = mediumToken === VOID ? ensureNotNull(PaymentMedium_LIGHTNING_getInstance().lz_1) : mediumToken;
+  mediumToken = mediumToken === VOID ? ensureNotNull(PaymentMedium_LIGHTNING_getInstance().q10_1) : mediumToken;
   terms = terms === VOID ? null : terms;
   // Inline function 'dev.eryalabs.nenya.js.jsBuild' call
   // Inline function 'dev.eryalabs.nenya.js.jsGuarded' call
@@ -7361,15 +8071,15 @@ function buildReceipt(envelope, orderIdHex, payeeToken, reference, proof, feeRec
     var tmp_1 = asRumorEnvelope(envelope);
     var tmp_2 = Companion_instance_25.hj(orderIdHex);
     var tmp_3 = crossedPayee(payeeToken);
-    var tmp_4 = Companion_instance_33.wz(mediumToken);
-    tmp = asJsBuildResult_0(tmp_0.i10(tmp_1, tmp_2, tmp_3, reference, proof, feeRecipient, tmp_4, terms == null ? null : asOrderTerms(terms)));
+    var tmp_4 = Companion_instance_33.b11(mediumToken);
+    tmp = asJsBuildResult_0(tmp_0.n11(tmp_1, tmp_2, tmp_3, reference, proof, feeRecipient, tmp_4, terms == null ? null : asOrderTerms(terms)));
   } catch ($p) {
     var tmp_5;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
-      tmp_5 = jsRefused(it.cy_1, it.dy_1, it.ey_1, it.fy_1, it.gy_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
+      tmp_5 = jsRefused(it.gz_1, it.hz_1, it.iz_1, it.jz_1, it.kz_1);
     } else {
       if ($p instanceof ListingException) {
         var refused_0 = $p;
@@ -7377,80 +8087,80 @@ function buildReceipt(envelope, orderIdHex, payeeToken, reference, proof, feeRec
         var tmp_6 = refused_0.cause;
         var tmp0_safe_receiver = tmp_6 instanceof TagException ? tmp_6 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
-        tmp_5 = jsRefused(it_0.cy_1, it_0.dy_1, it_0.ey_1, it_0.fy_1, it_0.gy_1);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        tmp_5 = jsRefused(it_0.gz_1, it_0.hz_1, it_0.iz_1, it_0.jz_1, it_0.kz_1);
       } else {
         if ($p instanceof BidException) {
           var refused_1 = $p;
           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
           var it_1 = new JsRefusal(refused_1.ze_1.t1_1, 'BidRejection', refused_1.af_1, null, refused_1.message);
-          tmp_5 = jsRefused(it_1.cy_1, it_1.dy_1, it_1.ey_1, it_1.fy_1, it_1.gy_1);
+          tmp_5 = jsRefused(it_1.gz_1, it_1.hz_1, it_1.iz_1, it_1.jz_1, it_1.kz_1);
         } else {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
-            tmp_5 = jsRefused(it_2.cy_1, it_2.dy_1, it_2.ey_1, it_2.fy_1, it_2.gy_1);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            tmp_5 = jsRefused(it_2.gz_1, it_2.hz_1, it_2.iz_1, it_2.jz_1, it_2.kz_1);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
-              tmp_5 = jsRefused(it_3.cy_1, it_3.dy_1, it_3.ey_1, it_3.fy_1, it_3.gy_1);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              tmp_5 = jsRefused(it_3.gz_1, it_3.hz_1, it_3.iz_1, it_3.jz_1, it_3.kz_1);
             } else {
               if ($p instanceof TagException) {
                 var refused_4 = $p;
                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                 var it_4 = new JsRefusal(refused_4.bf_1.t1_1, 'TagRejection', null, refused_4.bf_1.t1_1, refused_4.message);
-                tmp_5 = jsRefused(it_4.cy_1, it_4.dy_1, it_4.ey_1, it_4.fy_1, it_4.gy_1);
+                tmp_5 = jsRefused(it_4.gz_1, it_4.hz_1, it_4.iz_1, it_4.jz_1, it_4.kz_1);
               } else {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
-                  tmp_5 = jsRefused(it_5.cy_1, it_5.dy_1, it_5.ey_1, it_5.fy_1, it_5.gy_1);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  tmp_5 = jsRefused(it_5.gz_1, it_5.hz_1, it_5.iz_1, it_5.jz_1, it_5.kz_1);
                 } else {
                   if ($p instanceof SeamException) {
                     var refused_6 = $p;
                     // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                     var it_6 = new JsRefusal(refused_6.ij_1.t1_1, 'SeamRejection', null, null, refused_6.message);
-                    tmp_5 = jsRefused(it_6.cy_1, it_6.dy_1, it_6.ey_1, it_6.fy_1, it_6.gy_1);
+                    tmp_5 = jsRefused(it_6.gz_1, it_6.hz_1, it_6.iz_1, it_6.jz_1, it_6.kz_1);
                   } else {
                     if ($p instanceof DeliveryException) {
                       var refused_7 = $p;
                       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                       var it_7 = new JsRefusal(refused_7.jl_1.t1_1, 'DeliveryRejection', null, null, refused_7.message);
-                      tmp_5 = jsRefused(it_7.cy_1, it_7.dy_1, it_7.ey_1, it_7.fy_1, it_7.gy_1);
+                      tmp_5 = jsRefused(it_7.gz_1, it_7.hz_1, it_7.iz_1, it_7.jz_1, it_7.kz_1);
                     } else {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
-                        tmp_5 = jsRefused(it_8.cy_1, it_8.dy_1, it_8.ey_1, it_8.fy_1, it_8.gy_1);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        tmp_5 = jsRefused(it_8.gz_1, it_8.hz_1, it_8.iz_1, it_8.jz_1, it_8.kz_1);
                       } else {
                         if ($p instanceof ChannelException) {
                           var refused_9 = $p;
                           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                           var it_9 = new JsRefusal(refused_9.ok_1.t1_1, 'ChannelRejection', refused_9.pk_1, null, refused_9.message);
-                          tmp_5 = jsRefused(it_9.cy_1, it_9.dy_1, it_9.ey_1, it_9.fy_1, it_9.gy_1);
+                          tmp_5 = jsRefused(it_9.gz_1, it_9.hz_1, it_9.iz_1, it_9.jz_1, it_9.kz_1);
                         } else {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
-                            tmp_5 = jsRefused(it_10.cy_1, it_10.dy_1, it_10.ey_1, it_10.fy_1, it_10.gy_1);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
+                            tmp_5 = jsRefused(it_10.gz_1, it_10.hz_1, it_10.iz_1, it_10.jz_1, it_10.kz_1);
                           } else {
                             if ($p instanceof WireException) {
                               var refused_11 = $p;
                               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                               var it_11 = new JsRefusal(refused_11.kh_1.t1_1, 'WireRejection', null, null, refused_11.message);
-                              tmp_5 = jsRefused(it_11.cy_1, it_11.dy_1, it_11.ey_1, it_11.fy_1, it_11.gy_1);
+                              tmp_5 = jsRefused(it_11.gz_1, it_11.hz_1, it_11.iz_1, it_11.jz_1, it_11.kz_1);
                             } else {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
-                                tmp_5 = jsRefused(it_12.cy_1, it_12.dy_1, it_12.ey_1, it_12.fy_1, it_12.gy_1);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                tmp_5 = jsRefused(it_12.gz_1, it_12.hz_1, it_12.iz_1, it_12.jz_1, it_12.kz_1);
                               } else {
                                 throw $p;
                               }
@@ -7473,29 +8183,50 @@ function buildReceipt(envelope, orderIdHex, payeeToken, reference, proof, feeRec
 }
 function asJsBuildResult(_this__u8e3s4) {
   var tmp;
-  if (_this__u8e3s4 instanceof Built_0) {
-    tmp = jsBuilt(_this__u8e3s4.yo_1);
+  if (_this__u8e3s4 instanceof Built_1) {
+    tmp = jsBuilt(_this__u8e3s4.dn_1);
   } else {
-    if (_this__u8e3s4 instanceof Refused_1) {
-      tmp = jsRefused(_this__u8e3s4.zo_1.t1_1, 'ChannelRejection', _this__u8e3s4.ap_1, null, _this__u8e3s4.bp_1);
+    if (_this__u8e3s4 instanceof Refused_2) {
+      tmp = jsRefused(_this__u8e3s4.om_1.t1_1, 'ChannelRejection', _this__u8e3s4.pm_1, null, _this__u8e3s4.qm_1);
     } else {
       noWhenBranchMatchedException();
     }
   }
   return tmp;
 }
+function asListingOrderResult(_this__u8e3s4) {
+  var tmp;
+  if (_this__u8e3s4 instanceof Built_0) {
+    tmp = jsBuilt(_this__u8e3s4.lm_1);
+  } else {
+    if (equals(_this__u8e3s4, ForAnotherListing_instance)) {
+      tmp = jsRefused('FOR_ANOTHER_LISTING', 'ListingOrderBuild', 'item', null, "\xA77.5's `item` names the listing a proposal derives from, and this proposal's names a different listing from the one handed in, so that listing's \xA75.6 deadline says nothing about it");
+    } else {
+      if (_this__u8e3s4 instanceof DeadlineRefused) {
+        tmp = jsRefused(_this__u8e3s4.mm_1.t1_1, 'DeadlineRefusal', null, null, "\xA75.6: no order may be proposed or advanced against an expired listing, and the listing's `expiration` either has passed or could not be judged against the injected clock");
+      } else {
+        if (_this__u8e3s4 instanceof Refused_1) {
+          tmp = asJsBuildResult(_this__u8e3s4.nm_1);
+        } else {
+          noWhenBranchMatchedException();
+        }
+      }
+    }
+  }
+  return tmp;
+}
 function asJsBuildResult_0(_this__u8e3s4) {
   var tmp;
-  if (_this__u8e3s4 instanceof Built_2) {
-    tmp = jsBuilt(_this__u8e3s4.n10_1);
+  if (_this__u8e3s4 instanceof Built_3) {
+    tmp = jsBuilt(_this__u8e3s4.s11_1);
   } else {
-    if (_this__u8e3s4 instanceof Refused_6) {
+    if (_this__u8e3s4 instanceof Refused_7) {
       var tmp_0;
-      if (!(_this__u8e3s4.j10_1 == null)) {
-        tmp_0 = jsRefused(ensureNotNull(_this__u8e3s4.j10_1).t1_1, 'SettlementRejection', _this__u8e3s4.l10_1, null, _this__u8e3s4.m10_1);
+      if (!(_this__u8e3s4.o11_1 == null)) {
+        tmp_0 = jsRefused(ensureNotNull(_this__u8e3s4.o11_1).t1_1, 'SettlementRejection', _this__u8e3s4.q11_1, null, _this__u8e3s4.r11_1);
       } else {
-        var tmp1_safe_receiver = _this__u8e3s4.k10_1;
-        tmp_0 = jsRefused(tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, 'ChannelRejection', _this__u8e3s4.l10_1, null, _this__u8e3s4.m10_1);
+        var tmp1_safe_receiver = _this__u8e3s4.p11_1;
+        tmp_0 = jsRefused(tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, 'ChannelRejection', _this__u8e3s4.q11_1, null, _this__u8e3s4.r11_1);
       }
       tmp = tmp_0;
     } else {
@@ -7523,7 +8254,7 @@ function asRumorEnvelope(_this__u8e3s4) {
 }
 function asOrderTerms(_this__u8e3s4) {
   var tmp = Companion_instance_20;
-  var tmp_0 = Companion_getInstance_16().en(crossedAmount('price', _this__u8e3s4.priceMsat));
+  var tmp_0 = Companion_getInstance_16().go(crossedAmount('price', _this__u8e3s4.priceMsat));
   var tmp0_safe_receiver = _this__u8e3s4.feeBasisPoints;
   var tmp_1;
   if (tmp0_safe_receiver == null) {
@@ -7535,7 +8266,7 @@ function asOrderTerms(_this__u8e3s4) {
     tmp_1 = Companion_getInstance_15().ei(tmp0_safe_receiver);
   }
   var tmp1_elvis_lhs = tmp_1;
-  return tmp.kn(tmp_0, tmp1_elvis_lhs == null ? Absent_instance : tmp1_elvis_lhs, crossedSecondsOrNull('expiration', _this__u8e3s4.expirationSeconds), crossedSecondsOrNull('deliver_by', _this__u8e3s4.deliverBySeconds));
+  return tmp.mo(tmp_0, tmp1_elvis_lhs == null ? Absent_instance : tmp1_elvis_lhs, crossedSecondsOrNull('expiration', _this__u8e3s4.expirationSeconds), crossedSecondsOrNull('deliver_by', _this__u8e3s4.deliverBySeconds));
 }
 function asDeliverableCommitment(_this__u8e3s4) {
   return new DeliverableCommitment(Companion_instance_9.hj(_this__u8e3s4.xHex), Companion_instance_9.hj(_this__u8e3s4.oxHex), _this__u8e3s4.mimeType, crossedNumber('size', _this__u8e3s4.sizeBytes));
@@ -7565,7 +8296,7 @@ function crossedPayee(token) {
     while (tmp0_iterator.h()) {
       var element = tmp0_iterator.i();
       // Inline function 'dev.eryalabs.nenya.js.crossedPayee.<anonymous>' call
-      if (element.s10_1 === token) {
+      if (element.x11_1 === token) {
         tmp$ret$1 = element;
         break $l$block;
       }
@@ -7575,7 +8306,7 @@ function crossedPayee(token) {
   var tmp0_elvis_lhs = tmp$ret$1;
   var tmp;
   if (tmp0_elvis_lhs == null) {
-    throw new JsCrossing('UNKNOWN_PAYEE_TOKEN', 'payee', '\xA78.6 prints exactly two `payee` tokens, `' + Payee_PROVIDER_getInstance().s10_1 + '` and `' + Payee_FEE_getInstance().s10_1 + '`; ' + "the token crossed is neither, and this boundary does not choose one on the caller's behalf");
+    throw new JsCrossing('UNKNOWN_PAYEE_TOKEN', 'payee', '\xA78.6 prints exactly two `payee` tokens, `' + Payee_PROVIDER_getInstance().x11_1 + '` and `' + Payee_FEE_getInstance().x11_1 + '`; ' + "the token crossed is neither, and this boundary does not choose one on the caller's behalf");
   } else {
     tmp = tmp0_elvis_lhs;
   }
@@ -7588,13 +8319,13 @@ function seal(rumor, recipientPubkey, sender, environment, recipientRelayHint) {
   var tmp;
   try {
     // Inline function 'dev.eryalabs.nenya.js.seal.<anonymous>' call
-    tmp = new JsSealResult(GiftWrap_getInstance().pw(rumor.ex_1, recipientPubkey, asSigner(sender), asEphemeralSigners(environment), asClock(environment), asRandomness(environment), asSecp(environment), recipientRelayHint), null);
+    tmp = new JsSealResult(GiftWrap_getInstance().uw(rumor.iy_1, recipientPubkey, asSigner(sender), asEphemeralSigners(environment), asClock(environment), asRandomness(environment), asSecp(environment), recipientRelayHint), null);
   } catch ($p) {
     var tmp_0;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.seal.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_0 = new JsSealResult(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -7603,7 +8334,7 @@ function seal(rumor, recipientPubkey, sender, environment, recipientRelayHint) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_0 = new JsSealResult(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -7615,13 +8346,13 @@ function seal(rumor, recipientPubkey, sender, environment, recipientRelayHint) {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.seal.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_0 = new JsSealResult(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.seal.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_0 = new JsSealResult(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -7633,7 +8364,7 @@ function seal(rumor, recipientPubkey, sender, environment, recipientRelayHint) {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.seal.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_0 = new JsSealResult(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -7651,7 +8382,7 @@ function seal(rumor, recipientPubkey, sender, environment, recipientRelayHint) {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.seal.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_0 = new JsSealResult(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -7663,7 +8394,7 @@ function seal(rumor, recipientPubkey, sender, environment, recipientRelayHint) {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.seal.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_0 = new JsSealResult(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -7675,7 +8406,7 @@ function seal(rumor, recipientPubkey, sender, environment, recipientRelayHint) {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.seal.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_0 = new JsSealResult(null, it_12);
                               } else {
                                 throw $p;
@@ -7703,13 +8434,13 @@ function open(wrapJson, me, environment) {
   var tmp;
   try {
     // Inline function 'dev.eryalabs.nenya.js.open.<anonymous>' call
-    tmp = new JsOpenResult(GiftWrap_getInstance().ax(wrapJson, asSigner(me), asSecp(environment)), null);
+    tmp = new JsOpenResult(GiftWrap_getInstance().fx(wrapJson, asSigner(me), asSecp(environment)), null);
   } catch ($p) {
     var tmp_0;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.open.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_0 = new JsOpenResult(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -7718,7 +8449,7 @@ function open(wrapJson, me, environment) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_0 = new JsOpenResult(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -7730,13 +8461,13 @@ function open(wrapJson, me, environment) {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.open.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_0 = new JsOpenResult(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.open.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_0 = new JsOpenResult(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -7748,7 +8479,7 @@ function open(wrapJson, me, environment) {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.open.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_0 = new JsOpenResult(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -7766,7 +8497,7 @@ function open(wrapJson, me, environment) {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.open.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_0 = new JsOpenResult(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -7778,7 +8509,7 @@ function open(wrapJson, me, environment) {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.open.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_0 = new JsOpenResult(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -7790,7 +8521,7 @@ function open(wrapJson, me, environment) {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.open.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_0 = new JsOpenResult(null, it_12);
                               } else {
                                 throw $p;
@@ -7813,32 +8544,32 @@ function open(wrapJson, me, environment) {
   return tmp;
 }
 function JsOutgoingWrap(wrap) {
-  this.t10_1 = wrap;
+  this.y11_1 = wrap;
 }
-protoOf(JsOutgoingWrap).gw = function () {
-  return this.t10_1.gw();
+protoOf(JsOutgoingWrap).lw = function () {
+  return this.y11_1.lw();
 };
-protoOf(JsOutgoingWrap).u10 = function () {
-  return this.t10_1.wd().qo();
+protoOf(JsOutgoingWrap).z11 = function () {
+  return this.y11_1.wd().np();
 };
-protoOf(JsOutgoingWrap).hw = function () {
-  return this.t10_1.hw();
+protoOf(JsOutgoingWrap).mw = function () {
+  return this.y11_1.mw();
 };
 protoOf(JsOutgoingWrap).toString = function () {
   return 'JsOutgoingWrap(redacted)';
 };
 function JsSealResult(sealed, refusal) {
-  this.v10_1 = sealed;
-  this.w10_1 = refusal;
+  this.a12_1 = sealed;
+  this.b12_1 = refusal;
 }
 protoOf(JsSealResult).ke = function () {
-  return !(this.v10_1 == null) ? 'sealed' : 'refused';
+  return !(this.a12_1 == null) ? 'sealed' : 'refused';
 };
-protoOf(JsSealResult).bx = function () {
-  return !(this.v10_1 == null);
+protoOf(JsSealResult).fy = function () {
+  return !(this.a12_1 == null);
 };
-protoOf(JsSealResult).lw = function () {
-  var tmp0_safe_receiver = this.v10_1;
+protoOf(JsSealResult).qw = function () {
+  var tmp0_safe_receiver = this.a12_1;
   var tmp;
   if (tmp0_safe_receiver == null) {
     tmp = null;
@@ -7846,12 +8577,12 @@ protoOf(JsSealResult).lw = function () {
     // Inline function 'kotlin.let' call
     // Inline function 'kotlin.contracts.contract' call
     // Inline function 'dev.eryalabs.nenya.js.JsSealResult.<get-toRecipient>.<anonymous>' call
-    tmp = new JsOutgoingWrap(tmp0_safe_receiver.lw());
+    tmp = new JsOutgoingWrap(tmp0_safe_receiver.qw());
   }
   return tmp;
 };
-protoOf(JsSealResult).mw = function () {
-  var tmp0_safe_receiver = this.v10_1;
+protoOf(JsSealResult).rw = function () {
+  var tmp0_safe_receiver = this.a12_1;
   var tmp;
   if (tmp0_safe_receiver == null) {
     tmp = null;
@@ -7859,12 +8590,12 @@ protoOf(JsSealResult).mw = function () {
     // Inline function 'kotlin.let' call
     // Inline function 'kotlin.contracts.contract' call
     // Inline function 'dev.eryalabs.nenya.js.JsSealResult.<get-toSelf>.<anonymous>' call
-    tmp = new JsOutgoingWrap(tmp0_safe_receiver.mw());
+    tmp = new JsOutgoingWrap(tmp0_safe_receiver.rw());
   }
   return tmp;
 };
 protoOf(JsSealResult).vj = function () {
-  var tmp0_safe_receiver = this.v10_1;
+  var tmp0_safe_receiver = this.a12_1;
   var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.vj();
   var tmp;
   if (tmp1_safe_receiver == null) {
@@ -7900,56 +8631,56 @@ protoOf(JsSealResult).vj = function () {
   }
   return tmp_1;
 };
-protoOf(JsSealResult).lx = function () {
-  var tmp0_safe_receiver = this.w10_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cy_1;
+protoOf(JsSealResult).py = function () {
+  var tmp0_safe_receiver = this.b12_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gz_1;
 };
-protoOf(JsSealResult).mx = function () {
-  var tmp0_safe_receiver = this.w10_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dy_1;
+protoOf(JsSealResult).qy = function () {
+  var tmp0_safe_receiver = this.b12_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hz_1;
 };
-protoOf(JsSealResult).nx = function () {
-  var tmp0_safe_receiver = this.w10_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ey_1;
+protoOf(JsSealResult).ry = function () {
+  var tmp0_safe_receiver = this.b12_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.iz_1;
 };
-protoOf(JsSealResult).dx = function () {
-  var tmp0_safe_receiver = this.w10_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gy_1;
+protoOf(JsSealResult).hy = function () {
+  var tmp0_safe_receiver = this.b12_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.kz_1;
 };
 protoOf(JsSealResult).toString = function () {
   return this.ok ? 'JsSealResult(sealed)' : 'JsSealResult(refused: ' + this.reason + ')';
 };
 function JsRumor(rumor) {
-  this.x10_1 = rumor;
+  this.c12_1 = rumor;
 }
-protoOf(JsRumor).y10 = function () {
-  return this.x10_1;
+protoOf(JsRumor).d12 = function () {
+  return this.c12_1;
 };
 protoOf(JsRumor).qj = function () {
-  return this.x10_1.qj();
+  return this.c12_1.qj();
 };
-protoOf(JsRumor).u10 = function () {
-  return this.x10_1.wd().qo();
+protoOf(JsRumor).z11 = function () {
+  return this.c12_1.wd().np();
 };
-protoOf(JsRumor).jx = function () {
-  return JsDecimal_instance.kx(this.x10_1.tj());
+protoOf(JsRumor).ny = function () {
+  return JsDecimal_instance.oy(this.c12_1.tj());
 };
 protoOf(JsRumor).uj = function () {
-  return this.x10_1.uj();
+  return this.c12_1.uj();
 };
 protoOf(JsRumor).ke = function () {
-  return this.x10_1.ke().t1_1;
+  return this.c12_1.ke().t1_1;
 };
-protoOf(JsRumor).z10 = function () {
-  return this.x10_1.ke().hi_1;
+protoOf(JsRumor).e12 = function () {
+  return this.c12_1.ke().hi_1;
 };
 protoOf(JsRumor).sj = function () {
-  return this.x10_1.sj().t1_1;
+  return this.c12_1.sj().t1_1;
 };
 protoOf(JsRumor).vj = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.x10_1.vj();
+  var this_0 = this.c12_1.vj();
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -7962,12 +8693,12 @@ protoOf(JsRumor).vj = function () {
   return copyToArray(destination);
 };
 protoOf(JsRumor).te = function () {
-  return this.x10_1.te();
+  return this.c12_1.te();
 };
 protoOf(JsRumor).zj = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.x10_1.zj();
+  var this_0 = this.c12_1.zj();
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -7992,38 +8723,38 @@ protoOf(JsRumor).zj = function () {
   return copyToArray(destination);
 };
 protoOf(JsRumor).ve = function () {
-  return asTagArray(this.x10_1.ve());
+  return asTagArray(this.c12_1.ve());
 };
-protoOf(JsRumor).a11 = function () {
-  var tmp = this.x10_1;
+protoOf(JsRumor).f12 = function () {
+  var tmp = this.c12_1;
   var tmp0_safe_receiver = isInterface(tmp, Bound) ? tmp : null;
   var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.kk();
   return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1;
 };
-protoOf(JsRumor).b11 = function () {
-  var tmp = this.x10_1;
+protoOf(JsRumor).g12 = function () {
+  var tmp = this.c12_1;
   var tmp0_safe_receiver = isInterface(tmp, Bound) ? tmp : null;
   var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.lk();
-  return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.qo();
+  return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.np();
 };
 protoOf(JsRumor).hd = function () {
-  return new JsWireEvent(this.x10_1.ak());
+  return new JsWireEvent(this.c12_1.ak());
 };
 protoOf(JsRumor).toString = function () {
   return 'JsRumor(kind=' + this.kind + ', attribution=' + this.attribution + ')';
 };
 function JsOpenResult(opened, refusal) {
-  this.c11_1 = opened;
-  this.d11_1 = refusal;
+  this.h12_1 = opened;
+  this.i12_1 = refusal;
 }
 protoOf(JsOpenResult).ke = function () {
-  return !(this.c11_1 == null) ? 'opened' : 'refused';
+  return !(this.h12_1 == null) ? 'opened' : 'refused';
 };
-protoOf(JsOpenResult).bx = function () {
-  return !(this.c11_1 == null);
+protoOf(JsOpenResult).fy = function () {
+  return !(this.h12_1 == null);
 };
-protoOf(JsOpenResult).uv = function () {
-  var tmp0_safe_receiver = this.c11_1;
+protoOf(JsOpenResult).zv = function () {
+  var tmp0_safe_receiver = this.h12_1;
   var tmp;
   if (tmp0_safe_receiver == null) {
     tmp = null;
@@ -8031,27 +8762,27 @@ protoOf(JsOpenResult).uv = function () {
     // Inline function 'kotlin.let' call
     // Inline function 'kotlin.contracts.contract' call
     // Inline function 'dev.eryalabs.nenya.js.JsOpenResult.<get-rumor>.<anonymous>' call
-    tmp = new JsRumor(tmp0_safe_receiver.uv());
+    tmp = new JsRumor(tmp0_safe_receiver.zv());
   }
   return tmp;
 };
-protoOf(JsOpenResult).vv = function () {
-  var tmp0_safe_receiver = this.c11_1;
-  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.vv();
+protoOf(JsOpenResult).aw = function () {
+  var tmp0_safe_receiver = this.h12_1;
+  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.aw();
   return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1;
 };
-protoOf(JsOpenResult).wv = function () {
-  var tmp0_safe_receiver = this.c11_1;
-  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.wv();
+protoOf(JsOpenResult).bw = function () {
+  var tmp0_safe_receiver = this.h12_1;
+  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bw();
   return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1;
 };
-protoOf(JsOpenResult).e11 = function () {
-  var tmp0_safe_receiver = this.c11_1;
-  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.xv();
-  return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.qo();
+protoOf(JsOpenResult).j12 = function () {
+  var tmp0_safe_receiver = this.h12_1;
+  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cw();
+  return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.np();
 };
 protoOf(JsOpenResult).vj = function () {
-  var tmp0_safe_receiver = this.c11_1;
+  var tmp0_safe_receiver = this.h12_1;
   var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.vj();
   var tmp;
   if (tmp1_safe_receiver == null) {
@@ -8087,27 +8818,27 @@ protoOf(JsOpenResult).vj = function () {
   }
   return tmp_1;
 };
-protoOf(JsOpenResult).lx = function () {
-  var tmp0_safe_receiver = this.d11_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cy_1;
+protoOf(JsOpenResult).py = function () {
+  var tmp0_safe_receiver = this.i12_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gz_1;
 };
-protoOf(JsOpenResult).mx = function () {
-  var tmp0_safe_receiver = this.d11_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dy_1;
+protoOf(JsOpenResult).qy = function () {
+  var tmp0_safe_receiver = this.i12_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hz_1;
 };
-protoOf(JsOpenResult).nx = function () {
-  var tmp0_safe_receiver = this.d11_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ey_1;
+protoOf(JsOpenResult).ry = function () {
+  var tmp0_safe_receiver = this.i12_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.iz_1;
 };
-protoOf(JsOpenResult).dx = function () {
-  var tmp0_safe_receiver = this.d11_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gy_1;
+protoOf(JsOpenResult).hy = function () {
+  var tmp0_safe_receiver = this.i12_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.kz_1;
 };
 protoOf(JsOpenResult).toString = function () {
   return this.ok ? 'JsOpenResult(opened)' : 'JsOpenResult(refused: ' + this.reason + ')';
 };
 function asBoundRumor(_this__u8e3s4, what) {
-  var tmp = _this__u8e3s4.x10_1;
+  var tmp = _this__u8e3s4.c12_1;
   var tmp0_elvis_lhs = isInterface(tmp, Bound) ? tmp : null;
   var tmp_0;
   if (tmp0_elvis_lhs == null) {
@@ -8120,9 +8851,9 @@ function asBoundRumor(_this__u8e3s4, what) {
 function decodeListing(eventJson) {
   var tmp;
   try {
-    var read = EventJson_instance.f11(eventJson);
-    var checked = Companion_instance_51.g11(read.ju_1, read.iu_1);
-    tmp = new JsListingResult('listing', true, new JsListing(Companion_instance_13.h11(checked)), null, null, null, null, null);
+    var read = EventJson_instance.k12(eventJson);
+    var checked = Companion_instance_51.l12(read.ou_1, read.nu_1);
+    tmp = new JsListingResult('listing', true, new JsListing(Companion_instance_13.m12(checked)), null, null, null, null, null);
   } catch ($p) {
     var tmp_0;
     if ($p instanceof ListingException) {
@@ -8130,7 +8861,7 @@ function decodeListing(eventJson) {
       var tmp_1 = refused.cause;
       var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
       var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-      tmp_0 = new JsListingResult('refused', false, null, refused.hz_1.t1_1, 'ListingRejection', refused.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused.message);
+      tmp_0 = new JsListingResult('refused', false, null, refused.l10_1.t1_1, 'ListingRejection', refused.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused.message);
     } else {
       if ($p instanceof WireException) {
         var refused_0 = $p;
@@ -8138,7 +8869,7 @@ function decodeListing(eventJson) {
       } else {
         if ($p instanceof JsonException) {
           var refused_1 = $p;
-          tmp_0 = new JsListingResult('refused', false, null, refused_1.hu_1.t1_1, 'JsonRejection', null, null, refused_1.message);
+          tmp_0 = new JsListingResult('refused', false, null, refused_1.mu_1.t1_1, 'JsonRejection', null, null, refused_1.message);
         } else {
           if ($p instanceof TagException) {
             var refused_2 = $p;
@@ -8156,8 +8887,8 @@ function decodeListing(eventJson) {
 function decodeBid(eventJson) {
   var tmp;
   try {
-    var read = EventJson_instance.f11(eventJson);
-    var checked = Companion_instance_51.g11(read.ju_1, read.iu_1);
+    var read = EventJson_instance.k12(eventJson);
+    var checked = Companion_instance_51.l12(read.ou_1, read.nu_1);
     tmp = new JsBidResult('bid', true, new JsBid(Companion_instance.xd(checked)), null, null, null, null, null);
   } catch ($p) {
     var tmp_0;
@@ -8174,7 +8905,7 @@ function decodeBid(eventJson) {
       } else {
         if ($p instanceof JsonException) {
           var refused_1 = $p;
-          tmp_0 = new JsBidResult('refused', false, null, refused_1.hu_1.t1_1, 'JsonRejection', null, null, refused_1.message);
+          tmp_0 = new JsBidResult('refused', false, null, refused_1.mu_1.t1_1, 'JsonRejection', null, null, refused_1.message);
         } else {
           if ($p instanceof TagException) {
             var refused_2 = $p;
@@ -8222,8 +8953,8 @@ function buildBid(bid) {
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
-      tmp_1 = jsRefused(it.cy_1, it.dy_1, it.ey_1, it.fy_1, it.gy_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
+      tmp_1 = jsRefused(it.gz_1, it.hz_1, it.iz_1, it.jz_1, it.kz_1);
     } else {
       if ($p instanceof ListingException) {
         var refused_0 = $p;
@@ -8231,80 +8962,80 @@ function buildBid(bid) {
         var tmp_2 = refused_0.cause;
         var tmp0_safe_receiver_0 = tmp_2 instanceof TagException ? tmp_2 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver_0 == null ? null : tmp0_safe_receiver_0.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
-        tmp_1 = jsRefused(it_0.cy_1, it_0.dy_1, it_0.ey_1, it_0.fy_1, it_0.gy_1);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        tmp_1 = jsRefused(it_0.gz_1, it_0.hz_1, it_0.iz_1, it_0.jz_1, it_0.kz_1);
       } else {
         if ($p instanceof BidException) {
           var refused_1 = $p;
           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
           var it_1 = new JsRefusal(refused_1.ze_1.t1_1, 'BidRejection', refused_1.af_1, null, refused_1.message);
-          tmp_1 = jsRefused(it_1.cy_1, it_1.dy_1, it_1.ey_1, it_1.fy_1, it_1.gy_1);
+          tmp_1 = jsRefused(it_1.gz_1, it_1.hz_1, it_1.iz_1, it_1.jz_1, it_1.kz_1);
         } else {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
-            tmp_1 = jsRefused(it_2.cy_1, it_2.dy_1, it_2.ey_1, it_2.fy_1, it_2.gy_1);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            tmp_1 = jsRefused(it_2.gz_1, it_2.hz_1, it_2.iz_1, it_2.jz_1, it_2.kz_1);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
-              tmp_1 = jsRefused(it_3.cy_1, it_3.dy_1, it_3.ey_1, it_3.fy_1, it_3.gy_1);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              tmp_1 = jsRefused(it_3.gz_1, it_3.hz_1, it_3.iz_1, it_3.jz_1, it_3.kz_1);
             } else {
               if ($p instanceof TagException) {
                 var refused_4 = $p;
                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                 var it_4 = new JsRefusal(refused_4.bf_1.t1_1, 'TagRejection', null, refused_4.bf_1.t1_1, refused_4.message);
-                tmp_1 = jsRefused(it_4.cy_1, it_4.dy_1, it_4.ey_1, it_4.fy_1, it_4.gy_1);
+                tmp_1 = jsRefused(it_4.gz_1, it_4.hz_1, it_4.iz_1, it_4.jz_1, it_4.kz_1);
               } else {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
-                  tmp_1 = jsRefused(it_5.cy_1, it_5.dy_1, it_5.ey_1, it_5.fy_1, it_5.gy_1);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  tmp_1 = jsRefused(it_5.gz_1, it_5.hz_1, it_5.iz_1, it_5.jz_1, it_5.kz_1);
                 } else {
                   if ($p instanceof SeamException) {
                     var refused_6 = $p;
                     // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                     var it_6 = new JsRefusal(refused_6.ij_1.t1_1, 'SeamRejection', null, null, refused_6.message);
-                    tmp_1 = jsRefused(it_6.cy_1, it_6.dy_1, it_6.ey_1, it_6.fy_1, it_6.gy_1);
+                    tmp_1 = jsRefused(it_6.gz_1, it_6.hz_1, it_6.iz_1, it_6.jz_1, it_6.kz_1);
                   } else {
                     if ($p instanceof DeliveryException) {
                       var refused_7 = $p;
                       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                       var it_7 = new JsRefusal(refused_7.jl_1.t1_1, 'DeliveryRejection', null, null, refused_7.message);
-                      tmp_1 = jsRefused(it_7.cy_1, it_7.dy_1, it_7.ey_1, it_7.fy_1, it_7.gy_1);
+                      tmp_1 = jsRefused(it_7.gz_1, it_7.hz_1, it_7.iz_1, it_7.jz_1, it_7.kz_1);
                     } else {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
-                        tmp_1 = jsRefused(it_8.cy_1, it_8.dy_1, it_8.ey_1, it_8.fy_1, it_8.gy_1);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        tmp_1 = jsRefused(it_8.gz_1, it_8.hz_1, it_8.iz_1, it_8.jz_1, it_8.kz_1);
                       } else {
                         if ($p instanceof ChannelException) {
                           var refused_9 = $p;
                           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                           var it_9 = new JsRefusal(refused_9.ok_1.t1_1, 'ChannelRejection', refused_9.pk_1, null, refused_9.message);
-                          tmp_1 = jsRefused(it_9.cy_1, it_9.dy_1, it_9.ey_1, it_9.fy_1, it_9.gy_1);
+                          tmp_1 = jsRefused(it_9.gz_1, it_9.hz_1, it_9.iz_1, it_9.jz_1, it_9.kz_1);
                         } else {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
-                            tmp_1 = jsRefused(it_10.cy_1, it_10.dy_1, it_10.ey_1, it_10.fy_1, it_10.gy_1);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
+                            tmp_1 = jsRefused(it_10.gz_1, it_10.hz_1, it_10.iz_1, it_10.jz_1, it_10.kz_1);
                           } else {
                             if ($p instanceof WireException) {
                               var refused_11 = $p;
                               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                               var it_11 = new JsRefusal(refused_11.kh_1.t1_1, 'WireRejection', null, null, refused_11.message);
-                              tmp_1 = jsRefused(it_11.cy_1, it_11.dy_1, it_11.ey_1, it_11.fy_1, it_11.gy_1);
+                              tmp_1 = jsRefused(it_11.gz_1, it_11.hz_1, it_11.iz_1, it_11.jz_1, it_11.kz_1);
                             } else {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
-                                tmp_1 = jsRefused(it_12.cy_1, it_12.dy_1, it_12.ey_1, it_12.fy_1, it_12.gy_1);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                tmp_1 = jsRefused(it_12.gz_1, it_12.hz_1, it_12.iz_1, it_12.jz_1, it_12.kz_1);
                               } else {
                                 throw $p;
                               }
@@ -8326,14 +9057,17 @@ function buildBid(bid) {
   return tmp;
 }
 function listingActivity(listing, environment) {
-  return listing.i11_1.we(asClock(environment)).t1_1;
+  return listing.n10_1.we(asClock(environment)).t1_1;
 }
 function bidActivity(bid, environment) {
-  return bid.j11_1.we(asClock(environment)).t1_1;
+  return bid.n12_1.we(asClock(environment)).t1_1;
 }
 function checkDeadlines(listing, bid, environment) {
   var tmp = Companion_instance_0;
-  return new JsDeadlineCheck(tmp.rh(listing.i11_1, bid == null ? null : bid.j11_1, asClock(environment)));
+  return new JsDeadlineCheck(tmp.rh(listing.n10_1, bid == null ? null : bid.n12_1, asClock(environment)));
+}
+function matchesBoard(listing, query) {
+  return (new BoardQuery(toSet_0(query.kinds), toSet_0(query.topics), query.mimeType, query.directedTo)).u12(listing.n10_1);
 }
 function buildListing(listing, kind) {
   // Inline function 'dev.eryalabs.nenya.js.jsBuild' call
@@ -8342,14 +9076,14 @@ function buildListing(listing, kind) {
   try {
     // Inline function 'dev.eryalabs.nenya.js.buildListing.<anonymous>' call
     var authored = asAuthoredListing(listing, kind);
-    tmp = asJsBuildResult_1(kind === 30404 ? ListingWriter_getInstance().o11(authored) : kind === 30402 ? ListingWriter_getInstance().n11(authored) : ListingWriter_getInstance().m11(authored));
+    tmp = asJsBuildResult_1(kind === 30404 ? ListingWriter_getInstance().z12(authored) : kind === 30402 ? ListingWriter_getInstance().y12(authored) : ListingWriter_getInstance().x12(authored));
   } catch ($p) {
     var tmp_0;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
-      tmp_0 = jsRefused(it.cy_1, it.dy_1, it.ey_1, it.fy_1, it.gy_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
+      tmp_0 = jsRefused(it.gz_1, it.hz_1, it.iz_1, it.jz_1, it.kz_1);
     } else {
       if ($p instanceof ListingException) {
         var refused_0 = $p;
@@ -8357,80 +9091,80 @@ function buildListing(listing, kind) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
-        tmp_0 = jsRefused(it_0.cy_1, it_0.dy_1, it_0.ey_1, it_0.fy_1, it_0.gy_1);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        tmp_0 = jsRefused(it_0.gz_1, it_0.hz_1, it_0.iz_1, it_0.jz_1, it_0.kz_1);
       } else {
         if ($p instanceof BidException) {
           var refused_1 = $p;
           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
           var it_1 = new JsRefusal(refused_1.ze_1.t1_1, 'BidRejection', refused_1.af_1, null, refused_1.message);
-          tmp_0 = jsRefused(it_1.cy_1, it_1.dy_1, it_1.ey_1, it_1.fy_1, it_1.gy_1);
+          tmp_0 = jsRefused(it_1.gz_1, it_1.hz_1, it_1.iz_1, it_1.jz_1, it_1.kz_1);
         } else {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
-            tmp_0 = jsRefused(it_2.cy_1, it_2.dy_1, it_2.ey_1, it_2.fy_1, it_2.gy_1);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            tmp_0 = jsRefused(it_2.gz_1, it_2.hz_1, it_2.iz_1, it_2.jz_1, it_2.kz_1);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
-              tmp_0 = jsRefused(it_3.cy_1, it_3.dy_1, it_3.ey_1, it_3.fy_1, it_3.gy_1);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              tmp_0 = jsRefused(it_3.gz_1, it_3.hz_1, it_3.iz_1, it_3.jz_1, it_3.kz_1);
             } else {
               if ($p instanceof TagException) {
                 var refused_4 = $p;
                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                 var it_4 = new JsRefusal(refused_4.bf_1.t1_1, 'TagRejection', null, refused_4.bf_1.t1_1, refused_4.message);
-                tmp_0 = jsRefused(it_4.cy_1, it_4.dy_1, it_4.ey_1, it_4.fy_1, it_4.gy_1);
+                tmp_0 = jsRefused(it_4.gz_1, it_4.hz_1, it_4.iz_1, it_4.jz_1, it_4.kz_1);
               } else {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
-                  tmp_0 = jsRefused(it_5.cy_1, it_5.dy_1, it_5.ey_1, it_5.fy_1, it_5.gy_1);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  tmp_0 = jsRefused(it_5.gz_1, it_5.hz_1, it_5.iz_1, it_5.jz_1, it_5.kz_1);
                 } else {
                   if ($p instanceof SeamException) {
                     var refused_6 = $p;
                     // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                     var it_6 = new JsRefusal(refused_6.ij_1.t1_1, 'SeamRejection', null, null, refused_6.message);
-                    tmp_0 = jsRefused(it_6.cy_1, it_6.dy_1, it_6.ey_1, it_6.fy_1, it_6.gy_1);
+                    tmp_0 = jsRefused(it_6.gz_1, it_6.hz_1, it_6.iz_1, it_6.jz_1, it_6.kz_1);
                   } else {
                     if ($p instanceof DeliveryException) {
                       var refused_7 = $p;
                       // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                       var it_7 = new JsRefusal(refused_7.jl_1.t1_1, 'DeliveryRejection', null, null, refused_7.message);
-                      tmp_0 = jsRefused(it_7.cy_1, it_7.dy_1, it_7.ey_1, it_7.fy_1, it_7.gy_1);
+                      tmp_0 = jsRefused(it_7.gz_1, it_7.hz_1, it_7.iz_1, it_7.jz_1, it_7.kz_1);
                     } else {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
-                        tmp_0 = jsRefused(it_8.cy_1, it_8.dy_1, it_8.ey_1, it_8.fy_1, it_8.gy_1);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        tmp_0 = jsRefused(it_8.gz_1, it_8.hz_1, it_8.iz_1, it_8.jz_1, it_8.kz_1);
                       } else {
                         if ($p instanceof ChannelException) {
                           var refused_9 = $p;
                           // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                           var it_9 = new JsRefusal(refused_9.ok_1.t1_1, 'ChannelRejection', refused_9.pk_1, null, refused_9.message);
-                          tmp_0 = jsRefused(it_9.cy_1, it_9.dy_1, it_9.ey_1, it_9.fy_1, it_9.gy_1);
+                          tmp_0 = jsRefused(it_9.gz_1, it_9.hz_1, it_9.iz_1, it_9.jz_1, it_9.kz_1);
                         } else {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
-                            tmp_0 = jsRefused(it_10.cy_1, it_10.dy_1, it_10.ey_1, it_10.fy_1, it_10.gy_1);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
+                            tmp_0 = jsRefused(it_10.gz_1, it_10.hz_1, it_10.iz_1, it_10.jz_1, it_10.kz_1);
                           } else {
                             if ($p instanceof WireException) {
                               var refused_11 = $p;
                               // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
                               var it_11 = new JsRefusal(refused_11.kh_1.t1_1, 'WireRejection', null, null, refused_11.message);
-                              tmp_0 = jsRefused(it_11.cy_1, it_11.dy_1, it_11.ey_1, it_11.fy_1, it_11.gy_1);
+                              tmp_0 = jsRefused(it_11.gz_1, it_11.hz_1, it_11.iz_1, it_11.jz_1, it_11.kz_1);
                             } else {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.jsBuild.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
-                                tmp_0 = jsRefused(it_12.cy_1, it_12.dy_1, it_12.ey_1, it_12.fy_1, it_12.gy_1);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                tmp_0 = jsRefused(it_12.gz_1, it_12.hz_1, it_12.iz_1, it_12.jz_1, it_12.kz_1);
                               } else {
                                 throw $p;
                               }
@@ -8453,12 +9187,12 @@ function buildListing(listing, kind) {
 }
 function asJsBuildResult_1(_this__u8e3s4) {
   var tmp;
-  if (_this__u8e3s4 instanceof Built_1) {
-    tmp = jsBuilt(_this__u8e3s4.t11_1);
+  if (_this__u8e3s4 instanceof Built_2) {
+    tmp = jsBuilt(_this__u8e3s4.e13_1);
   } else {
-    if (_this__u8e3s4 instanceof Refused_2) {
-      var tmp1_safe_receiver = _this__u8e3s4.r11_1;
-      tmp = jsRefused(_this__u8e3s4.p11_1.t1_1, 'ListingRejection', _this__u8e3s4.q11_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, _this__u8e3s4.s11_1);
+    if (_this__u8e3s4 instanceof Refused_3) {
+      var tmp1_safe_receiver = _this__u8e3s4.c13_1;
+      tmp = jsRefused(_this__u8e3s4.a13_1.t1_1, 'ListingRejection', _this__u8e3s4.b13_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, _this__u8e3s4.d13_1);
     } else {
       noWhenBranchMatchedException();
     }
@@ -8468,7 +9202,7 @@ function asJsBuildResult_1(_this__u8e3s4) {
 function asAuthoredBid(_this__u8e3s4) {
   var tmp = crossedSeconds('created_at', _this__u8e3s4.createdAtSeconds);
   var tmp_0 = Companion_instance_46.yc(_this__u8e3s4.listingCoordinate);
-  var tmp_1 = Companion_getInstance_16().en(crossedAmount('price', _this__u8e3s4.priceMsat));
+  var tmp_1 = Companion_getInstance_16().go(crossedAmount('price', _this__u8e3s4.priceMsat));
   var tmp0_safe_receiver = _this__u8e3s4.feeBasisPoints;
   var tmp_2;
   if (tmp0_safe_receiver == null) {
@@ -8502,7 +9236,7 @@ function asAuthoredBid(_this__u8e3s4) {
 }
 function asAuthoredListing(_this__u8e3s4, kind) {
   var tmp = crossedSeconds('created_at', _this__u8e3s4.createdAtSeconds);
-  var tmp_0 = Companion_getInstance_16().en(crossedAmount('price', _this__u8e3s4.priceMsat));
+  var tmp_0 = Companion_getInstance_16().go(crossedAmount('price', _this__u8e3s4.priceMsat));
   var tmp_1 = crossedSecondsOrNull('published_at', _this__u8e3s4.publishedAtSeconds);
   var tmp0_safe_receiver = _this__u8e3s4.statusToken;
   var tmp_2;
@@ -8512,7 +9246,7 @@ function asAuthoredListing(_this__u8e3s4, kind) {
     // Inline function 'kotlin.let' call
     // Inline function 'kotlin.contracts.contract' call
     // Inline function 'dev.eryalabs.nenya.js.asAuthoredListing.<anonymous>' call
-    tmp_2 = ListingStatusCodec_getInstance().x11(tmp0_safe_receiver, kind);
+    tmp_2 = ListingStatusCodec_getInstance().i13(tmp0_safe_receiver, kind);
   }
   var tmp_3 = tmp_2;
   var tmp_4 = toList_0(_this__u8e3s4.topics);
@@ -8587,69 +9321,69 @@ function asPubkeyRef(_this__u8e3s4) {
   return tmp;
 }
 function JsListing(listing) {
-  this.i11_1 = listing;
+  this.n10_1 = listing;
 }
-protoOf(JsListing).y11 = function () {
-  return this.i11_1;
-};
-protoOf(JsListing).u10 = function () {
-  return this.i11_1.sh_1.qo();
-};
-protoOf(JsListing).ry = function () {
-  return this.i11_1.th_1;
-};
-protoOf(JsListing).jx = function () {
-  return JsDecimal_instance.kx(this.i11_1.uh_1);
-};
-protoOf(JsListing).uj = function () {
-  return this.i11_1.vh_1;
-};
-protoOf(JsListing).ke = function () {
-  return this.i11_1.ke();
+protoOf(JsListing).j13 = function () {
+  return this.n10_1;
 };
 protoOf(JsListing).z11 = function () {
-  return this.i11_1.z11();
+  return this.n10_1.sh_1.np();
 };
-protoOf(JsListing).a12 = function () {
-  return this.i11_1.xh_1.sg();
+protoOf(JsListing).vz = function () {
+  return this.n10_1.th_1;
 };
-protoOf(JsListing).b12 = function () {
-  return this.i11_1.yh_1;
+protoOf(JsListing).ny = function () {
+  return JsDecimal_instance.oy(this.n10_1.uh_1);
 };
-protoOf(JsListing).ty = function () {
-  return JsDecimal_instance.kx(_Msat___get_millisatoshis__impl__rjbnyg(this.i11_1.zh_1));
+protoOf(JsListing).uj = function () {
+  return this.n10_1.vh_1;
 };
-protoOf(JsListing).my = function () {
-  return this.i11_1.ai_1.t1_1;
+protoOf(JsListing).ke = function () {
+  return this.n10_1.ke();
+};
+protoOf(JsListing).k13 = function () {
+  return this.n10_1.k13();
+};
+protoOf(JsListing).l13 = function () {
+  return this.n10_1.xh_1.sg();
+};
+protoOf(JsListing).m13 = function () {
+  return this.n10_1.yh_1;
+};
+protoOf(JsListing).xz = function () {
+  return JsDecimal_instance.oy(_Msat___get_millisatoshis__impl__rjbnyg(this.n10_1.zh_1));
+};
+protoOf(JsListing).qz = function () {
+  return this.n10_1.ai_1.t1_1;
 };
 protoOf(JsListing).qh = function () {
-  return this.i11_1.bi_1.t1_1;
+  return this.n10_1.bi_1.t1_1;
 };
-protoOf(JsListing).c12 = function () {
-  return this.i11_1.c12();
+protoOf(JsListing).n13 = function () {
+  return this.n10_1.n13();
 };
-protoOf(JsListing).d12 = function () {
-  return this.i11_1.d12();
+protoOf(JsListing).o13 = function () {
+  return this.n10_1.o13();
 };
-protoOf(JsListing).e12 = function () {
-  return JsDecimal_instance.px(this.i11_1.f12());
+protoOf(JsListing).p13 = function () {
+  return JsDecimal_instance.ty(this.n10_1.q13());
 };
 protoOf(JsListing).ue = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
-  var this_0 = this.i11_1.ue();
+  var this_0 = this.n10_1.ue();
   return copyToArray(this_0);
 };
-protoOf(JsListing).zy = function () {
-  return this.i11_1.zy();
+protoOf(JsListing).d10 = function () {
+  return this.n10_1.d10();
 };
-protoOf(JsListing).g12 = function () {
+protoOf(JsListing).r13 = function () {
   var tmp = 0;
-  var tmp_0 = this.i11_1.g12().j();
+  var tmp_0 = this.n10_1.r13().j();
   // Inline function 'kotlin.arrayOfNulls' call
   var tmp_1 = fillArrayVal(Array(tmp_0), null);
   while (tmp < tmp_0) {
     var tmp_2 = tmp;
-    var image = this.i11_1.g12().k(tmp_2);
+    var image = this.n10_1.r13().k(tmp_2);
     var tmp_3;
     if (image.yg_1 == null) {
       // Inline function 'kotlin.arrayOf' call
@@ -8667,23 +9401,23 @@ protoOf(JsListing).g12 = function () {
   }
   return tmp_1;
 };
-protoOf(JsListing).vy = function () {
-  return JsDecimal_instance.px(this.i11_1.ne());
+protoOf(JsListing).zz = function () {
+  return JsDecimal_instance.ty(this.n10_1.ne());
 };
 protoOf(JsListing).se = function () {
-  return this.i11_1.se();
+  return this.n10_1.se();
 };
 protoOf(JsListing).te = function () {
-  return this.i11_1.te();
+  return this.n10_1.te();
 };
-protoOf(JsListing).h12 = function () {
+protoOf(JsListing).s13 = function () {
   var tmp = 0;
-  var tmp_0 = this.i11_1.h12().j();
+  var tmp_0 = this.n10_1.s13().j();
   // Inline function 'kotlin.arrayOfNulls' call
   var tmp_1 = fillArrayVal(Array(tmp_0), null);
   while (tmp < tmp_0) {
     var tmp_2 = tmp;
-    var ref = this.i11_1.h12().k(tmp_2);
+    var ref = this.n10_1.s13().k(tmp_2);
     var tmp_3;
     if (ref.ih_1 == null) {
       // Inline function 'kotlin.arrayOf' call
@@ -8701,11 +9435,11 @@ protoOf(JsListing).h12 = function () {
   }
   return tmp_1;
 };
-protoOf(JsListing).uy = function () {
-  var fee = this.i11_1.qe();
+protoOf(JsListing).yz = function () {
+  var fee = this.n10_1.qe();
   var tmp;
   if (fee instanceof Stated) {
-    tmp = fee.i12_1;
+    tmp = fee.t13_1;
   } else {
     if (equals(fee, Absent_instance)) {
       tmp = null;
@@ -8716,73 +9450,73 @@ protoOf(JsListing).uy = function () {
   return tmp;
 };
 protoOf(JsListing).re = function () {
-  return this.i11_1.re();
+  return this.n10_1.re();
 };
-protoOf(JsListing).j12 = function () {
-  return this.i11_1.j12();
+protoOf(JsListing).u13 = function () {
+  return this.n10_1.u13();
 };
-protoOf(JsListing).wy = function () {
-  return JsDecimal_instance.px(this.i11_1.pe());
+protoOf(JsListing).a10 = function () {
+  return JsDecimal_instance.ty(this.n10_1.pe());
 };
 protoOf(JsListing).ve = function () {
-  return asTagArray(this.i11_1.ve());
+  return asTagArray(this.n10_1.ve());
 };
 protoOf(JsListing).toString = function () {
   return 'JsListing(kind=' + this.kind + ')';
 };
 function JsBid(bid) {
-  this.j11_1 = bid;
+  this.n12_1 = bid;
 }
-protoOf(JsBid).k12 = function () {
-  return this.j11_1;
+protoOf(JsBid).v13 = function () {
+  return this.n12_1;
 };
-protoOf(JsBid).u10 = function () {
-  return this.j11_1.be_1.qo();
+protoOf(JsBid).z11 = function () {
+  return this.n12_1.be_1.np();
 };
-protoOf(JsBid).l12 = function () {
-  return this.j11_1.ce_1;
+protoOf(JsBid).w13 = function () {
+  return this.n12_1.ce_1;
 };
-protoOf(JsBid).jx = function () {
-  return JsDecimal_instance.kx(this.j11_1.de_1);
+protoOf(JsBid).ny = function () {
+  return JsDecimal_instance.oy(this.n12_1.de_1);
 };
 protoOf(JsBid).uj = function () {
-  return this.j11_1.ee_1;
+  return this.n12_1.ee_1;
 };
 protoOf(JsBid).ke = function () {
-  return this.j11_1.ke();
+  return this.n12_1.ke();
 };
-protoOf(JsBid).m12 = function () {
-  return this.j11_1.ge_1.sg();
+protoOf(JsBid).x13 = function () {
+  return this.n12_1.ge_1.sg();
 };
 protoOf(JsBid).le = function () {
-  return this.j11_1.le();
+  return this.n12_1.le();
 };
 protoOf(JsBid).me = function () {
-  return this.j11_1.me();
+  return this.n12_1.me();
 };
-protoOf(JsBid).ty = function () {
-  return JsDecimal_instance.kx(_Msat___get_millisatoshis__impl__rjbnyg(this.j11_1.he_1));
+protoOf(JsBid).xz = function () {
+  return JsDecimal_instance.oy(_Msat___get_millisatoshis__impl__rjbnyg(this.n12_1.he_1));
 };
-protoOf(JsBid).n12 = function () {
-  return this.j11_1.ie_1;
+protoOf(JsBid).y13 = function () {
+  return this.n12_1.ie_1;
 };
-protoOf(JsBid).o12 = function () {
-  return this.j11_1.je_1;
+protoOf(JsBid).z13 = function () {
+  return this.n12_1.je_1;
 };
-protoOf(JsBid).vy = function () {
-  return JsDecimal_instance.px(this.j11_1.ne());
+protoOf(JsBid).zz = function () {
+  return JsDecimal_instance.ty(this.n12_1.ne());
 };
 protoOf(JsBid).oe = function () {
-  return this.j11_1.oe();
+  return this.n12_1.oe();
 };
-protoOf(JsBid).wy = function () {
-  return JsDecimal_instance.px(this.j11_1.pe());
+protoOf(JsBid).a10 = function () {
+  return JsDecimal_instance.ty(this.n12_1.pe());
 };
-protoOf(JsBid).uy = function () {
-  var fee = this.j11_1.qe();
+protoOf(JsBid).yz = function () {
+  var fee = this.n12_1.qe();
   var tmp;
   if (fee instanceof Stated) {
-    tmp = fee.i12_1;
+    tmp = fee.t13_1;
   } else {
     if (equals(fee, Absent_instance)) {
       tmp = null;
@@ -8793,31 +9527,31 @@ protoOf(JsBid).uy = function () {
   return tmp;
 };
 protoOf(JsBid).re = function () {
-  return this.j11_1.re();
+  return this.n12_1.re();
 };
 protoOf(JsBid).se = function () {
-  return this.j11_1.se();
+  return this.n12_1.se();
 };
 protoOf(JsBid).te = function () {
-  return this.j11_1.te();
+  return this.n12_1.te();
 };
 protoOf(JsBid).ue = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
-  var this_0 = this.j11_1.ue();
+  var this_0 = this.n12_1.ue();
   return copyToArray(this_0);
 };
 protoOf(JsBid).ve = function () {
-  return asTagArray(this.j11_1.ve());
+  return asTagArray(this.n12_1.ve());
 };
 protoOf(JsBid).toString = function () {
   return 'JsBid(kind=' + this.kind + ')';
 };
 function JsDeadlineCheck(answer) {
-  this.p12_1 = answer;
+  this.a14_1 = answer;
 }
 protoOf(JsDeadlineCheck).ke = function () {
   var tmp;
-  var tmp_0 = this.p12_1;
+  var tmp_0 = this.a14_1;
   if (tmp_0 instanceof Permitted) {
     tmp = 'permitted';
   } else {
@@ -8825,18 +9559,18 @@ protoOf(JsDeadlineCheck).ke = function () {
   }
   return tmp;
 };
-protoOf(JsDeadlineCheck).q12 = function () {
-  var tmp = this.p12_1;
+protoOf(JsDeadlineCheck).b14 = function () {
+  var tmp = this.a14_1;
   return tmp instanceof Permitted;
 };
 protoOf(JsDeadlineCheck).qh = function () {
-  var tmp = this.p12_1;
+  var tmp = this.a14_1;
   var tmp0_safe_receiver = tmp instanceof Refused_0 ? tmp : null;
   var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.qh();
   return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1;
 };
-protoOf(JsDeadlineCheck).lx = function () {
-  var tmp = this.p12_1;
+protoOf(JsDeadlineCheck).py = function () {
+  var tmp = this.a14_1;
   var tmp0_safe_receiver = tmp instanceof Refused_0 ? tmp : null;
   var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ph_1;
   return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1;
@@ -8856,6 +9590,37 @@ protoOf(JsDeadlineCheck).toString = function () {
   var tmp1_elvis_lhs = tmp_0;
   return 'JsDeadlineCheck(' + tmp + (tmp1_elvis_lhs == null ? '' : tmp1_elvis_lhs) + ')';
 };
+function JsBoardQuery(kinds, topics, mimeType, directedTo) {
+  var tmp;
+  if (topics === VOID) {
+    // Inline function 'kotlin.emptyArray' call
+    tmp = [];
+  } else {
+    tmp = topics;
+  }
+  topics = tmp;
+  mimeType = mimeType === VOID ? null : mimeType;
+  directedTo = directedTo === VOID ? null : directedTo;
+  this.kinds = kinds;
+  this.topics = topics;
+  this.mimeType = mimeType;
+  this.directedTo = directedTo;
+}
+protoOf(JsBoardQuery).c14 = function () {
+  return this.kinds;
+};
+protoOf(JsBoardQuery).ue = function () {
+  return this.topics;
+};
+protoOf(JsBoardQuery).d10 = function () {
+  return this.mimeType;
+};
+protoOf(JsBoardQuery).d14 = function () {
+  return this.directedTo;
+};
+protoOf(JsBoardQuery).toString = function () {
+  return 'JsBoardQuery(kinds=' + this.kinds.length + ', topics=' + this.topics.length + ')';
+};
 function JsListingResult(kind, ok, listing, reason, reasonVocabulary, tag, tagReason, detail) {
   this.kind = kind;
   this.ok = ok;
@@ -8869,25 +9634,25 @@ function JsListingResult(kind, ok, listing, reason, reasonVocabulary, tag, tagRe
 protoOf(JsListingResult).ke = function () {
   return this.kind;
 };
-protoOf(JsListingResult).bx = function () {
+protoOf(JsListingResult).fy = function () {
   return this.ok;
 };
-protoOf(JsListingResult).r12 = function () {
+protoOf(JsListingResult).e14 = function () {
   return this.listing;
 };
-protoOf(JsListingResult).lx = function () {
+protoOf(JsListingResult).py = function () {
   return this.reason;
 };
-protoOf(JsListingResult).mx = function () {
+protoOf(JsListingResult).qy = function () {
   return this.reasonVocabulary;
 };
-protoOf(JsListingResult).nx = function () {
+protoOf(JsListingResult).ry = function () {
   return this.tag;
 };
-protoOf(JsListingResult).ox = function () {
+protoOf(JsListingResult).sy = function () {
   return this.tagReason;
 };
-protoOf(JsListingResult).dx = function () {
+protoOf(JsListingResult).hy = function () {
   return this.detail;
 };
 protoOf(JsListingResult).toString = function () {
@@ -8906,25 +9671,25 @@ function JsBidResult(kind, ok, bid, reason, reasonVocabulary, tag, tagReason, de
 protoOf(JsBidResult).ke = function () {
   return this.kind;
 };
-protoOf(JsBidResult).bx = function () {
+protoOf(JsBidResult).fy = function () {
   return this.ok;
 };
-protoOf(JsBidResult).s12 = function () {
+protoOf(JsBidResult).f14 = function () {
   return this.bid;
 };
-protoOf(JsBidResult).lx = function () {
+protoOf(JsBidResult).py = function () {
   return this.reason;
 };
-protoOf(JsBidResult).mx = function () {
+protoOf(JsBidResult).qy = function () {
   return this.reasonVocabulary;
 };
-protoOf(JsBidResult).nx = function () {
+protoOf(JsBidResult).ry = function () {
   return this.tag;
 };
-protoOf(JsBidResult).ox = function () {
+protoOf(JsBidResult).sy = function () {
   return this.tagReason;
 };
-protoOf(JsBidResult).dx = function () {
+protoOf(JsBidResult).hy = function () {
   return this.detail;
 };
 protoOf(JsBidResult).toString = function () {
@@ -8997,43 +9762,43 @@ function JsAuthoredListing(authorPubkey, createdAtSeconds, dValue, title, priceM
   this.deliverBySeconds = deliverBySeconds;
   this.extraTags = extraTags;
 }
-protoOf(JsAuthoredListing).ry = function () {
+protoOf(JsAuthoredListing).vz = function () {
   return this.authorPubkey;
 };
-protoOf(JsAuthoredListing).jx = function () {
+protoOf(JsAuthoredListing).ny = function () {
   return this.createdAtSeconds;
 };
-protoOf(JsAuthoredListing).z11 = function () {
+protoOf(JsAuthoredListing).k13 = function () {
   return this.dValue;
 };
-protoOf(JsAuthoredListing).b12 = function () {
+protoOf(JsAuthoredListing).m13 = function () {
   return this.title;
 };
-protoOf(JsAuthoredListing).ty = function () {
+protoOf(JsAuthoredListing).xz = function () {
   return this.priceMsat;
 };
 protoOf(JsAuthoredListing).uj = function () {
   return this.content;
 };
-protoOf(JsAuthoredListing).d12 = function () {
+protoOf(JsAuthoredListing).o13 = function () {
   return this.summary;
 };
-protoOf(JsAuthoredListing).e12 = function () {
+protoOf(JsAuthoredListing).p13 = function () {
   return this.publishedAtSeconds;
 };
-protoOf(JsAuthoredListing).c12 = function () {
+protoOf(JsAuthoredListing).n13 = function () {
   return this.statusToken;
 };
-protoOf(JsAuthoredListing).zy = function () {
+protoOf(JsAuthoredListing).d10 = function () {
   return this.mimeType;
 };
 protoOf(JsAuthoredListing).ue = function () {
   return this.topics;
 };
-protoOf(JsAuthoredListing).g12 = function () {
+protoOf(JsAuthoredListing).r13 = function () {
   return this.images;
 };
-protoOf(JsAuthoredListing).vy = function () {
+protoOf(JsAuthoredListing).zz = function () {
   return this.expirationSeconds;
 };
 protoOf(JsAuthoredListing).se = function () {
@@ -9042,22 +9807,22 @@ protoOf(JsAuthoredListing).se = function () {
 protoOf(JsAuthoredListing).te = function () {
   return this.nenyaVersion;
 };
-protoOf(JsAuthoredListing).h12 = function () {
+protoOf(JsAuthoredListing).s13 = function () {
   return this.pubkeyRefs;
 };
-protoOf(JsAuthoredListing).uy = function () {
+protoOf(JsAuthoredListing).yz = function () {
   return this.feeBasisPoints;
 };
 protoOf(JsAuthoredListing).re = function () {
   return this.feeRecipient;
 };
-protoOf(JsAuthoredListing).j12 = function () {
+protoOf(JsAuthoredListing).u13 = function () {
   return this.license;
 };
-protoOf(JsAuthoredListing).wy = function () {
+protoOf(JsAuthoredListing).a10 = function () {
   return this.deliverBySeconds;
 };
-protoOf(JsAuthoredListing).sy = function () {
+protoOf(JsAuthoredListing).wz = function () {
   return this.extraTags;
 };
 protoOf(JsAuthoredListing).toString = function () {
@@ -9128,37 +9893,37 @@ function JsAuthoredBid(bidderPubkey, createdAtSeconds, listingCoordinate, priceM
   this.license = license;
   this.extraTags = extraTags;
 }
-protoOf(JsAuthoredBid).l12 = function () {
+protoOf(JsAuthoredBid).w13 = function () {
   return this.bidderPubkey;
 };
-protoOf(JsAuthoredBid).jx = function () {
+protoOf(JsAuthoredBid).ny = function () {
   return this.createdAtSeconds;
 };
-protoOf(JsAuthoredBid).m12 = function () {
+protoOf(JsAuthoredBid).x13 = function () {
   return this.listingCoordinate;
 };
-protoOf(JsAuthoredBid).ty = function () {
+protoOf(JsAuthoredBid).xz = function () {
   return this.priceMsat;
 };
 protoOf(JsAuthoredBid).uj = function () {
   return this.content;
 };
-protoOf(JsAuthoredBid).n12 = function () {
+protoOf(JsAuthoredBid).y13 = function () {
   return this.rootRelayHint;
 };
-protoOf(JsAuthoredBid).o12 = function () {
+protoOf(JsAuthoredBid).z13 = function () {
   return this.parentRelayHint;
 };
-protoOf(JsAuthoredBid).uy = function () {
+protoOf(JsAuthoredBid).yz = function () {
   return this.feeBasisPoints;
 };
 protoOf(JsAuthoredBid).re = function () {
   return this.feeRecipient;
 };
-protoOf(JsAuthoredBid).wy = function () {
+protoOf(JsAuthoredBid).a10 = function () {
   return this.deliverBySeconds;
 };
-protoOf(JsAuthoredBid).vy = function () {
+protoOf(JsAuthoredBid).zz = function () {
   return this.expirationSeconds;
 };
 protoOf(JsAuthoredBid).ue = function () {
@@ -9170,31 +9935,31 @@ protoOf(JsAuthoredBid).te = function () {
 protoOf(JsAuthoredBid).se = function () {
   return this.alt;
 };
-protoOf(JsAuthoredBid).z11 = function () {
+protoOf(JsAuthoredBid).k13 = function () {
   return this.dValue;
 };
-protoOf(JsAuthoredBid).b12 = function () {
+protoOf(JsAuthoredBid).m13 = function () {
   return this.title;
 };
-protoOf(JsAuthoredBid).d12 = function () {
+protoOf(JsAuthoredBid).o13 = function () {
   return this.summary;
 };
-protoOf(JsAuthoredBid).e12 = function () {
+protoOf(JsAuthoredBid).p13 = function () {
   return this.publishedAtSeconds;
 };
-protoOf(JsAuthoredBid).my = function () {
+protoOf(JsAuthoredBid).qz = function () {
   return this.status;
 };
-protoOf(JsAuthoredBid).zy = function () {
+protoOf(JsAuthoredBid).d10 = function () {
   return this.mimeType;
 };
-protoOf(JsAuthoredBid).g12 = function () {
+protoOf(JsAuthoredBid).r13 = function () {
   return this.images;
 };
-protoOf(JsAuthoredBid).j12 = function () {
+protoOf(JsAuthoredBid).u13 = function () {
   return this.license;
 };
-protoOf(JsAuthoredBid).sy = function () {
+protoOf(JsAuthoredBid).wz = function () {
   return this.extraTags;
 };
 protoOf(JsAuthoredBid).toString = function () {
@@ -9211,7 +9976,7 @@ function decodeProposal(rumor) {
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.decodeProposal.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_0 = new JsProposalResult(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -9220,7 +9985,7 @@ function decodeProposal(rumor) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_0 = new JsProposalResult(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -9232,13 +9997,13 @@ function decodeProposal(rumor) {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.decodeProposal.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_0 = new JsProposalResult(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.decodeProposal.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_0 = new JsProposalResult(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -9250,7 +10015,7 @@ function decodeProposal(rumor) {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.decodeProposal.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_0 = new JsProposalResult(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -9268,7 +10033,7 @@ function decodeProposal(rumor) {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.decodeProposal.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_0 = new JsProposalResult(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -9280,7 +10045,7 @@ function decodeProposal(rumor) {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.decodeProposal.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_0 = new JsProposalResult(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -9292,7 +10057,7 @@ function decodeProposal(rumor) {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.decodeProposal.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_0 = new JsProposalResult(null, it_12);
                               } else {
                                 throw $p;
@@ -9325,7 +10090,7 @@ function decodeCommitment(rumor) {
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.decodeCommitment.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_0 = new JsCommitmentResult(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -9334,7 +10099,7 @@ function decodeCommitment(rumor) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_0 = new JsCommitmentResult(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -9346,13 +10111,13 @@ function decodeCommitment(rumor) {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.decodeCommitment.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_0 = new JsCommitmentResult(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.decodeCommitment.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_0 = new JsCommitmentResult(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -9364,7 +10129,7 @@ function decodeCommitment(rumor) {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.decodeCommitment.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_0 = new JsCommitmentResult(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -9382,7 +10147,7 @@ function decodeCommitment(rumor) {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.decodeCommitment.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_0 = new JsCommitmentResult(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -9394,7 +10159,7 @@ function decodeCommitment(rumor) {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.decodeCommitment.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_0 = new JsCommitmentResult(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -9406,7 +10171,7 @@ function decodeCommitment(rumor) {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.decodeCommitment.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_0 = new JsCommitmentResult(null, it_12);
                               } else {
                                 throw $p;
@@ -9439,7 +10204,7 @@ function decodeRelease(rumor) {
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.decodeRelease.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_0 = new JsReleaseResult(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -9448,7 +10213,7 @@ function decodeRelease(rumor) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_0 = new JsReleaseResult(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -9460,13 +10225,13 @@ function decodeRelease(rumor) {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.decodeRelease.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_0 = new JsReleaseResult(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.decodeRelease.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_0 = new JsReleaseResult(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -9478,7 +10243,7 @@ function decodeRelease(rumor) {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.decodeRelease.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_0 = new JsReleaseResult(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -9496,7 +10261,7 @@ function decodeRelease(rumor) {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.decodeRelease.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_0 = new JsReleaseResult(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -9508,7 +10273,7 @@ function decodeRelease(rumor) {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.decodeRelease.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_0 = new JsReleaseResult(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -9520,7 +10285,7 @@ function decodeRelease(rumor) {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.decodeRelease.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_0 = new JsReleaseResult(null, it_12);
                               } else {
                                 throw $p;
@@ -9553,7 +10318,7 @@ function decodeStatusUpdate(rumor) {
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.decodeStatusUpdate.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_0 = new JsStatusUpdateResult(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -9562,7 +10327,7 @@ function decodeStatusUpdate(rumor) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_0 = new JsStatusUpdateResult(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -9574,13 +10339,13 @@ function decodeStatusUpdate(rumor) {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.decodeStatusUpdate.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_0 = new JsStatusUpdateResult(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.decodeStatusUpdate.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_0 = new JsStatusUpdateResult(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -9592,7 +10357,7 @@ function decodeStatusUpdate(rumor) {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.decodeStatusUpdate.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_0 = new JsStatusUpdateResult(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -9610,7 +10375,7 @@ function decodeStatusUpdate(rumor) {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.decodeStatusUpdate.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_0 = new JsStatusUpdateResult(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -9622,7 +10387,7 @@ function decodeStatusUpdate(rumor) {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.decodeStatusUpdate.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_0 = new JsStatusUpdateResult(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -9634,7 +10399,7 @@ function decodeStatusUpdate(rumor) {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.decodeStatusUpdate.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_0 = new JsStatusUpdateResult(null, it_12);
                               } else {
                                 throw $p;
@@ -9657,40 +10422,40 @@ function decodeStatusUpdate(rumor) {
   return tmp;
 }
 function JsOrderProposal(proposal) {
-  this.t12_1 = proposal;
+  this.g14_1 = proposal;
 }
-protoOf(JsOrderProposal).qn = function () {
-  return this.t12_1.qn();
+protoOf(JsOrderProposal).no = function () {
+  return this.g14_1.no();
 };
-protoOf(JsOrderProposal).u10 = function () {
-  return this.t12_1.wd().qo();
+protoOf(JsOrderProposal).z11 = function () {
+  return this.g14_1.wd().np();
 };
-protoOf(JsOrderProposal).jx = function () {
-  return JsDecimal_instance.kx(this.t12_1.tj());
+protoOf(JsOrderProposal).ny = function () {
+  return JsDecimal_instance.oy(this.g14_1.tj());
 };
-protoOf(JsOrderProposal).b11 = function () {
-  return this.t12_1.mn_1.qo();
+protoOf(JsOrderProposal).g12 = function () {
+  return this.g14_1.in_1.np();
 };
-protoOf(JsOrderProposal).u12 = function () {
-  return this.t12_1.nn_1.sq_1.sg();
+protoOf(JsOrderProposal).h14 = function () {
+  return this.g14_1.jn_1.fn_1.sg();
 };
-protoOf(JsOrderProposal).v12 = function () {
-  return this.t12_1.nn_1.tq_1;
+protoOf(JsOrderProposal).i14 = function () {
+  return this.g14_1.jn_1.gn_1;
 };
-protoOf(JsOrderProposal).ty = function () {
-  return JsDecimal_instance.kx(_Msat___get_millisatoshis__impl__rjbnyg(this.t12_1.on_1.sp_1.dq_1));
+protoOf(JsOrderProposal).xz = function () {
+  return JsDecimal_instance.oy(_Msat___get_millisatoshis__impl__rjbnyg(this.g14_1.kn_1.lq_1.wq_1));
 };
-protoOf(JsOrderProposal).w12 = function () {
-  return JsDecimal_instance.kx(_Msat___get_millisatoshis__impl__rjbnyg(this.t12_1.on_1.sp_1.fq_1));
+protoOf(JsOrderProposal).j14 = function () {
+  return JsDecimal_instance.oy(_Msat___get_millisatoshis__impl__rjbnyg(this.g14_1.kn_1.lq_1.yq_1));
 };
-protoOf(JsOrderProposal).x12 = function () {
-  return JsDecimal_instance.kx(_Msat___get_millisatoshis__impl__rjbnyg(this.t12_1.on_1.sp_1.gq_1));
+protoOf(JsOrderProposal).k14 = function () {
+  return JsDecimal_instance.oy(_Msat___get_millisatoshis__impl__rjbnyg(this.g14_1.kn_1.lq_1.zq_1));
 };
-protoOf(JsOrderProposal).uy = function () {
-  var fee = this.t12_1.on_1.sp_1.eq_1;
+protoOf(JsOrderProposal).yz = function () {
+  var fee = this.g14_1.kn_1.lq_1.xq_1;
   var tmp;
   if (fee instanceof Stated) {
-    tmp = fee.i12_1;
+    tmp = fee.t13_1;
   } else {
     if (equals(fee, Absent_instance)) {
       tmp = null;
@@ -9700,22 +10465,22 @@ protoOf(JsOrderProposal).uy = function () {
   }
   return tmp;
 };
-protoOf(JsOrderProposal).y12 = function () {
-  return this.t12_1.on_1.sp_1.hq_1;
+protoOf(JsOrderProposal).l14 = function () {
+  return this.g14_1.kn_1.lq_1.ar_1;
 };
 protoOf(JsOrderProposal).re = function () {
-  return this.t12_1.re();
+  return this.g14_1.re();
 };
-protoOf(JsOrderProposal).vy = function () {
-  return JsDecimal_instance.px(this.t12_1.on_1.tp_1);
+protoOf(JsOrderProposal).zz = function () {
+  return JsDecimal_instance.ty(this.g14_1.kn_1.mq_1);
 };
-protoOf(JsOrderProposal).wy = function () {
-  return JsDecimal_instance.px(this.t12_1.on_1.up_1);
+protoOf(JsOrderProposal).a10 = function () {
+  return JsDecimal_instance.ty(this.g14_1.kn_1.nq_1);
 };
 protoOf(JsOrderProposal).zj = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.t12_1.zj();
+  var this_0 = this.g14_1.zj();
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -9740,23 +10505,23 @@ protoOf(JsOrderProposal).zj = function () {
   return copyToArray(destination);
 };
 protoOf(JsOrderProposal).hd = function () {
-  return new JsWireEvent(this.t12_1.ak());
+  return new JsWireEvent(this.g14_1.ak());
 };
 protoOf(JsOrderProposal).toString = function () {
   return 'JsOrderProposal(redacted)';
 };
 function JsProposalResult(decoded, refusal) {
-  this.z12_1 = decoded;
-  this.a13_1 = refusal;
+  this.m14_1 = decoded;
+  this.n14_1 = refusal;
 }
 protoOf(JsProposalResult).ke = function () {
-  return !(this.z12_1 == null) ? 'proposal' : 'refused';
+  return !(this.m14_1 == null) ? 'proposal' : 'refused';
 };
-protoOf(JsProposalResult).bx = function () {
-  return !(this.z12_1 == null);
+protoOf(JsProposalResult).fy = function () {
+  return !(this.m14_1 == null);
 };
-protoOf(JsProposalResult).b13 = function () {
-  var tmp0_safe_receiver = this.z12_1;
+protoOf(JsProposalResult).o14 = function () {
+  var tmp0_safe_receiver = this.m14_1;
   var tmp;
   if (tmp0_safe_receiver == null) {
     tmp = null;
@@ -9768,64 +10533,64 @@ protoOf(JsProposalResult).b13 = function () {
   }
   return tmp;
 };
-protoOf(JsProposalResult).lx = function () {
-  var tmp0_safe_receiver = this.a13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cy_1;
+protoOf(JsProposalResult).py = function () {
+  var tmp0_safe_receiver = this.n14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gz_1;
 };
-protoOf(JsProposalResult).mx = function () {
-  var tmp0_safe_receiver = this.a13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dy_1;
+protoOf(JsProposalResult).qy = function () {
+  var tmp0_safe_receiver = this.n14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hz_1;
 };
-protoOf(JsProposalResult).nx = function () {
-  var tmp0_safe_receiver = this.a13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ey_1;
+protoOf(JsProposalResult).ry = function () {
+  var tmp0_safe_receiver = this.n14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.iz_1;
 };
-protoOf(JsProposalResult).dx = function () {
-  var tmp0_safe_receiver = this.a13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gy_1;
+protoOf(JsProposalResult).hy = function () {
+  var tmp0_safe_receiver = this.n14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.kz_1;
 };
 protoOf(JsProposalResult).toString = function () {
   return this.ok ? 'JsProposalResult(proposal)' : 'JsProposalResult(refused: ' + this.reason + ')';
 };
 function JsCommitmentMessage(message) {
-  this.c13_1 = message;
+  this.p14_1 = message;
 }
 protoOf(JsCommitmentMessage).cm = function () {
-  return this.c13_1.cm();
+  return this.p14_1.cm();
 };
-protoOf(JsCommitmentMessage).u10 = function () {
-  return this.c13_1.wd().qo();
+protoOf(JsCommitmentMessage).z11 = function () {
+  return this.p14_1.wd().np();
 };
-protoOf(JsCommitmentMessage).jx = function () {
-  return JsDecimal_instance.kx(this.c13_1.tj());
+protoOf(JsCommitmentMessage).ny = function () {
+  return JsDecimal_instance.oy(this.p14_1.tj());
 };
-protoOf(JsCommitmentMessage).b11 = function () {
-  return this.c13_1.yl_1.qo();
+protoOf(JsCommitmentMessage).g12 = function () {
+  return this.p14_1.yl_1.np();
 };
-protoOf(JsCommitmentMessage).d13 = function () {
-  return this.c13_1.am_1;
+protoOf(JsCommitmentMessage).q14 = function () {
+  return this.p14_1.am_1;
 };
-protoOf(JsCommitmentMessage).js = function () {
-  return new JsCommitment(this.c13_1.zl_1.vp_1.qo(), this.c13_1.zl_1.wp_1.qo(), this.c13_1.zl_1.xp_1, JsDecimal_instance.kx(this.c13_1.zl_1.yp_1));
+protoOf(JsCommitmentMessage).os = function () {
+  return new JsCommitment(this.p14_1.zl_1.oq_1.np(), this.p14_1.zl_1.pq_1.np(), this.p14_1.zl_1.qq_1, JsDecimal_instance.oy(this.p14_1.zl_1.rq_1));
 };
 protoOf(JsCommitmentMessage).hd = function () {
-  return new JsWireEvent(this.c13_1.ak());
+  return new JsWireEvent(this.p14_1.ak());
 };
 protoOf(JsCommitmentMessage).toString = function () {
   return 'JsCommitmentMessage(redacted)';
 };
 function JsCommitmentResult(decoded, refusal) {
-  this.e13_1 = decoded;
-  this.f13_1 = refusal;
+  this.r14_1 = decoded;
+  this.s14_1 = refusal;
 }
 protoOf(JsCommitmentResult).ke = function () {
-  return !(this.e13_1 == null) ? 'commitment' : 'refused';
+  return !(this.r14_1 == null) ? 'commitment' : 'refused';
 };
-protoOf(JsCommitmentResult).bx = function () {
-  return !(this.e13_1 == null);
+protoOf(JsCommitmentResult).fy = function () {
+  return !(this.r14_1 == null);
 };
-protoOf(JsCommitmentResult).js = function () {
-  var tmp0_safe_receiver = this.e13_1;
+protoOf(JsCommitmentResult).os = function () {
+  var tmp0_safe_receiver = this.r14_1;
   var tmp;
   if (tmp0_safe_receiver == null) {
     tmp = null;
@@ -9837,61 +10602,61 @@ protoOf(JsCommitmentResult).js = function () {
   }
   return tmp;
 };
-protoOf(JsCommitmentResult).lx = function () {
-  var tmp0_safe_receiver = this.f13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cy_1;
+protoOf(JsCommitmentResult).py = function () {
+  var tmp0_safe_receiver = this.s14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gz_1;
 };
-protoOf(JsCommitmentResult).mx = function () {
-  var tmp0_safe_receiver = this.f13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dy_1;
+protoOf(JsCommitmentResult).qy = function () {
+  var tmp0_safe_receiver = this.s14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hz_1;
 };
-protoOf(JsCommitmentResult).nx = function () {
-  var tmp0_safe_receiver = this.f13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ey_1;
+protoOf(JsCommitmentResult).ry = function () {
+  var tmp0_safe_receiver = this.s14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.iz_1;
 };
-protoOf(JsCommitmentResult).dx = function () {
-  var tmp0_safe_receiver = this.f13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gy_1;
+protoOf(JsCommitmentResult).hy = function () {
+  var tmp0_safe_receiver = this.s14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.kz_1;
 };
 protoOf(JsCommitmentResult).toString = function () {
   return this.ok ? 'JsCommitmentResult(commitment)' : 'JsCommitmentResult(refused: ' + this.reason + ')';
 };
 function JsReleaseMessage(message) {
-  this.g13_1 = message;
+  this.t14_1 = message;
 }
 protoOf(JsReleaseMessage).cm = function () {
-  return this.g13_1.cm();
+  return this.t14_1.cm();
 };
-protoOf(JsReleaseMessage).u10 = function () {
-  return this.g13_1.wd().qo();
+protoOf(JsReleaseMessage).z11 = function () {
+  return this.t14_1.wd().np();
 };
-protoOf(JsReleaseMessage).jx = function () {
-  return JsDecimal_instance.kx(this.g13_1.tj());
+protoOf(JsReleaseMessage).ny = function () {
+  return JsDecimal_instance.oy(this.t14_1.tj());
 };
-protoOf(JsReleaseMessage).b11 = function () {
-  return this.g13_1.im_1.qo();
+protoOf(JsReleaseMessage).g12 = function () {
+  return this.t14_1.im_1.np();
 };
-protoOf(JsReleaseMessage).h13 = function () {
-  return new JsRelease(this.g13_1.jm_1.zp_1.qo(), this.g13_1.jm_1.aq_1.qo(), this.g13_1.jm_1.bq_1, JsDecimal_instance.kx(this.g13_1.jm_1.cq_1));
+protoOf(JsReleaseMessage).u14 = function () {
+  return new JsRelease(this.t14_1.jm_1.sq_1.np(), this.t14_1.jm_1.tq_1.np(), this.t14_1.jm_1.uq_1, JsDecimal_instance.oy(this.t14_1.jm_1.vq_1));
 };
 protoOf(JsReleaseMessage).hd = function () {
-  return new JsWireEvent(this.g13_1.ak());
+  return new JsWireEvent(this.t14_1.ak());
 };
 protoOf(JsReleaseMessage).toString = function () {
   return 'JsReleaseMessage(redacted)';
 };
 function JsReleaseResult(decoded, refusal) {
-  this.i13_1 = decoded;
-  this.j13_1 = refusal;
+  this.v14_1 = decoded;
+  this.w14_1 = refusal;
 }
 protoOf(JsReleaseResult).ke = function () {
-  return !(this.i13_1 == null) ? 'release' : 'refused';
+  return !(this.v14_1 == null) ? 'release' : 'refused';
 };
-protoOf(JsReleaseResult).bx = function () {
-  return !(this.i13_1 == null);
+protoOf(JsReleaseResult).fy = function () {
+  return !(this.v14_1 == null);
 };
-protoOf(JsReleaseResult).h13 = function () {
-  var tmp0_safe_receiver = this.i13_1;
+protoOf(JsReleaseResult).u14 = function () {
+  var tmp0_safe_receiver = this.v14_1;
   var tmp;
   if (tmp0_safe_receiver == null) {
     tmp = null;
@@ -9903,64 +10668,64 @@ protoOf(JsReleaseResult).h13 = function () {
   }
   return tmp;
 };
-protoOf(JsReleaseResult).lx = function () {
-  var tmp0_safe_receiver = this.j13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cy_1;
+protoOf(JsReleaseResult).py = function () {
+  var tmp0_safe_receiver = this.w14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gz_1;
 };
-protoOf(JsReleaseResult).mx = function () {
-  var tmp0_safe_receiver = this.j13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dy_1;
+protoOf(JsReleaseResult).qy = function () {
+  var tmp0_safe_receiver = this.w14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hz_1;
 };
-protoOf(JsReleaseResult).nx = function () {
-  var tmp0_safe_receiver = this.j13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ey_1;
+protoOf(JsReleaseResult).ry = function () {
+  var tmp0_safe_receiver = this.w14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.iz_1;
 };
-protoOf(JsReleaseResult).dx = function () {
-  var tmp0_safe_receiver = this.j13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gy_1;
+protoOf(JsReleaseResult).hy = function () {
+  var tmp0_safe_receiver = this.w14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.kz_1;
 };
 protoOf(JsReleaseResult).toString = function () {
   return this.ok ? 'JsReleaseResult(release)' : 'JsReleaseResult(refused: ' + this.reason + ')';
 };
 function JsStatusUpdate(message) {
-  this.k13_1 = message;
+  this.x14_1 = message;
 }
 protoOf(JsStatusUpdate).cm = function () {
-  return this.k13_1.cm();
+  return this.x14_1.cm();
 };
-protoOf(JsStatusUpdate).u10 = function () {
-  return this.k13_1.wd().qo();
+protoOf(JsStatusUpdate).z11 = function () {
+  return this.x14_1.wd().np();
 };
-protoOf(JsStatusUpdate).jx = function () {
-  return JsDecimal_instance.kx(this.k13_1.tj());
+protoOf(JsStatusUpdate).ny = function () {
+  return JsDecimal_instance.oy(this.x14_1.tj());
 };
-protoOf(JsStatusUpdate).b11 = function () {
-  return this.k13_1.tn_1.qo();
+protoOf(JsStatusUpdate).g12 = function () {
+  return this.x14_1.qo_1.np();
 };
-protoOf(JsStatusUpdate).my = function () {
-  return this.k13_1.un_1.t1_1;
+protoOf(JsStatusUpdate).qz = function () {
+  return this.x14_1.ro_1.t1_1;
 };
-protoOf(JsStatusUpdate).c12 = function () {
-  return this.k13_1.un_1.yn_1;
+protoOf(JsStatusUpdate).n13 = function () {
+  return this.x14_1.ro_1.vo_1;
 };
 protoOf(JsStatusUpdate).hd = function () {
-  return new JsWireEvent(this.k13_1.ak());
+  return new JsWireEvent(this.x14_1.ak());
 };
 protoOf(JsStatusUpdate).toString = function () {
   return 'JsStatusUpdate(status=' + this.status + ')';
 };
 function JsStatusUpdateResult(decoded, refusal) {
-  this.l13_1 = decoded;
-  this.m13_1 = refusal;
+  this.y14_1 = decoded;
+  this.z14_1 = refusal;
 }
 protoOf(JsStatusUpdateResult).ke = function () {
-  return !(this.l13_1 == null) ? 'status_update' : 'refused';
+  return !(this.y14_1 == null) ? 'status_update' : 'refused';
 };
-protoOf(JsStatusUpdateResult).bx = function () {
-  return !(this.l13_1 == null);
+protoOf(JsStatusUpdateResult).fy = function () {
+  return !(this.y14_1 == null);
 };
-protoOf(JsStatusUpdateResult).n13 = function () {
-  var tmp0_safe_receiver = this.l13_1;
+protoOf(JsStatusUpdateResult).a15 = function () {
+  var tmp0_safe_receiver = this.y14_1;
   var tmp;
   if (tmp0_safe_receiver == null) {
     tmp = null;
@@ -9972,21 +10737,21 @@ protoOf(JsStatusUpdateResult).n13 = function () {
   }
   return tmp;
 };
-protoOf(JsStatusUpdateResult).lx = function () {
-  var tmp0_safe_receiver = this.m13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cy_1;
+protoOf(JsStatusUpdateResult).py = function () {
+  var tmp0_safe_receiver = this.z14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gz_1;
 };
-protoOf(JsStatusUpdateResult).mx = function () {
-  var tmp0_safe_receiver = this.m13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dy_1;
+protoOf(JsStatusUpdateResult).qy = function () {
+  var tmp0_safe_receiver = this.z14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hz_1;
 };
-protoOf(JsStatusUpdateResult).nx = function () {
-  var tmp0_safe_receiver = this.m13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ey_1;
+protoOf(JsStatusUpdateResult).ry = function () {
+  var tmp0_safe_receiver = this.z14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.iz_1;
 };
-protoOf(JsStatusUpdateResult).dx = function () {
-  var tmp0_safe_receiver = this.m13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gy_1;
+protoOf(JsStatusUpdateResult).hy = function () {
+  var tmp0_safe_receiver = this.z14_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.kz_1;
 };
 protoOf(JsStatusUpdateResult).toString = function () {
   return this.ok ? 'JsStatusUpdateResult(status_update)' : 'JsStatusUpdateResult(refused: ' + this.reason + ')';
@@ -9997,13 +10762,13 @@ function openOrder(machine, orderIdHex, terms, createdAtSeconds) {
   var tmp;
   try {
     // Inline function 'dev.eryalabs.nenya.js.openOrder.<anonymous>' call
-    tmp = new JsOrderResult(asOrderMachine(machine).r13(new Proposal(Companion_instance_25.hj(orderIdHex), asOrderTerms(terms), crossedSecondsOrNull('created_at', createdAtSeconds))), null);
+    tmp = new JsOrderResult(asOrderMachine(machine).e15(new Proposal(Companion_instance_25.hj(orderIdHex), asOrderTerms(terms), crossedSecondsOrNull('created_at', createdAtSeconds))), null);
   } catch ($p) {
     var tmp_0;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.openOrder.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_0 = new JsOrderResult(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -10012,7 +10777,7 @@ function openOrder(machine, orderIdHex, terms, createdAtSeconds) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_0 = new JsOrderResult(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -10024,13 +10789,13 @@ function openOrder(machine, orderIdHex, terms, createdAtSeconds) {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.openOrder.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_0 = new JsOrderResult(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.openOrder.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_0 = new JsOrderResult(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -10042,7 +10807,7 @@ function openOrder(machine, orderIdHex, terms, createdAtSeconds) {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.openOrder.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_0 = new JsOrderResult(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -10060,7 +10825,7 @@ function openOrder(machine, orderIdHex, terms, createdAtSeconds) {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.openOrder.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_0 = new JsOrderResult(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -10072,7 +10837,7 @@ function openOrder(machine, orderIdHex, terms, createdAtSeconds) {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.openOrder.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_0 = new JsOrderResult(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -10084,7 +10849,7 @@ function openOrder(machine, orderIdHex, terms, createdAtSeconds) {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.openOrder.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_0 = new JsOrderResult(null, it_12);
                               } else {
                                 throw $p;
@@ -10111,13 +10876,13 @@ function stepOrder(machine, order, event) {
   var tmp;
   try {
     // Inline function 'dev.eryalabs.nenya.js.stepOrder.<anonymous>' call
-    tmp = new JsOrderOutcome(asOrderMachine(machine).t13(order.s13_1, asOrderEvent(event)), null);
+    tmp = new JsOrderOutcome(asOrderMachine(machine).g15(order.f15_1, asOrderEvent(event)), null);
   } catch ($p) {
     var tmp_0;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.stepOrder.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_0 = new JsOrderOutcome(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -10126,7 +10891,7 @@ function stepOrder(machine, order, event) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_0 = new JsOrderOutcome(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -10138,13 +10903,13 @@ function stepOrder(machine, order, event) {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.stepOrder.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_0 = new JsOrderOutcome(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.stepOrder.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_0 = new JsOrderOutcome(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -10156,7 +10921,7 @@ function stepOrder(machine, order, event) {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.stepOrder.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_0 = new JsOrderOutcome(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -10174,7 +10939,7 @@ function stepOrder(machine, order, event) {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.stepOrder.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_0 = new JsOrderOutcome(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -10186,7 +10951,7 @@ function stepOrder(machine, order, event) {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.stepOrder.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_0 = new JsOrderOutcome(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -10198,7 +10963,7 @@ function stepOrder(machine, order, event) {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.stepOrder.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_0 = new JsOrderOutcome(null, it_12);
                               } else {
                                 throw $p;
@@ -10230,13 +10995,13 @@ function verifyServedBytes(commitment, servedBytesHex, maxServedBytes) {
     var tmp_1 = asDeliverableCommitment(commitment);
     var tmp_2 = crossedBytes('verifyServedBytes.servedBytesHex', servedBytesHex);
     var tmp0_elvis_lhs = crossedNumberOrNull('verifyServedBytes.maxServedBytes', maxServedBytes);
-    tmp = new JsServedBytesResult(tmp_0.ns(tmp_1, tmp_2, tmp0_elvis_lhs == null ? new Long(67108864, 0) : tmp0_elvis_lhs), null);
+    tmp = new JsServedBytesResult(tmp_0.ss(tmp_1, tmp_2, tmp0_elvis_lhs == null ? new Long(67108864, 0) : tmp0_elvis_lhs), null);
   } catch ($p) {
     var tmp_3;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.verifyServedBytes.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_3 = new JsServedBytesResult(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -10245,7 +11010,7 @@ function verifyServedBytes(commitment, servedBytesHex, maxServedBytes) {
         var tmp_4 = refused_0.cause;
         var tmp0_safe_receiver = tmp_4 instanceof TagException ? tmp_4 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_3 = new JsServedBytesResult(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -10257,13 +11022,13 @@ function verifyServedBytes(commitment, servedBytesHex, maxServedBytes) {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.verifyServedBytes.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_3 = new JsServedBytesResult(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.verifyServedBytes.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_3 = new JsServedBytesResult(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -10275,7 +11040,7 @@ function verifyServedBytes(commitment, servedBytesHex, maxServedBytes) {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.verifyServedBytes.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_3 = new JsServedBytesResult(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -10293,7 +11058,7 @@ function verifyServedBytes(commitment, servedBytesHex, maxServedBytes) {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.verifyServedBytes.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_3 = new JsServedBytesResult(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -10305,7 +11070,7 @@ function verifyServedBytes(commitment, servedBytesHex, maxServedBytes) {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.verifyServedBytes.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_3 = new JsServedBytesResult(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -10317,7 +11082,7 @@ function verifyServedBytes(commitment, servedBytesHex, maxServedBytes) {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.verifyServedBytes.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_3 = new JsServedBytesResult(null, it_12);
                               } else {
                                 throw $p;
@@ -10350,7 +11115,7 @@ function checkAcceptance(proposalRumor, statusRumor, providerPubkey) {
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.checkAcceptance.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_0 = new JsAcceptanceCheck(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -10359,7 +11124,7 @@ function checkAcceptance(proposalRumor, statusRumor, providerPubkey) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_0 = new JsAcceptanceCheck(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -10371,13 +11136,13 @@ function checkAcceptance(proposalRumor, statusRumor, providerPubkey) {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.checkAcceptance.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_0 = new JsAcceptanceCheck(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.checkAcceptance.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_0 = new JsAcceptanceCheck(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -10389,7 +11154,7 @@ function checkAcceptance(proposalRumor, statusRumor, providerPubkey) {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.checkAcceptance.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_0 = new JsAcceptanceCheck(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -10407,7 +11172,7 @@ function checkAcceptance(proposalRumor, statusRumor, providerPubkey) {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.checkAcceptance.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_0 = new JsAcceptanceCheck(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -10419,7 +11184,7 @@ function checkAcceptance(proposalRumor, statusRumor, providerPubkey) {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.checkAcceptance.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_0 = new JsAcceptanceCheck(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -10431,7 +11196,7 @@ function checkAcceptance(proposalRumor, statusRumor, providerPubkey) {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.checkAcceptance.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_0 = new JsAcceptanceCheck(null, it_12);
                               } else {
                                 throw $p;
@@ -10454,11 +11219,11 @@ function checkAcceptance(proposalRumor, statusRumor, providerPubkey) {
   return tmp;
 }
 function JsAcceptanceCheck(answer, refusal) {
-  this.u13_1 = answer;
-  this.v13_1 = refusal;
+  this.h15_1 = answer;
+  this.i15_1 = refusal;
 }
 protoOf(JsAcceptanceCheck).ke = function () {
-  var tmp0_subject = this.u13_1;
+  var tmp0_subject = this.h15_1;
   var tmp;
   if (tmp0_subject instanceof Accepted) {
     tmp = 'accepted';
@@ -10479,25 +11244,25 @@ protoOf(JsAcceptanceCheck).ke = function () {
   }
   return tmp;
 };
-protoOf(JsAcceptanceCheck).w13 = function () {
-  var tmp = this.u13_1;
+protoOf(JsAcceptanceCheck).j15 = function () {
+  var tmp = this.h15_1;
   return tmp instanceof Accepted;
 };
-protoOf(JsAcceptanceCheck).b11 = function () {
-  var tmp = this.u13_1;
+protoOf(JsAcceptanceCheck).g12 = function () {
+  var tmp = this.h15_1;
   var tmp0_safe_receiver = tmp instanceof Accepted ? tmp : null;
-  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.co_1;
-  return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.qo();
+  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.zo_1;
+  return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.np();
 };
-protoOf(JsAcceptanceCheck).x13 = function () {
-  var tmp = this.u13_1;
+protoOf(JsAcceptanceCheck).k15 = function () {
+  var tmp = this.h15_1;
   var tmp0_safe_receiver = tmp instanceof Accepted ? tmp : null;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.eo_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bp_1;
 };
-protoOf(JsAcceptanceCheck).y13 = function () {
-  var tmp = this.u13_1;
+protoOf(JsAcceptanceCheck).l15 = function () {
+  var tmp = this.h15_1;
   var tmp0_safe_receiver = tmp instanceof Accepted ? tmp : null;
-  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.do_1;
+  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ap_1;
   var tmp_0;
   if (tmp1_safe_receiver == null) {
     tmp_0 = null;
@@ -10505,11 +11270,11 @@ protoOf(JsAcceptanceCheck).y13 = function () {
     // Inline function 'kotlin.let' call
     // Inline function 'kotlin.contracts.contract' call
     // Inline function 'dev.eryalabs.nenya.js.JsAcceptanceCheck.<get-terms>.<anonymous>' call
-    var tmp_1 = JsDecimal_instance.kx(_Msat___get_millisatoshis__impl__rjbnyg(tmp1_safe_receiver.sp_1.dq_1));
-    var fee = tmp1_safe_receiver.sp_1.eq_1;
+    var tmp_1 = JsDecimal_instance.oy(_Msat___get_millisatoshis__impl__rjbnyg(tmp1_safe_receiver.lq_1.wq_1));
+    var fee = tmp1_safe_receiver.lq_1.xq_1;
     var tmp_2;
     if (fee instanceof Stated) {
-      tmp_2 = fee.i12_1;
+      tmp_2 = fee.t13_1;
     } else {
       if (equals(fee, Absent_instance)) {
         tmp_2 = null;
@@ -10517,14 +11282,14 @@ protoOf(JsAcceptanceCheck).y13 = function () {
         noWhenBranchMatchedException();
       }
     }
-    tmp_0 = new JsOrderTerms(tmp_1, tmp_2, JsDecimal_instance.px(tmp1_safe_receiver.tp_1), JsDecimal_instance.px(tmp1_safe_receiver.up_1));
+    tmp_0 = new JsOrderTerms(tmp_1, tmp_2, JsDecimal_instance.ty(tmp1_safe_receiver.mq_1), JsDecimal_instance.ty(tmp1_safe_receiver.nq_1));
   }
   return tmp_0;
 };
-protoOf(JsAcceptanceCheck).z13 = function () {
-  var tmp = this.u13_1;
+protoOf(JsAcceptanceCheck).m15 = function () {
+  var tmp = this.h15_1;
   var tmp0_safe_receiver = tmp instanceof CounterProposal ? tmp : null;
-  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.fo_1;
+  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cp_1;
   var tmp_0;
   if (tmp1_safe_receiver == null) {
     tmp_0 = null;
@@ -10542,39 +11307,39 @@ protoOf(JsAcceptanceCheck).z13 = function () {
   }
   return tmp_1;
 };
-protoOf(JsAcceptanceCheck).a14 = function () {
-  var tmp = this.u13_1;
+protoOf(JsAcceptanceCheck).n15 = function () {
+  var tmp = this.h15_1;
   var tmp0_safe_receiver = tmp instanceof NotAnAcceptance ? tmp : null;
-  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.go_1;
+  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dp_1;
   return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1;
 };
-protoOf(JsAcceptanceCheck).b14 = function () {
-  var tmp = this.u13_1;
+protoOf(JsAcceptanceCheck).o15 = function () {
+  var tmp = this.h15_1;
   var tmp0_safe_receiver = tmp instanceof NotAnAcceptance ? tmp : null;
-  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.go_1;
-  return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.yn_1;
+  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dp_1;
+  return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.vo_1;
 };
-protoOf(JsAcceptanceCheck).lx = function () {
-  var tmp0_safe_receiver = this.v13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cy_1;
+protoOf(JsAcceptanceCheck).py = function () {
+  var tmp0_safe_receiver = this.i15_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gz_1;
 };
-protoOf(JsAcceptanceCheck).mx = function () {
-  var tmp0_safe_receiver = this.v13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dy_1;
+protoOf(JsAcceptanceCheck).qy = function () {
+  var tmp0_safe_receiver = this.i15_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hz_1;
 };
-protoOf(JsAcceptanceCheck).nx = function () {
-  var tmp0_safe_receiver = this.v13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ey_1;
+protoOf(JsAcceptanceCheck).ry = function () {
+  var tmp0_safe_receiver = this.i15_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.iz_1;
 };
-protoOf(JsAcceptanceCheck).dx = function () {
-  var tmp0_safe_receiver = this.v13_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gy_1;
+protoOf(JsAcceptanceCheck).hy = function () {
+  var tmp0_safe_receiver = this.i15_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.kz_1;
 };
 protoOf(JsAcceptanceCheck).toString = function () {
-  var tmp0_subject = this.u13_1;
+  var tmp0_subject = this.h15_1;
   var tmp;
   if (tmp0_subject instanceof CounterProposal) {
-    tmp = 'JsAcceptanceCheck(counter_proposal: ' + toString(this.u13_1.fo_1) + ')';
+    tmp = 'JsAcceptanceCheck(counter_proposal: ' + toString(this.h15_1.cp_1) + ')';
   } else {
     if (tmp0_subject == null) {
       tmp = 'JsAcceptanceCheck(refused: ' + this.reason + ')';
@@ -10585,40 +11350,40 @@ protoOf(JsAcceptanceCheck).toString = function () {
   return tmp;
 };
 function JsServedBytesResult(verified, refusal) {
-  this.c14_1 = verified;
-  this.d14_1 = refusal;
+  this.p15_1 = verified;
+  this.q15_1 = refusal;
 }
 protoOf(JsServedBytesResult).ke = function () {
-  return !(this.c14_1 == null) ? 'verified' : 'refused';
+  return !(this.p15_1 == null) ? 'verified' : 'refused';
 };
-protoOf(JsServedBytesResult).bx = function () {
-  return !(this.c14_1 == null);
+protoOf(JsServedBytesResult).fy = function () {
+  return !(this.p15_1 == null);
 };
-protoOf(JsServedBytesResult).ks = function () {
+protoOf(JsServedBytesResult).ps = function () {
   var tmp = JsDecimal_instance;
-  var tmp0_safe_receiver = this.c14_1;
-  return tmp.px(tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ks());
+  var tmp0_safe_receiver = this.p15_1;
+  return tmp.ty(tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ps());
 };
-protoOf(JsServedBytesResult).ls = function () {
+protoOf(JsServedBytesResult).qs = function () {
   var tmp = JsDecimal_instance;
-  var tmp0_safe_receiver = this.c14_1;
-  return tmp.px(tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ls());
+  var tmp0_safe_receiver = this.p15_1;
+  return tmp.ty(tmp0_safe_receiver == null ? null : tmp0_safe_receiver.qs());
 };
-protoOf(JsServedBytesResult).lx = function () {
-  var tmp0_safe_receiver = this.d14_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cy_1;
+protoOf(JsServedBytesResult).py = function () {
+  var tmp0_safe_receiver = this.q15_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gz_1;
 };
-protoOf(JsServedBytesResult).mx = function () {
-  var tmp0_safe_receiver = this.d14_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dy_1;
+protoOf(JsServedBytesResult).qy = function () {
+  var tmp0_safe_receiver = this.q15_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hz_1;
 };
-protoOf(JsServedBytesResult).nx = function () {
-  var tmp0_safe_receiver = this.d14_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ey_1;
+protoOf(JsServedBytesResult).ry = function () {
+  var tmp0_safe_receiver = this.q15_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.iz_1;
 };
-protoOf(JsServedBytesResult).dx = function () {
-  var tmp0_safe_receiver = this.d14_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gy_1;
+protoOf(JsServedBytesResult).hy = function () {
+  var tmp0_safe_receiver = this.q15_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.kz_1;
 };
 protoOf(JsServedBytesResult).toString = function () {
   return this.ok ? 'JsServedBytesResult(verified)' : 'JsServedBytesResult(refused: ' + this.reason + ')';
@@ -10631,53 +11396,53 @@ function JsOrderMachine(environment, releaseTimeoutSeconds, verificationTimeoutS
   this.releaseTimeoutSeconds = releaseTimeoutSeconds;
   this.verificationTimeoutSeconds = verificationTimeoutSeconds;
 }
-protoOf(JsOrderMachine).e14 = function () {
+protoOf(JsOrderMachine).r15 = function () {
   return this.environment;
 };
-protoOf(JsOrderMachine).f14 = function () {
+protoOf(JsOrderMachine).s15 = function () {
   return this.releaseTimeoutSeconds;
 };
-protoOf(JsOrderMachine).g14 = function () {
+protoOf(JsOrderMachine).t15 = function () {
   return this.verificationTimeoutSeconds;
 };
 protoOf(JsOrderMachine).toString = function () {
   return 'JsOrderMachine(redacted)';
 };
 function JsOrder(order) {
-  this.s13_1 = order;
+  this.f15_1 = order;
 }
-protoOf(JsOrder).h14 = function () {
-  return this.s13_1;
+protoOf(JsOrder).u15 = function () {
+  return this.f15_1;
 };
-protoOf(JsOrder).u10 = function () {
-  return this.s13_1.wd().qo();
+protoOf(JsOrder).z11 = function () {
+  return this.f15_1.wd().np();
 };
-protoOf(JsOrder).i14 = function () {
-  return this.s13_1.i14().t1_1;
+protoOf(JsOrder).v15 = function () {
+  return this.f15_1.v15().t1_1;
+};
+protoOf(JsOrder).w15 = function () {
+  return this.f15_1.v15().vo_1;
+};
+protoOf(JsOrder).x15 = function () {
+  return this.f15_1.v15().wo_1;
+};
+protoOf(JsOrder).y15 = function () {
+  return this.f15_1.v15().z15();
+};
+protoOf(JsOrder).xz = function () {
+  return JsDecimal_instance.oy(_Msat___get_millisatoshis__impl__rjbnyg(this.f15_1.l15().lq_1.wq_1));
 };
 protoOf(JsOrder).j14 = function () {
-  return this.s13_1.i14().yn_1;
+  return JsDecimal_instance.oy(_Msat___get_millisatoshis__impl__rjbnyg(this.f15_1.l15().lq_1.yq_1));
 };
 protoOf(JsOrder).k14 = function () {
-  return this.s13_1.i14().zn_1;
+  return JsDecimal_instance.oy(_Msat___get_millisatoshis__impl__rjbnyg(this.f15_1.l15().lq_1.zq_1));
 };
-protoOf(JsOrder).l14 = function () {
-  return this.s13_1.i14().m14();
-};
-protoOf(JsOrder).ty = function () {
-  return JsDecimal_instance.kx(_Msat___get_millisatoshis__impl__rjbnyg(this.s13_1.y13().sp_1.dq_1));
-};
-protoOf(JsOrder).w12 = function () {
-  return JsDecimal_instance.kx(_Msat___get_millisatoshis__impl__rjbnyg(this.s13_1.y13().sp_1.fq_1));
-};
-protoOf(JsOrder).x12 = function () {
-  return JsDecimal_instance.kx(_Msat___get_millisatoshis__impl__rjbnyg(this.s13_1.y13().sp_1.gq_1));
-};
-protoOf(JsOrder).uy = function () {
-  var fee = this.s13_1.y13().sp_1.eq_1;
+protoOf(JsOrder).yz = function () {
+  var fee = this.f15_1.l15().lq_1.xq_1;
   var tmp;
   if (fee instanceof Stated) {
-    tmp = fee.i12_1;
+    tmp = fee.t13_1;
   } else {
     if (equals(fee, Absent_instance)) {
       tmp = null;
@@ -10687,20 +11452,20 @@ protoOf(JsOrder).uy = function () {
   }
   return tmp;
 };
-protoOf(JsOrder).y12 = function () {
-  return this.s13_1.y13().sp_1.hq_1;
+protoOf(JsOrder).l14 = function () {
+  return this.f15_1.l15().lq_1.ar_1;
 };
-protoOf(JsOrder).vy = function () {
-  return JsDecimal_instance.px(this.s13_1.y13().tp_1);
+protoOf(JsOrder).zz = function () {
+  return JsDecimal_instance.ty(this.f15_1.l15().mq_1);
 };
-protoOf(JsOrder).wy = function () {
-  return JsDecimal_instance.px(this.s13_1.y13().up_1);
+protoOf(JsOrder).a10 = function () {
+  return JsDecimal_instance.ty(this.f15_1.l15().nq_1);
 };
-protoOf(JsOrder).x13 = function () {
-  return this.s13_1.x13();
+protoOf(JsOrder).k15 = function () {
+  return this.f15_1.k15();
 };
-protoOf(JsOrder).js = function () {
-  var tmp0_safe_receiver = this.s13_1.js();
+protoOf(JsOrder).os = function () {
+  var tmp0_safe_receiver = this.f15_1.os();
   var tmp;
   if (tmp0_safe_receiver == null) {
     tmp = null;
@@ -10708,24 +11473,24 @@ protoOf(JsOrder).js = function () {
     // Inline function 'kotlin.let' call
     // Inline function 'kotlin.contracts.contract' call
     // Inline function 'dev.eryalabs.nenya.js.JsOrder.<get-commitment>.<anonymous>' call
-    tmp = new JsCommitment(tmp0_safe_receiver.vp_1.qo(), tmp0_safe_receiver.wp_1.qo(), tmp0_safe_receiver.xp_1, JsDecimal_instance.kx(tmp0_safe_receiver.yp_1));
+    tmp = new JsCommitment(tmp0_safe_receiver.oq_1.np(), tmp0_safe_receiver.pq_1.np(), tmp0_safe_receiver.qq_1, JsDecimal_instance.oy(tmp0_safe_receiver.rq_1));
   }
   return tmp;
 };
-protoOf(JsOrder).n14 = function () {
-  return JsDecimal_instance.px(this.s13_1.o14());
+protoOf(JsOrder).a16 = function () {
+  return JsDecimal_instance.ty(this.f15_1.b16());
 };
-protoOf(JsOrder).p14 = function () {
-  return JsDecimal_instance.px(this.s13_1.q14());
+protoOf(JsOrder).c16 = function () {
+  return JsDecimal_instance.ty(this.f15_1.d16());
 };
-protoOf(JsOrder).r14 = function () {
-  var tmp0_safe_receiver = this.s13_1.r14();
+protoOf(JsOrder).e16 = function () {
+  var tmp0_safe_receiver = this.f15_1.e16();
   return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.t1_1;
 };
-protoOf(JsOrder).s14 = function () {
+protoOf(JsOrder).f16 = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.s13_1.s14();
+  var this_0 = this.f15_1.f16();
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -10737,10 +11502,10 @@ protoOf(JsOrder).s14 = function () {
   }
   return copyToArray(destination);
 };
-protoOf(JsOrder).t14 = function () {
+protoOf(JsOrder).g16 = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.s13_1.t14();
+  var this_0 = this.f15_1.g16();
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -10752,10 +11517,10 @@ protoOf(JsOrder).t14 = function () {
   }
   return copyToArray(destination);
 };
-protoOf(JsOrder).u14 = function () {
+protoOf(JsOrder).h16 = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.s13_1.u14();
+  var this_0 = this.f15_1.h16();
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -10767,10 +11532,10 @@ protoOf(JsOrder).u14 = function () {
   }
   return copyToArray(destination);
 };
-protoOf(JsOrder).v14 = function () {
+protoOf(JsOrder).i16 = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.s13_1.v14();
+  var this_0 = this.f15_1.i16();
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -10786,17 +11551,17 @@ protoOf(JsOrder).toString = function () {
   return 'JsOrder(state=' + this.state + ')';
 };
 function JsOrderResult(opened, refusal) {
-  this.w14_1 = opened;
-  this.x14_1 = refusal;
+  this.j16_1 = opened;
+  this.k16_1 = refusal;
 }
 protoOf(JsOrderResult).ke = function () {
-  return !(this.w14_1 == null) ? 'order' : 'refused';
+  return !(this.j16_1 == null) ? 'order' : 'refused';
 };
-protoOf(JsOrderResult).bx = function () {
-  return !(this.w14_1 == null);
+protoOf(JsOrderResult).fy = function () {
+  return !(this.j16_1 == null);
 };
 protoOf(JsOrderResult).lk = function () {
-  var tmp0_safe_receiver = this.w14_1;
+  var tmp0_safe_receiver = this.j16_1;
   var tmp;
   if (tmp0_safe_receiver == null) {
     tmp = null;
@@ -10808,32 +11573,32 @@ protoOf(JsOrderResult).lk = function () {
   }
   return tmp;
 };
-protoOf(JsOrderResult).lx = function () {
-  var tmp0_safe_receiver = this.x14_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cy_1;
+protoOf(JsOrderResult).py = function () {
+  var tmp0_safe_receiver = this.k16_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gz_1;
 };
-protoOf(JsOrderResult).mx = function () {
-  var tmp0_safe_receiver = this.x14_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dy_1;
+protoOf(JsOrderResult).qy = function () {
+  var tmp0_safe_receiver = this.k16_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hz_1;
 };
-protoOf(JsOrderResult).nx = function () {
-  var tmp0_safe_receiver = this.x14_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ey_1;
+protoOf(JsOrderResult).ry = function () {
+  var tmp0_safe_receiver = this.k16_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.iz_1;
 };
-protoOf(JsOrderResult).dx = function () {
-  var tmp0_safe_receiver = this.x14_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gy_1;
+protoOf(JsOrderResult).hy = function () {
+  var tmp0_safe_receiver = this.k16_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.kz_1;
 };
 protoOf(JsOrderResult).toString = function () {
   return this.ok ? 'JsOrderResult(order)' : 'JsOrderResult(refused: ' + this.reason + ')';
 };
 function JsOrderOutcome(outcome, refusal) {
-  this.y14_1 = outcome;
-  this.z14_1 = refusal;
+  this.l16_1 = outcome;
+  this.m16_1 = refusal;
 }
 protoOf(JsOrderOutcome).ke = function () {
   var tmp;
-  var tmp_0 = this.y14_1;
+  var tmp_0 = this.l16_1;
   if (!(tmp_0 == null) ? isInterface(tmp_0, Advanced) : false) {
     tmp = 'advanced';
   } else {
@@ -10841,12 +11606,12 @@ protoOf(JsOrderOutcome).ke = function () {
   }
   return tmp;
 };
-protoOf(JsOrderOutcome).bx = function () {
-  var tmp = this.y14_1;
+protoOf(JsOrderOutcome).fy = function () {
+  var tmp = this.l16_1;
   return !(tmp == null) ? isInterface(tmp, Advanced) : false;
 };
 protoOf(JsOrderOutcome).lk = function () {
-  var tmp0_safe_receiver = this.y14_1;
+  var tmp0_safe_receiver = this.l16_1;
   var tmp;
   if (tmp0_safe_receiver == null) {
     tmp = null;
@@ -10858,58 +11623,58 @@ protoOf(JsOrderOutcome).lk = function () {
   }
   return tmp;
 };
-protoOf(JsOrderOutcome).lx = function () {
-  var tmp = this.y14_1;
-  var tmp0_safe_receiver = (!(tmp == null) ? isInterface(tmp, Refused_3) : false) ? tmp : null;
-  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.lx();
+protoOf(JsOrderOutcome).py = function () {
+  var tmp = this.l16_1;
+  var tmp0_safe_receiver = (!(tmp == null) ? isInterface(tmp, Refused_4) : false) ? tmp : null;
+  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.py();
   var tmp2_elvis_lhs = tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1;
   var tmp_0;
   if (tmp2_elvis_lhs == null) {
-    var tmp3_safe_receiver = this.z14_1;
-    tmp_0 = tmp3_safe_receiver == null ? null : tmp3_safe_receiver.cy_1;
+    var tmp3_safe_receiver = this.m16_1;
+    tmp_0 = tmp3_safe_receiver == null ? null : tmp3_safe_receiver.gz_1;
   } else {
     tmp_0 = tmp2_elvis_lhs;
   }
   return tmp_0;
 };
-protoOf(JsOrderOutcome).mx = function () {
+protoOf(JsOrderOutcome).qy = function () {
   var tmp;
-  var tmp_0 = this.y14_1;
-  if (!(tmp_0 == null) ? isInterface(tmp_0, Refused_3) : false) {
+  var tmp_0 = this.l16_1;
+  if (!(tmp_0 == null) ? isInterface(tmp_0, Refused_4) : false) {
     tmp = 'TransitionRejection';
   } else {
-    var tmp0_safe_receiver = this.z14_1;
-    tmp = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dy_1;
+    var tmp0_safe_receiver = this.m16_1;
+    tmp = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hz_1;
   }
   return tmp;
 };
-protoOf(JsOrderOutcome).nx = function () {
+protoOf(JsOrderOutcome).ry = function () {
   var tmp;
-  if (!(this.y14_1 == null)) {
+  if (!(this.l16_1 == null)) {
     tmp = null;
   } else {
-    var tmp0_safe_receiver = this.z14_1;
-    tmp = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ey_1;
+    var tmp0_safe_receiver = this.m16_1;
+    tmp = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.iz_1;
   }
   return tmp;
 };
-protoOf(JsOrderOutcome).dx = function () {
-  var tmp = this.y14_1;
-  var tmp0_safe_receiver = (!(tmp == null) ? isInterface(tmp, Refused_3) : false) ? tmp : null;
-  var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dx();
+protoOf(JsOrderOutcome).hy = function () {
+  var tmp = this.l16_1;
+  var tmp0_safe_receiver = (!(tmp == null) ? isInterface(tmp, Refused_4) : false) ? tmp : null;
+  var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hy();
   var tmp_0;
   if (tmp1_elvis_lhs == null) {
-    var tmp2_safe_receiver = this.z14_1;
-    tmp_0 = tmp2_safe_receiver == null ? null : tmp2_safe_receiver.gy_1;
+    var tmp2_safe_receiver = this.m16_1;
+    tmp_0 = tmp2_safe_receiver == null ? null : tmp2_safe_receiver.kz_1;
   } else {
     tmp_0 = tmp1_elvis_lhs;
   }
   return tmp_0;
 };
-protoOf(JsOrderOutcome).a15 = function () {
-  var tmp = this.y14_1;
+protoOf(JsOrderOutcome).n16 = function () {
+  var tmp = this.l16_1;
   var tmp0_safe_receiver = (!(tmp == null) ? isInterface(tmp, ChecksNotPerformed) : false) ? tmp : null;
-  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.b15();
+  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.o16();
   var tmp_0;
   if (tmp1_safe_receiver == null) {
     tmp_0 = null;
@@ -10999,52 +11764,52 @@ function JsOrderEvent(type, createdAtSeconds, orderIdHex, terms, statusToken, fr
 protoOf(JsOrderEvent).kk = function () {
   return this.type;
 };
-protoOf(JsOrderEvent).jx = function () {
+protoOf(JsOrderEvent).ny = function () {
   return this.createdAtSeconds;
 };
-protoOf(JsOrderEvent).b11 = function () {
+protoOf(JsOrderEvent).g12 = function () {
   return this.orderIdHex;
 };
-protoOf(JsOrderEvent).y13 = function () {
+protoOf(JsOrderEvent).l15 = function () {
   return this.terms;
 };
-protoOf(JsOrderEvent).c12 = function () {
+protoOf(JsOrderEvent).n13 = function () {
   return this.statusToken;
 };
-protoOf(JsOrderEvent).c15 = function () {
+protoOf(JsOrderEvent).p16 = function () {
   return this.fromParty;
 };
-protoOf(JsOrderEvent).js = function () {
+protoOf(JsOrderEvent).os = function () {
   return this.commitment;
 };
-protoOf(JsOrderEvent).h13 = function () {
+protoOf(JsOrderEvent).u14 = function () {
   return this.release;
 };
-protoOf(JsOrderEvent).d15 = function () {
+protoOf(JsOrderEvent).q16 = function () {
   return this.proposalRumor;
 };
-protoOf(JsOrderEvent).e15 = function () {
+protoOf(JsOrderEvent).r16 = function () {
   return this.acceptanceRumor;
 };
-protoOf(JsOrderEvent).f15 = function () {
+protoOf(JsOrderEvent).s16 = function () {
   return this.providerPubkey;
 };
-protoOf(JsOrderEvent).g15 = function () {
+protoOf(JsOrderEvent).t16 = function () {
   return this.requests;
 };
-protoOf(JsOrderEvent).h15 = function () {
+protoOf(JsOrderEvent).u16 = function () {
   return this.settlements;
 };
-protoOf(JsOrderEvent).i15 = function () {
+protoOf(JsOrderEvent).v16 = function () {
   return this.servedBytesHex;
 };
-protoOf(JsOrderEvent).j15 = function () {
+protoOf(JsOrderEvent).w16 = function () {
   return this.plaintextBytesHex;
 };
-protoOf(JsOrderEvent).ls = function () {
+protoOf(JsOrderEvent).qs = function () {
   return this.maxServedBytes;
 };
-protoOf(JsOrderEvent).k15 = function () {
+protoOf(JsOrderEvent).x16 = function () {
   return this.deliveryFailure;
 };
 protoOf(JsOrderEvent).toString = function () {
@@ -11065,7 +11830,7 @@ function asOrderEvent(_this__u8e3s4) {
       tmp = new Proposal(Companion_instance_25.hj(crossedField('proposal.orderIdHex', _this__u8e3s4.orderIdHex)), asOrderTerms(crossedField('proposal.terms', _this__u8e3s4.terms)), createdAt);
       break;
     case 'status_update':
-      var tmp2_status = OrderStatusCodec_getInstance().bo(crossedField('status_update.statusToken', _this__u8e3s4.statusToken));
+      var tmp2_status = OrderStatusCodec_getInstance().yo(crossedField('status_update.statusToken', _this__u8e3s4.statusToken));
       var tmp3_from = crossedParty(_this__u8e3s4, 'status_update.fromParty');
       var tmp1_safe_receiver = _this__u8e3s4.terms;
       var tmp4_assertedTerms = tmp1_safe_receiver == null ? null : asOrderTerms(tmp1_safe_receiver);
@@ -11090,7 +11855,7 @@ function asOrderEvent(_this__u8e3s4) {
         var item = this_0[inductionVariable];
         inductionVariable = inductionVariable + 1 | 0;
         // Inline function 'dev.eryalabs.nenya.js.asOrderEvent.<anonymous>' call
-        var tmp$ret$0 = item.l15_1;
+        var tmp$ret$0 = item.y16_1;
         destination.e(tmp$ret$0);
       }
 
@@ -11181,10 +11946,10 @@ function crossedAcceptance_0(proposalRumor, acceptanceRumor, providerPubkey, fie
 function acceptanceAnswer(proposalRumor, statusRumor, providerPubkey) {
   var proposal = Companion_getInstance_4().sl(asBoundRumor(proposalRumor, 'kind:16 type=1 order proposal'));
   var update = Companion_instance_5.sl(asBoundRumor(statusRumor, 'kind:16 type=3 status update'));
-  return proposal.rn(update, providerPubkey);
+  return proposal.oo(update, providerPubkey);
 }
 function crossedPaymentEvidence(crossed) {
-  var tmp = crossed.m15_1;
+  var tmp = crossed.z16_1;
   var tmp0_elvis_lhs = isInterface(tmp, Evidenced) ? tmp : null;
   var tmp_0;
   if (tmp0_elvis_lhs == null) {
@@ -11199,8 +11964,8 @@ function crossedDeliveryEvidence(_this__u8e3s4) {
   var tmp_0 = asDeliverableCommitment(crossedField('delivery_verified.commitment', _this__u8e3s4.commitment));
   var tmp_1 = crossedBytes('delivery_verified.servedBytesHex', _this__u8e3s4.servedBytesHex);
   var tmp0_elvis_lhs = crossedNumberOrNull('delivery_verified.maxServedBytes', _this__u8e3s4.maxServedBytes);
-  var served = tmp.ns(tmp_0, tmp_1, tmp0_elvis_lhs == null ? new Long(67108864, 0) : tmp0_elvis_lhs);
-  return Companion_getInstance_11().us(served, crossedBytes('delivery_verified.plaintextBytesHex', _this__u8e3s4.plaintextBytesHex));
+  var served = tmp.ss(tmp_0, tmp_1, tmp0_elvis_lhs == null ? new Long(67108864, 0) : tmp0_elvis_lhs);
+  return Companion_getInstance_11().zs(served, crossedBytes('delivery_verified.plaintextBytesHex', _this__u8e3s4.plaintextBytesHex));
 }
 function crossedField(field, value) {
   var tmp;
@@ -11212,7 +11977,7 @@ function crossedField(field, value) {
   return tmp;
 }
 function crossedBytes(field, text) {
-  var tmp0_elvis_lhs = JsHex_instance.rx(crossedField(field, text));
+  var tmp0_elvis_lhs = JsHex_instance.vy(crossedField(field, text));
   var tmp;
   if (tmp0_elvis_lhs == null) {
     throw new JsCrossing('UNCONSTRUCTIBLE_VALUE', field, "this boundary carries a byte string as \xA74.3's own lowercase hex, an even number of " + ('characters from `0`-`9` and `a`-`f`; the value crossed for `' + field + '` is not that form'));
@@ -11232,10 +11997,10 @@ function JsDecryption(ok, plaintext) {
   this.ok = ok;
   this.plaintext = plaintext;
 }
-protoOf(JsDecryption).bx = function () {
+protoOf(JsDecryption).fy = function () {
   return this.ok;
 };
-protoOf(JsDecryption).n15 = function () {
+protoOf(JsDecryption).a17 = function () {
   return this.plaintext;
 };
 protoOf(JsDecryption).toString = function () {
@@ -11247,16 +12012,16 @@ function JsSigner(publicKeyHex, signEvent, nip44Encrypt, nip44Decrypt) {
   this.nip44Encrypt = nip44Encrypt;
   this.nip44Decrypt = nip44Decrypt;
 }
-protoOf(JsSigner).o15 = function () {
+protoOf(JsSigner).gx = function () {
   return this.publicKeyHex;
 };
-protoOf(JsSigner).p15 = function () {
+protoOf(JsSigner).hx = function () {
   return this.signEvent;
 };
-protoOf(JsSigner).q15 = function () {
+protoOf(JsSigner).ix = function () {
   return this.nip44Encrypt;
 };
-protoOf(JsSigner).r15 = function () {
+protoOf(JsSigner).jx = function () {
   return this.nip44Decrypt;
 };
 protoOf(JsSigner).toString = function () {
@@ -11272,16 +12037,16 @@ function JsEnvironment(nowSeconds, randomBytesHex, verifySchnorr, freshSigner) {
   this.verifySchnorr = verifySchnorr;
   this.freshSigner = freshSigner;
 }
-protoOf(JsEnvironment).s15 = function () {
+protoOf(JsEnvironment).b17 = function () {
   return this.nowSeconds;
 };
-protoOf(JsEnvironment).t15 = function () {
+protoOf(JsEnvironment).c17 = function () {
   return this.randomBytesHex;
 };
-protoOf(JsEnvironment).u15 = function () {
+protoOf(JsEnvironment).d17 = function () {
   return this.verifySchnorr;
 };
-protoOf(JsEnvironment).v15 = function () {
+protoOf(JsEnvironment).e17 = function () {
   return this.freshSigner;
 };
 protoOf(JsEnvironment).toString = function () {
@@ -11291,7 +12056,7 @@ function hex(bytes) {
   return encodeLowerHex_2(bytes);
 }
 function crossedUnavailable(capability) {
-  return new Unavailable_0(capability, 'the JavaScript function supplied for this seam answered nothing, so ' + capability.y15_1 + ' ' + 'was not performed; \xA717 requires this be reported as not performed rather than as a ' + 'negative result');
+  return new Unavailable_0(capability, 'the JavaScript function supplied for this seam answered nothing, so ' + capability.h17_1 + ' ' + 'was not performed; \xA717 requires this be reported as not performed rather than as a ' + 'negative result');
 }
 function crossed(capability, value) {
   return value == null ? crossedUnavailable(capability) : new Provided(value);
@@ -11300,19 +12065,19 @@ function asSigner(_this__u8e3s4) {
   return new CrossedSigner(_this__u8e3s4);
 }
 function CrossedSigner(js) {
-  this.z15_1 = js;
+  this.i17_1 = js;
 }
-protoOf(CrossedSigner).mu = function () {
-  return crossed(SeamCapability_SIGNER_PUBLIC_KEY_getInstance(), this.z15_1.publicKeyHex());
+protoOf(CrossedSigner).ru = function () {
+  return crossed(SeamCapability_SIGNER_PUBLIC_KEY_getInstance(), this.i17_1.publicKeyHex());
 };
-protoOf(CrossedSigner).nv = function (canonicalSerialisation) {
-  return crossed(SeamCapability_EVENT_SIGNATURE_getInstance(), this.z15_1.signEvent(canonicalSerialisation));
+protoOf(CrossedSigner).sv = function (canonicalSerialisation) {
+  return crossed(SeamCapability_EVENT_SIGNATURE_getInstance(), this.i17_1.signEvent(canonicalSerialisation));
 };
-protoOf(CrossedSigner).mv = function (counterpartyPublicKeyHex, plaintext) {
-  return crossed(SeamCapability_NIP44_ENCRYPTION_getInstance(), this.z15_1.nip44Encrypt(counterpartyPublicKeyHex, plaintext));
+protoOf(CrossedSigner).rv = function (counterpartyPublicKeyHex, plaintext) {
+  return crossed(SeamCapability_NIP44_ENCRYPTION_getInstance(), this.i17_1.nip44Encrypt(counterpartyPublicKeyHex, plaintext));
 };
-protoOf(CrossedSigner).ru = function (counterpartyPublicKeyHex, payload) {
-  var tmp0_elvis_lhs = this.z15_1.nip44Decrypt(counterpartyPublicKeyHex, payload);
+protoOf(CrossedSigner).wu = function (counterpartyPublicKeyHex, payload) {
+  var tmp0_elvis_lhs = this.i17_1.nip44Decrypt(counterpartyPublicKeyHex, payload);
   var tmp;
   if (tmp0_elvis_lhs == null) {
     return crossedUnavailable(SeamCapability_NIP44_DECRYPTION_getInstance());
@@ -11336,7 +12101,7 @@ function asClock(_this__u8e3s4) {
   var tmp0_elvis_lhs = _this__u8e3s4.nowSeconds;
   var tmp;
   if (tmp0_elvis_lhs == null) {
-    return Companion_getInstance_28().rw_1;
+    return Companion_getInstance_28().ww_1;
   } else {
     tmp = tmp0_elvis_lhs;
   }
@@ -11347,7 +12112,7 @@ function asRandomness(_this__u8e3s4) {
   var tmp0_elvis_lhs = _this__u8e3s4.randomBytesHex;
   var tmp;
   if (tmp0_elvis_lhs == null) {
-    return Companion_getInstance_29().sw_1;
+    return Companion_getInstance_29().xw_1;
   } else {
     tmp = tmp0_elvis_lhs;
   }
@@ -11358,7 +12123,7 @@ function asSecp(_this__u8e3s4) {
   var tmp0_elvis_lhs = _this__u8e3s4.verifySchnorr;
   var tmp;
   if (tmp0_elvis_lhs == null) {
-    return Companion_getInstance_30().tw_1;
+    return Companion_getInstance_30().yw_1;
   } else {
     tmp = tmp0_elvis_lhs;
   }
@@ -11369,7 +12134,7 @@ function asEphemeralSigners(_this__u8e3s4) {
   var tmp0_elvis_lhs = _this__u8e3s4.freshSigner;
   var tmp;
   if (tmp0_elvis_lhs == null) {
-    return Companion_getInstance_27().qw_1;
+    return Companion_getInstance_27().vw_1;
   } else {
     tmp = tmp0_elvis_lhs;
   }
@@ -11377,10 +12142,10 @@ function asEphemeralSigners(_this__u8e3s4) {
   return new asEphemeralSigners$1(fresh);
 }
 function asClock$1($now) {
-  this.a16_1 = $now;
+  this.j17_1 = $now;
 }
 protoOf(asClock$1).xe = function () {
-  var tmp0_elvis_lhs = this.a16_1();
+  var tmp0_elvis_lhs = this.j17_1();
   var tmp;
   if (tmp0_elvis_lhs == null) {
     return crossedUnavailable(SeamCapability_CLOCK_READING_getInstance());
@@ -11388,7 +12153,7 @@ protoOf(asClock$1).xe = function () {
     tmp = tmp0_elvis_lhs;
   }
   var text = tmp;
-  var tmp1_elvis_lhs = JsDecimal_instance.qx(text);
+  var tmp1_elvis_lhs = JsDecimal_instance.uy(text);
   var tmp_0;
   if (tmp1_elvis_lhs == null) {
     return crossedUnavailable(SeamCapability_CLOCK_READING_getInstance());
@@ -11399,10 +12164,10 @@ protoOf(asClock$1).xe = function () {
   return new Provided(seconds);
 };
 function asRandomness$1($bytes) {
-  this.b16_1 = $bytes;
+  this.k17_1 = $bytes;
 }
-protoOf(asRandomness$1).ov = function (count) {
-  var tmp0_elvis_lhs = this.b16_1(count);
+protoOf(asRandomness$1).tv = function (count) {
+  var tmp0_elvis_lhs = this.k17_1(count);
   var tmp;
   if (tmp0_elvis_lhs == null) {
     return crossedUnavailable(SeamCapability_RANDOM_BYTES_getInstance());
@@ -11410,7 +12175,7 @@ protoOf(asRandomness$1).ov = function (count) {
     tmp = tmp0_elvis_lhs;
   }
   var hex = tmp;
-  var tmp1_elvis_lhs = JsHex_instance.rx(hex);
+  var tmp1_elvis_lhs = JsHex_instance.vy(hex);
   var tmp_0;
   if (tmp1_elvis_lhs == null) {
     return crossedUnavailable(SeamCapability_RANDOM_BYTES_getInstance());
@@ -11423,10 +12188,10 @@ protoOf(asRandomness$1).ov = function (count) {
   return new Provided(decoded);
 };
 function asSecp$1($verify) {
-  this.c16_1 = $verify;
+  this.l17_1 = $verify;
 }
-protoOf(asSecp$1).qu = function (publicKeyXOnly, message, signature) {
-  var tmp0_elvis_lhs = this.c16_1(hex(publicKeyXOnly), hex(message), hex(signature));
+protoOf(asSecp$1).vu = function (publicKeyXOnly, message, signature) {
+  var tmp0_elvis_lhs = this.l17_1(hex(publicKeyXOnly), hex(message), hex(signature));
   var tmp;
   if (tmp0_elvis_lhs == null) {
     return crossedUnavailable(SeamCapability_BIP340_VERIFICATION_getInstance());
@@ -11459,10 +12224,10 @@ protoOf(asSecp$1).qu = function (publicKeyXOnly, message, signature) {
   return new Provided(verdict);
 };
 function asEphemeralSigners$1($fresh) {
-  this.d16_1 = $fresh;
+  this.m17_1 = $fresh;
 }
-protoOf(asEphemeralSigners$1).lv = function () {
-  var tmp0_elvis_lhs = this.d16_1();
+protoOf(asEphemeralSigners$1).qv = function () {
+  var tmp0_elvis_lhs = this.m17_1();
   var tmp;
   if (tmp0_elvis_lhs == null) {
     return crossedUnavailable(SeamCapability_EPHEMERAL_SIGNER_getInstance());
@@ -11477,13 +12242,13 @@ function verifySettlement(receipt, store, terms) {
   var tmp;
   try {
     // Inline function 'dev.eryalabs.nenya.js.verifySettlement.<anonymous>' call
-    tmp = new JsSettlementResult(Companion_getInstance_41().k16(Companion_instance_40.sl(asBoundRumor(receipt, 'kind:17 payment receipt')), asPaymentRequestStore(store), asOrderTerms(terms).sp_1), null);
+    tmp = new JsSettlementResult(Companion_getInstance_41().t17(Companion_instance_40.sl(asBoundRumor(receipt, 'kind:17 payment receipt')), asPaymentRequestStore(store), asOrderTerms(terms).lq_1), null);
   } catch ($p) {
     var tmp_0;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.verifySettlement.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_0 = new JsSettlementResult(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -11492,7 +12257,7 @@ function verifySettlement(receipt, store, terms) {
         var tmp_1 = refused_0.cause;
         var tmp0_safe_receiver = tmp_1 instanceof TagException ? tmp_1 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_0 = new JsSettlementResult(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -11504,13 +12269,13 @@ function verifySettlement(receipt, store, terms) {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.verifySettlement.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_0 = new JsSettlementResult(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.verifySettlement.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_0 = new JsSettlementResult(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -11522,7 +12287,7 @@ function verifySettlement(receipt, store, terms) {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.verifySettlement.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_0 = new JsSettlementResult(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -11540,7 +12305,7 @@ function verifySettlement(receipt, store, terms) {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.verifySettlement.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_0 = new JsSettlementResult(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -11552,7 +12317,7 @@ function verifySettlement(receipt, store, terms) {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.verifySettlement.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_0 = new JsSettlementResult(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -11564,7 +12329,7 @@ function verifySettlement(receipt, store, terms) {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.verifySettlement.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_0 = new JsSettlementResult(null, it_12);
                               } else {
                                 throw $p;
@@ -11614,13 +12379,13 @@ function verifyFeeReceipt(receipt, store, order, earlierPoints) {
       var tmp$ret$1 = asFeeTermSighting(item);
       destination.e(tmp$ret$1);
     }
-    tmp_0 = new JsSettlementResult(tmp_1.l16(tmp_2, tmp_3, order.s13_1, destination), null);
+    tmp_0 = new JsSettlementResult(tmp_1.u17(tmp_2, tmp_3, order.f15_1, destination), null);
   } catch ($p) {
     var tmp_4;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.verifyFeeReceipt.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_4 = new JsSettlementResult(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -11629,7 +12394,7 @@ function verifyFeeReceipt(receipt, store, order, earlierPoints) {
         var tmp_5 = refused_0.cause;
         var tmp0_safe_receiver = tmp_5 instanceof TagException ? tmp_5 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_4 = new JsSettlementResult(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -11641,13 +12406,13 @@ function verifyFeeReceipt(receipt, store, order, earlierPoints) {
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.verifyFeeReceipt.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_4 = new JsSettlementResult(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.verifyFeeReceipt.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_4 = new JsSettlementResult(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -11659,7 +12424,7 @@ function verifyFeeReceipt(receipt, store, order, earlierPoints) {
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.verifyFeeReceipt.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_4 = new JsSettlementResult(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -11677,7 +12442,7 @@ function verifyFeeReceipt(receipt, store, order, earlierPoints) {
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.verifyFeeReceipt.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_4 = new JsSettlementResult(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -11689,7 +12454,7 @@ function verifyFeeReceipt(receipt, store, order, earlierPoints) {
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.verifyFeeReceipt.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_4 = new JsSettlementResult(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -11701,7 +12466,7 @@ function verifyFeeReceipt(receipt, store, order, earlierPoints) {
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.verifyFeeReceipt.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_4 = new JsSettlementResult(null, it_12);
                               } else {
                                 throw $p;
@@ -11739,7 +12504,7 @@ function acceptPaymentRequest(request, proposalRumor, acceptanceRumor, providerP
     // Inline function 'dev.eryalabs.nenya.js.acceptPaymentRequest.<anonymous>' call
     var acceptance = crossedAcceptance_0(proposalRumor, acceptanceRumor, providerPubkey, 'acceptPaymentRequest.acceptanceRumor');
     var tmp_1 = Companion_instance_39;
-    var tmp_2 = Companion_instance_38.m16(asBoundRumor(request, 'kind:16 type=2 payment request'), acceptance.do_1.sp_1);
+    var tmp_2 = Companion_instance_38.v17(asBoundRumor(request, 'kind:16 type=2 payment request'), acceptance.ap_1.lq_1);
     var tmp_3 = asPaymentRequestStore(store);
     var tmp_4 = asClock(environment);
     // Inline function 'kotlin.collections.map' call
@@ -11754,13 +12519,13 @@ function acceptPaymentRequest(request, proposalRumor, acceptanceRumor, providerP
       var tmp$ret$1 = asFeeTermSighting(item);
       destination.e(tmp$ret$1);
     }
-    tmp_0 = new JsAcceptedRequestResult(tmp_1.n16(tmp_2, acceptance, tmp_3, tmp_4, destination), null);
+    tmp_0 = new JsAcceptedRequestResult(tmp_1.w17(tmp_2, acceptance, tmp_3, tmp_4, destination), null);
   } catch ($p) {
     var tmp_5;
     if ($p instanceof JsCrossing) {
       var refused = $p;
       // Inline function 'dev.eryalabs.nenya.js.acceptPaymentRequest.<anonymous>' call
-      var it = new JsRefusal(refused.zx_1, 'JsCrossing', refused.ay_1, null, refused.by_1);
+      var it = new JsRefusal(refused.dz_1, 'JsCrossing', refused.ez_1, null, refused.fz_1);
       tmp_5 = new JsAcceptedRequestResult(null, it);
     } else {
       if ($p instanceof ListingException) {
@@ -11769,7 +12534,7 @@ function acceptPaymentRequest(request, proposalRumor, acceptanceRumor, providerP
         var tmp_6 = refused_0.cause;
         var tmp0_safe_receiver = tmp_6 instanceof TagException ? tmp_6 : null;
         var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.bf_1;
-        var it_0 = new JsRefusal(refused_0.hz_1.t1_1, 'ListingRejection', refused_0.iz_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
+        var it_0 = new JsRefusal(refused_0.l10_1.t1_1, 'ListingRejection', refused_0.m10_1, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.t1_1, refused_0.message);
         tmp_5 = new JsAcceptedRequestResult(null, it_0);
       } else {
         if ($p instanceof BidException) {
@@ -11781,13 +12546,13 @@ function acceptPaymentRequest(request, proposalRumor, acceptanceRumor, providerP
           if ($p instanceof OrderStateException) {
             var refused_2 = $p;
             // Inline function 'dev.eryalabs.nenya.js.acceptPaymentRequest.<anonymous>' call
-            var it_2 = new JsRefusal(refused_2.gz_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
+            var it_2 = new JsRefusal(refused_2.k10_1.t1_1, 'OrderStateRejection', null, null, refused_2.message);
             tmp_5 = new JsAcceptedRequestResult(null, it_2);
           } else {
             if ($p instanceof EnvelopeException) {
               var refused_3 = $p;
               // Inline function 'dev.eryalabs.nenya.js.acceptPaymentRequest.<anonymous>' call
-              var it_3 = new JsRefusal(refused_3.ys_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
+              var it_3 = new JsRefusal(refused_3.dt_1.t1_1, 'EnvelopeRejection', null, null, refused_3.message);
               tmp_5 = new JsAcceptedRequestResult(null, it_3);
             } else {
               if ($p instanceof TagException) {
@@ -11799,7 +12564,7 @@ function acceptPaymentRequest(request, proposalRumor, acceptanceRumor, providerP
                 if ($p instanceof MoneyException) {
                   var refused_5 = $p;
                   // Inline function 'dev.eryalabs.nenya.js.acceptPaymentRequest.<anonymous>' call
-                  var it_5 = new JsRefusal(refused_5.qm_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
+                  var it_5 = new JsRefusal(refused_5.sn_1.t1_1, 'MoneyRejection', null, null, refused_5.message);
                   tmp_5 = new JsAcceptedRequestResult(null, it_5);
                 } else {
                   if ($p instanceof SeamException) {
@@ -11817,7 +12582,7 @@ function acceptPaymentRequest(request, proposalRumor, acceptanceRumor, providerP
                       if ($p instanceof PaymentException) {
                         var refused_8 = $p;
                         // Inline function 'dev.eryalabs.nenya.js.acceptPaymentRequest.<anonymous>' call
-                        var it_8 = new JsRefusal(refused_8.fz_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
+                        var it_8 = new JsRefusal(refused_8.j10_1.t1_1, 'PaymentRejection', null, null, refused_8.message);
                         tmp_5 = new JsAcceptedRequestResult(null, it_8);
                       } else {
                         if ($p instanceof ChannelException) {
@@ -11829,7 +12594,7 @@ function acceptPaymentRequest(request, proposalRumor, acceptanceRumor, providerP
                           if ($p instanceof SettlementException) {
                             var refused_10 = $p;
                             // Inline function 'dev.eryalabs.nenya.js.acceptPaymentRequest.<anonymous>' call
-                            var it_10 = new JsRefusal(refused_10.cz_1.t1_1, 'SettlementRejection', refused_10.dz_1, null, refused_10.message);
+                            var it_10 = new JsRefusal(refused_10.g10_1.t1_1, 'SettlementRejection', refused_10.h10_1, null, refused_10.message);
                             tmp_5 = new JsAcceptedRequestResult(null, it_10);
                           } else {
                             if ($p instanceof WireException) {
@@ -11841,7 +12606,7 @@ function acceptPaymentRequest(request, proposalRumor, acceptanceRumor, providerP
                               if ($p instanceof JsonException) {
                                 var refused_12 = $p;
                                 // Inline function 'dev.eryalabs.nenya.js.acceptPaymentRequest.<anonymous>' call
-                                var it_12 = new JsRefusal(refused_12.hu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
+                                var it_12 = new JsRefusal(refused_12.mu_1.t1_1, 'JsonRejection', null, null, refused_12.message);
                                 tmp_5 = new JsAcceptedRequestResult(null, it_12);
                               } else {
                                 throw $p;
@@ -11864,35 +12629,35 @@ function acceptPaymentRequest(request, proposalRumor, acceptanceRumor, providerP
   return tmp_0;
 }
 function JsSettlement(settlement) {
-  this.m15_1 = settlement;
+  this.z16_1 = settlement;
 }
-protoOf(JsSettlement).o16 = function () {
-  return this.m15_1;
+protoOf(JsSettlement).x17 = function () {
+  return this.z16_1;
 };
-protoOf(JsSettlement).b11 = function () {
-  return this.m15_1.lk().qo();
+protoOf(JsSettlement).g12 = function () {
+  return this.z16_1.lk().np();
 };
-protoOf(JsSettlement).p16 = function () {
-  return this.m15_1.p16().s10_1;
+protoOf(JsSettlement).y17 = function () {
+  return this.z16_1.y17().x11_1;
 };
-protoOf(JsSettlement).q16 = function () {
-  return this.m15_1.q16().t1_1;
+protoOf(JsSettlement).z17 = function () {
+  return this.z16_1.z17().t1_1;
 };
-protoOf(JsSettlement).r16 = function () {
-  var tmp = this.m15_1;
+protoOf(JsSettlement).a18 = function () {
+  var tmp = this.z16_1;
   return isInterface(tmp, Evidenced);
 };
-protoOf(JsSettlement).s16 = function () {
-  var tmp = this.m15_1;
+protoOf(JsSettlement).b18 = function () {
+  var tmp = this.z16_1;
   var tmp0_safe_receiver = isInterface(tmp, Evidenced) ? tmp : null;
-  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.t16();
-  var tmp2_safe_receiver = tmp1_safe_receiver == null ? null : tmp1_safe_receiver.u16();
-  return tmp2_safe_receiver == null ? null : tmp2_safe_receiver.qo();
+  var tmp1_safe_receiver = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.c18();
+  var tmp2_safe_receiver = tmp1_safe_receiver == null ? null : tmp1_safe_receiver.d18();
+  return tmp2_safe_receiver == null ? null : tmp2_safe_receiver.np();
 };
-protoOf(JsSettlement).ss = function () {
+protoOf(JsSettlement).xs = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.m15_1.ss();
+  var this_0 = this.z16_1.xs();
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -11904,10 +12669,10 @@ protoOf(JsSettlement).ss = function () {
   }
   return copyToArray(destination);
 };
-protoOf(JsSettlement).ts = function () {
+protoOf(JsSettlement).ys = function () {
   // Inline function 'kotlin.collections.toTypedArray' call
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.m15_1.ts();
+  var this_0 = this.z16_1.ys();
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -11923,17 +12688,17 @@ protoOf(JsSettlement).toString = function () {
   return 'JsSettlement(payee=' + this.payee + ', medium=' + this.medium + ')';
 };
 function JsSettlementResult(answer, refusal) {
-  this.w16_1 = answer;
-  this.x16_1 = refusal;
+  this.f18_1 = answer;
+  this.g18_1 = refusal;
 }
 protoOf(JsSettlementResult).ke = function () {
-  return !(this.w16_1 == null) ? 'settlement' : 'refused';
+  return !(this.f18_1 == null) ? 'settlement' : 'refused';
 };
-protoOf(JsSettlementResult).bx = function () {
-  return !(this.w16_1 == null);
+protoOf(JsSettlementResult).fy = function () {
+  return !(this.f18_1 == null);
 };
-protoOf(JsSettlementResult).y16 = function () {
-  var tmp0_safe_receiver = this.w16_1;
+protoOf(JsSettlementResult).h18 = function () {
+  var tmp0_safe_receiver = this.f18_1;
   var tmp;
   if (tmp0_safe_receiver == null) {
     tmp = null;
@@ -11945,61 +12710,61 @@ protoOf(JsSettlementResult).y16 = function () {
   }
   return tmp;
 };
-protoOf(JsSettlementResult).lx = function () {
-  var tmp0_safe_receiver = this.x16_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cy_1;
+protoOf(JsSettlementResult).py = function () {
+  var tmp0_safe_receiver = this.g18_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gz_1;
 };
-protoOf(JsSettlementResult).mx = function () {
-  var tmp0_safe_receiver = this.x16_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dy_1;
+protoOf(JsSettlementResult).qy = function () {
+  var tmp0_safe_receiver = this.g18_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hz_1;
 };
-protoOf(JsSettlementResult).nx = function () {
-  var tmp0_safe_receiver = this.x16_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ey_1;
+protoOf(JsSettlementResult).ry = function () {
+  var tmp0_safe_receiver = this.g18_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.iz_1;
 };
-protoOf(JsSettlementResult).dx = function () {
-  var tmp0_safe_receiver = this.x16_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gy_1;
+protoOf(JsSettlementResult).hy = function () {
+  var tmp0_safe_receiver = this.g18_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.kz_1;
 };
 protoOf(JsSettlementResult).toString = function () {
   return this.ok ? 'JsSettlementResult(settlement)' : 'JsSettlementResult(refused: ' + this.reason + ')';
 };
 function JsAcceptedRequest(accepted) {
-  this.l15_1 = accepted;
+  this.y16_1 = accepted;
 }
-protoOf(JsAcceptedRequest).z16 = function () {
-  return this.l15_1;
+protoOf(JsAcceptedRequest).i18 = function () {
+  return this.y16_1;
 };
-protoOf(JsAcceptedRequest).b11 = function () {
-  return this.l15_1.lk().qo();
+protoOf(JsAcceptedRequest).g12 = function () {
+  return this.y16_1.lk().np();
 };
-protoOf(JsAcceptedRequest).p16 = function () {
-  return this.l15_1.p16().s10_1;
+protoOf(JsAcceptedRequest).y17 = function () {
+  return this.y16_1.y17().x11_1;
 };
-protoOf(JsAcceptedRequest).a17 = function () {
-  return this.l15_1.a17().b17_1;
+protoOf(JsAcceptedRequest).j18 = function () {
+  return this.y16_1.j18().k18_1;
 };
-protoOf(JsAcceptedRequest).c17 = function () {
-  return JsDecimal_instance.kx(this.l15_1.d17());
+protoOf(JsAcceptedRequest).l18 = function () {
+  return JsDecimal_instance.oy(this.y16_1.m18());
 };
-protoOf(JsAcceptedRequest).e17 = function () {
-  return this.l15_1.e17();
+protoOf(JsAcceptedRequest).n18 = function () {
+  return this.y16_1.n18();
 };
 protoOf(JsAcceptedRequest).toString = function () {
   return 'JsAcceptedRequest(payee=' + this.payee + ')';
 };
 function JsAcceptedRequestResult(accepted, refusal) {
-  this.f17_1 = accepted;
-  this.g17_1 = refusal;
+  this.o18_1 = accepted;
+  this.p18_1 = refusal;
 }
 protoOf(JsAcceptedRequestResult).ke = function () {
-  return !(this.f17_1 == null) ? 'accepted' : 'refused';
+  return !(this.o18_1 == null) ? 'accepted' : 'refused';
 };
-protoOf(JsAcceptedRequestResult).bx = function () {
-  return !(this.f17_1 == null);
+protoOf(JsAcceptedRequestResult).fy = function () {
+  return !(this.o18_1 == null);
 };
-protoOf(JsAcceptedRequestResult).h17 = function () {
-  var tmp0_safe_receiver = this.f17_1;
+protoOf(JsAcceptedRequestResult).q18 = function () {
+  var tmp0_safe_receiver = this.o18_1;
   var tmp;
   if (tmp0_safe_receiver == null) {
     tmp = null;
@@ -12011,21 +12776,21 @@ protoOf(JsAcceptedRequestResult).h17 = function () {
   }
   return tmp;
 };
-protoOf(JsAcceptedRequestResult).lx = function () {
-  var tmp0_safe_receiver = this.g17_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.cy_1;
+protoOf(JsAcceptedRequestResult).py = function () {
+  var tmp0_safe_receiver = this.p18_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gz_1;
 };
-protoOf(JsAcceptedRequestResult).mx = function () {
-  var tmp0_safe_receiver = this.g17_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.dy_1;
+protoOf(JsAcceptedRequestResult).qy = function () {
+  var tmp0_safe_receiver = this.p18_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hz_1;
 };
-protoOf(JsAcceptedRequestResult).nx = function () {
-  var tmp0_safe_receiver = this.g17_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.ey_1;
+protoOf(JsAcceptedRequestResult).ry = function () {
+  var tmp0_safe_receiver = this.p18_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.iz_1;
 };
-protoOf(JsAcceptedRequestResult).dx = function () {
-  var tmp0_safe_receiver = this.g17_1;
-  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.gy_1;
+protoOf(JsAcceptedRequestResult).hy = function () {
+  var tmp0_safe_receiver = this.p18_1;
+  return tmp0_safe_receiver == null ? null : tmp0_safe_receiver.kz_1;
 };
 protoOf(JsAcceptedRequestResult).toString = function () {
   return this.ok ? 'JsAcceptedRequestResult(accepted)' : 'JsAcceptedRequestResult(refused: ' + this.reason + ')';
@@ -12036,10 +12801,10 @@ function JsPaymentRequestStore(find, store) {
   this.find = find;
   this.store = store;
 }
-protoOf(JsPaymentRequestStore).i17 = function () {
+protoOf(JsPaymentRequestStore).r18 = function () {
   return this.find;
 };
-protoOf(JsPaymentRequestStore).j17 = function () {
+protoOf(JsPaymentRequestStore).s18 = function () {
   return this.store;
 };
 protoOf(JsPaymentRequestStore).toString = function () {
@@ -12050,10 +12815,10 @@ function JsFeeTermSighting(point, feeTag) {
   this.point = point;
   this.feeTag = feeTag;
 }
-protoOf(JsFeeTermSighting).k17 = function () {
+protoOf(JsFeeTermSighting).t18 = function () {
   return this.point;
 };
-protoOf(JsFeeTermSighting).l17 = function () {
+protoOf(JsFeeTermSighting).u18 = function () {
   return this.feeTag;
 };
 protoOf(JsFeeTermSighting).toString = function () {
@@ -12063,18 +12828,18 @@ function asPaymentRequestStore(_this__u8e3s4) {
   return new CrossedPaymentRequestStore(_this__u8e3s4);
 }
 function CrossedPaymentRequestStore(js) {
-  this.m17_1 = js;
+  this.v18_1 = js;
 }
-protoOf(CrossedPaymentRequestStore).n17 = function (accepted) {
-  var tmp0_safe_receiver = this.m17_1.store;
+protoOf(CrossedPaymentRequestStore).w18 = function (accepted) {
+  var tmp0_safe_receiver = this.v18_1.store;
   if (tmp0_safe_receiver == null)
     null;
   else
     tmp0_safe_receiver(new JsAcceptedRequest(accepted));
   return accepted;
 };
-protoOf(CrossedPaymentRequestStore).o17 = function (order, payee) {
-  var tmp0_elvis_lhs = this.m17_1.find;
+protoOf(CrossedPaymentRequestStore).x18 = function (order, payee) {
+  var tmp0_elvis_lhs = this.v18_1.find;
   var tmp;
   if (tmp0_elvis_lhs == null) {
     return null;
@@ -12082,8 +12847,8 @@ protoOf(CrossedPaymentRequestStore).o17 = function (order, payee) {
     tmp = tmp0_elvis_lhs;
   }
   var find = tmp;
-  var tmp1_safe_receiver = find(order.qo(), payee.s10_1);
-  return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.l15_1;
+  var tmp1_safe_receiver = find(order.np(), payee.x11_1);
+  return tmp1_safe_receiver == null ? null : tmp1_safe_receiver.y16_1;
 };
 protoOf(CrossedPaymentRequestStore).toString = function () {
   return 'CrossedPaymentRequestStore(redacted)';
@@ -12093,7 +12858,7 @@ function asFeeTermSighting(_this__u8e3s4) {
   var tmp_0 = get_entries_13();
   var tmp_1 = crossedConstant('fee term point', _this__u8e3s4.point, tmp_0, asFeeTermSighting$lambda);
   var tmp0_safe_receiver = _this__u8e3s4.feeTag;
-  return tmp.u17(tmp_1, tmp0_safe_receiver == null ? null : toList_0(tmp0_safe_receiver));
+  return tmp.d19(tmp_1, tmp0_safe_receiver == null ? null : toList_0(tmp0_safe_receiver));
 }
 function crossedConstant(what, crossed, candidates, nameOf) {
   var tmp$ret$1;
@@ -12133,6 +12898,100 @@ function crossedConstant(what, crossed, candidates, nameOf) {
 function asFeeTermSighting$lambda(it) {
   return it.t1_1;
 }
+function BoardQuery(kinds, topics, mimeType, directedTo) {
+  topics = topics === VOID ? emptySet() : topics;
+  mimeType = mimeType === VOID ? null : mimeType;
+  directedTo = directedTo === VOID ? null : directedTo;
+  this.o12_1 = mimeType;
+  this.p12_1 = directedTo;
+  this.q12_1 = readOnlySetOf(kinds);
+  this.r12_1 = readOnlySetOf(topics);
+  var tmp = this;
+  // Inline function 'kotlin.collections.map' call
+  // Inline function 'kotlin.collections.mapTo' call
+  var destination = ArrayList_init_$Create$(collectionSizeOrDefault(topics, 10));
+  var tmp0_iterator = topics.g();
+  while (tmp0_iterator.h()) {
+    var item = tmp0_iterator.i();
+    // Inline function 'dev.eryalabs.nenya.listing.BoardQuery.normalisedTopics.<anonymous>' call
+    // Inline function 'kotlin.text.lowercase' call
+    // Inline function 'kotlin.js.asDynamic' call
+    var tmp$ret$2 = item.toLowerCase();
+    destination.e(tmp$ret$2);
+  }
+  tmp.s12_1 = toSet(destination);
+  var tmp_0 = this;
+  var tmp0_safe_receiver = this.p12_1;
+  var tmp_1;
+  if (tmp0_safe_receiver == null) {
+    tmp_1 = null;
+  } else {
+    // Inline function 'kotlin.let' call
+    // Inline function 'kotlin.contracts.contract' call
+    // Inline function 'dev.eryalabs.nenya.listing.BoardQuery.directedToHex.<anonymous>' call
+    // Inline function 'kotlin.text.buildString' call
+    var capacity = tmp0_safe_receiver.length;
+    // Inline function 'kotlin.contracts.contract' call
+    // Inline function 'kotlin.apply' call
+    var this_0 = StringBuilder_init_$Create$_0(capacity);
+    // Inline function 'kotlin.contracts.contract' call
+    // Inline function 'dev.eryalabs.nenya.listing.BoardQuery.directedToHex.<anonymous>.<anonymous>' call
+    var inductionVariable = 0;
+    var last = tmp0_safe_receiver.length;
+    while (inductionVariable < last) {
+      var character = charSequenceGet(tmp0_safe_receiver, inductionVariable);
+      inductionVariable = inductionVariable + 1 | 0;
+      this_0.l6((_Char___init__impl__6a9atx(65) <= character ? character <= _Char___init__impl__6a9atx(70) : false) ? Char__plus_impl_qi7pgj(character, 32) : character);
+    }
+    tmp_1 = this_0.toString();
+  }
+  tmp_0.t12_1 = tmp_1;
+}
+protoOf(BoardQuery).u12 = function (listing) {
+  if (!this.q12_1.w(listing.ke()))
+    return false;
+  if (!listing.wh_1.wc_1.k1(this.s12_1))
+    return false;
+  if (!(this.o12_1 == null) && !(listing.d10() == this.o12_1))
+    return false;
+  var tmp;
+  if (!(this.t12_1 == null)) {
+    var tmp$ret$0;
+    $l$block_0: {
+      // Inline function 'kotlin.collections.none' call
+      var this_0 = listing.s13();
+      var tmp_0;
+      if (isInterface(this_0, Collection)) {
+        tmp_0 = this_0.p();
+      } else {
+        tmp_0 = false;
+      }
+      if (tmp_0) {
+        tmp$ret$0 = true;
+        break $l$block_0;
+      }
+      var tmp0_iterator = this_0.g();
+      while (tmp0_iterator.h()) {
+        var element = tmp0_iterator.i();
+        // Inline function 'dev.eryalabs.nenya.listing.BoardQuery.matches.<anonymous>' call
+        if (element.hh_1 === this.t12_1) {
+          tmp$ret$0 = false;
+          break $l$block_0;
+        }
+      }
+      tmp$ret$0 = true;
+    }
+    tmp = tmp$ret$0;
+  } else {
+    tmp = false;
+  }
+  if (tmp)
+    return false;
+  return true;
+};
+protoOf(BoardQuery).toString = function () {
+  return 'BoardQuery(kinds=' + this.q12_1.j() + ', topics=' + this.r12_1.j() + ', mimeType=' + !(this.o12_1 == null) + ', ' + ('directedTo=' + !(this.p12_1 == null) + ')');
+};
 var ListingActivity_ACTIVE_instance;
 var ListingActivity_EXPIRED_instance;
 var ListingActivity_CANNOT_SAY_instance;
@@ -12159,7 +13018,7 @@ function side($this, tags, kind) {
     var element = tmp0_iterator.i();
     // Inline function 'kotlin.collections.mapNotNullTo.<anonymous>' call
     // Inline function 'dev.eryalabs.nenya.listing.Companion.side.<anonymous>' call
-    var tmp0_safe_receiver = Companion_instance_14.v17(element);
+    var tmp0_safe_receiver = Companion_instance_14.e19(element);
     if (tmp0_safe_receiver == null)
       null;
     else {
@@ -12172,12 +13031,12 @@ function side($this, tags, kind) {
   var tmp0_elvis_lhs = singleOrNull(sides);
   var tmp;
   if (tmp0_elvis_lhs == null) {
-    throw new ListingException(ListingRejection_MISSING_TOPIC_getInstance(), 't', '\xA75.3 requires exactly one of `' + ListingSide_WANT_TO_BUY_getInstance().y17_1 + '` / ' + ('`' + ListingSide_WANT_TO_SELL_getInstance().y17_1 + '` on a listing; this one names ' + sides.j()));
+    throw new ListingException(ListingRejection_MISSING_TOPIC_getInstance(), 't', '\xA75.3 requires exactly one of `' + ListingSide_WANT_TO_BUY_getInstance().h19_1 + '` / ' + ('`' + ListingSide_WANT_TO_SELL_getInstance().h19_1 + '` on a listing; this one names ' + sides.j()));
   } else {
     tmp = tmp0_elvis_lhs;
   }
   var side = tmp;
-  var tmp1_elvis_lhs = Companion_instance_14.z17(kind);
+  var tmp1_elvis_lhs = Companion_instance_14.i19(kind);
   var tmp_0;
   if (tmp1_elvis_lhs == null) {
     throw new ListingException(ListingRejection_NOT_A_LISTING_KIND_getInstance(), 't', '\xA75.1 and \xA75.2 fix a side token per listing kind; kind:' + kind + ' is not one of ' + toString(sorted(NenyaKind_getInstance().ac_1)));
@@ -12186,7 +13045,7 @@ function side($this, tags, kind) {
   }
   var required = tmp_0;
   if (!side.equals(required)) {
-    throw new ListingException(ListingRejection_SIDE_MISMATCH_getInstance(), 't', '\xA75.1 and \xA75.2 make `' + required.y17_1 + '` REQUIRED on a kind:' + kind + ' listing and ' + ('this one carries `' + side.y17_1 + '`'));
+    throw new ListingException(ListingRejection_SIDE_MISMATCH_getInstance(), 't', '\xA75.1 and \xA75.2 make `' + required.h19_1 + '` REQUIRED on a kind:' + kind + ' listing and ' + ('this one carries `' + side.h19_1 + '`'));
   }
   return side;
 }
@@ -12202,7 +13061,7 @@ protoOf(Companion_13).bd = function (event, limits) {
   }
   var tmp;
   try {
-    tmp = Companion_instance_45.vd(event, Companion_instance_43.a18(kind), limits);
+    tmp = Companion_instance_45.vd(event, Companion_instance_43.j19(kind), limits);
   } catch ($p) {
     var tmp_0;
     if ($p instanceof TagException) {
@@ -12238,7 +13097,7 @@ protoOf(Companion_13).bd = function (event, limits) {
     tmp_3 = tmp2_elvis_lhs;
   }
   var price = tmp_3;
-  var status = ListingStatusCodec_getInstance().x11(tags.ic_1, kind);
+  var status = ListingStatusCodec_getInstance().i13(tags.ic_1, kind);
   var side_0 = side(this, tags, kind);
   var tmp_5;
   try {
@@ -12255,7 +13114,7 @@ protoOf(Companion_13).bd = function (event, limits) {
   var coordinate = tmp_5;
   return new Listing(event.wd(), event.hd().fd_1, event.hd().cd_1, event.hd().ed_1, tags, coordinate, title, price, status, side_0);
 };
-protoOf(Companion_13).h11 = function (event, limits, $super) {
+protoOf(Companion_13).m12 = function (event, limits, $super) {
   limits = limits === VOID ? Companion_getInstance_44().zd_1 : limits;
   return $super === VOID ? this.bd(event, limits) : $super.bd.call(this, event, limits);
 };
@@ -12278,25 +13137,25 @@ function Listing(id, authorPubkey, createdAt, content, tags, coordinate, title, 
 protoOf(Listing).ke = function () {
   return this.xh_1.nb_1;
 };
-protoOf(Listing).z11 = function () {
+protoOf(Listing).k13 = function () {
   return this.xh_1.pb_1;
 };
-protoOf(Listing).d12 = function () {
+protoOf(Listing).o13 = function () {
   return this.wh_1.fc_1;
 };
-protoOf(Listing).f12 = function () {
+protoOf(Listing).q13 = function () {
   return this.wh_1.gc_1;
 };
-protoOf(Listing).c12 = function () {
+protoOf(Listing).n13 = function () {
   return this.wh_1.ic_1;
 };
 protoOf(Listing).ue = function () {
   return this.wh_1.jc_1;
 };
-protoOf(Listing).zy = function () {
+protoOf(Listing).d10 = function () {
   return this.wh_1.kc_1;
 };
-protoOf(Listing).g12 = function () {
+protoOf(Listing).r13 = function () {
   return this.wh_1.lc_1;
 };
 protoOf(Listing).ne = function () {
@@ -12308,7 +13167,7 @@ protoOf(Listing).se = function () {
 protoOf(Listing).te = function () {
   return this.wh_1.oc_1;
 };
-protoOf(Listing).h12 = function () {
+protoOf(Listing).s13 = function () {
   return this.wh_1.pc_1;
 };
 protoOf(Listing).qe = function () {
@@ -12317,7 +13176,7 @@ protoOf(Listing).qe = function () {
 protoOf(Listing).re = function () {
   return this.wh_1.rc_1;
 };
-protoOf(Listing).j12 = function () {
+protoOf(Listing).u13 = function () {
   return this.wh_1.sc_1;
 };
 protoOf(Listing).pe = function () {
@@ -12406,11 +13265,11 @@ function ListingException(reason, tag, message, cause) {
   cause = cause === VOID ? null : cause;
   IllegalArgumentException_init_$Init$(message, cause, this);
   captureStack(this, ListingException);
-  this.hz_1 = reason;
-  this.iz_1 = tag;
+  this.l10_1 = reason;
+  this.m10_1 = tag;
 }
 function named($this, kind, requirement) {
-  var context = Companion_instance_43.a18(kind);
+  var context = Companion_instance_43.j19(kind);
   // Inline function 'kotlin.collections.map' call
   // Inline function 'kotlin.collections.filter' call
   // Inline function 'kotlin.collections.filterTo' call
@@ -12420,7 +13279,7 @@ function named($this, kind, requirement) {
   while (tmp0_iterator.h()) {
     var element = tmp0_iterator.i();
     // Inline function 'dev.eryalabs.nenya.listing.ListingVocabulary.named.<anonymous>' call
-    if (element.if_1.d18(context).equals(requirement)) {
+    if (element.if_1.m19(context).equals(requirement)) {
       destination.e(element);
     }
   }
@@ -12437,10 +13296,10 @@ function named($this, kind, requirement) {
 }
 function ListingVocabulary() {
 }
-protoOf(ListingVocabulary).e18 = function (kind) {
+protoOf(ListingVocabulary).n19 = function (kind) {
   return named(this, kind, TagRequirement_MUST_getInstance());
 };
-protoOf(ListingVocabulary).f18 = function (kind) {
+protoOf(ListingVocabulary).o19 = function (kind) {
   return named(this, kind, TagRequirement_MUST_NOT_getInstance());
 };
 var ListingVocabulary_instance;
@@ -12468,7 +13327,7 @@ function asListingRejection(_this__u8e3s4, tags, kind) {
       var tmp$ret$5;
       $l$block: {
         // Inline function 'kotlin.collections.firstOrNull' call
-        var tmp0_iterator_0 = ListingVocabulary_instance.e18(kind).g();
+        var tmp0_iterator_0 = ListingVocabulary_instance.n19(kind).g();
         while (tmp0_iterator_0.h()) {
           var element = tmp0_iterator_0.i();
           // Inline function 'dev.eryalabs.nenya.listing.asListingRejection.<anonymous>' call
@@ -12522,7 +13381,7 @@ function asListingRejection(_this__u8e3s4, tags, kind) {
       var tmp$ret$10;
       $l$block_1: {
         // Inline function 'kotlin.collections.firstOrNull' call
-        var tmp0_iterator_2 = ListingVocabulary_instance.f18(kind).g();
+        var tmp0_iterator_2 = ListingVocabulary_instance.o19(kind).g();
         while (tmp0_iterator_2.h()) {
           var element_1 = tmp0_iterator_2.i();
           // Inline function 'dev.eryalabs.nenya.listing.asListingRejection.<anonymous>' call
@@ -12642,10 +13501,10 @@ function describe_1(name) {
   return name == null ? 'a tag \xA75.3 names' : '`' + name + '`';
 }
 function _no_name_provided__qut3iv_0($this) {
-  this.g18_1 = $this;
+  this.p19_1 = $this;
 }
 protoOf(_no_name_provided__qut3iv_0).t2 = function () {
-  return this.g18_1.g();
+  return this.p19_1.g();
 };
 protoOf(_no_name_provided__qut3iv_0).pf = function (element) {
   // Inline function 'dev.eryalabs.nenya.listing.asListingRejection.<anonymous>' call
@@ -12743,13 +13602,13 @@ function ListingStatus_initEntries() {
 var $ENTRIES_2;
 function ListingStatus(name, ordinal, token) {
   Enum.call(this, name, ordinal);
-  this.j18_1 = token;
+  this.s19_1 = token;
 }
 var ListingSide_WANT_TO_BUY_instance;
 var ListingSide_WANT_TO_SELL_instance;
 function Companion_14() {
 }
-protoOf(Companion_14).z17 = function (kind) {
+protoOf(Companion_14).i19 = function (kind) {
   switch (kind) {
     case 30404:
       return ListingSide_WANT_TO_BUY_getInstance();
@@ -12760,7 +13619,7 @@ protoOf(Companion_14).z17 = function (kind) {
       return null;
   }
 };
-protoOf(Companion_14).v17 = function (token) {
+protoOf(Companion_14).e19 = function (token) {
   // Inline function 'kotlin.text.lowercase' call
   // Inline function 'kotlin.js.asDynamic' call
   var normalised = token.toLowerCase();
@@ -12771,7 +13630,7 @@ protoOf(Companion_14).v17 = function (token) {
     while (tmp0_iterator.h()) {
       var element = tmp0_iterator.i();
       // Inline function 'dev.eryalabs.nenya.listing.Companion.byToken.<anonymous>' call
-      if (element.y17_1 === normalised) {
+      if (element.h19_1 === normalised) {
         tmp$ret$3 = element;
         break $l$block;
       }
@@ -12803,12 +13662,12 @@ function ListingSide_initEntries() {
 var $ENTRIES_3;
 function ListingSide(name, ordinal, token) {
   Enum.call(this, name, ordinal);
-  this.y17_1 = token;
+  this.h19_1 = token;
 }
 function ListingStatusCodec() {
   ListingStatusCodec_instance = this;
-  this.u11_1 = setOf_0([ListingStatus_ACTIVE_getInstance(), ListingStatus_SOLD_getInstance()]);
-  this.v11_1 = setOf_0([ListingStatus_ACTIVE_getInstance(), ListingStatus_AWARDED_getInstance(), ListingStatus_FULFILLED_getInstance(), ListingStatus_CANCELLED_getInstance()]);
+  this.f13_1 = setOf_0([ListingStatus_ACTIVE_getInstance(), ListingStatus_SOLD_getInstance()]);
+  this.g13_1 = setOf_0([ListingStatus_ACTIVE_getInstance(), ListingStatus_AWARDED_getInstance(), ListingStatus_FULFILLED_getInstance(), ListingStatus_CANCELLED_getInstance()]);
   var tmp = this;
   // Inline function 'kotlin.collections.mapNotNull' call
   // Inline function 'kotlin.collections.mapNotNullTo' call
@@ -12820,7 +13679,7 @@ function ListingStatusCodec() {
     var element = tmp0_iterator.i();
     // Inline function 'kotlin.collections.mapNotNullTo.<anonymous>' call
     // Inline function 'dev.eryalabs.nenya.listing.ListingStatusCodec.BY_TOKEN.<anonymous>' call
-    var tmp0_safe_receiver = element.j18_1;
+    var tmp0_safe_receiver = element.s19_1;
     var tmp_0;
     if (tmp0_safe_receiver == null) {
       tmp_0 = null;
@@ -12839,28 +13698,28 @@ function ListingStatusCodec() {
       destination.e(tmp0_safe_receiver_0);
     }
   }
-  tmp.w11_1 = toMap(destination);
+  tmp.h13_1 = toMap(destination);
 }
-protoOf(ListingStatusCodec).k18 = function (kind) {
+protoOf(ListingStatusCodec).t19 = function (kind) {
   var tmp;
   switch (kind) {
     case 30404:
-      tmp = this.v11_1;
+      tmp = this.g13_1;
       break;
     case 30402:
     case 30403:
-      tmp = this.u11_1;
+      tmp = this.f13_1;
       break;
     default:
       throw new ListingException(ListingRejection_NOT_A_LISTING_KIND_getInstance(), 'status', '\xA75.1 and \xA75.2 define a `status` vocabulary for a listing; kind:' + kind + ' is not one');
   }
   return tmp;
 };
-protoOf(ListingStatusCodec).x11 = function (statusToken, kind) {
-  var vocabulary = this.k18(kind);
+protoOf(ListingStatusCodec).i13 = function (statusToken, kind) {
+  var vocabulary = this.t19(kind);
   if (statusToken == null)
     return ListingStatus_ACTIVE_getInstance();
-  var tmp0_elvis_lhs = this.w11_1.q1(statusToken);
+  var tmp0_elvis_lhs = this.h13_1.q1(statusToken);
   var tmp;
   if (tmp0_elvis_lhs == null) {
     return ListingStatus_UNKNOWN_getInstance();
@@ -12882,7 +13741,7 @@ protoOf(ListingStatusCodec).x11 = function (statusToken, kind) {
     var element = tmp0_iterator.i();
     // Inline function 'kotlin.collections.mapNotNullTo.<anonymous>' call
     // Inline function 'dev.eryalabs.nenya.listing.ListingStatusCodec.read.<anonymous>' call
-    var tmp0_safe_receiver = element.j18_1;
+    var tmp0_safe_receiver = element.s19_1;
     if (tmp0_safe_receiver == null)
       null;
     else {
@@ -12893,9 +13752,9 @@ protoOf(ListingStatusCodec).x11 = function (statusToken, kind) {
   }
   throw new ListingException(tmp_0, 'status', "\xA75.1 says an offer's `status` MUST be one of " + (toString(sorted(destination)) + ' and nothing else; this one names a ') + 'value \xA75.2 defines for a request, which is non-conformant in every existing ' + 'NIP-99 client');
 };
-protoOf(ListingStatusCodec).l18 = function (status, kind) {
-  var vocabulary = this.k18(kind);
-  var tmp0_elvis_lhs = status.j18_1;
+protoOf(ListingStatusCodec).u19 = function (status, kind) {
+  var vocabulary = this.t19(kind);
+  var tmp0_elvis_lhs = status.s19_1;
   var tmp;
   if (tmp0_elvis_lhs == null) {
     throw new ListingException(ListingRejection_UNKNOWN_IS_NOT_EMITTABLE_getInstance(), 'status', "\xA75.2's `unknown` is the required treatment of an unrecognised value, not a token: there is nothing to emit for it");
@@ -12915,7 +13774,7 @@ protoOf(ListingStatusCodec).l18 = function (status, kind) {
       var element = tmp0_iterator.i();
       // Inline function 'kotlin.collections.mapNotNullTo.<anonymous>' call
       // Inline function 'dev.eryalabs.nenya.listing.ListingStatusCodec.write.<anonymous>' call
-      var tmp0_safe_receiver = element.j18_1;
+      var tmp0_safe_receiver = element.s19_1;
       if (tmp0_safe_receiver == null)
         null;
       else {
@@ -12983,48 +13842,48 @@ function AuthoredListing(authorPubkey, createdAt, dValue, title, price, content,
   license = license === VOID ? null : license;
   deliverBy = deliverBy === VOID ? null : deliverBy;
   extraTags = extraTags === VOID ? emptyList() : extraTags;
-  this.m18_1 = authorPubkey;
-  this.n18_1 = createdAt;
-  this.o18_1 = dValue;
-  this.p18_1 = title;
-  this.q18_1 = price;
-  this.r18_1 = content;
-  this.s18_1 = summary;
-  this.t18_1 = publishedAt;
-  this.u18_1 = status;
-  this.v18_1 = mimeType;
-  this.w18_1 = topics;
-  this.x18_1 = images;
-  this.y18_1 = expiration;
-  this.z18_1 = alt;
-  this.a19_1 = nenyaVersion;
-  this.b19_1 = pubkeyRefs;
-  this.c19_1 = fee;
-  this.d19_1 = feeRecipient;
-  this.e19_1 = license;
-  this.f19_1 = deliverBy;
-  this.g19_1 = extraTags;
+  this.v19_1 = authorPubkey;
+  this.w19_1 = createdAt;
+  this.x19_1 = dValue;
+  this.y19_1 = title;
+  this.z19_1 = price;
+  this.a1a_1 = content;
+  this.b1a_1 = summary;
+  this.c1a_1 = publishedAt;
+  this.d1a_1 = status;
+  this.e1a_1 = mimeType;
+  this.f1a_1 = topics;
+  this.g1a_1 = images;
+  this.h1a_1 = expiration;
+  this.i1a_1 = alt;
+  this.j1a_1 = nenyaVersion;
+  this.k1a_1 = pubkeyRefs;
+  this.l1a_1 = fee;
+  this.m1a_1 = feeRecipient;
+  this.n1a_1 = license;
+  this.o1a_1 = deliverBy;
+  this.p1a_1 = extraTags;
 }
 protoOf(AuthoredListing).toString = function () {
-  return 'AuthoredListing(topics=' + this.w18_1.j() + ', images=' + this.x18_1.j() + ', extraTags=' + this.g19_1.j() + ')';
+  return 'AuthoredListing(topics=' + this.f1a_1.j() + ', images=' + this.g1a_1.j() + ', extraTags=' + this.p1a_1.j() + ')';
 };
-function Built_1(event) {
-  this.t11_1 = event;
+function Built_2(event) {
+  this.e13_1 = event;
 }
-protoOf(Built_1).toString = function () {
-  return 'ListingBuild.Built(kind=' + this.t11_1.dd_1 + ', tags=' + this.t11_1.gd_1.j() + ')';
+protoOf(Built_2).toString = function () {
+  return 'ListingBuild.Built(kind=' + this.e13_1.dd_1 + ', tags=' + this.e13_1.gd_1.j() + ')';
 };
-function Refused_2(reason, tag, tagReason, detail) {
-  this.p11_1 = reason;
-  this.q11_1 = tag;
-  this.r11_1 = tagReason;
-  this.s11_1 = detail;
+function Refused_3(reason, tag, tagReason, detail) {
+  this.a13_1 = reason;
+  this.b13_1 = tag;
+  this.c13_1 = tagReason;
+  this.d13_1 = detail;
 }
-protoOf(Refused_2).toString = function () {
-  return 'ListingBuild.Refused(reason=' + this.p11_1.toString() + ', tag=' + this.q11_1 + ')';
+protoOf(Refused_3).toString = function () {
+  return 'ListingBuild.Refused(reason=' + this.a13_1.toString() + ', tag=' + this.b13_1 + ')';
 };
 function build($this, kind, listing, limits) {
-  var tmp0_elvis_lhs = Companion_instance_14.z17(kind);
+  var tmp0_elvis_lhs = Companion_instance_14.i19(kind);
   var tmp;
   if (tmp0_elvis_lhs == null) {
     return refusal$default_0($this, ListingRejection_NOT_A_LISTING_KIND_getInstance(), null, '\xA75.1 and \xA75.2 fix a side token per listing kind; kind:' + kind + ' is not one of ' + toString(sorted(NenyaKind_getInstance().ac_1)));
@@ -13034,7 +13893,7 @@ function build($this, kind, listing, limits) {
   var side = tmp;
   var tmp_0;
   try {
-    tmp_0 = (new PubkeyRef(listing.m18_1)).hh_1;
+    tmp_0 = (new PubkeyRef(listing.v19_1)).hh_1;
   } catch ($p) {
     var tmp_1;
     if ($p instanceof TagException) {
@@ -13045,25 +13904,25 @@ function build($this, kind, listing, limits) {
     }
   }
   var author = tmp_0;
-  if (listing.n18_1.c2(new Long(0, 0)) < 0) {
+  if (listing.w19_1.c2(new Long(0, 0)) < 0) {
     return refusal$default_0($this, ListingRejection_MALFORMED_EVENT_FIELD_getInstance(), null, '\xA74.3 fixes a timestamp as a non-negative integer and `created_at` is one');
   }
-  if (listing.x18_1.j() > limits.jh_1) {
-    return refusal$default_0($this, ListingRejection_LIMIT_EXCEEDED_getInstance(), 'image', 'this listing names ' + listing.x18_1.j() + ' `image` tags and the injected bound ' + ('is ' + limits.jh_1 + '; \xA74.3 requires rejecting rather than truncating'));
+  if (listing.g1a_1.j() > limits.jh_1) {
+    return refusal$default_0($this, ListingRejection_LIMIT_EXCEEDED_getInstance(), 'image', 'this listing names ' + listing.g1a_1.j() + ' `image` tags and the injected bound ' + ('is ' + limits.jh_1 + '; \xA74.3 requires rejecting rather than truncating'));
   }
   var tmp_2;
-  if (listing.u18_1 == null) {
+  if (listing.d1a_1 == null) {
     tmp_2 = null;
   } else {
     var tmp_3;
     try {
-      tmp_3 = ListingStatusCodec_getInstance().l18(listing.u18_1, kind);
+      tmp_3 = ListingStatusCodec_getInstance().u19(listing.d1a_1, kind);
     } catch ($p) {
       var tmp_4;
       if ($p instanceof ListingException) {
         var refused_0 = $p;
         var tmp1_elvis_lhs = refused_0.message;
-        return refusal_1($this, refused_0.hz_1, refused_0.iz_1, tmp1_elvis_lhs == null ? '' : tmp1_elvis_lhs, null);
+        return refusal_1($this, refused_0.l10_1, refused_0.m10_1, tmp1_elvis_lhs == null ? '' : tmp1_elvis_lhs, null);
       } else {
         throw $p;
       }
@@ -13071,7 +13930,7 @@ function build($this, kind, listing, limits) {
     tmp_2 = tmp_3;
   }
   var statusTag = tmp_2;
-  var tmp2_safe_receiver = topicProblem($this, kind, listing.w18_1);
+  var tmp2_safe_receiver = topicProblem($this, kind, listing.f1a_1);
   if (tmp2_safe_receiver == null)
     null;
   else {
@@ -13081,7 +13940,7 @@ function build($this, kind, listing, limits) {
   }
   // Inline function 'kotlin.collections.mutableListOf' call
   var tags = ArrayList_init_$Create$_0();
-  var _iterator__ex2g4s = $this.l11_1.g();
+  var _iterator__ex2g4s = $this.w12_1.g();
   while (_iterator__ex2g4s.h()) {
     var name = _iterator__ex2g4s.i();
     try {
@@ -13107,7 +13966,7 @@ function build($this, kind, listing, limits) {
     var tmp$ret$2 = item.k(0);
     destination.e(tmp$ret$2);
   }
-  var tmp3_safe_receiver = extraTagProblem_1($this, kind, listing.g19_1, toSet(destination));
+  var tmp3_safe_receiver = extraTagProblem_1($this, kind, listing.p1a_1, toSet(destination));
   if (tmp3_safe_receiver == null)
     null;
   else {
@@ -13115,7 +13974,7 @@ function build($this, kind, listing, limits) {
     // Inline function 'kotlin.contracts.contract' call
     return tmp3_safe_receiver;
   }
-  var _iterator__ex2g4s_0 = listing.g19_1.g();
+  var _iterator__ex2g4s_0 = listing.p1a_1.g();
   while (_iterator__ex2g4s_0.h()) {
     var tag = _iterator__ex2g4s_0.i();
     // Inline function 'kotlin.collections.plusAssign' call
@@ -13132,7 +13991,7 @@ function build($this, kind, listing, limits) {
   }
   var tmp_5;
   try {
-    tmp_5 = new WireEvent(author, listing.n18_1, kind, tags, listing.r18_1);
+    tmp_5 = new WireEvent(author, listing.w19_1, kind, tags, listing.a1a_1);
   } catch ($p) {
     var tmp_6;
     if ($p instanceof WireException) {
@@ -13143,31 +14002,31 @@ function build($this, kind, listing, limits) {
     }
   }
   var event = tmp_5;
-  return new Built_1(event);
+  return new Built_2(event);
 }
 function row_1($this, name, side, listing, statusTag) {
   var tmp;
   switch (name) {
     case 'd':
-      tmp = listOf_0(TagWriter_instance.fh(listing.o18_1));
+      tmp = listOf_0(TagWriter_instance.fh(listing.x19_1));
       break;
     case 'title':
-      tmp = listOf_0(text_0($this, name, listing.p18_1));
+      tmp = listOf_0(text_0($this, name, listing.y19_1));
       break;
     case 'summary':
-      tmp = optional_1($this, listing.s18_1, ListingWriter$row$lambda(name));
+      tmp = optional_1($this, listing.b1a_1, ListingWriter$row$lambda(name));
       break;
     case 'published_at':
-      tmp = optional_1($this, listing.t18_1, ListingWriter$row$lambda_0(name));
+      tmp = optional_1($this, listing.c1a_1, ListingWriter$row$lambda_0(name));
       break;
     case 'price':
-      tmp = listOf_0(TagWriter_instance.ug(listing.q18_1));
+      tmp = listOf_0(TagWriter_instance.ug(listing.z19_1));
       break;
     case 'status':
       tmp = optional_1($this, statusTag, ListingWriter$row$lambda_1);
       break;
     case 'm':
-      tmp = optional_1($this, listing.v18_1, ListingWriter$row$lambda_2(name));
+      tmp = optional_1($this, listing.e1a_1, ListingWriter$row$lambda_2(name));
       break;
     case 't':
       // Inline function 'kotlin.collections.buildList' call
@@ -13184,8 +14043,8 @@ function row_1($this, name, side, listing, statusTag) {
       // Inline function 'dev.eryalabs.nenya.listing.ListingWriter.row.<anonymous>' call
 
       this_0.e(TagWriter_instance.vg('nenya'));
-      this_0.e(TagWriter_instance.vg(side.y17_1));
-      var _iterator__ex2g4s = listing.w18_1.g();
+      this_0.e(TagWriter_instance.vg(side.h19_1));
+      var _iterator__ex2g4s = listing.f1a_1.g();
       while (_iterator__ex2g4s.h()) {
         var token = _iterator__ex2g4s.i();
         this_0.e(TagWriter_instance.vg(token));
@@ -13196,7 +14055,7 @@ function row_1($this, name, side, listing, statusTag) {
     case 'image':
       // Inline function 'kotlin.collections.map' call
 
-      var this_1 = listing.x18_1;
+      var this_1 = listing.g1a_1;
       // Inline function 'kotlin.collections.mapTo' call
 
       var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_1, 10));
@@ -13211,18 +14070,18 @@ function row_1($this, name, side, listing, statusTag) {
       tmp = destination;
       break;
     case 'expiration':
-      tmp = optional_1($this, listing.y18_1, ListingWriter$row$lambda_3(name));
+      tmp = optional_1($this, listing.h1a_1, ListingWriter$row$lambda_3(name));
       break;
     case 'nenya':
-      tmp = listOf_0(TagWriter_instance.wg(listing.a19_1));
+      tmp = listOf_0(TagWriter_instance.wg(listing.j1a_1));
       break;
     case 'alt':
-      tmp = optional_1($this, listing.z18_1, ListingWriter$row$lambda_4(name));
+      tmp = optional_1($this, listing.i1a_1, ListingWriter$row$lambda_4(name));
       break;
     case 'p':
       // Inline function 'kotlin.collections.map' call
 
-      var this_2 = listing.b19_1;
+      var this_2 = listing.k1a_1;
       // Inline function 'kotlin.collections.mapTo' call
 
       var destination_0 = ArrayList_init_$Create$(collectionSizeOrDefault(this_2, 10));
@@ -13241,10 +14100,10 @@ function row_1($this, name, side, listing, statusTag) {
       tmp = optional_1($this, tmp_0, ListingWriter$row$lambda_5);
       break;
     case 'license':
-      tmp = optional_1($this, listing.e19_1, ListingWriter$row$lambda_6(name));
+      tmp = optional_1($this, listing.n1a_1, ListingWriter$row$lambda_6(name));
       break;
     case 'deliver_by':
-      tmp = optional_1($this, listing.f19_1, ListingWriter$row$lambda_7(name));
+      tmp = optional_1($this, listing.o1a_1, ListingWriter$row$lambda_7(name));
       break;
     default:
       throw new TagException(TagRejection_MALFORMED_CONTEXT_getInstance(), '`' + name + "` is in this writer's emission order and it has no row here; a \xA75.3 row this " + 'writer cannot spell is a listing it must not emit');
@@ -13258,13 +14117,13 @@ function text_0($this, name, value) {
   return listOf([name, value]);
 }
 function feeTag_0($this, listing) {
-  if (equals(listing.c19_1, Absent_instance)) {
-    if (!(listing.d19_1 == null)) {
+  if (equals(listing.l1a_1, Absent_instance)) {
+    if (!(listing.m1a_1 == null)) {
       throw new TagException(TagRejection_WRONG_ARITY_getInstance(), '\xA78.1 makes the `fee` recipient a part of the term; an absent term has no wire form at all, so there is nothing for a recipient to belong to');
     }
     return null;
   }
-  return TagWriter_instance.ah(listing.c19_1, listing.d19_1);
+  return TagWriter_instance.ah(listing.l1a_1, listing.m1a_1);
 }
 function extraTagProblem_1($this, kind, extraTags, emitted) {
   var _iterator__ex2g4s = extraTags.g();
@@ -13282,13 +14141,13 @@ function extraTagProblem_1($this, kind, extraTags, emitted) {
       tmp = tmp0_elvis_lhs;
     }
     var spec = tmp;
-    if (name === 't' && tag.j() > 1 && !(Companion_instance_14.v17(tag.k(1)) == null)) {
+    if (name === 't' && tag.j() > 1 && !(Companion_instance_14.e19(tag.k(1)) == null)) {
       return sideTokenRefusal($this, kind);
     }
     if (name === 'item') {
       return refusal$default_0($this, ListingRejection_SELF_REFERENCE_getInstance(), 'item', '\xA75.3: `item` is not a listing tag, because a listing cannot reference ' + ('itself, and an implementation MUST reject one on a kind:' + kind + ' event'));
     }
-    if (ListingVocabulary_instance.f18(kind).w(name)) {
+    if (ListingVocabulary_instance.o19(kind).w(name)) {
       return refusal$default_0($this, ListingRejection_FORBIDDEN_TAG_getInstance(), name, '\xA75.3 marks `' + name + '` MUST NOT on a listing: a geohash on a Nenya listing is a ' + 'location leak with no compensating function');
     }
     var tmp_0;
@@ -13305,13 +14164,13 @@ function topicProblem($this, kind, topics) {
   var _iterator__ex2g4s = topics.g();
   while (_iterator__ex2g4s.h()) {
     var token = _iterator__ex2g4s.i();
-    if (!(Companion_instance_14.v17(token) == null))
+    if (!(Companion_instance_14.e19(token) == null))
       return sideTokenRefusal($this, kind);
   }
   return null;
 }
 function sideTokenRefusal($this, kind) {
-  return refusal$default_0($this, ListingRejection_MISSING_TOPIC_getInstance(), 't', '\xA75.3 requires exactly one of `' + ListingSide_WANT_TO_BUY_getInstance().y17_1 + '` / ' + ('`' + ListingSide_WANT_TO_SELL_getInstance().y17_1 + '` on a listing, and this writer already emits the one ') + ('\xA75.1 or \xA75.2 requires on a kind:' + kind + '; a second one would put the listing on both ') + "halves of \xA75.5's board");
+  return refusal$default_0($this, ListingRejection_MISSING_TOPIC_getInstance(), 't', '\xA75.3 requires exactly one of `' + ListingSide_WANT_TO_BUY_getInstance().h19_1 + '` / ' + ('`' + ListingSide_WANT_TO_SELL_getInstance().h19_1 + '` on a listing, and this writer already emits the one ') + ('\xA75.1 or \xA75.2 requires on a kind:' + kind + '; a second one would put the listing on both ') + "halves of \xA75.5's board");
 }
 function vocabularyProblem_0($this, kind, tags) {
   // Inline function 'kotlin.collections.mutableMapOf' call
@@ -13325,15 +14184,15 @@ function vocabularyProblem_0($this, kind, tags) {
     var value = (tmp0_elvis_lhs == null ? 0 : tmp0_elvis_lhs) + 1 | 0;
     counts.v2(key, value);
   }
-  var context = Companion_instance_43.a18(kind);
+  var context = Companion_instance_43.j19(kind);
   var _iterator__ex2g4s_0 = NenyaTags_getInstance().cf_1.g();
   while (_iterator__ex2g4s_0.h()) {
     var spec = _iterator__ex2g4s_0.i();
     var tmp1_elvis_lhs = counts.q1(spec.ff_1);
     var count = tmp1_elvis_lhs == null ? 0 : tmp1_elvis_lhs;
-    var requirement = spec.if_1.d18(context);
+    var requirement = spec.if_1.m19(context);
     if (requirement.equals(TagRequirement_MUST_getInstance()) && count === 0) {
-      return refusal$default_0($this, ListingRejection_MISSING_REQUIRED_TAG_getInstance(), spec.ff_1, '\xA75.3 marks `' + spec.ff_1 + '` ' + spec.if_1.h19() + ' and this kind:' + kind + ' ' + 'listing would carry none');
+      return refusal$default_0($this, ListingRejection_MISSING_REQUIRED_TAG_getInstance(), spec.ff_1, '\xA75.3 marks `' + spec.ff_1 + '` ' + spec.if_1.q1a() + ' and this kind:' + kind + ' ' + 'listing would carry none');
     }
     if (requirement.equals(TagRequirement_MUST_NOT_getInstance()) && count > 0) {
       return refusal$default_0($this, spec.ff_1 === 'item' ? ListingRejection_SELF_REFERENCE_getInstance() : ListingRejection_FORBIDDEN_TAG_getInstance(), spec.ff_1, '\xA75.3 marks `' + spec.ff_1 + '` MUST NOT on a listing and this one would carry ' + count);
@@ -13348,7 +14207,7 @@ function vocabularyProblem_0($this, kind, tags) {
   return null;
 }
 function refusal_1($this, reason, tag, detail, tagReason) {
-  return new Refused_2(reason, tag, tagReason, detail);
+  return new Refused_3(reason, tag, tagReason, detail);
 }
 function refusal$default_0($this, reason, tag, detail, tagReason, $super) {
   tagReason = tagReason === VOID ? null : tagReason;
@@ -13397,29 +14256,29 @@ function ListingWriter$row$lambda_7($name) {
 }
 function ListingWriter() {
   ListingWriter_instance = this;
-  this.k11_1 = 1;
-  this.l11_1 = listOf(['d', 'title', 'summary', 'published_at', 'price', 'status', 'm', 't', 'image', 'expiration', 'nenya', 'alt', 'p', 'fee', 'license', 'deliver_by']);
+  this.v12_1 = 1;
+  this.w12_1 = listOf(['d', 'title', 'summary', 'published_at', 'price', 'status', 'm', 't', 'image', 'expiration', 'nenya', 'alt', 'p', 'fee', 'license', 'deliver_by']);
 }
-protoOf(ListingWriter).i19 = function (listing, limits) {
+protoOf(ListingWriter).r1a = function (listing, limits) {
   return build(this, 30404, listing, limits);
 };
-protoOf(ListingWriter).o11 = function (listing, limits, $super) {
+protoOf(ListingWriter).z12 = function (listing, limits, $super) {
   limits = limits === VOID ? Companion_getInstance_44().zd_1 : limits;
-  return $super === VOID ? this.i19(listing, limits) : $super.i19.call(this, listing, limits);
+  return $super === VOID ? this.r1a(listing, limits) : $super.r1a.call(this, listing, limits);
 };
-protoOf(ListingWriter).j19 = function (listing, limits) {
+protoOf(ListingWriter).s1a = function (listing, limits) {
   return build(this, 30402, listing, limits);
 };
-protoOf(ListingWriter).n11 = function (listing, limits, $super) {
+protoOf(ListingWriter).y12 = function (listing, limits, $super) {
   limits = limits === VOID ? Companion_getInstance_44().zd_1 : limits;
-  return $super === VOID ? this.j19(listing, limits) : $super.j19.call(this, listing, limits);
+  return $super === VOID ? this.s1a(listing, limits) : $super.s1a.call(this, listing, limits);
 };
-protoOf(ListingWriter).k19 = function (listing, limits) {
+protoOf(ListingWriter).t1a = function (listing, limits) {
   return build(this, 30403, listing, limits);
 };
-protoOf(ListingWriter).m11 = function (listing, limits, $super) {
+protoOf(ListingWriter).x12 = function (listing, limits, $super) {
   limits = limits === VOID ? Companion_getInstance_44().zd_1 : limits;
-  return $super === VOID ? this.k19(listing, limits) : $super.k19.call(this, listing, limits);
+  return $super === VOID ? this.t1a(listing, limits) : $super.t1a.call(this, listing, limits);
 };
 var ListingWriter_instance;
 function ListingWriter_getInstance() {
@@ -13429,10 +14288,10 @@ function ListingWriter_getInstance() {
 }
 function Absent() {
 }
-protoOf(Absent).l19 = function () {
+protoOf(Absent).u1a = function () {
   return 0;
 };
-protoOf(Absent).m19 = function () {
+protoOf(Absent).v1a = function () {
   return false;
 };
 protoOf(Absent).toString = function () {
@@ -13454,39 +14313,39 @@ function Absent_getInstance() {
   return Absent_instance;
 }
 function Stated(basisPoints) {
-  this.i12_1 = basisPoints;
-  if (this.i12_1 < 0) {
+  this.t13_1 = basisPoints;
+  if (this.t13_1 < 0) {
     throw new MoneyException(MoneyRejection_NEGATIVE_getInstance(), 'a fee cannot be a negative number of basis points');
   }
-  if (this.i12_1 > 10000) {
+  if (this.t13_1 > 10000) {
     throw new MoneyException(MoneyRejection_BPS_ABOVE_MAXIMUM_getInstance(), 'a fee term is at most 10000 basis points, which is 100%; \xA78.1 rejects more');
   }
 }
-protoOf(Stated).l19 = function () {
-  return this.i12_1;
+protoOf(Stated).u1a = function () {
+  return this.t13_1;
 };
-protoOf(Stated).m19 = function () {
-  return this.i12_1 > 0;
+protoOf(Stated).v1a = function () {
+  return this.t13_1 > 0;
 };
 protoOf(Stated).equals = function (other) {
   var tmp;
   if (other instanceof Stated) {
-    tmp = other.i12_1 === this.i12_1;
+    tmp = other.t13_1 === this.t13_1;
   } else {
     tmp = false;
   }
   return tmp;
 };
 protoOf(Stated).hashCode = function () {
-  return this.i12_1;
+  return this.t13_1;
 };
 protoOf(Stated).toString = function () {
-  return '' + this.i12_1 + ' bps';
+  return '' + this.t13_1 + ' bps';
 };
 function Companion_15() {
   Companion_instance_15 = this;
-  this.o10_1 = new Long(10000, 0);
-  this.p10_1 = 10000;
+  this.t11_1 = new Long(10000, 0);
+  this.u11_1 = 10000;
 }
 protoOf(Companion_15).ei = function (basisPoints) {
   return new Stated(basisPoints);
@@ -13500,38 +14359,38 @@ function Companion_getInstance_15() {
 function FeeTerm() {
 }
 function FeeSplit(price, term) {
-  this.dq_1 = price;
-  this.eq_1 = term;
-  this.fq_1 = this.eq_1.n19(this.dq_1);
-  this.gq_1 = Msat__plus_impl_6y4ebq(this.dq_1, this.fq_1);
-  this.hq_1 = (this.eq_1.m19() && Msat__compareTo_impl_alo86(this.fq_1, Companion_getInstance_16().cn_1) > 0);
+  this.wq_1 = price;
+  this.xq_1 = term;
+  this.yq_1 = this.xq_1.w1a(this.wq_1);
+  this.zq_1 = Msat__plus_impl_6y4ebq(this.wq_1, this.yq_1);
+  this.ar_1 = (this.xq_1.v1a() && Msat__compareTo_impl_alo86(this.yq_1, Companion_getInstance_16().eo_1) > 0);
 }
 protoOf(FeeSplit).equals = function (other) {
   var tmp;
   var tmp_0;
   var tmp_1;
   if (other instanceof FeeSplit) {
-    tmp_1 = equals(other.dq_1, this.dq_1);
+    tmp_1 = equals(other.wq_1, this.wq_1);
   } else {
     tmp_1 = false;
   }
   if (tmp_1) {
-    tmp_0 = equals(other.eq_1, this.eq_1);
+    tmp_0 = equals(other.xq_1, this.xq_1);
   } else {
     tmp_0 = false;
   }
   if (tmp_0) {
-    tmp = equals(other.fq_1, this.fq_1);
+    tmp = equals(other.yq_1, this.yq_1);
   } else {
     tmp = false;
   }
   return tmp;
 };
 protoOf(FeeSplit).hashCode = function () {
-  return imul(imul(Msat__hashCode_impl_gj41eh(this.dq_1), 31) + hashCode(this.eq_1) | 0, 31) + Msat__hashCode_impl_gj41eh(this.fq_1) | 0;
+  return imul(imul(Msat__hashCode_impl_gj41eh(this.wq_1), 31) + hashCode(this.xq_1) | 0, 31) + Msat__hashCode_impl_gj41eh(this.yq_1) | 0;
 };
 protoOf(FeeSplit).toString = function () {
-  return 'FeeSplit(price=' + Msat__toString_impl_wqu3rs(this.dq_1) + ', term=' + toString(this.eq_1) + ', fee=' + Msat__toString_impl_wqu3rs(this.fq_1) + ', total=' + Msat__toString_impl_wqu3rs(this.gq_1) + ')';
+  return 'FeeSplit(price=' + Msat__toString_impl_wqu3rs(this.wq_1) + ', term=' + toString(this.xq_1) + ', fee=' + Msat__toString_impl_wqu3rs(this.yq_1) + ', total=' + Msat__toString_impl_wqu3rs(this.zq_1) + ')';
 };
 var MoneyRejection_NEGATIVE_instance;
 var MoneyRejection_ABOVE_SUPPLY_instance;
@@ -13559,7 +14418,7 @@ function MoneyRejection(name, ordinal) {
 function MoneyException(reason, message) {
   IllegalArgumentException_init_$Init$_0(message, this);
   captureStack(this, MoneyException);
-  this.qm_1 = reason;
+  this.sn_1 = reason;
 }
 function isAsciiDigits(_this__u8e3s4, $this) {
   var tmp$ret$1;
@@ -13606,7 +14465,7 @@ function Msat__times_impl_poztb4($this, scalar) {
     throw new MoneyException(MoneyRejection_NEGATIVE_getInstance(), 'a millisatoshi amount cannot be scaled by a negative multiplier');
   }
   if (scalar.equals(new Long(0, 0)) || _Msat___get_millisatoshis__impl__rjbnyg($this).equals(new Long(0, 0)))
-    return Companion_getInstance_16().cn_1;
+    return Companion_getInstance_16().eo_1;
   if (_Msat___get_millisatoshis__impl__rjbnyg($this).c2((new Long(-1, 2147483647)).g2(scalar)) > 0) {
     throw new MoneyException(MoneyRejection_OVERFLOW_getInstance(), 'this millisatoshi amount scaled by that multiplier exceeds the 64-bit range');
   }
@@ -13631,39 +14490,39 @@ function Msat__compareTo_impl_alo86($this, other) {
   return _Msat___get_millisatoshis__impl__rjbnyg($this).c2(_Msat___get_millisatoshis__impl__rjbnyg(other));
 }
 function Msat__compareTo_impl_alo86_0($this, other) {
-  return Msat__compareTo_impl_alo86($this.p19_1, other instanceof Msat ? other.p19_1 : THROW_CCE());
+  return Msat__compareTo_impl_alo86($this.y1a_1, other instanceof Msat ? other.y1a_1 : THROW_CCE());
 }
 function Msat__toString_impl_wqu3rs($this) {
   return _Msat___get_millisatoshis__impl__rjbnyg($this).toString() + ' msat';
 }
 function Companion_16() {
   Companion_instance_16 = this;
-  this.um_1 = new Long(1000, 0);
-  this.vm_1 = new Long(1215752192, 23);
-  this.wm_1 = new Long(-1403912192, 488944351);
-  this.xm_1 = 11;
-  this.ym_1 = new Long(21000000, 0);
-  this.zm_1 = 8;
-  this.an_1 = new Long(1510424576, 488944);
-  this.bn_1 = 32;
-  this.cn_1 = _Msat___init__impl__4m6iw8(new Long(0, 0));
-  this.dn_1 = _Msat___init__impl__4m6iw8(new Long(-1403912192, 488944351));
+  this.wn_1 = new Long(1000, 0);
+  this.xn_1 = new Long(1215752192, 23);
+  this.yn_1 = new Long(-1403912192, 488944351);
+  this.zn_1 = 11;
+  this.ao_1 = new Long(21000000, 0);
+  this.bo_1 = 8;
+  this.co_1 = new Long(1510424576, 488944);
+  this.do_1 = 32;
+  this.eo_1 = _Msat___init__impl__4m6iw8(new Long(0, 0));
+  this.fo_1 = _Msat___init__impl__4m6iw8(new Long(-1403912192, 488944351));
 }
-protoOf(Companion_16).en = function (millisatoshis) {
+protoOf(Companion_16).go = function (millisatoshis) {
   if (millisatoshis.c2(new Long(0, 0)) < 0)
     throw negative(this);
   if (millisatoshis.c2(new Long(-1403912192, 488944351)) > 0)
     throw aboveSupply(this);
   return _Msat___init__impl__4m6iw8(millisatoshis);
 };
-protoOf(Companion_16).gn = function (satoshis) {
+protoOf(Companion_16).io = function (satoshis) {
   if (satoshis.c2(new Long(0, 0)) < 0)
     throw negative(this);
   if (satoshis.c2(new Long(1510424576, 488944)) > 0)
     throw aboveSupply(this);
   return _Msat___init__impl__4m6iw8(satoshis.f2(new Long(1000, 0)));
 };
-protoOf(Companion_16).q19 = function (decimal) {
+protoOf(Companion_16).z1a = function (decimal) {
   // Inline function 'kotlin.text.isEmpty' call
   if (charSequenceLength(decimal) === 0)
     throw malformed_0(this, 'an empty string is not a BTC amount');
@@ -13728,7 +14587,7 @@ protoOf(Companion_16).q19 = function (decimal) {
     tmp_0 = toLong_0(padEnd(fractionPart, 11, _Char___init__impl__6a9atx(48)));
   }
   var fractionMsat = tmp_0;
-  return this.en(wholeBtc.f2(new Long(1215752192, 23)).d2(fractionMsat));
+  return this.go(wholeBtc.f2(new Long(1215752192, 23)).d2(fractionMsat));
 };
 var Companion_instance_16;
 function Companion_getInstance_16() {
@@ -13742,29 +14601,29 @@ function Msat__hashCode_impl_gj41eh($this) {
 function Msat__equals_impl_a0eoj9($this, other) {
   if (!(other instanceof Msat))
     return false;
-  var tmp0_other_with_cast = other instanceof Msat ? other.p19_1 : THROW_CCE();
+  var tmp0_other_with_cast = other instanceof Msat ? other.y1a_1 : THROW_CCE();
   if (!$this.equals(tmp0_other_with_cast))
     return false;
   return true;
 }
 function Msat(millisatoshis) {
   Companion_getInstance_16();
-  this.p19_1 = millisatoshis;
+  this.y1a_1 = millisatoshis;
 }
-protoOf(Msat).r19 = function (other) {
-  return Msat__compareTo_impl_alo86(this.p19_1, other);
+protoOf(Msat).a1b = function (other) {
+  return Msat__compareTo_impl_alo86(this.y1a_1, other);
 };
 protoOf(Msat).d = function (other) {
   return Msat__compareTo_impl_alo86_0(this, other);
 };
 protoOf(Msat).toString = function () {
-  return Msat__toString_impl_wqu3rs(this.p19_1);
+  return Msat__toString_impl_wqu3rs(this.y1a_1);
 };
 protoOf(Msat).hashCode = function () {
-  return Msat__hashCode_impl_gj41eh(this.p19_1);
+  return Msat__hashCode_impl_gj41eh(this.y1a_1);
 };
 protoOf(Msat).equals = function (other) {
-  return Msat__equals_impl_a0eoj9(this.p19_1, other);
+  return Msat__equals_impl_a0eoj9(this.y1a_1, other);
 };
 function MoneyRejection_NEGATIVE_getInstance() {
   MoneyRejection_initEntries();
@@ -13828,7 +14687,7 @@ function DeliveryCommitted_init_$Create$(commitment, from, createdAt) {
 }
 function Companion_17() {
   Companion_instance_17 = this;
-  this.s19_1 = readOnlySetOf(linkedSetOf([DeliveryCheck_COMMITMENT_CARRIES_NO_KEY_getInstance()]));
+  this.b1b_1 = readOnlySetOf(linkedSetOf([DeliveryCheck_COMMITMENT_CARRIES_NO_KEY_getInstance()]));
 }
 var Companion_instance_17;
 function Companion_getInstance_17() {
@@ -13838,7 +14697,7 @@ function Companion_getInstance_17() {
 }
 function Companion_18() {
   Companion_instance_18 = this;
-  this.t19_1 = readOnlySetOf(linkedSetOf([DeliveryCheck_RELEASE_ORDER_BINDING_getInstance()]));
+  this.c1b_1 = readOnlySetOf(linkedSetOf([DeliveryCheck_RELEASE_ORDER_BINDING_getInstance()]));
 }
 var Companion_instance_18;
 function Companion_getInstance_18() {
@@ -13848,54 +14707,54 @@ function Companion_getInstance_18() {
 }
 function Proposal(order, terms, createdAt) {
   createdAt = createdAt === VOID ? null : createdAt;
-  this.u19_1 = order;
-  this.v19_1 = terms;
-  this.w19_1 = createdAt;
-  requireNonNegativeCreatedAt(this.w19_1);
+  this.d1b_1 = order;
+  this.e1b_1 = terms;
+  this.f1b_1 = createdAt;
+  requireNonNegativeCreatedAt(this.f1b_1);
 }
 function StatusUpdate(status, from, assertedTerms, createdAt) {
   assertedTerms = assertedTerms === VOID ? null : assertedTerms;
   createdAt = createdAt === VOID ? null : createdAt;
-  this.x19_1 = status;
-  this.y19_1 = from;
-  this.z19_1 = assertedTerms;
-  this.a1a_1 = createdAt;
-  requireNonNegativeCreatedAt(this.a1a_1);
+  this.g1b_1 = status;
+  this.h1b_1 = from;
+  this.i1b_1 = assertedTerms;
+  this.j1b_1 = createdAt;
+  requireNonNegativeCreatedAt(this.j1b_1);
 }
 function AcceptanceReceived(acceptance, createdAt) {
   createdAt = createdAt === VOID ? null : createdAt;
-  this.b1a_1 = acceptance;
-  this.c1a_1 = createdAt;
-  requireNonNegativeCreatedAt(this.c1a_1);
+  this.k1b_1 = acceptance;
+  this.l1b_1 = createdAt;
+  requireNonNegativeCreatedAt(this.l1b_1);
 }
 function DeliveryCommitted(commitment, from, createdAt, checksPerformed) {
   Companion_getInstance_17();
-  this.d1a_1 = commitment;
-  this.e1a_1 = from;
-  this.f1a_1 = createdAt;
-  this.g1a_1 = checksPerformed;
-  requireNonNegativeCreatedAt(this.f1a_1);
-  requireDeclarable(this.g1a_1, Companion_getInstance_17().s19_1, 'a kind:16 type=5 commitment');
+  this.m1b_1 = commitment;
+  this.n1b_1 = from;
+  this.o1b_1 = createdAt;
+  this.p1b_1 = checksPerformed;
+  requireNonNegativeCreatedAt(this.o1b_1);
+  requireDeclarable(this.p1b_1, Companion_getInstance_17().b1b_1, 'a kind:16 type=5 commitment');
 }
 function PaymentRequestsReceived(requests, createdAt) {
   createdAt = createdAt === VOID ? null : createdAt;
-  this.h1a_1 = requests;
-  this.i1a_1 = createdAt;
-  requireNonNegativeCreatedAt(this.i1a_1);
+  this.q1b_1 = requests;
+  this.r1b_1 = createdAt;
+  requireNonNegativeCreatedAt(this.r1b_1);
 }
 function DeliverableReleased(release, from, createdAt, order, checksPerformed) {
   Companion_getInstance_18();
-  this.j1a_1 = release;
-  this.k1a_1 = from;
-  this.l1a_1 = createdAt;
-  this.m1a_1 = order;
-  this.n1a_1 = checksPerformed;
-  requireNonNegativeCreatedAt(this.l1a_1);
-  requireDeclarable(this.n1a_1, Companion_getInstance_18().t19_1, 'a kind:15 release');
+  this.s1b_1 = release;
+  this.t1b_1 = from;
+  this.u1b_1 = createdAt;
+  this.v1b_1 = order;
+  this.w1b_1 = checksPerformed;
+  requireNonNegativeCreatedAt(this.u1b_1);
+  requireDeclarable(this.w1b_1, Companion_getInstance_18().c1b_1, 'a kind:15 release');
   var tmp;
-  if (this.m1a_1 == null) {
+  if (this.v1b_1 == null) {
     // Inline function 'kotlin.collections.isNotEmpty' call
-    tmp = !this.n1a_1.p();
+    tmp = !this.w1b_1.p();
   } else {
     tmp = false;
   }
@@ -13905,30 +14764,30 @@ function DeliverableReleased(release, from, createdAt, order, checksPerformed) {
 }
 function PrivateBid(from, createdAt) {
   createdAt = createdAt === VOID ? null : createdAt;
-  this.o1a_1 = from;
-  this.p1a_1 = createdAt;
-  requireNonNegativeCreatedAt(this.p1a_1);
+  this.x1b_1 = from;
+  this.y1b_1 = createdAt;
+  requireNonNegativeCreatedAt(this.y1b_1);
 }
 function ChatMessage(from, createdAt) {
   createdAt = createdAt === VOID ? null : createdAt;
-  this.q1a_1 = from;
-  this.r1a_1 = createdAt;
-  requireNonNegativeCreatedAt(this.r1a_1);
+  this.z1b_1 = from;
+  this.a1c_1 = createdAt;
+  requireNonNegativeCreatedAt(this.a1c_1);
 }
 function ShippingUpdate(from, createdAt) {
   createdAt = createdAt === VOID ? null : createdAt;
-  this.s1a_1 = from;
-  this.t1a_1 = createdAt;
-  requireNonNegativeCreatedAt(this.t1a_1);
+  this.b1c_1 = from;
+  this.c1c_1 = createdAt;
+  requireNonNegativeCreatedAt(this.c1c_1);
 }
 function ReceiptsVerified(receipts) {
-  this.u1a_1 = receipts;
+  this.d1c_1 = receipts;
 }
 function DeliveryVerified(evidence) {
-  this.v1a_1 = evidence;
+  this.e1c_1 = evidence;
 }
 function DeliveryRefused(failure) {
-  this.w1a_1 = failure;
+  this.f1c_1 = failure;
 }
 function ClockChecked() {
 }
@@ -14086,12 +14945,12 @@ function ChecksNotPerformed() {
 }
 function Advanced() {
 }
-function Refused_3() {
+function Refused_4() {
 }
 function At(unixSeconds) {
-  this.x1a_1 = unixSeconds;
+  this.g1c_1 = unixSeconds;
 }
-function Refused_4() {
+function Refused_5() {
 }
 function Unavailable() {
 }
@@ -14122,12 +14981,12 @@ function advancesNothingEver($this, event) {
       var tmp_1;
       var tmp_2;
       if (event instanceof StatusUpdate) {
-        tmp_2 = !event.x19_1.equals(OrderState_ACCEPTED_getInstance());
+        tmp_2 = !event.g1b_1.equals(OrderState_ACCEPTED_getInstance());
       } else {
         tmp_2 = false;
       }
       if (tmp_2) {
-        tmp_1 = !event.x19_1.equals(OrderState_CANCELLED_getInstance());
+        tmp_1 = !event.g1b_1.equals(OrderState_CANCELLED_getInstance());
       } else {
         tmp_1 = false;
       }
@@ -14165,10 +15024,10 @@ function fromAccepted($this, order, event) {
   var tmp;
   if (event instanceof DeliveryCommitted) {
     var tmp_0;
-    if (!event.e1a_1.equals(Party_PROVIDER_getInstance())) {
+    if (!event.n1b_1.equals(Party_PROVIDER_getInstance())) {
       tmp_0 = wrongSender($this, order, "a type=5 delivery commitment is the provider's (\xA77.4, \xA710.1)");
     } else {
-      tmp_0 = advance(with_0(order, OrderState_COMMITTED_getInstance(), VOID, event.d1a_1, VOID, VOID, VOID, VOID, VOID, plus_0(order.u14(), event.g1a_1)));
+      tmp_0 = advance(with_0(order, OrderState_COMMITTED_getInstance(), VOID, event.m1b_1, VOID, VOID, VOID, VOID, VOID, plus_0(order.h16(), event.p1b_1)));
     }
     tmp = tmp_0;
   } else {
@@ -14249,7 +15108,7 @@ function fromReleased($this, order, event) {
     tmp = settle($this, order, event);
   } else {
     if (event instanceof DeliveryRefused) {
-      tmp = advance(with_0(order, OrderState_DISPUTED_getInstance(), VOID, VOID, VOID, VOID, ground($this, event.w1a_1)));
+      tmp = advance(with_0(order, OrderState_DISPUTED_getInstance(), VOID, VOID, VOID, VOID, ground($this, event.f1c_1)));
     } else {
       if (event instanceof ClockChecked) {
         tmp = verificationDeadline($this, order);
@@ -14265,23 +15124,23 @@ function fromReleased($this, order, event) {
   return tmp;
 }
 function statusUpdate($this, order, event) {
-  switch (event.x19_1.u1_1) {
+  switch (event.g1b_1.u1_1) {
     case 1:
       return refuse_0(order, TransitionRejection_ACCEPTANCE_NOT_DECIDED_BY_STATUS_UPDATE_getInstance(), "\xA77.6 decides acceptance by comparing the seal's pubkey against the provider key the caller resolved, and then the four terms **byte-identically** against the proposal's raw tags \u2014 the `fee` pair, its recipient included. Neither operand is on a type=3 assembled by a caller: the sender here is a label and the terms are parsed values. That comparison is `OrderProposal.accepts`', and its checked answer is the only thing that reaches `accepted`");
     case 7:
-      return order.i14().equals(OrderState_PAID_getInstance()) || order.i14().equals(OrderState_RELEASED_getInstance()) ? refuse_0(order, TransitionRejection_CANCELLATION_TOO_LATE_getInstance(), "\xA711.3 invariant 5: only `cancelled` is accepted from a counterparty's assertion alone, and only before `paid`") : event.y19_1.equals(Party_FEE_RECIPIENT_getInstance()) ? wrongSender($this, order, '\xA711.2 accepts a cancellation from either **party**; \xA78.5 is explicit that the fee recipient is not a party to the delivery and has no refund obligation') : advance(with_0(order, OrderState_CANCELLED_getInstance()));
+      return order.v15().equals(OrderState_PAID_getInstance()) || order.v15().equals(OrderState_RELEASED_getInstance()) ? refuse_0(order, TransitionRejection_CANCELLATION_TOO_LATE_getInstance(), "\xA711.3 invariant 5: only `cancelled` is accepted from a counterparty's assertion alone, and only before `paid`") : event.h1b_1.equals(Party_FEE_RECIPIENT_getInstance()) ? wrongSender($this, order, '\xA711.2 accepts a cancellation from either **party**; \xA78.5 is explicit that the fee recipient is not a party to the delivery and has no refund obligation') : advance(with_0(order, OrderState_CANCELLED_getInstance()));
     default:
       return refuse_0(order, TransitionRejection_STATUS_UPDATE_DECIDES_NOTHING_getInstance(), '\xA711.3 invariant 5: a status update announces; it does not decide');
   }
 }
 function acceptance($this, order, event) {
-  if (!event.b1a_1.co_1.equals(order.wd())) {
+  if (!event.k1b_1.zo_1.equals(order.wd())) {
     return refuse_0(order, TransitionRejection_ACCEPTANCE_FOR_ANOTHER_ORDER_getInstance(), "\xA77.6 compares an acceptance against the proposal it answers, and this one was checked against another order's. \xA77.4 makes the order id the handle every message in a thread carries: the acceptance may well be genuine, and it is not this order's");
   }
-  return advance(with_0(order, OrderState_ACCEPTED_getInstance(), event.b1a_1.eo_1));
+  return advance(with_0(order, OrderState_ACCEPTED_getInstance(), event.k1b_1.bp_1));
 }
 function acceptanceDeadline($this, order) {
-  var tmp0_elvis_lhs = order.y13().tp_1;
+  var tmp0_elvis_lhs = order.l15().mq_1;
   var tmp;
   if (tmp0_elvis_lhs == null) {
     return refuse_0(order, TransitionRejection_NO_DEADLINE_TO_CHECK_getInstance(), "these terms carry no `expiration`, so \xA711.2's `\u2192 expired` rows have no deadline to fire on; \xA77.5 does not make the tag REQUIRED and this library does not invent one");
@@ -14292,9 +15151,9 @@ function acceptanceDeadline($this, order) {
   var clockNow = reading($this);
   var tmp_0;
   if (clockNow instanceof At) {
-    tmp_0 = clockNow.x1a_1;
+    tmp_0 = clockNow.g1c_1;
   } else {
-    if (isInterface(clockNow, Refused_4)) {
+    if (isInterface(clockNow, Refused_5)) {
       return clockRefusal($this, order, clockNow);
     } else {
       noWhenBranchMatchedException();
@@ -14313,17 +15172,17 @@ function releaseDeadline($this, order) {
   var clockNow = reading($this);
   var tmp;
   if (clockNow instanceof At) {
-    tmp = clockNow.x1a_1;
+    tmp = clockNow.g1c_1;
   } else {
-    if (isInterface(clockNow, Refused_4)) {
+    if (isInterface(clockNow, Refused_5)) {
       return clockRefusal($this, order, clockNow);
     } else {
       noWhenBranchMatchedException();
     }
   }
   var now = tmp;
-  var paidAt = order.o14();
-  var tmp0_elvis_lhs = order.y13().up_1;
+  var paidAt = order.b16();
+  var tmp0_elvis_lhs = order.l15().nq_1;
   var tmp_0;
   if (tmp0_elvis_lhs == null) {
     var tmp_1;
@@ -14333,7 +15192,7 @@ function releaseDeadline($this, order) {
       // Inline function 'kotlin.let' call
       // Inline function 'kotlin.contracts.contract' call
       // Inline function 'dev.eryalabs.nenya.order.OrderMachine.releaseDeadline.<anonymous>' call
-      var tmp0_elvis_lhs_0 = checkedDeadline(paidAt, $this.p13_1);
+      var tmp0_elvis_lhs_0 = checkedDeadline(paidAt, $this.c15_1);
       var tmp_2;
       if (tmp0_elvis_lhs_0 == null) {
         return refuse_0(order, TransitionRejection_DEADLINE_NOT_PASSED_getInstance(), "\xA711.2's own-release timeout lands beyond the last representable second, so no clock reading can reach it");
@@ -14366,18 +15225,18 @@ function verificationDeadline($this, order) {
   var clockNow = reading($this);
   var tmp;
   if (clockNow instanceof At) {
-    tmp = clockNow.x1a_1;
+    tmp = clockNow.g1c_1;
   } else {
-    if (isInterface(clockNow, Refused_4)) {
+    if (isInterface(clockNow, Refused_5)) {
       return clockRefusal($this, order, clockNow);
     } else {
       noWhenBranchMatchedException();
     }
   }
   var now = tmp;
-  var tmp0_elvis_lhs = order.q14();
-  var tmp1_elvis_lhs = tmp0_elvis_lhs == null ? order.o14() : tmp0_elvis_lhs;
-  var tmp2_elvis_lhs = tmp1_elvis_lhs == null ? order.y13().up_1 : tmp1_elvis_lhs;
+  var tmp0_elvis_lhs = order.d16();
+  var tmp1_elvis_lhs = tmp0_elvis_lhs == null ? order.b16() : tmp0_elvis_lhs;
+  var tmp2_elvis_lhs = tmp1_elvis_lhs == null ? order.l15().nq_1 : tmp1_elvis_lhs;
   var tmp_0;
   if (tmp2_elvis_lhs == null) {
     return refuse_0(order, TransitionRejection_NO_DEADLINE_TO_CHECK_getInstance(), "the injected clock gave no reading when the order was released and none when it became `paid`, and these terms carry no `deliver_by`, so \xA711.2's verification deadline has nothing to run from. \xA711.2 requires this be shown as having no deadline rather than as still pending");
@@ -14385,7 +15244,7 @@ function verificationDeadline($this, order) {
     tmp_0 = tmp2_elvis_lhs;
   }
   var anchor = tmp_0;
-  var tmp3_elvis_lhs = checkedDeadline(anchor, $this.q13_1);
+  var tmp3_elvis_lhs = checkedDeadline(anchor, $this.d15_1);
   var tmp_1;
   if (tmp3_elvis_lhs == null) {
     return refuse_0(order, TransitionRejection_DEADLINE_NOT_PASSED_getInstance(), "\xA711.2's verification deadline lands beyond the last representable second, so no clock reading can reach it");
@@ -14405,7 +15264,7 @@ function paymentRequests($this, order, event) {
   var tmp$ret$0;
   $l$block_0: {
     // Inline function 'kotlin.collections.any' call
-    var this_0 = event.h1a_1;
+    var this_0 = event.q1b_1;
     var tmp;
     if (isInterface(this_0, Collection)) {
       tmp = this_0.p();
@@ -14433,7 +15292,7 @@ function paymentRequests($this, order, event) {
   var tmp$ret$2;
   $l$block_2: {
     // Inline function 'kotlin.collections.any' call
-    var this_1 = event.h1a_1;
+    var this_1 = event.q1b_1;
     var tmp_0;
     if (isInterface(this_1, Collection)) {
       tmp_0 = this_1.p();
@@ -14448,7 +15307,7 @@ function paymentRequests($this, order, event) {
     while (tmp0_iterator_0.h()) {
       var element_0 = tmp0_iterator_0.i();
       // Inline function 'dev.eryalabs.nenya.order.OrderMachine.paymentRequests.<anonymous>' call
-      if (element_0.p16().equals(Payee_PROVIDER_getInstance()) && !(element_0.e17() === order.x13())) {
+      if (element_0.y17().equals(Payee_PROVIDER_getInstance()) && !(element_0.n18() === order.k15())) {
         tmp$ret$2 = true;
         break $l$block_2;
       }
@@ -14458,19 +15317,19 @@ function paymentRequests($this, order, event) {
   if (tmp$ret$2) {
     return refuse_0(order, TransitionRejection_PROVIDER_REQUEST_NOT_FROM_PROVIDER_getInstance(), '\xA78.6: a `type=2` with `["payee", "provider"]` MUST arrive in a gift wrap whose seal is the provider\'s key \u2014 the same key the acceptance for **this** order was checked against (\xA77.6, \xA711.2) \u2014 and any other MUST be rejected. A provider invoice from another key is somebody else\'s bill under the provider\'s name, and \xA79.2 check 1 would anchor this order\'s whole payment evidence to it');
   }
-  var required = Companion_instance_23.y1a(order.y13().sp_1);
+  var required = Companion_instance_23.h1c(order.l15().lq_1);
   // Inline function 'kotlin.collections.mapTo' call
-  var this_2 = event.h1a_1;
+  var this_2 = event.q1b_1;
   var destination = LinkedHashSet_init_$Create$();
   var tmp0_iterator_1 = this_2.g();
   while (tmp0_iterator_1.h()) {
     var item = tmp0_iterator_1.i();
     // Inline function 'dev.eryalabs.nenya.order.OrderMachine.paymentRequests.<anonymous>' call
-    var tmp$ret$4 = item.p16();
+    var tmp$ret$4 = item.y17();
     destination.e(tmp$ret$4);
   }
   var offered = destination;
-  if (!(offered.j() === event.h1a_1.j())) {
+  if (!(offered.j() === event.q1b_1.j())) {
     return refuse_0(order, TransitionRejection_PAYMENT_REQUEST_PAYEE_DUPLICATED_getInstance(), '\xA78.6 is one invoice per payee, so two accepted `type=2`s for one role are not a duplicate to be collapsed: one of them bills for something else, and \xA79.2 check 1 compares a receipt against *the* stored request for that payee');
   }
   var surplus = minus_0(offered, required);
@@ -14486,11 +15345,11 @@ function paymentRequests($this, order, event) {
   return advance(with_0(order, OrderState_AWAITING_PAYMENT_getInstance()));
 }
 function receipts($this, order, event) {
-  var required = Companion_instance_23.y1a(order.y13().sp_1);
+  var required = Companion_instance_23.h1c(order.l15().lq_1);
   var tmp$ret$0;
   $l$block_0: {
     // Inline function 'kotlin.collections.any' call
-    var this_0 = event.u1a_1;
+    var this_0 = event.d1c_1;
     var tmp;
     if (isInterface(this_0, Collection)) {
       tmp = this_0.p();
@@ -14516,30 +15375,30 @@ function receipts($this, order, event) {
     return refuse_0(order, TransitionRejection_RECEIPT_FOR_ANOTHER_ORDER_getInstance(), "a receipt naming another order was offered as evidence for this one. \xA77.4 makes the order id the handle every message in a thread carries and \xA79.2 check 1 keys the stored payment request by (order, payee); the payment may well have happened, and it is not this order's");
   }
   // Inline function 'kotlin.collections.mapTo' call
-  var this_1 = event.u1a_1;
+  var this_1 = event.d1c_1;
   var destination = LinkedHashSet_init_$Create$();
   var tmp0_iterator_0 = this_1.g();
   while (tmp0_iterator_0.h()) {
     var item = tmp0_iterator_0.i();
     // Inline function 'dev.eryalabs.nenya.order.OrderMachine.receipts.<anonymous>' call
-    var tmp$ret$2 = item.p16();
+    var tmp$ret$2 = item.y17();
     destination.e(tmp$ret$2);
   }
   var covered = destination;
-  if (!(covered.j() === event.u1a_1.j())) {
+  if (!(covered.j() === event.d1c_1.j())) {
     return refuse_0(order, TransitionRejection_RECEIPT_PAYEE_DUPLICATED_getInstance(), '\xA78.6 is one invoice per payee, so two receipts for one role are not a duplicate to be collapsed: one of them is evidence of something else');
   }
   // Inline function 'kotlin.collections.mapTo' call
-  var this_2 = event.u1a_1;
+  var this_2 = event.d1c_1;
   var destination_0 = HashSet_init_$Create$();
   var tmp0_iterator_1 = this_2.g();
   while (tmp0_iterator_1.h()) {
     var item_0 = tmp0_iterator_1.i();
     // Inline function 'dev.eryalabs.nenya.order.OrderMachine.receipts.<anonymous>' call
-    var tmp$ret$4 = item_0.t16().u16();
+    var tmp$ret$4 = item_0.c18().d18();
     destination_0.e(tmp$ret$4);
   }
-  if (!(destination_0.j() === event.u1a_1.j())) {
+  if (!(destination_0.j() === event.d1c_1.j())) {
     return refuse_0(order, TransitionRejection_RECEIPT_PAYMENT_DUPLICATED_getInstance(), '\xA78.6: the buyer pays the provider and the fee recipient with two **separate** payments to two separate invoices, and two invoices cannot share a payment hash. One payment is being offered as evidence of two');
   }
   var surplus = minus_0(covered, required);
@@ -14553,13 +15412,13 @@ function receipts($this, order, event) {
     return refuse_0(order, TransitionRejection_RECEIPTS_INCOMPLETE_getInstance(), '\xA711.2 enters `paid` only when **all** required receipts have verified per \xA79.2; at least one has not');
   }
   // Inline function 'kotlin.collections.flatMapTo' call
-  var this_3 = event.u1a_1;
+  var this_3 = event.d1c_1;
   var destination_1 = LinkedHashSet_init_$Create$();
   var tmp0_iterator_2 = this_3.g();
   while (tmp0_iterator_2.h()) {
     var element_0 = tmp0_iterator_2.i();
     // Inline function 'dev.eryalabs.nenya.order.OrderMachine.receipts.<anonymous>' call
-    var list = minus_0(applicableChecks(element_0.p16()), element_0.ss());
+    var list = minus_0(applicableChecks(element_0.y17()), element_0.xs());
     addAll(destination_1, list);
   }
   var unperformed = destination_1;
@@ -14570,38 +15429,38 @@ function receipts($this, order, event) {
   var tmp_0 = OrderState_PAID_getInstance();
   var tmp_1 = reading($this);
   var tmp0_safe_receiver = tmp_1 instanceof At ? tmp_1 : null;
-  var tmp_2 = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.x1a_1;
+  var tmp_2 = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.g1c_1;
   // Inline function 'kotlin.collections.flatMapTo' call
-  var this_4 = event.u1a_1;
+  var this_4 = event.d1c_1;
   var destination_2 = LinkedHashSet_init_$Create$();
   var tmp0_iterator_3 = this_4.g();
   while (tmp0_iterator_3.h()) {
     var element_1 = tmp0_iterator_3.i();
     // Inline function 'dev.eryalabs.nenya.order.OrderMachine.receipts.<anonymous>' call
-    var list_0 = element_1.ss();
+    var list_0 = element_1.xs();
     addAll(destination_2, list_0);
   }
   var tmp_3 = destination_2;
   // Inline function 'kotlin.collections.flatMapTo' call
-  var this_5 = event.u1a_1;
+  var this_5 = event.d1c_1;
   var destination_3 = LinkedHashSet_init_$Create$();
   var tmp0_iterator_4 = this_5.g();
   while (tmp0_iterator_4.h()) {
     var element_2 = tmp0_iterator_4.i();
     // Inline function 'dev.eryalabs.nenya.order.OrderMachine.receipts.<anonymous>' call
-    var list_1 = element_2.ts();
+    var list_1 = element_2.ys();
     addAll(destination_3, list_1);
   }
   return advance(with_0(order, tmp_0, VOID, VOID, tmp_2, VOID, VOID, tmp_3, destination_3));
 }
 function release($this, order, event) {
-  if (!event.k1a_1.equals(Party_PROVIDER_getInstance())) {
+  if (!event.t1b_1.equals(Party_PROVIDER_getInstance())) {
     return wrongSender($this, order, "\xA711.2: the kind:15 release is the provider's (\xA77.4, \xA710.3)");
   }
-  if (!(event.m1a_1 == null) && !equals(event.m1a_1, order.wd())) {
+  if (!(event.v1b_1 == null) && !equals(event.v1b_1, order.wd())) {
     return refuse_0(order, TransitionRejection_RELEASE_FOR_ANOTHER_ORDER_getInstance(), '\xA710.3: a release whose `order` tag names another order MUST NOT advance this one. Two orders with the same provider can carry the same commitment, so every hash on this row would match a misrouted release');
   }
-  var tmp0_elvis_lhs = order.js();
+  var tmp0_elvis_lhs = order.os();
   var tmp;
   if (tmp0_elvis_lhs == null) {
     return noCommitment($this, order);
@@ -14610,7 +15469,7 @@ function release($this, order, event) {
   }
   var commitment = tmp;
   try {
-    commitment.fs(event.j1a_1);
+    commitment.ks(event.s1b_1);
   } catch ($p) {
     if ($p instanceof DeliveryException) {
       var diverged = $p;
@@ -14622,10 +15481,10 @@ function release($this, order, event) {
   var tmp_0 = OrderState_RELEASED_getInstance();
   var tmp_1 = reading($this);
   var tmp1_safe_receiver = tmp_1 instanceof At ? tmp_1 : null;
-  return advance(with_0(order, tmp_0, VOID, VOID, VOID, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.x1a_1, VOID, VOID, VOID, plus_0(order.u14(), event.n1a_1)));
+  return advance(with_0(order, tmp_0, VOID, VOID, VOID, tmp1_safe_receiver == null ? null : tmp1_safe_receiver.g1c_1, VOID, VOID, VOID, plus_0(order.h16(), event.w1b_1)));
 }
 function settle($this, order, event) {
-  var tmp0_elvis_lhs = order.js();
+  var tmp0_elvis_lhs = order.os();
   var tmp;
   if (tmp0_elvis_lhs == null) {
     return noCommitment($this, order);
@@ -14633,14 +15492,14 @@ function settle($this, order, event) {
     tmp = tmp0_elvis_lhs;
   }
   var commitment = tmp;
-  if (!sameCommitment(commitment, event.v1a_1.js())) {
+  if (!sameCommitment(commitment, event.e1c_1.os())) {
     return refuse_0(order, TransitionRejection_EVIDENCE_IS_FOR_ANOTHER_COMMITMENT_getInstance(), '\xA710.3: hash equality is a check and not the binding. Evidence produced against another commitment belongs to another order thread and settles nothing here');
   }
-  var performed = plus_0(order.u14(), event.v1a_1.ss());
-  return advance(with_0(order, OrderState_SETTLED_getInstance(), VOID, VOID, VOID, VOID, VOID, VOID, VOID, performed, minus_0(event.v1a_1.ts(), performed)));
+  var performed = plus_0(order.h16(), event.e1c_1.xs());
+  return advance(with_0(order, OrderState_SETTLED_getInstance(), VOID, VOID, VOID, VOID, VOID, VOID, VOID, performed, minus_0(event.e1c_1.ys(), performed)));
 }
 function reading($this) {
-  var answer = $this.o13_1.xe();
+  var answer = $this.b15_1.xe();
   var tmp;
   if (answer instanceof Unavailable_0) {
     tmp = Unavailable_instance;
@@ -14693,8 +15552,8 @@ function ground($this, failure) {
 }
 function Companion_19() {
   Companion_instance_19 = this;
-  this.z1a_1 = new Long(604800, 0);
-  this.a1b_1 = new Long(604800, 0);
+  this.i1c_1 = new Long(604800, 0);
+  this.j1c_1 = new Long(604800, 0);
 }
 var Companion_instance_19;
 function Companion_getInstance_19() {
@@ -14704,23 +15563,23 @@ function Companion_getInstance_19() {
 }
 function OrderMachine(clock, releaseTimeoutSeconds, verificationTimeoutSeconds) {
   Companion_getInstance_19();
-  clock = clock === VOID ? Companion_getInstance_28().rw_1 : clock;
+  clock = clock === VOID ? Companion_getInstance_28().ww_1 : clock;
   releaseTimeoutSeconds = releaseTimeoutSeconds === VOID ? new Long(604800, 0) : releaseTimeoutSeconds;
   verificationTimeoutSeconds = verificationTimeoutSeconds === VOID ? new Long(604800, 0) : verificationTimeoutSeconds;
-  this.o13_1 = clock;
-  this.p13_1 = releaseTimeoutSeconds;
-  this.q13_1 = verificationTimeoutSeconds;
-  if (this.p13_1.c2(new Long(0, 0)) <= 0) {
+  this.b15_1 = clock;
+  this.c15_1 = releaseTimeoutSeconds;
+  this.d15_1 = verificationTimeoutSeconds;
+  if (this.c15_1.c2(new Long(0, 0)) <= 0) {
     throw new OrderStateException(OrderStateRejection_RELEASE_TIMEOUT_NOT_POSITIVE_getInstance(), '\xA711.2 requires an implementation with no `deliver_by` to apply and display a release timeout of its own; a zero or negative one is not a timeout, it disputes an order the moment it is paid');
   }
-  if (this.q13_1.c2(new Long(0, 0)) <= 0) {
+  if (this.d15_1.c2(new Long(0, 0)) <= 0) {
     throw new OrderStateException(OrderStateRejection_VERIFICATION_TIMEOUT_NOT_POSITIVE_getInstance(), '\xA711.2 requires an implementation to apply and display a verification window of its own out of `released`; a zero or negative one is not a window, it disputes an order the moment the key reaches the buyer');
   }
 }
-protoOf(OrderMachine).r13 = function (proposal) {
-  return new OpenOrder(proposal.u19_1, OrderState_PROPOSED_getInstance(), proposal.v19_1, null, null, null, null, null, emptySet(), emptySet(), emptySet(), emptySet());
+protoOf(OrderMachine).e15 = function (proposal) {
+  return new OpenOrder(proposal.d1b_1, OrderState_PROPOSED_getInstance(), proposal.e1b_1, null, null, null, null, null, emptySet(), emptySet(), emptySet(), emptySet());
 };
-protoOf(OrderMachine).t13 = function (order, event) {
+protoOf(OrderMachine).g15 = function (order, event) {
   var tmp0_safe_receiver = advancesNothingEver(this, event);
   if (tmp0_safe_receiver == null)
     null;
@@ -14730,7 +15589,7 @@ protoOf(OrderMachine).t13 = function (order, event) {
     return refuse_0(order, tmp0_safe_receiver.r9_1, tmp0_safe_receiver.s9_1);
   }
   var tmp;
-  switch (order.i14().u1_1) {
+  switch (order.v15().u1_1) {
     case 10:
       tmp = refuse_0(order, TransitionRejection_STATE_IS_UNKNOWN_getInstance(), "\xA711.1's unknown sink appears in neither column of \xA711.2: it originates no transition and receives none, and MUST NOT be mapped onto the nearest known state");
       break;
@@ -14768,120 +15627,120 @@ function checkedDeadline(atSeconds, durationSeconds) {
   return durationSeconds.c2(new Long(0, 0)) > 0 && atSeconds.c2((new Long(-1, 2147483647)).e2(durationSeconds)) > 0 ? null : durationSeconds.c2(new Long(0, 0)) < 0 && atSeconds.c2((new Long(0, -2147483648)).e2(durationSeconds)) < 0 ? null : atSeconds.d2(durationSeconds);
 }
 function sameCommitment(one, other) {
-  return one.vp_1.equals(other.vp_1) && one.wp_1.equals(other.wp_1) && one.xp_1 === other.xp_1 && one.yp_1.equals(other.yp_1);
+  return one.oq_1.equals(other.oq_1) && one.pq_1.equals(other.pq_1) && one.qq_1 === other.qq_1 && one.rq_1.equals(other.rq_1);
 }
 function with_0(_this__u8e3s4, state, provider, commitment, paidAt, releasedAt, disputeGround, paymentChecksPerformed, paymentChecksNotPerformedHere, deliveryChecksPerformed, deliveryChecksNotPerformedHere) {
-  state = state === VOID ? _this__u8e3s4.i14() : state;
-  provider = provider === VOID ? _this__u8e3s4.x13() : provider;
-  commitment = commitment === VOID ? _this__u8e3s4.js() : commitment;
-  paidAt = paidAt === VOID ? _this__u8e3s4.o14() : paidAt;
-  releasedAt = releasedAt === VOID ? _this__u8e3s4.q14() : releasedAt;
-  disputeGround = disputeGround === VOID ? _this__u8e3s4.r14() : disputeGround;
-  paymentChecksPerformed = paymentChecksPerformed === VOID ? _this__u8e3s4.s14() : paymentChecksPerformed;
-  paymentChecksNotPerformedHere = paymentChecksNotPerformedHere === VOID ? _this__u8e3s4.t14() : paymentChecksNotPerformedHere;
-  deliveryChecksPerformed = deliveryChecksPerformed === VOID ? _this__u8e3s4.u14() : deliveryChecksPerformed;
-  deliveryChecksNotPerformedHere = deliveryChecksNotPerformedHere === VOID ? _this__u8e3s4.v14() : deliveryChecksNotPerformedHere;
-  return new OpenOrder(_this__u8e3s4.wd(), state, _this__u8e3s4.y13(), provider, commitment, paidAt, releasedAt, disputeGround, paymentChecksPerformed, paymentChecksNotPerformedHere, deliveryChecksPerformed, deliveryChecksNotPerformedHere);
+  state = state === VOID ? _this__u8e3s4.v15() : state;
+  provider = provider === VOID ? _this__u8e3s4.k15() : provider;
+  commitment = commitment === VOID ? _this__u8e3s4.os() : commitment;
+  paidAt = paidAt === VOID ? _this__u8e3s4.b16() : paidAt;
+  releasedAt = releasedAt === VOID ? _this__u8e3s4.d16() : releasedAt;
+  disputeGround = disputeGround === VOID ? _this__u8e3s4.e16() : disputeGround;
+  paymentChecksPerformed = paymentChecksPerformed === VOID ? _this__u8e3s4.f16() : paymentChecksPerformed;
+  paymentChecksNotPerformedHere = paymentChecksNotPerformedHere === VOID ? _this__u8e3s4.g16() : paymentChecksNotPerformedHere;
+  deliveryChecksPerformed = deliveryChecksPerformed === VOID ? _this__u8e3s4.h16() : deliveryChecksPerformed;
+  deliveryChecksNotPerformedHere = deliveryChecksNotPerformedHere === VOID ? _this__u8e3s4.i16() : deliveryChecksNotPerformedHere;
+  return new OpenOrder(_this__u8e3s4.wd(), state, _this__u8e3s4.l15(), provider, commitment, paidAt, releasedAt, disputeGround, paymentChecksPerformed, paymentChecksNotPerformedHere, deliveryChecksPerformed, deliveryChecksNotPerformedHere);
 }
 function OpenOrder(id, state, terms, provider, commitment, paidAt, releasedAt, disputeGround, paymentChecksPerformed, paymentChecksNotPerformedHere, deliveryChecksPerformed, deliveryChecksNotPerformedHere) {
-  this.b1b_1 = id;
-  this.c1b_1 = state;
-  this.d1b_1 = terms;
-  this.e1b_1 = provider;
-  this.f1b_1 = commitment;
-  this.g1b_1 = paidAt;
-  this.h1b_1 = releasedAt;
-  this.i1b_1 = disputeGround;
-  this.j1b_1 = paymentChecksPerformed;
-  this.k1b_1 = paymentChecksNotPerformedHere;
-  this.l1b_1 = deliveryChecksPerformed;
-  this.m1b_1 = deliveryChecksNotPerformedHere;
+  this.k1c_1 = id;
+  this.l1c_1 = state;
+  this.m1c_1 = terms;
+  this.n1c_1 = provider;
+  this.o1c_1 = commitment;
+  this.p1c_1 = paidAt;
+  this.q1c_1 = releasedAt;
+  this.r1c_1 = disputeGround;
+  this.s1c_1 = paymentChecksPerformed;
+  this.t1c_1 = paymentChecksNotPerformedHere;
+  this.u1c_1 = deliveryChecksPerformed;
+  this.v1c_1 = deliveryChecksNotPerformedHere;
 }
 protoOf(OpenOrder).wd = function () {
-  return this.b1b_1;
+  return this.k1c_1;
 };
-protoOf(OpenOrder).i14 = function () {
-  return this.c1b_1;
+protoOf(OpenOrder).v15 = function () {
+  return this.l1c_1;
 };
-protoOf(OpenOrder).y13 = function () {
-  return this.d1b_1;
+protoOf(OpenOrder).l15 = function () {
+  return this.m1c_1;
 };
-protoOf(OpenOrder).x13 = function () {
-  return this.e1b_1;
+protoOf(OpenOrder).k15 = function () {
+  return this.n1c_1;
 };
-protoOf(OpenOrder).js = function () {
-  return this.f1b_1;
+protoOf(OpenOrder).os = function () {
+  return this.o1c_1;
 };
-protoOf(OpenOrder).o14 = function () {
-  return this.g1b_1;
+protoOf(OpenOrder).b16 = function () {
+  return this.p1c_1;
 };
-protoOf(OpenOrder).q14 = function () {
-  return this.h1b_1;
+protoOf(OpenOrder).d16 = function () {
+  return this.q1c_1;
 };
-protoOf(OpenOrder).r14 = function () {
-  return this.i1b_1;
+protoOf(OpenOrder).e16 = function () {
+  return this.r1c_1;
 };
-protoOf(OpenOrder).s14 = function () {
-  return this.j1b_1;
+protoOf(OpenOrder).f16 = function () {
+  return this.s1c_1;
 };
-protoOf(OpenOrder).t14 = function () {
-  return this.k1b_1;
+protoOf(OpenOrder).g16 = function () {
+  return this.t1c_1;
 };
-protoOf(OpenOrder).u14 = function () {
-  return this.l1b_1;
+protoOf(OpenOrder).h16 = function () {
+  return this.u1c_1;
 };
-protoOf(OpenOrder).v14 = function () {
-  return this.m1b_1;
+protoOf(OpenOrder).i16 = function () {
+  return this.v1c_1;
 };
 protoOf(OpenOrder).toString = function () {
-  var tmp0_elvis_lhs = this.c1b_1.yn_1;
-  return 'Order(state=' + (tmp0_elvis_lhs == null ? 'unknown' : tmp0_elvis_lhs) + ', disputeGround=' + toString_0(this.i1b_1) + ', ' + ('paymentChecksNotPerformedHere=' + toString(this.k1b_1) + ', ') + ('deliveryChecksNotPerformedHere=' + toString(this.m1b_1) + ')');
+  var tmp0_elvis_lhs = this.l1c_1.vo_1;
+  return 'Order(state=' + (tmp0_elvis_lhs == null ? 'unknown' : tmp0_elvis_lhs) + ', disputeGround=' + toString_0(this.r1c_1) + ', ' + ('paymentChecksNotPerformedHere=' + toString(this.t1c_1) + ', ') + ('deliveryChecksNotPerformedHere=' + toString(this.v1c_1) + ')');
 };
 function Moved(order) {
-  this.n1b_1 = order;
+  this.w1c_1 = order;
 }
 protoOf(Moved).lk = function () {
-  return this.n1b_1;
+  return this.w1c_1;
 };
 protoOf(Moved).toString = function () {
-  return 'Advanced(' + toString(this.n1b_1) + ')';
+  return 'Advanced(' + toString(this.w1c_1) + ')';
 };
 function NotMoved(order, reason, detail) {
-  this.o1b_1 = order;
-  this.p1b_1 = reason;
-  this.q1b_1 = detail;
+  this.x1c_1 = order;
+  this.y1c_1 = reason;
+  this.z1c_1 = detail;
 }
 protoOf(NotMoved).lk = function () {
-  return this.o1b_1;
+  return this.x1c_1;
 };
-protoOf(NotMoved).lx = function () {
-  return this.p1b_1;
+protoOf(NotMoved).py = function () {
+  return this.y1c_1;
 };
-protoOf(NotMoved).dx = function () {
-  return this.q1b_1;
+protoOf(NotMoved).hy = function () {
+  return this.z1c_1;
 };
 protoOf(NotMoved).toString = function () {
-  return 'Refused(' + this.p1b_1.toString() + ': ' + this.q1b_1 + ')';
+  return 'Refused(' + this.y1c_1.toString() + ': ' + this.z1c_1 + ')';
 };
 function ChecksMissing(order, missing, detail) {
-  this.r1b_1 = order;
-  this.s1b_1 = missing;
-  this.t1b_1 = detail;
+  this.a1d_1 = order;
+  this.b1d_1 = missing;
+  this.c1d_1 = detail;
 }
 protoOf(ChecksMissing).lk = function () {
-  return this.r1b_1;
+  return this.a1d_1;
 };
-protoOf(ChecksMissing).b15 = function () {
-  return this.s1b_1;
+protoOf(ChecksMissing).o16 = function () {
+  return this.b1d_1;
 };
-protoOf(ChecksMissing).dx = function () {
-  return this.t1b_1;
+protoOf(ChecksMissing).hy = function () {
+  return this.c1d_1;
 };
-protoOf(ChecksMissing).lx = function () {
+protoOf(ChecksMissing).py = function () {
   return TransitionRejection_PAYMENT_CHECKS_NOT_PERFORMED_getInstance();
 };
 protoOf(ChecksMissing).toString = function () {
-  return 'Refused(' + this.lx().toString() + ': missing=' + toString(this.s1b_1) + ': ' + this.t1b_1 + ')';
+  return 'Refused(' + this.py().toString() + ': missing=' + toString(this.b1d_1) + ': ' + this.c1d_1 + ')';
 };
 function advance(order) {
   return new Moved(order);
@@ -15058,7 +15917,7 @@ function OrderStateRejection(name, ordinal) {
 function OrderStateException(reason, message) {
   IllegalArgumentException_init_$Init$_0(message, this);
   captureStack(this, OrderStateException);
-  this.gz_1 = reason;
+  this.k10_1 = reason;
 }
 var OrderState_PROPOSED_instance;
 var OrderState_ACCEPTED_instance;
@@ -15099,11 +15958,11 @@ function OrderState_initEntries() {
 var $ENTRIES_5;
 function OrderState(name, ordinal, token, isTerminal) {
   Enum.call(this, name, ordinal);
-  this.yn_1 = token;
-  this.zn_1 = isTerminal;
+  this.vo_1 = token;
+  this.wo_1 = isTerminal;
 }
-protoOf(OrderState).m14 = function () {
-  return !(this.yn_1 == null);
+protoOf(OrderState).z15 = function () {
+  return !(this.vo_1 == null);
 };
 function OrderStatusCodec() {
   OrderStatusCodec_instance = this;
@@ -15118,7 +15977,7 @@ function OrderStatusCodec() {
     var element = tmp0_iterator.i();
     // Inline function 'kotlin.collections.mapNotNullTo.<anonymous>' call
     // Inline function 'dev.eryalabs.nenya.order.OrderStatusCodec.BY_TOKEN.<anonymous>' call
-    var tmp0_safe_receiver = element.yn_1;
+    var tmp0_safe_receiver = element.vo_1;
     var tmp_0;
     if (tmp0_safe_receiver == null) {
       tmp_0 = null;
@@ -15137,14 +15996,14 @@ function OrderStatusCodec() {
       destination.e(tmp0_safe_receiver_0);
     }
   }
-  tmp.ao_1 = toMap(destination);
+  tmp.xo_1 = toMap(destination);
 }
-protoOf(OrderStatusCodec).bo = function (statusToken) {
-  var tmp0_elvis_lhs = this.ao_1.q1(statusToken);
+protoOf(OrderStatusCodec).yo = function (statusToken) {
+  var tmp0_elvis_lhs = this.xo_1.q1(statusToken);
   return tmp0_elvis_lhs == null ? OrderState_UNKNOWN_getInstance() : tmp0_elvis_lhs;
 };
-protoOf(OrderStatusCodec).uq = function (state) {
-  var tmp0_elvis_lhs = state.yn_1;
+protoOf(OrderStatusCodec).br = function (state) {
+  var tmp0_elvis_lhs = state.vo_1;
   var tmp;
   if (tmp0_elvis_lhs == null) {
     throw new OrderStateException(OrderStateRejection_UNKNOWN_IS_NOT_EMITTABLE_getInstance(), "\xA711.1's `unknown` is the treatment of an unrecognised status, not a token: there is nothing to emit for it");
@@ -15257,8 +16116,8 @@ function Party(name, ordinal) {
 }
 function Companion_20() {
 }
-protoOf(Companion_20).kn = function (price, fee, expiration, deliverBy) {
-  return new OrderTerms(fee.o19(price), expiration, deliverBy);
+protoOf(Companion_20).mo = function (price, fee, expiration, deliverBy) {
+  return new OrderTerms(fee.x1a(price), expiration, deliverBy);
 };
 var Companion_instance_20;
 function Companion_getInstance_20() {
@@ -15267,13 +16126,13 @@ function Companion_getInstance_20() {
 function OrderTerms(split, expiration, deliverBy) {
   expiration = expiration === VOID ? null : expiration;
   deliverBy = deliverBy === VOID ? null : deliverBy;
-  this.sp_1 = split;
-  this.tp_1 = expiration;
-  this.up_1 = deliverBy;
-  if (!(this.tp_1 == null) && this.tp_1.c2(new Long(0, 0)) < 0 || (!(this.up_1 == null) && this.up_1.c2(new Long(0, 0)) < 0)) {
+  this.lq_1 = split;
+  this.mq_1 = expiration;
+  this.nq_1 = deliverBy;
+  if (!(this.mq_1 == null) && this.mq_1.c2(new Long(0, 0)) < 0 || (!(this.nq_1 == null) && this.nq_1.c2(new Long(0, 0)) < 0)) {
     throw new OrderStateException(OrderStateRejection_NEGATIVE_TIMESTAMP_getInstance(), "\xA74.3 fixes a timestamp as a non-negative integer of unix seconds, and \xA77.5's expiration and deliver_by are both timestamps");
   }
-  if (!(this.tp_1 == null) && !(this.up_1 == null) && this.tp_1.c2(this.up_1) >= 0) {
+  if (!(this.mq_1 == null) && !(this.nq_1 == null) && this.mq_1.c2(this.nq_1) >= 0) {
     throw new OrderStateException(OrderStateRejection_DEADLINES_INVERTED_getInstance(), "\xA77.5 requires a proposal's expiration to fall strictly before its deliver_by, and requires an implementation to reject a proposal that violates it: an order that can still be accepted after its own delivery deadline has passed puts the provider in a state where acceptance and expiry are simultaneously correct");
   }
 }
@@ -15282,30 +16141,30 @@ protoOf(OrderTerms).equals = function (other) {
   var tmp_0;
   var tmp_1;
   if (other instanceof OrderTerms) {
-    tmp_1 = other.sp_1.equals(this.sp_1);
+    tmp_1 = other.lq_1.equals(this.lq_1);
   } else {
     tmp_1 = false;
   }
   if (tmp_1) {
-    tmp_0 = equals(other.tp_1, this.tp_1);
+    tmp_0 = equals(other.mq_1, this.mq_1);
   } else {
     tmp_0 = false;
   }
   if (tmp_0) {
-    tmp = equals(other.up_1, this.up_1);
+    tmp = equals(other.nq_1, this.nq_1);
   } else {
     tmp = false;
   }
   return tmp;
 };
 protoOf(OrderTerms).hashCode = function () {
-  var hash = this.sp_1.hashCode();
+  var hash = this.lq_1.hashCode();
   var tmp = imul(hash, 31);
-  var tmp0_safe_receiver = this.tp_1;
+  var tmp0_safe_receiver = this.mq_1;
   var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.hashCode();
   hash = tmp + (tmp1_elvis_lhs == null ? 0 : tmp1_elvis_lhs) | 0;
   var tmp_0 = imul(hash, 31);
-  var tmp2_safe_receiver = this.up_1;
+  var tmp2_safe_receiver = this.nq_1;
   var tmp3_elvis_lhs = tmp2_safe_receiver == null ? null : tmp2_safe_receiver.hashCode();
   hash = tmp_0 + (tmp3_elvis_lhs == null ? 0 : tmp3_elvis_lhs) | 0;
   return hash;
@@ -15345,11 +16204,11 @@ function PaymentRejection(name, ordinal) {
 function PaymentException(reason, message) {
   IllegalArgumentException_init_$Init$_0(message, this);
   captureStack(this, PaymentException);
-  this.fz_1 = reason;
+  this.j10_1 = reason;
 }
 function Companion_21() {
-  this.u1b_1 = 32;
-  this.v1b_1 = 64;
+  this.d1d_1 = 32;
+  this.e1d_1 = 64;
 }
 protoOf(Companion_21).hj = function (hex) {
   return new PaymentHash(decodeThirtyTwoBytes_0(hex, HexCase_NORMALISE_UPPERCASE_getInstance(), 'payment hash'));
@@ -15363,34 +16222,34 @@ function PaymentHash(value) {
   var tmp = this;
   // Inline function 'kotlin.collections.copyOf' call
   // Inline function 'kotlin.js.asDynamic' call
-  tmp.v16_1 = value.slice();
+  tmp.e18_1 = value.slice();
 }
-protoOf(PaymentHash).es = function () {
+protoOf(PaymentHash).js = function () {
   // Inline function 'kotlin.collections.copyOf' call
   // Inline function 'kotlin.js.asDynamic' call
-  return this.v16_1.slice();
+  return this.e18_1.slice();
 };
-protoOf(PaymentHash).qo = function () {
-  return encodeLowerHex_0(this.v16_1);
+protoOf(PaymentHash).np = function () {
+  return encodeLowerHex_0(this.e18_1);
 };
 protoOf(PaymentHash).equals = function (other) {
   var tmp;
   if (other instanceof PaymentHash) {
-    tmp = constantTimeEquals(this.v16_1, other.v16_1);
+    tmp = constantTimeEquals(this.e18_1, other.e18_1);
   } else {
     tmp = false;
   }
   return tmp;
 };
 protoOf(PaymentHash).hashCode = function () {
-  return contentHashCode(this.v16_1);
+  return contentHashCode(this.e18_1);
 };
 protoOf(PaymentHash).toString = function () {
   return 'PaymentHash(redacted)';
 };
 function Companion_22() {
-  this.w1b_1 = 32;
-  this.x1b_1 = 64;
+  this.f1d_1 = 32;
+  this.g1d_1 = 64;
 }
 protoOf(Companion_22).hj = function (hex) {
   return new Preimage(decodeThirtyTwoBytes_0(hex, HexCase_REJECT_UPPERCASE_getInstance(), 'preimage'));
@@ -15404,24 +16263,24 @@ function Preimage(value) {
   var tmp = this;
   // Inline function 'kotlin.collections.copyOf' call
   // Inline function 'kotlin.js.asDynamic' call
-  tmp.y1b_1 = value.slice();
+  tmp.h1d_1 = value.slice();
 }
-protoOf(Preimage).es = function () {
+protoOf(Preimage).js = function () {
   // Inline function 'kotlin.collections.copyOf' call
   // Inline function 'kotlin.js.asDynamic' call
-  return this.y1b_1.slice();
+  return this.h1d_1.slice();
 };
 protoOf(Preimage).equals = function (other) {
   var tmp;
   if (other instanceof Preimage) {
-    tmp = constantTimeEquals(this.y1b_1, other.y1b_1);
+    tmp = constantTimeEquals(this.h1d_1, other.h1d_1);
   } else {
     tmp = false;
   }
   return tmp;
 };
 protoOf(Preimage).hashCode = function () {
-  return contentHashCode(this.y1b_1);
+  return contentHashCode(this.h1d_1);
 };
 protoOf(Preimage).toString = function () {
   return 'Preimage(redacted)';
@@ -15524,12 +16383,12 @@ var Payee_PROVIDER_instance;
 var Payee_FEE_instance;
 function Companion_23() {
 }
-protoOf(Companion_23).y1a = function (split) {
+protoOf(Companion_23).h1c = function (split) {
   var required = LinkedHashSet_init_$Create$_0(2);
-  if (Msat__compareTo_impl_alo86(split.dq_1, Companion_getInstance_16().cn_1) > 0) {
+  if (Msat__compareTo_impl_alo86(split.wq_1, Companion_getInstance_16().eo_1) > 0) {
     required.e(Payee_PROVIDER_getInstance());
   }
-  if (split.hq_1) {
+  if (split.ar_1) {
     required.e(Payee_FEE_getInstance());
   }
   return required;
@@ -15557,7 +16416,7 @@ function Payee_initEntries() {
 var $ENTRIES_7;
 function Payee(name, ordinal, token) {
   Enum.call(this, name, ordinal);
-  this.s10_1 = token;
+  this.x11_1 = token;
 }
 var PaymentCheck_INVOICE_IDENTITY_instance;
 var PaymentCheck_PREIMAGE_SHAPE_instance;
@@ -15596,41 +16455,41 @@ function PaymentCheck(name, ordinal) {
   Enum.call(this, name, ordinal);
 }
 function PreimageEvidence(payee, paymentHash, preimage, checksNotPerformedHere) {
-  this.z1b_1 = payee;
-  this.a1c_1 = paymentHash;
-  this.b1c_1 = preimage;
-  this.c1c_1 = checksNotPerformedHere;
+  this.i1d_1 = payee;
+  this.j1d_1 = paymentHash;
+  this.k1d_1 = preimage;
+  this.l1d_1 = checksNotPerformedHere;
 }
-protoOf(PreimageEvidence).u16 = function () {
-  return this.a1c_1;
+protoOf(PreimageEvidence).d18 = function () {
+  return this.j1d_1;
 };
-protoOf(PreimageEvidence).ts = function () {
-  return this.c1c_1;
+protoOf(PreimageEvidence).ys = function () {
+  return this.l1d_1;
 };
-protoOf(PreimageEvidence).ss = function () {
-  return Companion_getInstance_24().xr_1;
+protoOf(PreimageEvidence).xs = function () {
+  return Companion_getInstance_24().cs_1;
 };
 protoOf(PreimageEvidence).toString = function () {
-  return 'VerifiedPayment(payee=' + this.z1b_1.s10_1 + ', performed=' + toString(this.ss()) + ', ' + ('notPerformedHere=' + toString(this.c1c_1) + ')');
+  return 'VerifiedPayment(payee=' + this.i1d_1.x11_1 + ', performed=' + toString(this.xs()) + ', ' + ('notPerformedHere=' + toString(this.l1d_1) + ')');
 };
 function Companion_24() {
   Companion_instance_24 = this;
-  this.xr_1 = readOnlySetOf(linkedSetOf([PaymentCheck_PREIMAGE_SHAPE_getInstance(), PaymentCheck_PREIMAGE_HASH_COMPARISON_getInstance()]));
-  this.yr_1 = readOnlySetOf(linkedSetOf([PaymentCheck_INVOICE_IDENTITY_getInstance(), PaymentCheck_PAYMENT_HASH_PROVENANCE_getInstance(), PaymentCheck_INVOICE_AMOUNT_getInstance(), PaymentCheck_INVOICE_EXPIRY_getInstance()]));
-  this.zr_1 = readOnlySetOf(linkedSetOf([PaymentCheck_INVOICE_IDENTITY_getInstance(), PaymentCheck_PAYMENT_HASH_PROVENANCE_getInstance(), PaymentCheck_INVOICE_AMOUNT_getInstance(), PaymentCheck_INVOICE_EXPIRY_getInstance(), PaymentCheck_FEE_TERM_MATCH_getInstance(), PaymentCheck_FEE_SEALING_KEY_getInstance(), PaymentCheck_FEE_STATE_PRECONDITION_getInstance()]));
+  this.cs_1 = readOnlySetOf(linkedSetOf([PaymentCheck_PREIMAGE_SHAPE_getInstance(), PaymentCheck_PREIMAGE_HASH_COMPARISON_getInstance()]));
+  this.ds_1 = readOnlySetOf(linkedSetOf([PaymentCheck_INVOICE_IDENTITY_getInstance(), PaymentCheck_PAYMENT_HASH_PROVENANCE_getInstance(), PaymentCheck_INVOICE_AMOUNT_getInstance(), PaymentCheck_INVOICE_EXPIRY_getInstance()]));
+  this.es_1 = readOnlySetOf(linkedSetOf([PaymentCheck_INVOICE_IDENTITY_getInstance(), PaymentCheck_PAYMENT_HASH_PROVENANCE_getInstance(), PaymentCheck_INVOICE_AMOUNT_getInstance(), PaymentCheck_INVOICE_EXPIRY_getInstance(), PaymentCheck_FEE_TERM_MATCH_getInstance(), PaymentCheck_FEE_SEALING_KEY_getInstance(), PaymentCheck_FEE_STATE_PRECONDITION_getInstance()]));
 }
-protoOf(Companion_24).d1c = function (payee, paymentHash, preimage) {
-  var computed = sha256(preimage.es());
-  if (!constantTimeEquals(computed, paymentHash.es())) {
+protoOf(Companion_24).m1d = function (payee, paymentHash, preimage) {
+  var computed = sha256(preimage.js());
+  if (!constantTimeEquals(computed, paymentHash.js())) {
     throw new PaymentException(PaymentRejection_PREIMAGE_MISMATCH_getInstance(), 'the SHA-256 of this preimage is not the payment hash it was checked against (\xA79.2 check 3); the payment is not evidenced');
   }
   var tmp;
   switch (payee.u1_1) {
     case 0:
-      tmp = this.yr_1;
+      tmp = this.ds_1;
       break;
     case 1:
-      tmp = this.zr_1;
+      tmp = this.es_1;
       break;
     default:
       noWhenBranchMatchedException();
@@ -15646,14 +16505,14 @@ function Companion_getInstance_24() {
   return Companion_instance_24;
 }
 function applicableChecks(payee) {
-  var tmp = Companion_getInstance_24().xr_1;
+  var tmp = Companion_getInstance_24().cs_1;
   var tmp_0;
   switch (payee.u1_1) {
     case 0:
-      tmp_0 = Companion_getInstance_24().yr_1;
+      tmp_0 = Companion_getInstance_24().ds_1;
       break;
     case 1:
-      tmp_0 = Companion_getInstance_24().zr_1;
+      tmp_0 = Companion_getInstance_24().es_1;
       break;
     default:
       noWhenBranchMatchedException();
@@ -15757,22 +16616,22 @@ function OrderId(value) {
   var tmp = this;
   // Inline function 'kotlin.collections.copyOf' call
   // Inline function 'kotlin.js.asDynamic' call
-  tmp.po_1 = value.slice();
+  tmp.mp_1 = value.slice();
 }
-protoOf(OrderId).qo = function () {
-  return encodeLowerHex_1(this.po_1);
+protoOf(OrderId).np = function () {
+  return encodeLowerHex_1(this.mp_1);
 };
 protoOf(OrderId).equals = function (other) {
   var tmp;
   if (other instanceof OrderId) {
-    tmp = constantTimeEquals(this.po_1, other.po_1);
+    tmp = constantTimeEquals(this.mp_1, other.mp_1);
   } else {
     tmp = false;
   }
   return tmp;
 };
 protoOf(OrderId).hashCode = function () {
-  return contentHashCode(this.po_1);
+  return contentHashCode(this.mp_1);
 };
 protoOf(OrderId).toString = function () {
   return 'OrderId(redacted)';
@@ -15856,7 +16715,7 @@ function SeamCapability_initEntries() {
 var $ENTRIES_9;
 function SeamCapability(name, ordinal, what) {
   Enum.call(this, name, ordinal);
-  this.y15_1 = what;
+  this.h17_1 = what;
 }
 function Provided(value) {
   this.ye_1 = value;
@@ -15876,16 +16735,16 @@ protoOf(Provided).toString = function () {
   return 'SeamAnswer.Provided(' + (tmp1_elvis_lhs == null ? 'null' : tmp1_elvis_lhs) + ', redacted)';
 };
 function Unavailable_0(capability, detail) {
-  this.nu_1 = capability;
-  this.ou_1 = detail;
+  this.su_1 = capability;
+  this.tu_1 = detail;
 }
 protoOf(Unavailable_0).toString = function () {
-  return 'SeamAnswer.Unavailable(' + this.nu_1.t1_1 + ': ' + this.ou_1 + ')';
+  return 'SeamAnswer.Unavailable(' + this.su_1.t1_1 + ': ' + this.tu_1 + ')';
 };
 function Companion_26() {
 }
-protoOf(Companion_26).e1c = function (capability) {
-  return new Unavailable_0(capability, 'no implementation of this seam was injected, so ' + capability.y15_1 + ' was not attempted; ' + '\xA717 requires this be reported as not performed rather than as a negative result');
+protoOf(Companion_26).n1d = function (capability) {
+  return new Unavailable_0(capability, 'no implementation of this seam was injected, so ' + capability.h17_1 + ' was not attempted; ' + '\xA717 requires this be reported as not performed rather than as a negative result');
 };
 var Companion_instance_26;
 function Companion_getInstance_26() {
@@ -15948,14 +16807,14 @@ function SeamCapability_BIP340_VERIFICATION_getInstance() {
   return SeamCapability_BIP340_VERIFICATION_instance;
 }
 function Decrypted(plaintext) {
-  this.su_1 = plaintext;
+  this.xu_1 = plaintext;
 }
 protoOf(Decrypted).toString = function () {
   return 'Nip44Decryption.Decrypted(redacted)';
 };
-function Refused_5() {
+function Refused_6() {
 }
-protoOf(Refused_5).toString = function () {
+protoOf(Refused_6).toString = function () {
   return 'Nip44Decryption.Refused';
 };
 var Refused_instance;
@@ -15964,7 +16823,7 @@ function Refused_getInstance() {
 }
 function Companion_27() {
   Companion_instance_27 = this;
-  this.qw_1 = FailClosedEphemeralSigners_instance;
+  this.vw_1 = FailClosedEphemeralSigners_instance;
 }
 var Companion_instance_27;
 function Companion_getInstance_27() {
@@ -15974,7 +16833,7 @@ function Companion_getInstance_27() {
 }
 function Companion_28() {
   Companion_instance_28 = this;
-  this.rw_1 = FailClosedClock_instance;
+  this.ww_1 = FailClosedClock_instance;
 }
 var Companion_instance_28;
 function Companion_getInstance_28() {
@@ -15984,7 +16843,7 @@ function Companion_getInstance_28() {
 }
 function Companion_29() {
   Companion_instance_29 = this;
-  this.sw_1 = FailClosedRandomness_instance;
+  this.xw_1 = FailClosedRandomness_instance;
 }
 var Companion_instance_29;
 function Companion_getInstance_29() {
@@ -16016,7 +16875,7 @@ function SignatureVerdict(name, ordinal) {
 }
 function Companion_30() {
   Companion_instance_30 = this;
-  this.tw_1 = FailClosedSecp256k1Ops_instance;
+  this.yw_1 = FailClosedSecp256k1Ops_instance;
 }
 var Companion_instance_30;
 function Companion_getInstance_30() {
@@ -16026,8 +16885,8 @@ function Companion_getInstance_30() {
 }
 function FailClosedEphemeralSigners() {
 }
-protoOf(FailClosedEphemeralSigners).lv = function () {
-  return Companion_instance_26.e1c(SeamCapability_EPHEMERAL_SIGNER_getInstance());
+protoOf(FailClosedEphemeralSigners).qv = function () {
+  return Companion_instance_26.n1d(SeamCapability_EPHEMERAL_SIGNER_getInstance());
 };
 protoOf(FailClosedEphemeralSigners).toString = function () {
   return 'EphemeralSigners.FAIL_CLOSED';
@@ -16039,7 +16898,7 @@ function FailClosedEphemeralSigners_getInstance() {
 function FailClosedClock() {
 }
 protoOf(FailClosedClock).xe = function () {
-  return Companion_instance_26.e1c(SeamCapability_CLOCK_READING_getInstance());
+  return Companion_instance_26.n1d(SeamCapability_CLOCK_READING_getInstance());
 };
 protoOf(FailClosedClock).toString = function () {
   return 'NenyaClock.FAIL_CLOSED';
@@ -16050,8 +16909,8 @@ function FailClosedClock_getInstance() {
 }
 function FailClosedRandomness() {
 }
-protoOf(FailClosedRandomness).ov = function (count) {
-  return Companion_instance_26.e1c(SeamCapability_RANDOM_BYTES_getInstance());
+protoOf(FailClosedRandomness).tv = function (count) {
+  return Companion_instance_26.n1d(SeamCapability_RANDOM_BYTES_getInstance());
 };
 protoOf(FailClosedRandomness).toString = function () {
   return 'Randomness.FAIL_CLOSED';
@@ -16062,8 +16921,8 @@ function FailClosedRandomness_getInstance() {
 }
 function FailClosedSecp256k1Ops() {
 }
-protoOf(FailClosedSecp256k1Ops).qu = function (publicKeyXOnly, message, signature) {
-  return Companion_instance_26.e1c(SeamCapability_BIP340_VERIFICATION_getInstance());
+protoOf(FailClosedSecp256k1Ops).vu = function (publicKeyXOnly, message, signature) {
+  return Companion_instance_26.n1d(SeamCapability_BIP340_VERIFICATION_getInstance());
 };
 protoOf(FailClosedSecp256k1Ops).toString = function () {
   return 'Secp256k1Ops.FAIL_CLOSED';
@@ -16092,7 +16951,7 @@ var Bolt11Multiplier_PICO_instance;
 var Bolt11Multiplier_WHOLE_BITCOIN_instance;
 function Companion_31() {
 }
-protoOf(Companion_31).f1c = function (letter) {
+protoOf(Companion_31).o1d = function (letter) {
   var tmp$ret$1;
   $l$block: {
     // Inline function 'kotlin.collections.firstOrNull' call
@@ -16100,7 +16959,7 @@ protoOf(Companion_31).f1c = function (letter) {
     while (tmp0_iterator.h()) {
       var element = tmp0_iterator.i();
       // Inline function 'dev.eryalabs.nenya.settlement.Companion.of.<anonymous>' call
-      var tmp = element.i1c_1;
+      var tmp = element.r1d_1;
       var tmp_0 = tmp == null ? null : new Char(tmp);
       var tmp_1 = letter;
       if (equals(tmp_0, tmp_1 == null ? null : new Char(tmp_1))) {
@@ -16138,9 +16997,9 @@ function Bolt11Multiplier_initEntries() {
 var $ENTRIES_11;
 function Bolt11Multiplier(name, ordinal, letter, msatPerUnitNumerator, msatPerUnitDenominator) {
   Enum.call(this, name, ordinal);
-  this.i1c_1 = letter;
-  this.j1c_1 = msatPerUnitNumerator;
-  this.k1c_1 = msatPerUnitDenominator;
+  this.r1d_1 = letter;
+  this.s1d_1 = msatPerUnitNumerator;
+  this.t1d_1 = msatPerUnitDenominator;
 }
 var Bolt11Field_PAYMENT_HASH_instance;
 var Bolt11Field_PAYMENT_SECRET_instance;
@@ -16164,17 +17023,17 @@ function Bolt11Field_initEntries() {
 }
 function Bolt11Field(name, ordinal, type) {
   Enum.call(this, name, ordinal);
-  this.n1c_1 = type;
+  this.w1d_1 = type;
 }
 function Companion_32() {
   Companion_instance_32 = this;
-  this.o1c_1 = new Long(3600, 0);
-  this.p1c_1 = new Long(18, 0);
-  this.q1c_1 = 52;
-  this.r1c_1 = 3;
+  this.x1d_1 = new Long(3600, 0);
+  this.y1d_1 = new Long(18, 0);
+  this.z1d_1 = 52;
+  this.a1e_1 = 3;
 }
-protoOf(Companion_32).s1c = function (reference) {
-  return decodeInvoice(reference.b17_1);
+protoOf(Companion_32).b1e = function (reference) {
+  return decodeInvoice(reference.k18_1);
 };
 var Companion_instance_32;
 function Companion_getInstance_32() {
@@ -16183,29 +17042,29 @@ function Companion_getInstance_32() {
   return Companion_instance_32;
 }
 function ParsedBolt11Invoice(networkPrefix, amount, timestamp, expirySeconds, minFinalCltvExpiry, paymentHash, fieldsPresent, featureBits, recoveryId, signatureBytes, signedDigest) {
-  this.t1c_1 = networkPrefix;
-  this.u1c_1 = amount;
-  this.v1c_1 = timestamp;
-  this.w1c_1 = expirySeconds;
-  this.x1c_1 = minFinalCltvExpiry;
-  this.y1c_1 = paymentHash;
-  this.z1c_1 = fieldsPresent;
-  this.a1d_1 = featureBits;
-  this.b1d_1 = recoveryId;
-  this.c1d_1 = signatureBytes;
-  this.d1d_1 = signedDigest;
+  this.c1e_1 = networkPrefix;
+  this.d1e_1 = amount;
+  this.e1e_1 = timestamp;
+  this.f1e_1 = expirySeconds;
+  this.g1e_1 = minFinalCltvExpiry;
+  this.h1e_1 = paymentHash;
+  this.i1e_1 = fieldsPresent;
+  this.j1e_1 = featureBits;
+  this.k1e_1 = recoveryId;
+  this.l1e_1 = signatureBytes;
+  this.m1e_1 = signedDigest;
 }
-protoOf(ParsedBolt11Invoice).e1d = function () {
-  return this.u1c_1;
+protoOf(ParsedBolt11Invoice).n1e = function () {
+  return this.d1e_1;
 };
-protoOf(ParsedBolt11Invoice).f1d = function () {
-  return this.v1c_1;
+protoOf(ParsedBolt11Invoice).o1e = function () {
+  return this.e1e_1;
 };
-protoOf(ParsedBolt11Invoice).g1d = function () {
-  return this.w1c_1;
+protoOf(ParsedBolt11Invoice).p1e = function () {
+  return this.f1e_1;
 };
-protoOf(ParsedBolt11Invoice).u16 = function () {
-  return this.y1c_1;
+protoOf(ParsedBolt11Invoice).d18 = function () {
+  return this.h1e_1;
 };
 protoOf(ParsedBolt11Invoice).toString = function () {
   return 'Bolt11Invoice(redacted)';
@@ -16349,10 +17208,10 @@ function decodeInvoice(text) {
   var elements = paddedBytesOf(covered);
   var signedData = primitiveArrayConcat([this_0, elements]);
   var tmp_0 = numberOf(timestampGroups);
-  var tmp1_elvis_lhs = fields.k1d_1;
+  var tmp1_elvis_lhs = fields.t1e_1;
   var tmp_1 = tmp1_elvis_lhs == null ? new Long(3600, 0) : tmp1_elvis_lhs;
-  var tmp2_elvis_lhs = fields.l1d_1;
-  return new ParsedBolt11Invoice(networkPrefix, amount, tmp_0, tmp_1, tmp2_elvis_lhs == null ? new Long(18, 0) : tmp2_elvis_lhs, Companion_instance_21.hj(encodeLowerHex_2(bytesOf(fields.h1d_1))), readOnlySetOf(fields.i1d_1), readOnlySetOf(fields.j1d_1), packed[packed.length - 1 | 0] & 255, copyOf(packed, packed.length - 1 | 0), sha256(signedData));
+  var tmp2_elvis_lhs = fields.u1e_1;
+  return new ParsedBolt11Invoice(networkPrefix, amount, tmp_0, tmp_1, tmp2_elvis_lhs == null ? new Long(18, 0) : tmp2_elvis_lhs, Companion_instance_21.hj(encodeLowerHex_2(bytesOf(fields.q1e_1))), readOnlySetOf(fields.r1e_1), readOnlySetOf(fields.s1e_1), packed[packed.length - 1 | 0] & 255, copyOf(packed, packed.length - 1 | 0), sha256(signedData));
 }
 function networkPrefixOf(hrp) {
   _init_properties_Bolt11Invoice_kt__8mj79i();
@@ -16406,7 +17265,7 @@ function amountOf(hrp) {
     multiplier = Bolt11Multiplier_WHOLE_BITCOIN_getInstance();
     digits = written;
   } else {
-    var tmp0_elvis_lhs = Companion_instance_31.f1c(last);
+    var tmp0_elvis_lhs = Companion_instance_31.o1d(last);
     var tmp;
     if (tmp0_elvis_lhs == null) {
       throw hrpInvalid();
@@ -16434,7 +17293,7 @@ function amountOf(hrp) {
 function millisatoshisOf(multiplier, digits) {
   _init_properties_Bolt11Invoice_kt__8mj79i();
   var scaled = digits;
-  var divisor = multiplier.k1c_1;
+  var divisor = multiplier.t1d_1;
   while (divisor.c2(new Long(1, 0)) > 0) {
     if (!(charSequenceGet(scaled, scaled.length - 1 | 0) === _Char___init__impl__6a9atx(48))) {
       throw settlementRefusal(SettlementRejection_AMOUNT_SUB_MSAT_getInstance(), "Appendix C requires a `p` amount to be a multiple of ten, because a millisatoshi is the smallest unit this protocol can express, and this invoice's is not \u2014 it names a fraction of a millisatoshi, which \xA74.4 forbids rounding away");
@@ -16447,9 +17306,9 @@ function millisatoshisOf(multiplier, digits) {
     divisor = divisor.g2(new Long(10, 0));
   }
   var units = unitsOf(scaled);
-  if (units.c2((new Long(-1403912192, 488944351)).g2(multiplier.j1c_1)) > 0)
+  if (units.c2((new Long(-1403912192, 488944351)).g2(multiplier.s1d_1)) > 0)
     throw amountOutOfRange();
-  return Msat__times_impl_poztb4(Companion_getInstance_16().en(units), multiplier.j1c_1);
+  return Msat__times_impl_poztb4(Companion_getInstance_16().go(units), multiplier.s1d_1);
 }
 function unitsOf(digits) {
   _init_properties_Bolt11Invoice_kt__8mj79i();
@@ -16469,11 +17328,11 @@ function unitsOf(digits) {
   return value;
 }
 function TaggedFields(paymentHash, present, featureBits, expiry, cltv) {
-  this.h1d_1 = paymentHash;
-  this.i1d_1 = present;
-  this.j1d_1 = featureBits;
-  this.k1d_1 = expiry;
-  this.l1d_1 = cltv;
+  this.q1e_1 = paymentHash;
+  this.r1e_1 = present;
+  this.s1e_1 = featureBits;
+  this.t1e_1 = expiry;
+  this.u1e_1 = cltv;
 }
 function readTaggedFields(middle) {
   _init_properties_Bolt11Invoice_kt__8mj79i();
@@ -16495,33 +17354,33 @@ function readTaggedFields(middle) {
       throw fieldTruncated();
     var value = middle.m1(from, from + length | 0);
     at = from + length | 0;
-    if (type === Bolt11Field_PAYMENT_HASH_getInstance().n1c_1 && length === 52) {
+    if (type === Bolt11Field_PAYMENT_HASH_getInstance().w1d_1 && length === 52) {
       if (!(paymentHash == null)) {
         throw settlementRefusal(SettlementRejection_PAYMENT_HASH_DUPLICATED_getInstance(), "\xA79.2 check 3 compares a preimage against **the** payment hash of the stored invoice, and this one carries two well-formed ones; two readers resolving that by first and by last would disagree about which payment settles the order, which is the ambiguity \xA74.3's duplicate rule refuses");
       }
       paymentHash = value;
       present.e(Bolt11Field_PAYMENT_HASH_getInstance());
-    } else if (type === Bolt11Field_PAYMENT_SECRET_getInstance().n1c_1 && length === 52) {
+    } else if (type === Bolt11Field_PAYMENT_SECRET_getInstance().w1d_1 && length === 52) {
       secret = true;
       present.e(Bolt11Field_PAYMENT_SECRET_getInstance());
-    } else if (type === Bolt11Field_DESCRIPTION_HASH_getInstance().n1c_1 && length === 52) {
+    } else if (type === Bolt11Field_DESCRIPTION_HASH_getInstance().w1d_1 && length === 52) {
       descriptions = descriptions + 1 | 0;
       present.e(Bolt11Field_DESCRIPTION_HASH_getInstance());
-    } else if (type === Bolt11Field_DESCRIPTION_getInstance().n1c_1) {
+    } else if (type === Bolt11Field_DESCRIPTION_getInstance().w1d_1) {
       descriptions = descriptions + 1 | 0;
       present.e(Bolt11Field_DESCRIPTION_getInstance());
-    } else if (type === Bolt11Field_EXPIRY_getInstance().n1c_1) {
+    } else if (type === Bolt11Field_EXPIRY_getInstance().w1d_1) {
       if (!(expiry == null)) {
         throw settlementRefusal(SettlementRejection_EXPIRY_DUPLICATED_getInstance(), '\xA79.2 check 5 measures one deadline, and this invoice states two expiries; taking the first and taking the last are both defensible, which is exactly why neither may be chosen silently (\xA74.3)');
       }
       expiry = boundedSeconds(value);
       present.e(Bolt11Field_EXPIRY_getInstance());
-    } else if (type === Bolt11Field_MIN_FINAL_CLTV_EXPIRY_getInstance().n1c_1) {
+    } else if (type === Bolt11Field_MIN_FINAL_CLTV_EXPIRY_getInstance().w1d_1) {
       var seconds = boundedSeconds(value);
       if (cltv == null)
         cltv = seconds;
       present.e(Bolt11Field_MIN_FINAL_CLTV_EXPIRY_getInstance());
-    } else if (type === Bolt11Field_FEATURES_getInstance().n1c_1) {
+    } else if (type === Bolt11Field_FEATURES_getInstance().w1d_1) {
       if (featureBits == null)
         featureBits = bitsOf(value);
       present.e(Bolt11Field_FEATURES_getInstance());
@@ -16664,7 +17523,7 @@ var PaymentMedium_ECASH_instance;
 var PaymentMedium_UNKNOWN_instance;
 function Companion_33() {
 }
-protoOf(Companion_33).wz = function (token) {
+protoOf(Companion_33).b11 = function (token) {
   var tmp$ret$1;
   $l$block: {
     // Inline function 'kotlin.collections.firstOrNull' call
@@ -16672,7 +17531,7 @@ protoOf(Companion_33).wz = function (token) {
     while (tmp0_iterator.h()) {
       var element = tmp0_iterator.i();
       // Inline function 'dev.eryalabs.nenya.settlement.Companion.of.<anonymous>' call
-      if (element.lz_1 === token) {
+      if (element.q10_1 === token) {
         tmp$ret$1 = element;
         break $l$block;
       }
@@ -16707,9 +17566,9 @@ function PaymentMedium_initEntries() {
 var $ENTRIES_12;
 function PaymentMedium(name, ordinal, token) {
   Enum.call(this, name, ordinal);
-  this.lz_1 = token;
+  this.q10_1 = token;
 }
-protoOf(PaymentMedium).m1d = function () {
+protoOf(PaymentMedium).v1e = function () {
   return this.equals(PaymentMedium_LIGHTNING_getInstance());
 };
 function recogniseShape($this, reference) {
@@ -16732,7 +17591,7 @@ function recogniseShape($this, reference) {
   // Inline function 'kotlin.text.substring' call
   // Inline function 'kotlin.js.asDynamic' call
   var hrp = reference.substring(0, separator);
-  if (!$this.rz_1.p8(hrp)) {
+  if (!$this.w10_1.p8(hrp)) {
     throw malformed_1($this, "Appendix C fixes the human-readable part as `ln` + a network prefix + an OPTIONAL decimal amount and multiplier; this reference's is not one");
   }
   // Inline function 'kotlin.text.substring' call
@@ -16757,17 +17616,17 @@ function malformed_1($this, detail) {
 }
 function Companion_34() {
   Companion_instance_34 = this;
-  this.mz_1 = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l';
-  this.nz_1 = 7;
-  this.oz_1 = 104;
-  this.pz_1 = 6;
-  this.qz_1 = 117;
-  this.rz_1 = Regex_init_$Create$('ln[a-z]+([0-9]+[munp]?)?');
-  this.sz_1 = _Char___init__impl__6a9atx(49);
-  this.tz_1 = _Char___init__impl__6a9atx(64);
-  this.uz_1 = 'lnurl';
+  this.r10_1 = 'qpzry9x8gf2tvdw0s3jn54khce6mua7l';
+  this.s10_1 = 7;
+  this.t10_1 = 104;
+  this.u10_1 = 6;
+  this.v10_1 = 117;
+  this.w10_1 = Regex_init_$Create$('ln[a-z]+([0-9]+[munp]?)?');
+  this.x10_1 = _Char___init__impl__6a9atx(49);
+  this.y10_1 = _Char___init__impl__6a9atx(64);
+  this.z10_1 = 'lnurl';
 }
-protoOf(Companion_34).vz = function (reference) {
+protoOf(Companion_34).a11 = function (reference) {
   return new Bolt11Reference(reference);
 };
 var Companion_instance_34;
@@ -16778,20 +17637,20 @@ function Companion_getInstance_34() {
 }
 function Bolt11Reference(text) {
   Companion_getInstance_34();
-  this.b17_1 = text;
-  recogniseShape(Companion_getInstance_34(), this.b17_1);
+  this.k18_1 = text;
+  recogniseShape(Companion_getInstance_34(), this.k18_1);
 }
 protoOf(Bolt11Reference).equals = function (other) {
   var tmp;
   if (other instanceof Bolt11Reference) {
-    tmp = other.b17_1 === this.b17_1;
+    tmp = other.k18_1 === this.k18_1;
   } else {
     tmp = false;
   }
   return tmp;
 };
 protoOf(Bolt11Reference).hashCode = function () {
-  return getStringHashCode(this.b17_1);
+  return getStringHashCode(this.k18_1);
 };
 protoOf(Bolt11Reference).toString = function () {
   return 'Bolt11Reference(redacted)';
@@ -16843,11 +17702,11 @@ function Companion_35() {
   while (tmp0_iterator.h()) {
     var element = tmp0_iterator.i();
     // Inline function 'dev.eryalabs.nenya.settlement.Companion.REQUIRED.<anonymous>' call
-    if (element.q1d_1.equals(FeeTermRequirement_REQUIRED_getInstance())) {
+    if (element.z1e_1.equals(FeeTermRequirement_REQUIRED_getInstance())) {
       destination.e(element);
     }
   }
-  tmp.r1d_1 = readOnlySetOf(destination);
+  tmp.a1f_1 = readOnlySetOf(destination);
   var tmp_0 = this;
   // Inline function 'kotlin.collections.filter' call
   // Inline function 'kotlin.collections.filterTo' call
@@ -16857,11 +17716,11 @@ function Companion_35() {
   while (tmp0_iterator_0.h()) {
     var element_0 = tmp0_iterator_0.i();
     // Inline function 'dev.eryalabs.nenya.settlement.Companion.OPTIONAL.<anonymous>' call
-    if (element_0.q1d_1.equals(FeeTermRequirement_OPTIONAL_getInstance())) {
+    if (element_0.z1e_1.equals(FeeTermRequirement_OPTIONAL_getInstance())) {
       destination_0.e(element_0);
     }
   }
-  tmp_0.s1d_1 = readOnlySetOf(destination_0);
+  tmp_0.b1f_1 = readOnlySetOf(destination_0);
 }
 var Companion_instance_35;
 function Companion_getInstance_35() {
@@ -16895,8 +17754,8 @@ function FeeTermPoint_initEntries() {
 var $ENTRIES_13;
 function FeeTermPoint(name, ordinal, descriptor, requirement) {
   Enum.call(this, name, ordinal);
-  this.p1d_1 = descriptor;
-  this.q1d_1 = requirement;
+  this.y1e_1 = descriptor;
+  this.z1e_1 = requirement;
 }
 var FeeTermElement_PRESENCE_instance;
 var FeeTermElement_BASIS_POINTS_instance;
@@ -16933,15 +17792,15 @@ function feeTag_1($this, event) {
   return firstOrNull(found);
 }
 function Companion_36() {
-  this.p17_1 = 'fee';
-  this.q17_1 = 2;
-  this.r17_1 = 3;
-  this.s17_1 = 1;
-  this.t17_1 = 2;
+  this.y18_1 = 'fee';
+  this.z18_1 = 2;
+  this.a19_1 = 3;
+  this.b19_1 = 1;
+  this.c19_1 = 2;
 }
-protoOf(Companion_36).t1d = function (request) {
+protoOf(Companion_36).c1f = function (request) {
   var tmp;
-  switch (request.w1d_1.u1_1) {
+  switch (request.f1f_1.u1_1) {
     case 1:
       tmp = FeeTermPoint_FEE_PAYMENT_REQUEST_getInstance();
       break;
@@ -16954,9 +17813,9 @@ protoOf(Companion_36).t1d = function (request) {
   }
   return new FeeTermSighting(tmp, feeTag_1(this, request.ak()));
 };
-protoOf(Companion_36).z1d = function (receipt) {
+protoOf(Companion_36).i1f = function (receipt) {
   var tmp;
-  switch (receipt.c1e_1.u1_1) {
+  switch (receipt.l1f_1.u1_1) {
     case 1:
       tmp = FeeTermPoint_FEE_RECEIPT_getInstance();
       break;
@@ -16969,7 +17828,7 @@ protoOf(Companion_36).z1d = function (receipt) {
   }
   return new FeeTermSighting(tmp, feeTag_1(this, receipt.ak()));
 };
-protoOf(Companion_36).u17 = function (point, feeTag) {
+protoOf(Companion_36).d19 = function (point, feeTag) {
   if (!(feeTag == null)) {
     if (!(firstOrNull(feeTag) === 'fee')) {
       throw new SettlementException(SettlementRejection_MALFORMED_FEE_TERM_getInstance(), 'fee', '\xA78.4 compares `fee` tags and this sighting was handed a tag of another name; the comparison below is positional, so a tag with another shape would report a divergence in an element \xA78.1 does not have');
@@ -16985,11 +17844,11 @@ function Companion_getInstance_36() {
   return Companion_instance_36;
 }
 function FeeTermSighting(point, term) {
-  this.g1e_1 = point;
-  this.h1e_1 = term;
+  this.p1f_1 = point;
+  this.q1f_1 = term;
 }
 protoOf(FeeTermSighting).toString = function () {
-  return 'FeeTermSighting(point=' + this.g1e_1.t1_1 + ', fee=' + (this.h1e_1 == null ? 'absent' : 'present') + ')';
+  return 'FeeTermSighting(point=' + this.p1f_1.t1_1 + ', fee=' + (this.q1f_1 == null ? 'absent' : 'present') + ')';
 };
 function divergence($this, reference, later) {
   var tmp;
@@ -17032,15 +17891,15 @@ function recipientOf($this, term) {
   return tmp;
 }
 function SamePairEverywhere(points, recipient) {
-  this.i1e_1 = points;
-  this.j1e_1 = recipient;
+  this.r1f_1 = points;
+  this.s1f_1 = recipient;
 }
-protoOf(SamePairEverywhere).k1e = function () {
-  return this.j1e_1;
+protoOf(SamePairEverywhere).t1f = function () {
+  return this.s1f_1;
 };
 protoOf(SamePairEverywhere).toString = function () {
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.i1e_1;
+  var this_0 = this.r1f_1;
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -17050,17 +17909,17 @@ protoOf(SamePairEverywhere).toString = function () {
     var tmp$ret$0 = item.t1_1;
     destination.e(tmp$ret$0);
   }
-  return 'FeeTermAgreement.Agreed(points=' + toString(destination) + ', ' + ('recipient=' + (this.j1e_1 == null ? 'none' : 'redacted') + ')');
+  return 'FeeTermAgreement.Agreed(points=' + toString(destination) + ', ' + ('recipient=' + (this.s1f_1 == null ? 'none' : 'redacted') + ')');
 };
 function FirstDivergence(points, point, element) {
-  this.l1e_1 = points;
-  this.m1e_1 = point;
-  this.n1e_1 = element;
+  this.u1f_1 = points;
+  this.v1f_1 = point;
+  this.w1f_1 = element;
 }
 protoOf(FirstDivergence).toString = function () {
-  var tmp = 'FeeTermAgreement.Diverged(point=' + this.m1e_1.t1_1 + ', element=' + this.n1e_1.t1_1 + ', ';
+  var tmp = 'FeeTermAgreement.Diverged(point=' + this.v1f_1.t1_1 + ', element=' + this.w1f_1.t1_1 + ', ';
   // Inline function 'kotlin.collections.map' call
-  var this_0 = this.l1e_1;
+  var this_0 = this.u1f_1;
   // Inline function 'kotlin.collections.mapTo' call
   var destination = ArrayList_init_$Create$(collectionSizeOrDefault(this_0, 10));
   var tmp0_iterator = this_0.g();
@@ -17077,9 +17936,9 @@ function Agreed() {
 function Diverged() {
 }
 function Companion_37() {
-  this.o1e_1 = 2;
+  this.x1f_1 = 2;
 }
-protoOf(Companion_37).p1e = function (sightings) {
+protoOf(Companion_37).y1f = function (sightings) {
   // Inline function 'kotlin.collections.filter' call
   // Inline function 'kotlin.collections.filterTo' call
   var destination = ArrayList_init_$Create$_0();
@@ -17087,7 +17946,7 @@ protoOf(Companion_37).p1e = function (sightings) {
   while (tmp0_iterator.h()) {
     var element = tmp0_iterator.i();
     // Inline function 'dev.eryalabs.nenya.settlement.Companion.across.<anonymous>' call
-    if (element.g1e_1.q1d_1.equals(FeeTermRequirement_REQUIRED_getInstance()) || !(element.h1e_1 == null)) {
+    if (element.p1f_1.z1e_1.equals(FeeTermRequirement_REQUIRED_getInstance()) || !(element.q1f_1 == null)) {
       destination.e(element);
     }
   }
@@ -17102,7 +17961,7 @@ protoOf(Companion_37).p1e = function (sightings) {
   while (tmp0_iterator_0.h()) {
     var item = tmp0_iterator_0.i();
     // Inline function 'dev.eryalabs.nenya.settlement.Companion.across.<anonymous>' call
-    var tmp$ret$3 = item.g1e_1;
+    var tmp$ret$3 = item.p1f_1;
     destination_0.e(tmp$ret$3);
   }
   var points = readOnlyListOf(destination_0);
@@ -17114,7 +17973,7 @@ protoOf(Companion_37).p1e = function (sightings) {
       var index = inductionVariable;
       inductionVariable = inductionVariable + 1 | 0;
       var later = compared.k(index);
-      var tmp0_elvis_lhs = divergence(this, reference.h1e_1, later.h1e_1);
+      var tmp0_elvis_lhs = divergence(this, reference.q1f_1, later.q1f_1);
       var tmp;
       if (tmp0_elvis_lhs == null) {
         continue $l$loop;
@@ -17122,10 +17981,10 @@ protoOf(Companion_37).p1e = function (sightings) {
         tmp = tmp0_elvis_lhs;
       }
       var element_0 = tmp;
-      return new FirstDivergence(points, later.g1e_1, element_0);
+      return new FirstDivergence(points, later.p1f_1, element_0);
     }
      while (inductionVariable < last);
-  return new SamePairEverywhere(points, recipientOf(this, reference.h1e_1));
+  return new SamePairEverywhere(points, recipientOf(this, reference.q1f_1));
 };
 var Companion_instance_37;
 function Companion_getInstance_37() {
@@ -17180,36 +18039,36 @@ function FeeTermElement_RECIPIENT_getInstance() {
   return FeeTermElement_RECIPIENT_instance;
 }
 function DecodedPayee(role, recipient) {
-  this.q1e_1 = role;
-  this.r1e_1 = recipient;
+  this.z1f_1 = role;
+  this.a1g_1 = recipient;
 }
 protoOf(DecodedPayee).toString = function () {
-  return 'DecodedPayee(role=' + this.q1e_1.s10_1 + ', recipient=' + (this.r1e_1 == null ? 'absent' : 'redacted') + ')';
+  return 'DecodedPayee(role=' + this.z1f_1.x11_1 + ', recipient=' + (this.a1g_1 == null ? 'absent' : 'redacted') + ')';
 };
 function SettlementTags() {
 }
-protoOf(SettlementTags).s1e = function (rumor, name) {
+protoOf(SettlementTags).b1g = function (rumor, name) {
   var found = rumor.rj().cl(name);
   if (found.j() > 1) {
     throw new SettlementException(SettlementRejection_DUPLICATE_TAG_getInstance(), name, '\xA78.6 fixes what `' + name + '` carries on a payment message and this event carries ' + ('' + found.j() + " of them; \xA74.3's rationale applies unchanged \u2014 resolving it by ") + 'first, last or smallest would let two implementations disagree about which ' + 'invoice an order was settled against');
   }
   return firstOrNull(found);
 };
-protoOf(SettlementTags).t1e = function (rumor) {
+protoOf(SettlementTags).c1g = function (rumor) {
   var tmp0_elvis_lhs = rumor.lk();
   var tmp;
   if (tmp0_elvis_lhs == null) {
-    throw this.u1e('order', '\xA77.4 requires an `order` tag on every `kind:16` but a ' + ('`type=' + OrderMessageKind_PRIVATE_BID_getInstance().dj_1 + '`, and on every `kind:17`'));
+    throw this.d1g('order', '\xA77.4 requires an `order` tag on every `kind:16` but a ' + ('`type=' + OrderMessageKind_PRIVATE_BID_getInstance().dj_1 + '`, and on every `kind:17`'));
   } else {
     tmp = tmp0_elvis_lhs;
   }
   return tmp;
 };
-protoOf(SettlementTags).v1e = function (rumor, elements) {
-  var tmp0_elvis_lhs = this.s1e(rumor, 'payment');
+protoOf(SettlementTags).e1g = function (rumor, elements) {
+  var tmp0_elvis_lhs = this.b1g(rumor, 'payment');
   var tmp;
   if (tmp0_elvis_lhs == null) {
-    throw this.u1e('payment', '\xA78.6 requires exactly one `payment` tag on a payment request and \xA79.2 prints one on every receipt');
+    throw this.d1g('payment', '\xA78.6 requires exactly one `payment` tag on a payment request and \xA79.2 prints one on every receipt');
   } else {
     tmp = tmp0_elvis_lhs;
   }
@@ -17219,11 +18078,11 @@ protoOf(SettlementTags).v1e = function (rumor, elements) {
   }
   return tag;
 };
-protoOf(SettlementTags).w1e = function (rumor) {
-  var tmp0_elvis_lhs = this.s1e(rumor, 'payee');
+protoOf(SettlementTags).f1g = function (rumor) {
+  var tmp0_elvis_lhs = this.b1g(rumor, 'payee');
   var tmp;
   if (tmp0_elvis_lhs == null) {
-    throw this.u1e('payee', '\xA78.6: "Payment requests MUST be tagged with their payee role", and \xA79.2 check 1 compares a receipt against the request stored for the same order **and payee**');
+    throw this.d1g('payee', '\xA78.6: "Payment requests MUST be tagged with their payee role", and \xA79.2 check 1 compares a receipt against the request stored for the same order **and payee**');
   } else {
     tmp = tmp0_elvis_lhs;
   }
@@ -17239,7 +18098,7 @@ protoOf(SettlementTags).w1e = function (rumor) {
     while (tmp0_iterator.h()) {
       var element = tmp0_iterator.i();
       // Inline function 'dev.eryalabs.nenya.settlement.SettlementTags.payee.<anonymous>' call
-      if (element.s10_1 === token) {
+      if (element.x11_1 === token) {
         tmp$ret$1 = element;
         break $l$block;
       }
@@ -17291,7 +18150,7 @@ protoOf(SettlementTags).w1e = function (rumor) {
   var recipient = tmp_2;
   return new DecodedPayee(role, recipient);
 };
-protoOf(SettlementTags).u1e = function (tag, clause) {
+protoOf(SettlementTags).d1g = function (tag, clause) {
   return new SettlementException(SettlementRejection_MISSING_REQUIRED_TAG_getInstance(), tag, clause + '; this event carries no readable `' + tag + '`');
 };
 var SettlementTags_instance;
@@ -17300,7 +18159,7 @@ function SettlementTags_getInstance() {
 }
 function Companion_38() {
 }
-protoOf(Companion_38).m16 = function (rumor, split) {
+protoOf(Companion_38).v17 = function (rumor, split) {
   if (!equals(rumor.kk(), OrderMessageKind_PAYMENT_REQUEST_getInstance())) {
     var tmp = SettlementRejection_NOT_A_PAYMENT_REQUEST_getInstance();
     var tmp_0 = "this decoder reads \xA77.4's `type=" + OrderMessageKind_PAYMENT_REQUEST_getInstance().dj_1 + '` on a ' + ('kind:' + RumorKind_ORDER_MESSAGE_getInstance().hi_1 + '; the rumor it was handed is a ');
@@ -17309,49 +18168,49 @@ protoOf(Companion_38).m16 = function (rumor, split) {
     var tmp1_elvis_lhs = tmp0_safe_receiver == null ? null : tmp0_safe_receiver.t1_1;
     throw new SettlementException(tmp, 'type', tmp_0 + ('kind:' + tmp_1 + ' ' + (tmp1_elvis_lhs == null ? 'rumor carrying no type' : tmp1_elvis_lhs) + '. A ') + 'well-formed message of another kind is not a malformed one');
   }
-  var order = SettlementTags_instance.t1e(rumor);
-  var payee = SettlementTags_instance.w1e(rumor);
-  if (!Companion_instance_23.y1a(split).w(payee.q1e_1)) {
+  var order = SettlementTags_instance.c1g(rumor);
+  var payee = SettlementTags_instance.f1g(rumor);
+  if (!Companion_instance_23.h1c(split).w(payee.z1f_1)) {
     throw new SettlementException(SettlementRejection_PAYEE_NOT_REQUIRED_getInstance(), 'payee', "\xA78.6: when a payee's expected amount is `0`, no payment request exists at all for it and any that arrives MUST be rejected (\xA78.3). Accepting one strands the order: the implementation would hold an invoice for a payee no receipt may ever be required from, and \xA711.1 says such an order expires");
   }
-  var tag = SettlementTags_instance.v1e(rumor, 3);
-  var medium = Companion_instance_33.wz(tag.k(1));
+  var tag = SettlementTags_instance.e1g(rumor, 3);
+  var medium = Companion_instance_33.b11(tag.k(1));
   if (!medium.equals(PaymentMedium_LIGHTNING_getInstance())) {
-    throw new SettlementException(SettlementRejection_MEDIUM_NOT_LIGHTNING_getInstance(), 'payment', '\xA78.6: a `type=' + OrderMessageKind_PAYMENT_REQUEST_getInstance().dj_1 + '` MUST carry exactly one ' + '`["payment", ' + ('"' + PaymentMedium_LIGHTNING_getInstance().lz_1 + '", "<bolt11>"]` tag. \xA79.4\'s other ') + 'rails are a **receipt** rule \u2014 one MAY be parsed there and evidences ' + 'nothing \u2014 and reading that permission onto a request would store an ' + 'invoice this library can never verify');
+    throw new SettlementException(SettlementRejection_MEDIUM_NOT_LIGHTNING_getInstance(), 'payment', '\xA78.6: a `type=' + OrderMessageKind_PAYMENT_REQUEST_getInstance().dj_1 + '` MUST carry exactly one ' + '`["payment", ' + ('"' + PaymentMedium_LIGHTNING_getInstance().q10_1 + '", "<bolt11>"]` tag. \xA79.4\'s other ') + 'rails are a **receipt** rule \u2014 one MAY be parsed there and evidences ' + 'nothing \u2014 and reading that permission onto a request would store an ' + 'invoice this library can never verify');
   }
-  var invoice = Companion_getInstance_34().vz(tag.k(2));
-  return new PaymentRequest(rumor, order, payee.q1e_1, payee.r1e_1, invoice);
+  var invoice = Companion_getInstance_34().a11(tag.k(2));
+  return new PaymentRequest(rumor, order, payee.z1f_1, payee.a1g_1, invoice);
 };
 var Companion_instance_38;
 function Companion_getInstance_38() {
   return Companion_instance_38;
 }
 function PaymentRequest(rumor, order, payee, feeRecipient, invoice) {
-  this.u1d_1 = rumor;
-  this.v1d_1 = order;
-  this.w1d_1 = payee;
-  this.x1d_1 = feeRecipient;
-  this.y1d_1 = invoice;
+  this.d1f_1 = rumor;
+  this.e1f_1 = order;
+  this.f1f_1 = payee;
+  this.g1f_1 = feeRecipient;
+  this.h1f_1 = invoice;
 }
 protoOf(PaymentRequest).cm = function () {
-  return this.u1d_1.qj();
+  return this.d1f_1.qj();
 };
 protoOf(PaymentRequest).ak = function () {
-  return this.u1d_1.ak();
+  return this.d1f_1.ak();
 };
 protoOf(PaymentRequest).toString = function () {
-  return 'PaymentRequest(payee=' + this.w1d_1.s10_1 + ')';
+  return 'PaymentRequest(payee=' + this.f1f_1.x11_1 + ')';
 };
 function checkSender($this, request, acceptance, feeTermPoints) {
-  switch (request.w1d_1.u1_1) {
+  switch (request.f1f_1.u1_1) {
     case 0:
-      if (!(request.cm() === acceptance.eo_1)) {
-        throw new SettlementException(SettlementRejection_PROVIDER_REQUEST_NOT_FROM_PROVIDER_getInstance(), 'payee', '\xA78.6: a `type=2` with `["payee", ' + ('"' + Payee_PROVIDER_getInstance().s10_1 + '"]` MUST arrive in a gift wrap whose seal ') + "(kind:13) `pubkey` is the provider's key \u2014 the same key the " + 'acceptance for this order was checked against (\xA77.6, \xA711.2) \u2014 and ' + 'any other MUST be rejected. This is not a missing or a malformed ' + '`payee` tag: the tag is present and well ' + 'formed, and what is wrong is who sealed the message. A provider ' + "invoice from another key is somebody else's bill under the " + "provider's name, and \xA79.2 check 1 would anchor this order's whole " + 'payment evidence to it');
+      if (!(request.cm() === acceptance.bp_1)) {
+        throw new SettlementException(SettlementRejection_PROVIDER_REQUEST_NOT_FROM_PROVIDER_getInstance(), 'payee', '\xA78.6: a `type=2` with `["payee", ' + ('"' + Payee_PROVIDER_getInstance().x11_1 + '"]` MUST arrive in a gift wrap whose seal ') + "(kind:13) `pubkey` is the provider's key \u2014 the same key the " + 'acceptance for this order was checked against (\xA77.6, \xA711.2) \u2014 and ' + 'any other MUST be rejected. This is not a missing or a malformed ' + '`payee` tag: the tag is present and well ' + 'formed, and what is wrong is who sealed the message. A provider ' + "invoice from another key is somebody else's bill under the " + "provider's name, and \xA79.2 check 1 would anchor this order's whole " + 'payment evidence to it');
       }
 
       break;
     case 1:
-      Companion_getInstance_41().x1e(request, feeTermPoints);
+      Companion_getInstance_41().g1g(request, feeTermPoints);
       break;
     default:
       noWhenBranchMatchedException();
@@ -17359,15 +18218,15 @@ function checkSender($this, request, acceptance, feeTermPoints) {
   }
 }
 function checkNotAlreadyStored($this, request, into) {
-  if (!(into.o17(request.v1d_1, request.w1d_1) == null)) {
+  if (!(into.x18(request.e1f_1, request.f1f_1) == null)) {
     throw new SettlementException(SettlementRejection_REQUEST_ALREADY_STORED_getInstance(), 'payment', "\xA78.6: once a `type=2` has been accepted for an order and payee, a second MUST be rejected rather than replacing it \u2014 \xA79.2 check 1 compares a receipt against *the* stored request, so a replacement re-points this order's payment evidence after the fact, including after the buyer has paid the first. The record already held is untouched. A provider re-sending its own invoice is refused too: an invoice that expires unpaid is not re-issued inside the order");
   }
   var _iterator__ex2g4s = get_entries_7().g();
   $l$loop_1: while (_iterator__ex2g4s.h()) {
     var other = _iterator__ex2g4s.i();
-    if (other.equals(request.w1d_1))
+    if (other.equals(request.f1f_1))
       continue $l$loop_1;
-    var tmp0_elvis_lhs = into.o17(request.v1d_1, other);
+    var tmp0_elvis_lhs = into.x18(request.e1f_1, other);
     var tmp;
     if (tmp0_elvis_lhs == null) {
       continue $l$loop_1;
@@ -17375,46 +18234,46 @@ function checkNotAlreadyStored($this, request, into) {
       tmp = tmp0_elvis_lhs;
     }
     var held = tmp;
-    if (!(held.a17().b17_1 === request.y1d_1.b17_1))
+    if (!(held.j18().k18_1 === request.h1f_1.k18_1))
       continue $l$loop_1;
     throw new SettlementException(SettlementRejection_INVOICE_STORED_FOR_OTHER_PAYEE_getInstance(), 'payment', '\xA78.6: an invoice already accepted for one payee on an order MUST be rejected for any other payee on that order. One payment cannot settle two payees, and a combined bill is custody \u2014 somebody would hold `price_msat + fee_msat` and owe another party the difference, which \xA71 rules out. Both records are untouched. The comparison is over the verbatim BOLT-11 string, which is the byte-identity \xA79.2 check 1 makes');
   }
 }
 function Record(order, payee, invoice, acceptedAt, sealedBy) {
-  this.y1e_1 = order;
-  this.z1e_1 = payee;
-  this.a1f_1 = invoice;
-  this.b1f_1 = acceptedAt;
-  this.c1f_1 = sealedBy;
+  this.h1g_1 = order;
+  this.i1g_1 = payee;
+  this.j1g_1 = invoice;
+  this.k1g_1 = acceptedAt;
+  this.l1g_1 = sealedBy;
 }
 protoOf(Record).lk = function () {
-  return this.y1e_1;
+  return this.h1g_1;
 };
-protoOf(Record).p16 = function () {
-  return this.z1e_1;
+protoOf(Record).y17 = function () {
+  return this.i1g_1;
 };
-protoOf(Record).a17 = function () {
-  return this.a1f_1;
+protoOf(Record).j18 = function () {
+  return this.j1g_1;
 };
-protoOf(Record).d17 = function () {
-  return this.b1f_1;
+protoOf(Record).m18 = function () {
+  return this.k1g_1;
 };
-protoOf(Record).e17 = function () {
-  return this.c1f_1;
+protoOf(Record).n18 = function () {
+  return this.l1g_1;
 };
 protoOf(Record).toString = function () {
-  return 'AcceptedPaymentRequest(payee=' + this.z1e_1.s10_1 + ')';
+  return 'AcceptedPaymentRequest(payee=' + this.i1g_1.x11_1 + ')';
 };
 function Companion_39() {
 }
-protoOf(Companion_39).n16 = function (request, acceptance, into, clock, feeTermPoints) {
+protoOf(Companion_39).w17 = function (request, acceptance, into, clock, feeTermPoints) {
   var reading = clock.xe();
   var tmp;
   if (reading instanceof Provided) {
     tmp = reading.ye_1;
   } else {
     if (reading instanceof Unavailable_0) {
-      throw new SettlementException(SettlementRejection_CLOCK_UNAVAILABLE_getInstance(), null, 'the injected clock answered unavailable (' + reading.nu_1.t1_1 + '), so this ' + 'implementation cannot say when it accepted this request. \xA79.2 check 1 and ' + '\xA717 item 6 require that reading be persisted alongside the invoice and ' + '\xA79.2 check 5 is unperformable without it, so the request is not accepted ' + 'at all \u2014 never stored against a fabricated time and never against none');
+      throw new SettlementException(SettlementRejection_CLOCK_UNAVAILABLE_getInstance(), null, 'the injected clock answered unavailable (' + reading.su_1.t1_1 + '), so this ' + 'implementation cannot say when it accepted this request. \xA79.2 check 1 and ' + '\xA717 item 6 require that reading be persisted alongside the invoice and ' + '\xA79.2 check 5 is unperformable without it, so the request is not accepted ' + 'at all \u2014 never stored against a fabricated time and never against none');
     } else {
       noWhenBranchMatchedException();
     }
@@ -17423,43 +18282,43 @@ protoOf(Companion_39).n16 = function (request, acceptance, into, clock, feeTermP
   if (seconds.c2(new Long(0, 0)) < 0) {
     throw new SettlementException(SettlementRejection_CLOCK_BEFORE_EPOCH_getInstance(), null, 'the injected clock reported a time before 1970. \xA74.3 fixes every timestamp as a non-negative integer, so this clock is not reporting an unusual time \u2014 it is broken, and no acceptance moment can honestly be recorded from it');
   }
-  if (!request.v1d_1.equals(acceptance.co_1)) {
+  if (!request.e1f_1.equals(acceptance.zo_1)) {
     throw new SettlementException(SettlementRejection_REQUEST_FOR_ANOTHER_ORDER_getInstance(), 'order', "this `type=2` names one order and the \xA77.6 acceptance it was offered against names another. Every check below is derived from that acceptance \u2014 the provider's key, \xA78.3's expected amount, the signed fee term \u2014 so judging the request against it would compare it to terms nobody signed for it, and would report each of those checks as performed");
   }
   checkSender(this, request, acceptance, feeTermPoints);
-  Companion_getInstance_41().e1f(request.y1d_1, seconds, Companion_getInstance_41().d1f(request.w1d_1, acceptance.do_1.sp_1));
+  Companion_getInstance_41().n1g(request.h1f_1, seconds, Companion_getInstance_41().m1g(request.f1f_1, acceptance.ap_1.lq_1));
   checkNotAlreadyStored(this, request, into);
-  var record = new Record(request.v1d_1, request.w1d_1, request.y1d_1, seconds, request.cm());
-  into.n17(record);
+  var record = new Record(request.e1f_1, request.f1f_1, request.h1f_1, seconds, request.cm());
+  into.w18(record);
   return record;
 };
 var Companion_instance_39;
 function Companion_getInstance_39() {
   return Companion_instance_39;
 }
-function Built_2(event) {
-  this.n10_1 = event;
+function Built_3(event) {
+  this.s11_1 = event;
 }
-protoOf(Built_2).toString = function () {
-  return 'PaymentBuild.Built(kind=' + this.n10_1.dd_1 + ', tags=' + this.n10_1.gd_1.j() + ')';
+protoOf(Built_3).toString = function () {
+  return 'PaymentBuild.Built(kind=' + this.s11_1.dd_1 + ', tags=' + this.s11_1.gd_1.j() + ')';
 };
-function Refused_6(reason, channelReason, tag, detail) {
-  this.j10_1 = reason;
-  this.k10_1 = channelReason;
-  this.l10_1 = tag;
-  this.m10_1 = detail;
+function Refused_7(reason, channelReason, tag, detail) {
+  this.o11_1 = reason;
+  this.p11_1 = channelReason;
+  this.q11_1 = tag;
+  this.r11_1 = detail;
 }
-protoOf(Refused_6).toString = function () {
-  return 'PaymentBuild.Refused(reason=' + toString_0(this.j10_1) + ', channelReason=' + toString_0(this.k10_1) + ', tag=' + this.l10_1 + ')';
+protoOf(Refused_7).toString = function () {
+  return 'PaymentBuild.Refused(reason=' + toString_0(this.o11_1) + ', channelReason=' + toString_0(this.p11_1) + ', tag=' + this.q11_1 + ')';
 };
 function payeeTag($this, payee, feeRecipient) {
   var tmp;
   switch (payee.u1_1) {
     case 0:
-      tmp = listOf(['payee', payee.s10_1]);
+      tmp = listOf(['payee', payee.x11_1]);
       break;
     case 1:
-      tmp = feeRecipient == null ? null : listOf(['payee', payee.s10_1, feeRecipient]);
+      tmp = feeRecipient == null ? null : listOf(['payee', payee.x11_1, feeRecipient]);
       break;
     default:
       noWhenBranchMatchedException();
@@ -17486,17 +18345,17 @@ function normalised($this, payeeTag) {
   return plus_1(payeeTag.m1(0, 2), recipient);
 }
 function missingFeeTerm($this, point, clause) {
-  return refused($this, SettlementRejection_FEE_TERM_POINT_MISSING_getInstance(), 'fee', clause + ' makes the `fee` term REQUIRED on a `' + Payee_FEE_getInstance().s10_1 + '` message, and this one ' + 'would carry none. \xA78.4: the same `(bps, recipient)` pair MUST appear byte-identically ' + 'wherever a `fee` tag appears for an order, and a point absent entirely is not a pair ' + ('that matches \u2014 `' + point.t1_1 + "` is the point this message is. Pass the order's accepted ") + 'terms, which is where the pair comes from');
+  return refused($this, SettlementRejection_FEE_TERM_POINT_MISSING_getInstance(), 'fee', clause + ' makes the `fee` term REQUIRED on a `' + Payee_FEE_getInstance().x11_1 + '` message, and this one ' + 'would carry none. \xA78.4: the same `(bps, recipient)` pair MUST appear byte-identically ' + 'wherever a `fee` tag appears for an order, and a point absent entirely is not a pair ' + ('that matches \u2014 `' + point.t1_1 + "` is the point this message is. Pass the order's accepted ") + 'terms, which is where the pair comes from');
 }
 function assemble_0($this, kind, type, envelope, order, tagOrder, required, payee, payeeTag, paymentTag, terms, feeRecipient, point, pointClause, amountMsat) {
-  var tmp1_safe_receiver = terms == null ? null : terms.sp_1;
-  var term = tmp1_safe_receiver == null ? null : tmp1_safe_receiver.eq_1;
+  var tmp1_safe_receiver = terms == null ? null : terms.lq_1;
+  var term = tmp1_safe_receiver == null ? null : tmp1_safe_receiver.xq_1;
   var stated = !(term == null) && !equals(term, Absent_instance);
   if (!stated) {
     if (payee.equals(Payee_FEE_getInstance()))
       return missingFeeTerm($this, point, pointClause);
     if (!(feeRecipient == null)) {
-      return refused($this, SettlementRejection_MALFORMED_FEE_TERM_getInstance(), 'fee', '\xA78.1 makes the `fee` recipient a part of the term, and these terms state no term at all: an absent term has no wire form, so there is nothing for a recipient to belong to. \xA78.4 makes the pair OPTIONAL on a ' + ('`' + Payee_PROVIDER_getInstance().s10_1 + '` message \u2014 a recipient without one is not that ') + 'permission, it is half a pair');
+      return refused($this, SettlementRejection_MALFORMED_FEE_TERM_getInstance(), 'fee', '\xA78.1 makes the `fee` recipient a part of the term, and these terms state no term at all: an absent term has no wire form, so there is nothing for a recipient to belong to. \xA78.4 makes the pair OPTIONAL on a ' + ('`' + Payee_PROVIDER_getInstance().x11_1 + '` message \u2014 a recipient without one is not that ') + 'permission, it is half a pair');
     }
   }
   var tmp;
@@ -17554,13 +18413,13 @@ function assemble_0($this, kind, type, envelope, order, tagOrder, required, paye
   }
   this_0.v2('amount_msat', tmp_3);
   var rows = this_0.g4();
-  var build = RumorWriter_getInstance().cr(kind, type, envelope, order, tagOrder, required, rows);
+  var build = RumorWriter_getInstance().hr(kind, type, envelope, order, tagOrder, required, rows);
   var tmp_5;
-  if (build instanceof Built_0) {
-    tmp_5 = new Built_2(build.yo_1);
+  if (build instanceof Built_1) {
+    tmp_5 = new Built_3(build.dn_1);
   } else {
-    if (build instanceof Refused_1) {
-      tmp_5 = new Refused_6(null, build.zo_1, build.ap_1, build.bp_1);
+    if (build instanceof Refused_2) {
+      tmp_5 = new Refused_7(null, build.om_1, build.pm_1, build.qm_1);
     } else {
       noWhenBranchMatchedException();
     }
@@ -17595,26 +18454,26 @@ function isLowercasePreimageHex($this, proof) {
   return tmp;
 }
 function refused($this, reason, tag, detail) {
-  return new Refused_6(reason, null, tag, detail);
+  return new Refused_7(reason, null, tag, detail);
 }
 function PaymentWriter() {
   PaymentWriter_instance = this;
-  this.xz_1 = readOnlyListOf(listOf(['order', 'type', 'payee', 'fee', 'payment', 'nenya', 'p']));
-  this.yz_1 = readOnlyListOf(listOf(['order', 'payee', 'fee', 'payment', 'amount_msat', 'nenya', 'p']));
-  this.zz_1 = 32;
-  this.a10_1 = 'type';
-  this.b10_1 = 'nenya';
-  this.c10_1 = 'p';
-  this.d10_1 = 'amount_msat';
-  this.e10_1 = 'fee';
-  this.f10_1 = readOnlyListOf(plus(Companion_getInstance_1().ae(), listOf(['type', 'payee', 'payment'])));
-  this.g10_1 = readOnlyListOf(plus(Companion_getInstance_1().ae(), listOf(['payee', 'payment'])));
+  this.c11_1 = readOnlyListOf(listOf(['order', 'type', 'payee', 'fee', 'payment', 'nenya', 'p']));
+  this.d11_1 = readOnlyListOf(listOf(['order', 'payee', 'fee', 'payment', 'amount_msat', 'nenya', 'p']));
+  this.e11_1 = 32;
+  this.f11_1 = 'type';
+  this.g11_1 = 'nenya';
+  this.h11_1 = 'p';
+  this.i11_1 = 'amount_msat';
+  this.j11_1 = 'fee';
+  this.k11_1 = readOnlyListOf(plus(Companion_getInstance_1().ae(), listOf(['type', 'payee', 'payment'])));
+  this.l11_1 = readOnlyListOf(plus(Companion_getInstance_1().ae(), listOf(['payee', 'payment'])));
 }
-protoOf(PaymentWriter).h10 = function (envelope, order, payee, invoice, feeRecipient, medium, terms) {
+protoOf(PaymentWriter).m11 = function (envelope, order, payee, invoice, feeRecipient, medium, terms) {
   var tmp0_elvis_lhs = payeeTag(this, payee, feeRecipient);
   var tmp;
   if (tmp0_elvis_lhs == null) {
-    return refused(this, SettlementRejection_WRONG_ARITY_getInstance(), 'payee', '\xA78.6 prints `payee` with 2 element(s) for the ' + ('`' + Payee_PROVIDER_getInstance().s10_1 + '` role and 3 for ') + ('`' + Payee_FEE_getInstance().s10_1 + '`: the recipient is REQUIRED on a fee request and has nothing ') + 'to name on a provider one');
+    return refused(this, SettlementRejection_WRONG_ARITY_getInstance(), 'payee', '\xA78.6 prints `payee` with 2 element(s) for the ' + ('`' + Payee_PROVIDER_getInstance().x11_1 + '` role and 3 for ') + ('`' + Payee_FEE_getInstance().x11_1 + '`: the recipient is REQUIRED on a fee request and has nothing ') + 'to name on a provider one');
   } else {
     tmp = tmp0_elvis_lhs;
   }
@@ -17630,9 +18489,9 @@ protoOf(PaymentWriter).h10 = function (envelope, order, payee, invoice, feeRecip
   if (medium.equals(PaymentMedium_UNKNOWN_getInstance()))
     return unknownMedium(this);
   if (!medium.equals(PaymentMedium_LIGHTNING_getInstance())) {
-    return refused(this, SettlementRejection_MEDIUM_NOT_LIGHTNING_getInstance(), 'payment', '\xA78.6: a `type=' + OrderMessageKind_PAYMENT_REQUEST_getInstance().dj_1 + '` MUST carry exactly one ' + ('`["payment", "' + PaymentMedium_LIGHTNING_getInstance().lz_1 + '", ') + '"<bolt11>"]` tag. \xA79.4\'s other rails are a **receipt** rule \u2014 one MAY be ' + 'parsed there and evidences nothing \u2014 and emitting one here would put an ' + 'invoice on the wire this library can never verify');
+    return refused(this, SettlementRejection_MEDIUM_NOT_LIGHTNING_getInstance(), 'payment', '\xA78.6: a `type=' + OrderMessageKind_PAYMENT_REQUEST_getInstance().dj_1 + '` MUST carry exactly one ' + ('`["payment", "' + PaymentMedium_LIGHTNING_getInstance().q10_1 + '", ') + '"<bolt11>"]` tag. \xA79.4\'s other rails are a **receipt** rule \u2014 one MAY be ' + 'parsed there and evidences nothing \u2014 and emitting one here would put an ' + 'invoice on the wire this library can never verify');
   }
-  var tmp2_elvis_lhs = medium.lz_1;
+  var tmp2_elvis_lhs = medium.q10_1;
   var tmp_1;
   if (tmp2_elvis_lhs == null) {
     return unknownMedium(this);
@@ -17640,9 +18499,9 @@ protoOf(PaymentWriter).h10 = function (envelope, order, payee, invoice, feeRecip
     tmp_1 = tmp2_elvis_lhs;
   }
   var token = tmp_1;
-  return assemble_0(this, RumorKind_ORDER_MESSAGE_getInstance(), OrderMessageKind_PAYMENT_REQUEST_getInstance(), envelope, order, this.xz_1, this.f1f(), payee, normalisedPayee, listOf(['payment', token, invoice.b17_1]), terms, feeRecipient, FeeTermPoint_FEE_PAYMENT_REQUEST_getInstance(), '\xA78.4 point 3', null);
+  return assemble_0(this, RumorKind_ORDER_MESSAGE_getInstance(), OrderMessageKind_PAYMENT_REQUEST_getInstance(), envelope, order, this.c11_1, this.o1g(), payee, normalisedPayee, listOf(['payment', token, invoice.k18_1]), terms, feeRecipient, FeeTermPoint_FEE_PAYMENT_REQUEST_getInstance(), '\xA78.4 point 3', null);
 };
-protoOf(PaymentWriter).i10 = function (envelope, order, payee, reference, proof, feeRecipient, medium, terms) {
+protoOf(PaymentWriter).n11 = function (envelope, order, payee, reference, proof, feeRecipient, medium, terms) {
   var tmp0_elvis_lhs = payeeTag(this, payee, feeRecipient);
   var tmp;
   if (tmp0_elvis_lhs == null) {
@@ -17661,7 +18520,7 @@ protoOf(PaymentWriter).i10 = function (envelope, order, payee, reference, proof,
   var normalisedPayee = tmp_0;
   if (medium.equals(PaymentMedium_UNKNOWN_getInstance()))
     return unknownMedium(this);
-  var tmp2_elvis_lhs = medium.lz_1;
+  var tmp2_elvis_lhs = medium.q10_1;
   var tmp_1;
   if (tmp2_elvis_lhs == null) {
     return unknownMedium(this);
@@ -17669,11 +18528,11 @@ protoOf(PaymentWriter).i10 = function (envelope, order, payee, reference, proof,
     tmp_1 = tmp2_elvis_lhs;
   }
   var token = tmp_1;
-  if (medium.m1d() && !isLowercasePreimageHex(this, proof)) {
+  if (medium.v1e() && !isLowercasePreimageHex(this, proof)) {
     return refused(this, SettlementRejection_PREIMAGE_MALFORMED_getInstance(), 'payment', "\xA79.2 check 2: the proof MUST be **lowercase** hex and MUST decode to exactly 32 bytes. Uppercase and mixed case are rejected rather than normalised \u2014 \xA74.3 names the preimage as one of exactly two values where no normalisation of any kind is permitted \u2014 so a writer that emitted one would emit a receipt this library's own decoder refuses. This proof is " + ('' + proof.length + ' character(s)'));
   }
   var tmp_2 = RumorKind_RECEIPT_getInstance();
-  var tmp_3 = this.g1f();
+  var tmp_3 = this.p1g();
   var tmp_4 = listOf(['payment', token, reference, proof]);
   var tmp_5 = FeeTermPoint_FEE_RECEIPT_getInstance();
   var tmp_6;
@@ -17683,15 +18542,15 @@ protoOf(PaymentWriter).i10 = function (envelope, order, payee, reference, proof,
     // Inline function 'kotlin.let' call
     // Inline function 'kotlin.contracts.contract' call
     // Inline function 'dev.eryalabs.nenya.settlement.PaymentWriter.receipt.<anonymous>' call
-    tmp_6 = Companion_getInstance_41().d1f(payee, terms.sp_1);
+    tmp_6 = Companion_getInstance_41().m1g(payee, terms.lq_1);
   }
-  return assemble_0(this, tmp_2, null, envelope, order, this.yz_1, tmp_3, payee, normalisedPayee, tmp_4, terms, feeRecipient, tmp_5, '\xA78.4 point 4 and \xA79.2 check 6', tmp_6);
+  return assemble_0(this, tmp_2, null, envelope, order, this.d11_1, tmp_3, payee, normalisedPayee, tmp_4, terms, feeRecipient, tmp_5, '\xA78.4 point 4 and \xA79.2 check 6', tmp_6);
 };
-protoOf(PaymentWriter).f1f = function () {
-  return this.f10_1;
+protoOf(PaymentWriter).o1g = function () {
+  return this.k11_1;
 };
-protoOf(PaymentWriter).g1f = function () {
-  return this.g10_1;
+protoOf(PaymentWriter).p1g = function () {
+  return this.l11_1;
 };
 var PaymentWriter_instance;
 function PaymentWriter_getInstance() {
@@ -17720,32 +18579,32 @@ protoOf(Companion_40).sl = function (rumor) {
   if (!rumor.ke().equals(RumorKind_RECEIPT_getInstance())) {
     throw new SettlementException(SettlementRejection_NOT_A_RECEIPT_getInstance(), null, "this decoder reads \xA79.2's kind:" + RumorKind_RECEIPT_getInstance().hi_1 + ' receipt; the rumor it ' + ('was handed is a kind:' + rumor.ke().hi_1 + '. A well-formed message of another ') + 'kind is not a malformed one');
   }
-  var order = SettlementTags_instance.t1e(rumor);
-  var payee = SettlementTags_instance.w1e(rumor);
-  var tag = SettlementTags_instance.v1e(rumor, 4);
-  var medium = Companion_instance_33.wz(tag.k(1));
+  var order = SettlementTags_instance.c1g(rumor);
+  var payee = SettlementTags_instance.f1g(rumor);
+  var tag = SettlementTags_instance.e1g(rumor, 4);
+  var medium = Companion_instance_33.b11(tag.k(1));
   var reference = tag.k(2);
   var proof = tag.k(3);
-  var preimage = medium.m1d() ? readPreimage(this, proof) : null;
-  return new PaymentReceipt(rumor, order, payee.q1e_1, medium, reference, preimage);
+  var preimage = medium.v1e() ? readPreimage(this, proof) : null;
+  return new PaymentReceipt(rumor, order, payee.z1f_1, medium, reference, preimage);
 };
 var Companion_instance_40;
 function Companion_getInstance_40() {
   return Companion_instance_40;
 }
 function PaymentReceipt(rumor, order, payee, medium, reference, preimage) {
-  this.a1e_1 = rumor;
-  this.b1e_1 = order;
-  this.c1e_1 = payee;
-  this.d1e_1 = medium;
-  this.e1e_1 = reference;
-  this.f1e_1 = preimage;
+  this.j1f_1 = rumor;
+  this.k1f_1 = order;
+  this.l1f_1 = payee;
+  this.m1f_1 = medium;
+  this.n1f_1 = reference;
+  this.o1f_1 = preimage;
 }
 protoOf(PaymentReceipt).ak = function () {
-  return this.a1e_1.ak();
+  return this.j1f_1.ak();
 };
 protoOf(PaymentReceipt).toString = function () {
-  return 'PaymentReceipt(payee=' + this.c1e_1.s10_1 + ', medium=' + this.d1e_1.t1_1 + ')';
+  return 'PaymentReceipt(payee=' + this.l1f_1.x11_1 + ', medium=' + this.m1f_1.t1_1 + ')';
 };
 function requireEarlierPoints($this, earlierPoints, needed) {
   // Inline function 'kotlin.collections.mapTo' call
@@ -17754,7 +18613,7 @@ function requireEarlierPoints($this, earlierPoints, needed) {
   while (tmp0_iterator.h()) {
     var item = tmp0_iterator.i();
     // Inline function 'dev.eryalabs.nenya.settlement.Companion.requireEarlierPoints.<anonymous>' call
-    var tmp$ret$0 = item.g1e_1;
+    var tmp$ret$0 = item.p1f_1;
     destination.e(tmp$ret$0);
   }
   var seen = destination;
@@ -17794,7 +18653,7 @@ function requireEarlierPoints($this, earlierPoints, needed) {
   throw new SettlementException(tmp_0, 'fee', '\xA78.4 marks the `fee` tag REQUIRED at ' + toString(destination_0) + ' before this ' + ('message can exist at all, and ' + missing.t1_1 + ' is not among the points this ') + 'check was handed. Comparing what is left would compare this message against ' + 'itself, which always agrees \u2014 and would let a stranger naming themselves in ' + 'their own `payee` and `fee` tags satisfy \xA78.7 out of a term nobody signed');
 }
 function agreementOrMismatch($this, sightings) {
-  var agreement = Companion_instance_37.p1e(sightings);
+  var agreement = Companion_instance_37.y1f(sightings);
   var tmp;
   if (isInterface(agreement, Agreed)) {
     tmp = agreement;
@@ -17808,13 +18667,13 @@ function agreementOrMismatch($this, sightings) {
   return tmp;
 }
 function checkFeeSeal($this, sealPubkey, agreed, forwarded) {
-  var recipient = agreed.k1e();
+  var recipient = agreed.t1f();
   if (!(recipient == null) && recipient === sealPubkey)
     return Unit_instance;
-  throw new SettlementException(SettlementRejection_FEE_SEAL_NOT_RECIPIENT_getInstance(), 'payee', '\xA78.7: a `type=2` payment request with `["payee", ' + ('"' + Payee_FEE_getInstance().s10_1 + '", \u2026]` MUST arrive in a gift wrap whose seal (kind:13) ') + '`pubkey` equals the fee-recipient pubkey named in the signed fee term, and a ' + 'fee invoice forwarded by the provider \u2014 or arriving from any other key \u2014 ' + 'MUST be rejected. ' + (forwarded ? "The seal compared is the one the **stored** `type=2` arrived under: a fee receipt is authored by the buyer (\xA79.2), so its own seal is never the fee recipient's." : "The seal compared is this request's own.") + (recipient == null ? ' The signed fee term names no recipient at all, so there is no key a fee invoice could legally arrive from.' : '') + ' This is not a missing or a malformed `payee` tag: ' + 'the tag is present and well formed, and what is wrong is who sealed the ' + 'message');
+  throw new SettlementException(SettlementRejection_FEE_SEAL_NOT_RECIPIENT_getInstance(), 'payee', '\xA78.7: a `type=2` payment request with `["payee", ' + ('"' + Payee_FEE_getInstance().x11_1 + '", \u2026]` MUST arrive in a gift wrap whose seal (kind:13) ') + '`pubkey` equals the fee-recipient pubkey named in the signed fee term, and a ' + 'fee invoice forwarded by the provider \u2014 or arriving from any other key \u2014 ' + 'MUST be rejected. ' + (forwarded ? "The seal compared is the one the **stored** `type=2` arrived under: a fee receipt is authored by the buyer (\xA79.2), so its own seal is never the fee recipient's." : "The seal compared is this request's own.") + (recipient == null ? ' The signed fee term names no recipient at all, so there is no key a fee invoice could legally arrive from.' : '') + ' This is not a missing or a malformed `payee` tag: ' + 'the tag is present and well formed, and what is wrong is who sealed the ' + 'message');
 }
 function requireStored($this, receipt, store) {
-  var tmp0_elvis_lhs = store.o17(receipt.b1e_1, receipt.c1e_1);
+  var tmp0_elvis_lhs = store.x18(receipt.k1f_1, receipt.l1f_1);
   var tmp;
   if (tmp0_elvis_lhs == null) {
     throw noStoredRequest($this);
@@ -17828,12 +18687,12 @@ function noStoredRequest($this) {
 }
 function checkInvoiceIdentity($this, receipt, store) {
   var stored = requireStored($this, receipt, store);
-  if (receipt.e1e_1 === stored.a17().b17_1)
+  if (receipt.n1f_1 === stored.j18().k18_1)
     return stored;
   var tmp$ret$1;
   $l$block: {
     // Inline function 'kotlin.text.any' call
-    var indexedObject = receipt.e1e_1;
+    var indexedObject = receipt.n1f_1;
     var inductionVariable = 0;
     while (inductionVariable < charSequenceLength(indexedObject)) {
       var element = charSequenceGet(indexedObject, inductionVariable);
@@ -17852,12 +18711,12 @@ function checkInvoiceIdentity($this, receipt, store) {
   throw new SettlementException(SettlementRejection_INVOICE_NOT_IDENTICAL_getInstance(), 'payment', '\xA79.2 check 1: the BOLT-11 string in this receipt is not byte-identical to the one in the stored `type=2` for the same order and payee. No normalisation, no case folding, no re-encoding, no bech32 round-trip');
 }
 function checkedInvoice($this, stored, expected) {
-  var invoice = Companion_getInstance_32().s1c(stored.a17());
-  checkParsedAmountAndExpiry($this, invoice, stored.d17(), expected);
+  var invoice = Companion_getInstance_32().b1e(stored.j18());
+  checkParsedAmountAndExpiry($this, invoice, stored.m18(), expected);
   return invoice;
 }
 function checkParsedAmountAndExpiry($this, invoice, acceptedAt, expected) {
-  var tmp0_elvis_lhs = invoice.e1d();
+  var tmp0_elvis_lhs = invoice.n1e();
   var tmp;
   var tmp_0 = tmp0_elvis_lhs;
   if ((tmp_0 == null ? null : new Msat(tmp_0)) == null) {
@@ -17869,19 +18728,19 @@ function checkParsedAmountAndExpiry($this, invoice, acceptedAt, expected) {
   if (!equals(amount, expected)) {
     throw new SettlementException(SettlementRejection_INVOICE_AMOUNT_MISMATCH_getInstance(), 'payment', "\xA79.2 check 4: the amount in the invoice's human-readable part MUST equal the expected amount for that payee \u2014 `price_msat` for the provider and \xA78.3's `fee_msat` for the fee recipient \u2014 and this one does not. The rule is an equality in both directions: an invoice for more is an overcharge, and an invoice for less settles the order for a figure nobody agreed to");
   }
-  if (invoice.g1d().c2(acceptedAt.e2(invoice.f1d())) < 0) {
+  if (invoice.p1e().c2(acceptedAt.e2(invoice.o1e())) < 0) {
     throw new SettlementException(SettlementRejection_INVOICE_EXPIRED_getInstance(), 'payment', "\xA79.2 check 5: the invoice's `timestamp + expiry` was already in the past when this implementation accepted it, measured against the value its injected clock held at that moment (\xA74.6). The comparison is deliberately not made against the clock as it reads now \u2014 an invoice that was live when the buyer paid it does not become unpaid because it has since expired \u2014 so this is an invoice that was dead on arrival and was stored anyway");
   }
 }
 function applicable($this, payee) {
-  var tmp = Companion_getInstance_24().xr_1;
+  var tmp = Companion_getInstance_24().cs_1;
   var tmp_0;
   switch (payee.u1_1) {
     case 0:
-      tmp_0 = Companion_getInstance_24().yr_1;
+      tmp_0 = Companion_getInstance_24().ds_1;
       break;
     case 1:
-      tmp_0 = Companion_getInstance_24().zr_1;
+      tmp_0 = Companion_getInstance_24().es_1;
       break;
     default:
       noWhenBranchMatchedException();
@@ -17890,122 +18749,122 @@ function applicable($this, payee) {
   return readOnlySetOf(plus_0(tmp, tmp_0));
 }
 function PreimageAndInvoice(order, payee, medium, payment, alsoPerformed) {
-  this.h1f_1 = order;
-  this.i1f_1 = payee;
-  this.j1f_1 = medium;
-  this.k1f_1 = payment;
-  this.l1f_1 = readOnlySetOf(plus_0(plus_0(this.k1f_1.ss(), Companion_getInstance_41().f16_1), alsoPerformed));
-  this.m1f_1 = readOnlySetOf(minus_0(minus_0(this.k1f_1.ts(), Companion_getInstance_41().f16_1), alsoPerformed));
+  this.q1g_1 = order;
+  this.r1g_1 = payee;
+  this.s1g_1 = medium;
+  this.t1g_1 = payment;
+  this.u1g_1 = readOnlySetOf(plus_0(plus_0(this.t1g_1.xs(), Companion_getInstance_41().o17_1), alsoPerformed));
+  this.v1g_1 = readOnlySetOf(minus_0(minus_0(this.t1g_1.ys(), Companion_getInstance_41().o17_1), alsoPerformed));
 }
 protoOf(PreimageAndInvoice).lk = function () {
-  return this.h1f_1;
+  return this.q1g_1;
 };
-protoOf(PreimageAndInvoice).p16 = function () {
-  return this.i1f_1;
+protoOf(PreimageAndInvoice).y17 = function () {
+  return this.r1g_1;
 };
-protoOf(PreimageAndInvoice).q16 = function () {
-  return this.j1f_1;
+protoOf(PreimageAndInvoice).z17 = function () {
+  return this.s1g_1;
 };
-protoOf(PreimageAndInvoice).t16 = function () {
-  return this.k1f_1;
+protoOf(PreimageAndInvoice).c18 = function () {
+  return this.t1g_1;
 };
-protoOf(PreimageAndInvoice).ss = function () {
-  return this.l1f_1;
+protoOf(PreimageAndInvoice).xs = function () {
+  return this.u1g_1;
 };
-protoOf(PreimageAndInvoice).ts = function () {
-  return this.m1f_1;
+protoOf(PreimageAndInvoice).ys = function () {
+  return this.v1g_1;
 };
 protoOf(PreimageAndInvoice).toString = function () {
-  return 'Settlement.Evidenced(payee=' + this.i1f_1.s10_1 + ', medium=' + this.j1f_1.t1_1 + ', ' + ('performed=' + toString(this.l1f_1) + ', notPerformedHere=' + toString(this.m1f_1) + ')');
+  return 'Settlement.Evidenced(payee=' + this.r1g_1.x11_1 + ', medium=' + this.s1g_1.t1_1 + ', ' + ('performed=' + toString(this.u1g_1) + ', notPerformedHere=' + toString(this.v1g_1) + ')');
 };
 function NoRule(order, payee, medium, checksNotPerformedHere) {
-  this.n1f_1 = order;
-  this.o1f_1 = payee;
-  this.p1f_1 = medium;
-  this.q1f_1 = checksNotPerformedHere;
+  this.w1g_1 = order;
+  this.x1g_1 = payee;
+  this.y1g_1 = medium;
+  this.z1g_1 = checksNotPerformedHere;
 }
 protoOf(NoRule).lk = function () {
-  return this.n1f_1;
+  return this.w1g_1;
 };
-protoOf(NoRule).p16 = function () {
-  return this.o1f_1;
+protoOf(NoRule).y17 = function () {
+  return this.x1g_1;
 };
-protoOf(NoRule).q16 = function () {
-  return this.p1f_1;
+protoOf(NoRule).z17 = function () {
+  return this.y1g_1;
 };
-protoOf(NoRule).ts = function () {
-  return this.q1f_1;
+protoOf(NoRule).ys = function () {
+  return this.z1g_1;
 };
-protoOf(NoRule).ss = function () {
+protoOf(NoRule).xs = function () {
   return emptySet();
 };
 protoOf(NoRule).toString = function () {
-  return 'Settlement.Unverified(payee=' + this.o1f_1.s10_1 + ', medium=' + this.p1f_1.t1_1 + ', ' + ('notPerformedHere=' + toString(this.q1f_1) + ')');
+  return 'Settlement.Unverified(payee=' + this.x1g_1.x11_1 + ', medium=' + this.y1g_1.t1_1 + ', ' + ('notPerformedHere=' + toString(this.z1g_1) + ')');
 };
 function Evidenced() {
 }
 function Companion_41() {
   Companion_instance_41 = this;
-  this.e16_1 = readOnlySetOf(plus_0(Companion_getInstance_24().xr_1, linkedSetOf([PaymentCheck_INVOICE_IDENTITY_getInstance(), PaymentCheck_PAYMENT_HASH_PROVENANCE_getInstance(), PaymentCheck_INVOICE_AMOUNT_getInstance(), PaymentCheck_INVOICE_EXPIRY_getInstance()])));
-  this.f16_1 = readOnlySetOf(minus_0(this.e16_1, Companion_getInstance_24().xr_1));
-  this.g16_1 = readOnlySetOf(minus_0(Companion_getInstance_24().zr_1, Companion_getInstance_24().yr_1));
-  this.h16_1 = readOnlySetOf(plus_0(this.e16_1, this.g16_1));
-  this.i16_1 = readOnlyListOf(listOf([FeeTermPoint_ORDER_PROPOSAL_getInstance(), FeeTermPoint_ACCEPTANCE_getInstance()]));
-  this.j16_1 = readOnlyListOf(plus_1(this.i16_1, FeeTermPoint_FEE_PAYMENT_REQUEST_getInstance()));
+  this.n17_1 = readOnlySetOf(plus_0(Companion_getInstance_24().cs_1, linkedSetOf([PaymentCheck_INVOICE_IDENTITY_getInstance(), PaymentCheck_PAYMENT_HASH_PROVENANCE_getInstance(), PaymentCheck_INVOICE_AMOUNT_getInstance(), PaymentCheck_INVOICE_EXPIRY_getInstance()])));
+  this.o17_1 = readOnlySetOf(minus_0(this.n17_1, Companion_getInstance_24().cs_1));
+  this.p17_1 = readOnlySetOf(minus_0(Companion_getInstance_24().es_1, Companion_getInstance_24().ds_1));
+  this.q17_1 = readOnlySetOf(plus_0(this.n17_1, this.p17_1));
+  this.r17_1 = readOnlyListOf(listOf([FeeTermPoint_ORDER_PROPOSAL_getInstance(), FeeTermPoint_ACCEPTANCE_getInstance()]));
+  this.s17_1 = readOnlyListOf(plus_1(this.r17_1, FeeTermPoint_FEE_PAYMENT_REQUEST_getInstance()));
 }
-protoOf(Companion_41).k16 = function (receipt, store, split) {
-  var preimage = receipt.f1e_1;
-  if (!receipt.d1e_1.m1d() || preimage == null) {
-    return new NoRule(receipt.b1e_1, receipt.c1e_1, receipt.d1e_1, applicable(this, receipt.c1e_1));
+protoOf(Companion_41).t17 = function (receipt, store, split) {
+  var preimage = receipt.o1f_1;
+  if (!receipt.m1f_1.v1e() || preimage == null) {
+    return new NoRule(receipt.k1f_1, receipt.l1f_1, receipt.m1f_1, applicable(this, receipt.l1f_1));
   }
   var stored = checkInvoiceIdentity(this, receipt, store);
-  var invoice = checkedInvoice(this, stored, this.d1f(receipt.c1e_1, split));
-  var payment = Companion_getInstance_24().d1c(receipt.c1e_1, invoice.u16(), preimage);
-  return new PreimageAndInvoice(receipt.b1e_1, receipt.c1e_1, receipt.d1e_1, payment, emptySet());
+  var invoice = checkedInvoice(this, stored, this.m1g(receipt.l1f_1, split));
+  var payment = Companion_getInstance_24().m1d(receipt.l1f_1, invoice.d18(), preimage);
+  return new PreimageAndInvoice(receipt.k1f_1, receipt.l1f_1, receipt.m1f_1, payment, emptySet());
 };
-protoOf(Companion_41).l16 = function (receipt, store, order, earlierPoints) {
-  if (!receipt.c1e_1.equals(Payee_FEE_getInstance())) {
+protoOf(Companion_41).u17 = function (receipt, store, order, earlierPoints) {
+  if (!receipt.l1f_1.equals(Payee_FEE_getInstance())) {
     throw new SettlementException(SettlementRejection_PAYEE_IS_NOT_FEE_getInstance(), 'payee', '\xA79.2 check 6 is stated "for a `payee=fee` receipt" and this one names the provider. Check 6 does not apply to a provider receipt at all, and running \xA78.4 over one as though it did would refuse the conformant provider receipt \xA79.2\'s own worked example prints \u2014 which carries no `fee` tag, exactly as \xA78.4 permits');
   }
-  var preimage = receipt.f1e_1;
-  if (!receipt.d1e_1.m1d() || preimage == null) {
-    return new NoRule(receipt.b1e_1, receipt.c1e_1, receipt.d1e_1, applicable(this, receipt.c1e_1));
+  var preimage = receipt.o1f_1;
+  if (!receipt.m1f_1.v1e() || preimage == null) {
+    return new NoRule(receipt.k1f_1, receipt.l1f_1, receipt.m1f_1, applicable(this, receipt.l1f_1));
   }
-  requireEarlierPoints(this, earlierPoints, this.j16_1);
-  if (!Companion_instance_23.y1a(order.y13().sp_1).w(Payee_FEE_getInstance())) {
+  requireEarlierPoints(this, earlierPoints, this.s17_1);
+  if (!Companion_instance_23.h1c(order.l15().lq_1).w(Payee_FEE_getInstance())) {
     throw new SettlementException(SettlementRejection_PAYEE_NOT_REQUIRED_getInstance(), 'payee', "\xA78.3: a computed `fee_msat` of zero means no fee invoice may be sent or accepted, even though the term named a recipient \u2014 and a receipt is evidence of paying an invoice that may not exist. \xA78.1's read rule reaches the same answer for an order proposed with no `fee` tag at all");
   }
-  var agreed = agreementOrMismatch(this, plus_1(earlierPoints, Companion_instance_36.z1d(receipt)));
+  var agreed = agreementOrMismatch(this, plus_1(earlierPoints, Companion_instance_36.i1f(receipt)));
   var stored = requireStored(this, receipt, store);
-  checkFeeSeal(this, stored.e17(), agreed, true);
-  if (!order.i14().equals(OrderState_AWAITING_PAYMENT_getInstance())) {
+  checkFeeSeal(this, stored.n18(), agreed, true);
+  if (!order.v15().equals(OrderState_AWAITING_PAYMENT_getInstance())) {
     var tmp = SettlementRejection_FEE_RECEIPT_STATE_NOT_AWAITING_PAYMENT_getInstance();
-    var tmp_0 = '\xA79.2 check 6: for a `payee=fee` receipt "the state MUST already be ' + ('`' + OrderState_AWAITING_PAYMENT_getInstance().yn_1 + '`" (\xA78.5), and this order\'s is ');
-    var tmp0_elvis_lhs = order.i14().yn_1;
-    throw new SettlementException(tmp, null, tmp_0 + ('`' + (tmp0_elvis_lhs == null ? 'unknown' : tmp0_elvis_lhs) + '`. The state was read from this ') + "implementation's own order and not from a status token a " + 'counterparty sent. Note what this does **not** refuse: the fee payment ' + ('**request** is accepted as part of `' + OrderState_COMMITTED_getInstance().yn_1 + ' \u2192 ') + ('' + OrderState_AWAITING_PAYMENT_getInstance().yn_1 + '` and never earlier \u2014 \xA78.5 says a ') + 'rule that refused it while the order was still ' + ('`' + OrderState_COMMITTED_getInstance().yn_1 + '` would make ') + ('`' + OrderState_AWAITING_PAYMENT_getInstance().yn_1 + '` unreachable for every fee-bearing ') + 'order');
+    var tmp_0 = '\xA79.2 check 6: for a `payee=fee` receipt "the state MUST already be ' + ('`' + OrderState_AWAITING_PAYMENT_getInstance().vo_1 + '`" (\xA78.5), and this order\'s is ');
+    var tmp0_elvis_lhs = order.v15().vo_1;
+    throw new SettlementException(tmp, null, tmp_0 + ('`' + (tmp0_elvis_lhs == null ? 'unknown' : tmp0_elvis_lhs) + '`. The state was read from this ') + "implementation's own order and not from a status token a " + 'counterparty sent. Note what this does **not** refuse: the fee payment ' + ('**request** is accepted as part of `' + OrderState_COMMITTED_getInstance().vo_1 + ' \u2192 ') + ('' + OrderState_AWAITING_PAYMENT_getInstance().vo_1 + '` and never earlier \u2014 \xA78.5 says a ') + 'rule that refused it while the order was still ' + ('`' + OrderState_COMMITTED_getInstance().vo_1 + '` would make ') + ('`' + OrderState_AWAITING_PAYMENT_getInstance().vo_1 + '` unreachable for every fee-bearing ') + 'order');
   }
   var identified = checkInvoiceIdentity(this, receipt, store);
-  var invoice = checkedInvoice(this, identified, this.d1f(receipt.c1e_1, order.y13().sp_1));
-  var payment = Companion_getInstance_24().d1c(receipt.c1e_1, invoice.u16(), preimage);
-  return new PreimageAndInvoice(receipt.b1e_1, receipt.c1e_1, receipt.d1e_1, payment, this.g16_1);
+  var invoice = checkedInvoice(this, identified, this.m1g(receipt.l1f_1, order.l15().lq_1));
+  var payment = Companion_getInstance_24().m1d(receipt.l1f_1, invoice.d18(), preimage);
+  return new PreimageAndInvoice(receipt.k1f_1, receipt.l1f_1, receipt.m1f_1, payment, this.p17_1);
 };
-protoOf(Companion_41).x1e = function (request, earlierPoints) {
-  if (!request.w1d_1.equals(Payee_FEE_getInstance())) {
-    throw new SettlementException(SettlementRejection_PAYEE_IS_NOT_FEE_getInstance(), 'payee', '\xA78.7 is a rule about a `type=2` carrying `["payee", ' + ('"' + Payee_FEE_getInstance().s10_1 + '", \u2026]` and this one names ') + ('`' + Payee_PROVIDER_getInstance().s10_1 + '`. \xA78.4 makes the `fee` tag OPTIONAL on a ') + 'provider request and says an implementation MUST NOT require one there');
+protoOf(Companion_41).g1g = function (request, earlierPoints) {
+  if (!request.f1f_1.equals(Payee_FEE_getInstance())) {
+    throw new SettlementException(SettlementRejection_PAYEE_IS_NOT_FEE_getInstance(), 'payee', '\xA78.7 is a rule about a `type=2` carrying `["payee", ' + ('"' + Payee_FEE_getInstance().x11_1 + '", \u2026]` and this one names ') + ('`' + Payee_PROVIDER_getInstance().x11_1 + '`. \xA78.4 makes the `fee` tag OPTIONAL on a ') + 'provider request and says an implementation MUST NOT require one there');
   }
-  requireEarlierPoints(this, earlierPoints, this.i16_1);
-  var agreed = agreementOrMismatch(this, plus_1(earlierPoints, Companion_instance_36.t1d(request)));
+  requireEarlierPoints(this, earlierPoints, this.r17_1);
+  var agreed = agreementOrMismatch(this, plus_1(earlierPoints, Companion_instance_36.c1f(request)));
   checkFeeSeal(this, request.cm(), agreed, false);
   return agreed;
 };
-protoOf(Companion_41).d1f = function (payee, split) {
+protoOf(Companion_41).m1g = function (payee, split) {
   var tmp;
   switch (payee.u1_1) {
     case 0:
-      tmp = split.dq_1;
+      tmp = split.wq_1;
       break;
     case 1:
-      tmp = split.fq_1;
+      tmp = split.yq_1;
       break;
     default:
       noWhenBranchMatchedException();
@@ -18013,8 +18872,8 @@ protoOf(Companion_41).d1f = function (payee, split) {
   }
   return tmp;
 };
-protoOf(Companion_41).e1f = function (invoice, acceptedAt, expected) {
-  return checkParsedAmountAndExpiry(this, Companion_getInstance_32().s1c(invoice), acceptedAt, expected);
+protoOf(Companion_41).n1g = function (invoice, acceptedAt, expected) {
+  return checkParsedAmountAndExpiry(this, Companion_getInstance_32().b1e(invoice), acceptedAt, expected);
 };
 var Companion_instance_41;
 function Companion_getInstance_41() {
@@ -18070,7 +18929,7 @@ var SettlementRejection_MALFORMED_TAG_instance;
 var SettlementRejection_UNKNOWN_MEDIUM_IS_NOT_EMITTABLE_instance;
 function Companion_42() {
   Companion_instance_42 = this;
-  this.r1f_1 = readOnlySetOf(listOf([SettlementRejection_CHECKSUM_INVALID_getInstance(), SettlementRejection_HRP_INVALID_getInstance(), SettlementRejection_AMOUNT_SUB_MSAT_getInstance(), SettlementRejection_AMOUNT_OUT_OF_RANGE_getInstance(), SettlementRejection_FIELD_TRUNCATED_getInstance(), SettlementRejection_PAYMENT_HASH_MISSING_getInstance(), SettlementRejection_PAYMENT_HASH_DUPLICATED_getInstance(), SettlementRejection_EXPIRY_DUPLICATED_getInstance(), SettlementRejection_EXPIRY_OUT_OF_RANGE_getInstance(), SettlementRejection_PAYMENT_SECRET_MISSING_getInstance(), SettlementRejection_DESCRIPTION_NOT_EXACTLY_ONE_getInstance()]));
+  this.a1h_1 = readOnlySetOf(listOf([SettlementRejection_CHECKSUM_INVALID_getInstance(), SettlementRejection_HRP_INVALID_getInstance(), SettlementRejection_AMOUNT_SUB_MSAT_getInstance(), SettlementRejection_AMOUNT_OUT_OF_RANGE_getInstance(), SettlementRejection_FIELD_TRUNCATED_getInstance(), SettlementRejection_PAYMENT_HASH_MISSING_getInstance(), SettlementRejection_PAYMENT_HASH_DUPLICATED_getInstance(), SettlementRejection_EXPIRY_DUPLICATED_getInstance(), SettlementRejection_EXPIRY_OUT_OF_RANGE_getInstance(), SettlementRejection_PAYMENT_SECRET_MISSING_getInstance(), SettlementRejection_DESCRIPTION_NOT_EXACTLY_ONE_getInstance()]));
 }
 var Companion_instance_42;
 function Companion_getInstance_42() {
@@ -18140,9 +18999,9 @@ function SettlementException(reason, tag, message, cause, feeTermDivergence) {
   feeTermDivergence = feeTermDivergence === VOID ? null : feeTermDivergence;
   IllegalArgumentException_init_$Init$(message, cause, this);
   captureStack(this, SettlementException);
-  this.cz_1 = reason;
-  this.dz_1 = tag;
-  this.ez_1 = feeTermDivergence;
+  this.g10_1 = reason;
+  this.h10_1 = tag;
+  this.i10_1 = feeTermDivergence;
 }
 function SettlementRejection_NOT_A_PAYMENT_REQUEST_getInstance() {
   SettlementRejection_initEntries();
@@ -18338,7 +19197,7 @@ function NenyaKind_getInstance() {
 }
 function Companion_43() {
 }
-protoOf(Companion_43).a18 = function (kind) {
+protoOf(Companion_43).j19 = function (kind) {
   if (!NenyaKind_getInstance().ac_1.w(kind)) {
     throw new TagException(TagRejection_MALFORMED_CONTEXT_getInstance(), "\xA75.3's listing rules apply to " + toString(NenyaKind_getInstance().ac_1) + ' and this is kind ' + kind);
   }
@@ -18359,55 +19218,55 @@ function Companion_getInstance_43() {
 }
 function TagContext(kind, orderMessageType) {
   orderMessageType = orderMessageType === VOID ? null : orderMessageType;
-  this.s1f_1 = kind;
-  this.t1f_1 = orderMessageType;
-  if (this.s1f_1 < 0) {
-    throw new TagException(TagRejection_MALFORMED_CONTEXT_getInstance(), 'a nostr kind is a non-negative number; this context declares ' + this.s1f_1);
+  this.b1h_1 = kind;
+  this.c1h_1 = orderMessageType;
+  if (this.b1h_1 < 0) {
+    throw new TagException(TagRejection_MALFORMED_CONTEXT_getInstance(), 'a nostr kind is a non-negative number; this context declares ' + this.b1h_1);
   }
-  if (this.s1f_1 === 16 && this.t1f_1 == null) {
+  if (this.b1h_1 === 16 && this.c1h_1 == null) {
     throw new TagException(TagRejection_MALFORMED_CONTEXT_getInstance(), '\xA77.4 discriminates a kind:16 by its `type` tag, so a context for one must name the type');
   }
-  if (!(this.s1f_1 === 16) && !(this.t1f_1 == null)) {
-    throw new TagException(TagRejection_MALFORMED_CONTEXT_getInstance(), 'only a kind:16 carries a `type` (\xA77.4); this context ' + ('declares kind ' + this.s1f_1));
+  if (!(this.b1h_1 === 16) && !(this.c1h_1 == null)) {
+    throw new TagException(TagRejection_MALFORMED_CONTEXT_getInstance(), 'only a kind:16 carries a `type` (\xA77.4); this context ' + ('declares kind ' + this.b1h_1));
   }
-  if (!(this.t1f_1 == null) && this.t1f_1 < 1) {
-    throw new TagException(TagRejection_MALFORMED_CONTEXT_getInstance(), "\xA77.4's `type` values start at 1; this context declares " + this.t1f_1);
+  if (!(this.c1h_1 == null) && this.c1h_1 < 1) {
+    throw new TagException(TagRejection_MALFORMED_CONTEXT_getInstance(), "\xA77.4's `type` values start at 1; this context declares " + this.c1h_1);
   }
 }
-protoOf(TagContext).u1f = function () {
-  return NenyaKind_getInstance().ac_1.w(this.s1f_1);
+protoOf(TagContext).d1h = function () {
+  return NenyaKind_getInstance().ac_1.w(this.b1h_1);
 };
-protoOf(TagContext).v1f = function () {
-  return this.s1f_1 === 30404;
+protoOf(TagContext).e1h = function () {
+  return this.b1h_1 === 30404;
 };
-protoOf(TagContext).w1f = function () {
-  return this.s1f_1 === 16 && (this.t1f_1 === 1 || this.t1f_1 === 6);
+protoOf(TagContext).f1h = function () {
+  return this.b1h_1 === 16 && (this.c1h_1 === 1 || this.c1h_1 === 6);
 };
-protoOf(TagContext).x1f = function () {
-  return this.u1f() || this.s1f_1 === 1111;
+protoOf(TagContext).g1h = function () {
+  return this.d1h() || this.b1h_1 === 1111;
 };
 protoOf(TagContext).equals = function (other) {
   var tmp;
   var tmp_0;
   if (other instanceof TagContext) {
-    tmp_0 = other.s1f_1 === this.s1f_1;
+    tmp_0 = other.b1h_1 === this.b1h_1;
   } else {
     tmp_0 = false;
   }
   if (tmp_0) {
-    tmp = other.t1f_1 == this.t1f_1;
+    tmp = other.c1h_1 == this.c1h_1;
   } else {
     tmp = false;
   }
   return tmp;
 };
 protoOf(TagContext).hashCode = function () {
-  var tmp = imul(this.s1f_1, 31);
-  var tmp0_elvis_lhs = this.t1f_1;
+  var tmp = imul(this.b1h_1, 31);
+  var tmp0_elvis_lhs = this.c1h_1;
   return tmp + (tmp0_elvis_lhs == null ? 0 : tmp0_elvis_lhs) | 0;
 };
 protoOf(TagContext).toString = function () {
-  return this.t1f_1 == null ? 'TagContext(kind=' + this.s1f_1 + ')' : 'TagContext(kind=' + this.s1f_1 + ', type=' + this.t1f_1 + ')';
+  return this.c1h_1 == null ? 'TagContext(kind=' + this.b1h_1 + ')' : 'TagContext(kind=' + this.b1h_1 + ', type=' + this.c1h_1 + ')';
 };
 var TagRejection_MALFORMED_CONTEXT_instance;
 var TagRejection_KIND_MISMATCH_instance;
@@ -18474,7 +19333,7 @@ function TagException(reason, message, cause) {
 }
 function asTagRejection(_this__u8e3s4, what) {
   var tmp;
-  switch (_this__u8e3s4.qm_1.u1_1) {
+  switch (_this__u8e3s4.sn_1.u1_1) {
     case 3:
     case 2:
       tmp = TagRejection_LOSSY_getInstance();
@@ -18495,7 +19354,7 @@ function asTagRejection(_this__u8e3s4, what) {
       break;
   }
   var mapped = tmp;
-  return new TagException(mapped, what + " was refused by \xA74.4's money rules as " + _this__u8e3s4.qm_1.t1_1, _this__u8e3s4);
+  return new TagException(mapped, what + " was refused by \xA74.4's money rules as " + _this__u8e3s4.sn_1.t1_1, _this__u8e3s4);
 }
 function TagRejection_MALFORMED_CONTEXT_getInstance() {
   TagRejection_initEntries();
@@ -18633,10 +19492,10 @@ function checkListingRules($this, context, counts) {
     var spec = _iterator__ex2g4s.i();
     var tmp0_elvis_lhs = counts.q1(spec.ff_1);
     var count = tmp0_elvis_lhs == null ? 0 : tmp0_elvis_lhs;
-    switch (spec.if_1.d18(context).u1_1) {
+    switch (spec.if_1.m19(context).u1_1) {
       case 0:
         if (count === 0) {
-          throw new TagException(TagRejection_MISSING_REQUIRED_getInstance(), '\xA75.3 marks `' + spec.ff_1 + '` ' + spec.if_1.h19() + ' and this ' + 'listing carries none');
+          throw new TagException(TagRejection_MISSING_REQUIRED_getInstance(), '\xA75.3 marks `' + spec.ff_1 + '` ' + spec.if_1.q1a() + ' and this ' + 'listing carries none');
         }
 
         break;
@@ -18661,11 +19520,11 @@ function checkListingRules($this, context, counts) {
 function checkItemRules($this, context, counts) {
   var tmp0_elvis_lhs = counts.q1('item');
   var count = tmp0_elvis_lhs == null ? 0 : tmp0_elvis_lhs;
-  if (context.w1f() && !(count === 1)) {
-    throw new TagException(count === 0 ? TagRejection_MISSING_REQUIRED_getInstance() : TagRejection_DUPLICATE_TAG_getInstance(), '\xA75.3 requires exactly one `item` tag on a kind:' + context.s1f_1 + ' ' + ('type=' + context.t1f_1 + '; this one carries ' + count));
+  if (context.f1h() && !(count === 1)) {
+    throw new TagException(count === 0 ? TagRejection_MISSING_REQUIRED_getInstance() : TagRejection_DUPLICATE_TAG_getInstance(), '\xA75.3 requires exactly one `item` tag on a kind:' + context.b1h_1 + ' ' + ('type=' + context.c1h_1 + '; this one carries ' + count));
   }
-  if (context.x1f() && count > 0) {
-    throw new TagException(TagRejection_FORBIDDEN_TAG_getInstance(), '\xA75.3 gives `item` cardinality 0 on kind ' + context.s1f_1 + '; this one carries ' + count);
+  if (context.g1h() && count > 0) {
+    throw new TagException(TagRejection_FORBIDDEN_TAG_getInstance(), '\xA75.3 gives `item` cardinality 0 on kind ' + context.b1h_1 + '; this one carries ' + count);
   }
 }
 function checkImageBound($this, counts, limits) {
@@ -18759,7 +19618,7 @@ function decode($this, context, tags) {
         break;
     }
   }
-  if (context.u1f()) {
+  if (context.d1h()) {
     checkListingTopics($this, context, topics);
   }
   return new TagSet(context, tags, dValue, texts.q1('title'), texts.q1('summary'), timestamps.q1('published_at'), price, texts.q1('status'), toList(topics), texts.q1('m'), toList(images), timestamps.q1('expiration'), texts.q1('alt'), nenyaVersion, toList(pubkeyRefs), fee, feeRecipient, texts.q1('license'), timestamps.q1('deliver_by'), item, toList(unknown));
@@ -18808,7 +19667,7 @@ function checkListingTopics($this, context, topics) {
   }
   var sides = tmp$ret$5;
   if (!(sides === 1)) {
-    throw new TagException(TagRejection_MISSING_TOPIC_getInstance(), '\xA75.3 requires exactly one of `request` / `wts` on a listing; this ' + ('kind:' + context.s1f_1 + ' carries ' + sides));
+    throw new TagException(TagRejection_MISSING_TOPIC_getInstance(), '\xA75.3 requires exactly one of `request` / `wts` on a listing; this ' + ('kind:' + context.b1h_1 + ' carries ' + sides));
   }
 }
 function value_0($this, tag, what) {
@@ -18877,13 +19736,13 @@ function readFee($this, tag) {
     }
   }
   var term = tmp;
-  if (term.m19() && !(tag.j() === 3)) {
+  if (term.v1a() && !(tag.j() === 3)) {
     throw new TagException(TagRejection_WRONG_ARITY_getInstance(), '\xA78.1 makes the recipient REQUIRED when basis points are greater than zero; ' + ('this `fee` carries ' + tag.j() + ' elements'));
   }
-  if (!term.m19() && !(tag.j() === 2)) {
+  if (!term.v1a() && !(tag.j() === 2)) {
     throw new TagException(TagRejection_WRONG_ARITY_getInstance(), '\xA78.1 requires the recipient be OMITTED at zero basis points, so the canonical no-fee form is the two-element `["fee", "0"]`');
   }
-  var recipient = term.m19() ? readPubkeyHex(tag.k(2), 'a `fee` recipient') : null;
+  var recipient = term.v1a() ? readPubkeyHex(tag.k(2), 'a `fee` recipient') : null;
   return to(term, recipient);
 }
 function readImage($this, tag) {
@@ -18928,8 +19787,8 @@ function Companion_45() {
   this.ud_1 = 3;
 }
 protoOf(Companion_45).vd = function (event, context, limits) {
-  if (!(event.hd().dd_1 === context.s1f_1)) {
-    throw new TagException(TagRejection_KIND_MISMATCH_getInstance(), 'the context declares kind ' + context.s1f_1 + ' and the event carries kind ' + ('' + event.hd().dd_1 + "; \xA75.3's cardinality and requirement rules are a ") + 'function of the kind, so reading one under the other applies the wrong set');
+  if (!(event.hd().dd_1 === context.b1h_1)) {
+    throw new TagException(TagRejection_KIND_MISMATCH_getInstance(), 'the context declares kind ' + context.b1h_1 + ' and the event carries kind ' + ('' + event.hd().dd_1 + "; \xA75.3's cardinality and requirement rules are a ") + 'function of the kind, so reading one under the other applies the wrong set');
   }
   var tags = event.hd().gd_1;
   // Inline function 'kotlin.collections.mutableMapOf' call
@@ -18944,7 +19803,7 @@ protoOf(Companion_45).vd = function (event, context, limits) {
     counts.v2(key, value);
   }
   checkDuplicates(this, counts);
-  if (context.u1f()) {
+  if (context.d1h()) {
     checkListingRules(this, context, counts);
   }
   checkItemRules(this, context, counts);
@@ -19091,8 +19950,8 @@ protoOf(Coordinate).toString = function () {
 };
 function Companion_47() {
   Companion_instance_47 = this;
-  this.y1f_1 = 'https://';
-  this.z1f_1 = Regex_init_$Create$('[0-9]+x[0-9]+');
+  this.h1h_1 = 'https://';
+  this.i1h_1 = Regex_init_$Create$('[0-9]+x[0-9]+');
 }
 var Companion_instance_47;
 function Companion_getInstance_47() {
@@ -19113,7 +19972,7 @@ function ImageRef(url, dimensions) {
   if (!startsWith(tmp$ret$2, 'https://')) {
     throw new TagException(TagRejection_NOT_HTTPS_getInstance(), '\xA75.3 says an `image` MUST be an `https:` URL, never inline bytes and never a `data:` URI');
   }
-  if (!(dimensions == null) && !Companion_getInstance_47().z1f_1.p8(dimensions)) {
+  if (!(dimensions == null) && !Companion_getInstance_47().i1h_1.p8(dimensions)) {
     throw new TagException(TagRejection_MALFORMED_NUMBER_getInstance(), "\xA75.3 encodes an `image` tag's third element as `<width>x<height>`");
   }
   this.xg_1 = url;
@@ -19179,7 +20038,7 @@ protoOf(PubkeyRef).toString = function () {
   return 'PubkeyRef(redacted)';
 };
 function Companion_48() {
-  this.a1g_1 = '1';
+  this.j1h_1 = '1';
 }
 var Companion_instance_48;
 function Companion_getInstance_48() {
@@ -19187,35 +20046,35 @@ function Companion_getInstance_48() {
 }
 function ItemRef(coordinate, quantity) {
   quantity = quantity === VOID ? '1' : quantity;
-  this.sq_1 = coordinate;
-  this.tq_1 = quantity;
-  if (!(this.tq_1 === '1')) {
+  this.fn_1 = coordinate;
+  this.gn_1 = quantity;
+  if (!(this.gn_1 === '1')) {
     throw new TagException(TagRejection_MALFORMED_NUMBER_getInstance(), '\xA75.3 says an `item` quantity MUST be the string "1" in Nenya v1 and MUST be rejected otherwise');
   }
 }
 protoOf(ItemRef).zg = function () {
-  return listOf(['item', this.sq_1.sg(), this.tq_1]);
+  return listOf(['item', this.fn_1.sg(), this.gn_1]);
 };
 protoOf(ItemRef).equals = function (other) {
   var tmp;
   var tmp_0;
   if (other instanceof ItemRef) {
-    tmp_0 = other.sq_1.equals(this.sq_1);
+    tmp_0 = other.fn_1.equals(this.fn_1);
   } else {
     tmp_0 = false;
   }
   if (tmp_0) {
-    tmp = other.tq_1 === this.tq_1;
+    tmp = other.gn_1 === this.gn_1;
   } else {
     tmp = false;
   }
   return tmp;
 };
 protoOf(ItemRef).hashCode = function () {
-  return imul(this.sq_1.hashCode(), 31) + getStringHashCode(this.tq_1) | 0;
+  return imul(this.fn_1.hashCode(), 31) + getStringHashCode(this.gn_1) | 0;
 };
 protoOf(ItemRef).toString = function () {
-  return 'ItemRef(quantity=' + this.tq_1 + ', coordinate=' + this.sq_1.toString() + ')';
+  return 'ItemRef(quantity=' + this.gn_1 + ', coordinate=' + this.fn_1.toString() + ')';
 };
 function TagWriter() {
   this.tg_1 = 'SAT';
@@ -19240,13 +20099,13 @@ protoOf(TagWriter).ah = function (term, recipient) {
   if (equals(term, Absent_instance)) {
     throw new TagException(TagRejection_ABSENT_FEE_TERM_getInstance(), '\xA78.1\'s absent fee term is written by emitting no `fee` tag at all; the two-element `["fee", "0"]` is a stated zero, which is a different and signed statement');
   }
-  if (term.m19() && recipient == null) {
+  if (term.v1a() && recipient == null) {
     throw new TagException(TagRejection_WRONG_ARITY_getInstance(), '\xA78.1 makes the fee recipient REQUIRED when basis points are greater than zero');
   }
-  if (!term.m19() && !(recipient == null)) {
+  if (!term.v1a() && !(recipient == null)) {
     throw new TagException(TagRejection_WRONG_ARITY_getInstance(), '\xA78.1 requires the fee recipient be OMITTED at zero basis points, so the canonical no-fee form is the two-element `["fee", "0"]`');
   }
-  var bps = term.l19().toString();
+  var bps = term.u1a().toString();
   return recipient == null ? listOf(['fee', bps]) : listOf(['fee', bps, readPubkeyHex(recipient, 'a fee recipient')]);
 };
 protoOf(TagWriter).eh = function (name, unixSeconds) {
@@ -19305,11 +20164,11 @@ function readAmount(value, unit, what) {
   try {
     var tmp;
     if (get_SATOSHI_UNITS().w(unit)) {
-      tmp = Companion_getInstance_16().gn(readPermissiveDecimal(value, what));
+      tmp = Companion_getInstance_16().io(readPermissiveDecimal(value, what));
     } else if (get_MILLISATOSHI_UNITS().w(unit)) {
-      tmp = Companion_getInstance_16().en(readPermissiveDecimal(value, what));
+      tmp = Companion_getInstance_16().go(readPermissiveDecimal(value, what));
     } else if (get_BITCOIN_UNITS().w(unit)) {
-      tmp = Companion_getInstance_16().q19(value);
+      tmp = Companion_getInstance_16().z1a(value);
     } else {
       throw new TagException(TagRejection_UNKNOWN_UNIT_getInstance(), '\xA74.4 lists the unit tokens an implementation MUST accept on read; ' + what + ' carries ' + 'one that is not among them');
     }
@@ -19513,7 +20372,7 @@ function TagRequirement_initEntries() {
 }
 function TagRequirement(name, ordinal, token) {
   Enum.call(this, name, ordinal);
-  this.d1g_1 = token;
+  this.m1h_1 = token;
 }
 var TagSide_BOTH_instance;
 var TagSide_NEITHER_instance;
@@ -19527,11 +20386,11 @@ function TagSide_initEntries() {
 }
 function TagSide(name, ordinal, token) {
   Enum.call(this, name, ordinal);
-  this.g1g_1 = token;
+  this.p1h_1 = token;
 }
 function Companion_49() {
 }
-protoOf(Companion_49).h1g = function (requirement) {
+protoOf(Companion_49).q1h = function (requirement) {
   return new ListingRequirement(requirement, requirement);
 };
 var Companion_instance_49;
@@ -19539,35 +20398,35 @@ function Companion_getInstance_49() {
   return Companion_instance_49;
 }
 function ListingRequirement(onRequests, onOffers) {
-  this.b18_1 = onRequests;
-  this.c18_1 = onOffers;
+  this.k19_1 = onRequests;
+  this.l19_1 = onOffers;
 }
-protoOf(ListingRequirement).h19 = function () {
-  return this.b18_1.equals(this.c18_1) ? this.b18_1.d1g_1 : this.b18_1.d1g_1 + ' on requests, ' + this.c18_1.d1g_1 + ' on offers';
+protoOf(ListingRequirement).q1a = function () {
+  return this.k19_1.equals(this.l19_1) ? this.k19_1.m1h_1 : this.k19_1.m1h_1 + ' on requests, ' + this.l19_1.m1h_1 + ' on offers';
 };
-protoOf(ListingRequirement).d18 = function (context) {
-  return context.v1f() ? this.b18_1 : this.c18_1;
+protoOf(ListingRequirement).m19 = function (context) {
+  return context.e1h() ? this.k19_1 : this.l19_1;
 };
 protoOf(ListingRequirement).equals = function (other) {
   var tmp;
   var tmp_0;
   if (other instanceof ListingRequirement) {
-    tmp_0 = other.b18_1.equals(this.b18_1);
+    tmp_0 = other.k19_1.equals(this.k19_1);
   } else {
     tmp_0 = false;
   }
   if (tmp_0) {
-    tmp = other.c18_1.equals(this.c18_1);
+    tmp = other.l19_1.equals(this.l19_1);
   } else {
     tmp = false;
   }
   return tmp;
 };
 protoOf(ListingRequirement).hashCode = function () {
-  return imul(this.b18_1.hashCode(), 31) + this.c18_1.hashCode() | 0;
+  return imul(this.k19_1.hashCode(), 31) + this.l19_1.hashCode() | 0;
 };
 protoOf(ListingRequirement).toString = function () {
-  return this.h19();
+  return this.q1a();
 };
 var TagEncoding_TEXT_instance;
 var TagEncoding_OPAQUE_instance;
@@ -19608,17 +20467,17 @@ function TagSpec(name, side, cardinality, requirement, encoding) {
   this.jf_1 = encoding;
 }
 protoOf(TagSpec).toString = function () {
-  return this.ff_1 + ' | ' + this.gf_1.g1g_1 + ' | ' + this.hf_1.mf_1 + ' | ' + this.if_1.h19();
+  return this.ff_1 + ' | ' + this.gf_1.p1h_1 + ' | ' + this.hf_1.mf_1 + ' | ' + this.if_1.q1a();
 };
 function spec($this, name, cardinality, requirement, encoding) {
-  return new TagSpec(name, TagSide_BOTH_getInstance(), cardinality, Companion_instance_49.h1g(requirement), encoding);
+  return new TagSpec(name, TagSide_BOTH_getInstance(), cardinality, Companion_instance_49.q1h(requirement), encoding);
 }
 function forbidden_0($this, name) {
-  return new TagSpec(name, TagSide_BOTH_getInstance(), TagCardinality_ZERO_getInstance(), Companion_instance_49.h1g(TagRequirement_MUST_NOT_getInstance()), TagEncoding_NONE_getInstance());
+  return new TagSpec(name, TagSide_BOTH_getInstance(), TagCardinality_ZERO_getInstance(), Companion_instance_49.q1h(TagRequirement_MUST_NOT_getInstance()), TagEncoding_NONE_getInstance());
 }
 function NenyaTags() {
   NenyaTags_instance = this;
-  this.cf_1 = listOf([spec(this, 'd', TagCardinality_EXACTLY_ONE_getInstance(), TagRequirement_MUST_getInstance(), TagEncoding_OPAQUE_getInstance()), spec(this, 'title', TagCardinality_EXACTLY_ONE_getInstance(), TagRequirement_MUST_getInstance(), TagEncoding_TEXT_getInstance()), spec(this, 'summary', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_SHOULD_getInstance(), TagEncoding_TEXT_getInstance()), spec(this, 'published_at', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_SHOULD_getInstance(), TagEncoding_TIMESTAMP_getInstance()), spec(this, 'price', TagCardinality_EXACTLY_ONE_getInstance(), TagRequirement_MUST_getInstance(), TagEncoding_PRICE_getInstance()), spec(this, 'status', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_SHOULD_getInstance(), TagEncoding_TEXT_getInstance()), spec(this, 't', TagCardinality_TWO_OR_MORE_getInstance(), TagRequirement_MUST_getInstance(), TagEncoding_TOPIC_getInstance()), spec(this, 'm', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_SHOULD_getInstance(), TagEncoding_TEXT_getInstance()), spec(this, 'image', TagCardinality_ZERO_OR_MORE_getInstance(), TagRequirement_MAY_getInstance(), TagEncoding_IMAGE_getInstance()), spec(this, 'expiration', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_SHOULD_getInstance(), TagEncoding_TIMESTAMP_getInstance()), new TagSpec('alt', TagSide_BOTH_getInstance(), TagCardinality_ZERO_OR_ONE_getInstance(), new ListingRequirement(TagRequirement_MUST_getInstance(), TagRequirement_SHOULD_getInstance()), TagEncoding_TEXT_getInstance()), spec(this, 'nenya', TagCardinality_EXACTLY_ONE_getInstance(), TagRequirement_MUST_getInstance(), TagEncoding_VERSION_getInstance()), spec(this, 'p', TagCardinality_ZERO_OR_MORE_getInstance(), TagRequirement_MAY_getInstance(), TagEncoding_PUBKEY_REF_getInstance()), spec(this, 'fee', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_MAY_getInstance(), TagEncoding_FEE_getInstance()), spec(this, 'license', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_MAY_getInstance(), TagEncoding_TEXT_getInstance()), spec(this, 'deliver_by', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_MAY_getInstance(), TagEncoding_TIMESTAMP_getInstance()), new TagSpec('item', TagSide_NEITHER_getInstance(), TagCardinality_ZERO_getInstance(), Companion_instance_49.h1g(TagRequirement_MUST_NOT_getInstance()), TagEncoding_ITEM_getInstance()), forbidden_0(this, 'g'), forbidden_0(this, 'location')]);
+  this.cf_1 = listOf([spec(this, 'd', TagCardinality_EXACTLY_ONE_getInstance(), TagRequirement_MUST_getInstance(), TagEncoding_OPAQUE_getInstance()), spec(this, 'title', TagCardinality_EXACTLY_ONE_getInstance(), TagRequirement_MUST_getInstance(), TagEncoding_TEXT_getInstance()), spec(this, 'summary', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_SHOULD_getInstance(), TagEncoding_TEXT_getInstance()), spec(this, 'published_at', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_SHOULD_getInstance(), TagEncoding_TIMESTAMP_getInstance()), spec(this, 'price', TagCardinality_EXACTLY_ONE_getInstance(), TagRequirement_MUST_getInstance(), TagEncoding_PRICE_getInstance()), spec(this, 'status', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_SHOULD_getInstance(), TagEncoding_TEXT_getInstance()), spec(this, 't', TagCardinality_TWO_OR_MORE_getInstance(), TagRequirement_MUST_getInstance(), TagEncoding_TOPIC_getInstance()), spec(this, 'm', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_SHOULD_getInstance(), TagEncoding_TEXT_getInstance()), spec(this, 'image', TagCardinality_ZERO_OR_MORE_getInstance(), TagRequirement_MAY_getInstance(), TagEncoding_IMAGE_getInstance()), spec(this, 'expiration', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_SHOULD_getInstance(), TagEncoding_TIMESTAMP_getInstance()), new TagSpec('alt', TagSide_BOTH_getInstance(), TagCardinality_ZERO_OR_ONE_getInstance(), new ListingRequirement(TagRequirement_MUST_getInstance(), TagRequirement_SHOULD_getInstance()), TagEncoding_TEXT_getInstance()), spec(this, 'nenya', TagCardinality_EXACTLY_ONE_getInstance(), TagRequirement_MUST_getInstance(), TagEncoding_VERSION_getInstance()), spec(this, 'p', TagCardinality_ZERO_OR_MORE_getInstance(), TagRequirement_MAY_getInstance(), TagEncoding_PUBKEY_REF_getInstance()), spec(this, 'fee', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_MAY_getInstance(), TagEncoding_FEE_getInstance()), spec(this, 'license', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_MAY_getInstance(), TagEncoding_TEXT_getInstance()), spec(this, 'deliver_by', TagCardinality_ZERO_OR_ONE_getInstance(), TagRequirement_MAY_getInstance(), TagEncoding_TIMESTAMP_getInstance()), new TagSpec('item', TagSide_NEITHER_getInstance(), TagCardinality_ZERO_getInstance(), Companion_instance_49.q1h(TagRequirement_MUST_NOT_getInstance()), TagEncoding_ITEM_getInstance()), forbidden_0(this, 'g'), forbidden_0(this, 'location')]);
   var tmp = this;
   // Inline function 'kotlin.collections.map' call
   var this_0 = this.cf_1;
@@ -19800,14 +20659,14 @@ function nibble_3($this, character) {
   return (_Char___init__impl__6a9atx(48) <= character ? character <= _Char___init__impl__6a9atx(57) : false) ? Char__minus_impl_a2frrh(character, _Char___init__impl__6a9atx(48)) : Char__minus_impl_a2frrh(character, _Char___init__impl__6a9atx(97)) + 10 | 0;
 }
 function Companion_50() {
-  this.hv_1 = 32;
-  this.iv_1 = 64;
+  this.mv_1 = 32;
+  this.nv_1 = 64;
 }
 protoOf(Companion_50).hj = function (hex) {
   return new EventId(decodeThirtyTwoBytes_1(this, readEventIdHex(hex)));
 };
-protoOf(Companion_50).jv = function (event, limits) {
-  var serialisation = event.gv(limits);
+protoOf(Companion_50).ov = function (event, limits) {
+  var serialisation = event.lv(limits);
   // Inline function 'dev.eryalabs.nenya.wire.wireUtf8' call
   var tmp0_elvis_lhs = strictUtf8OrNull(serialisation);
   var tmp;
@@ -19822,9 +20681,9 @@ protoOf(Companion_50).jv = function (event, limits) {
   var tmp$ret$1 = tmp;
   return new EventId(sha256(tmp$ret$1));
 };
-protoOf(Companion_50).fx = function (event, limits, $super) {
-  limits = limits === VOID ? Companion_getInstance_53().yw_1 : limits;
-  return $super === VOID ? this.jv(event, limits) : $super.jv.call(this, event, limits);
+protoOf(Companion_50).jy = function (event, limits, $super) {
+  limits = limits === VOID ? Companion_getInstance_53().dx_1 : limits;
+  return $super === VOID ? this.ov(event, limits) : $super.ov.call(this, event, limits);
 };
 var Companion_instance_50;
 function Companion_getInstance_50() {
@@ -19837,58 +20696,58 @@ function EventId(value) {
   var tmp = this;
   // Inline function 'kotlin.collections.copyOf' call
   // Inline function 'kotlin.js.asDynamic' call
-  tmp.pu_1 = value.slice();
+  tmp.uu_1 = value.slice();
 }
-protoOf(EventId).es = function () {
+protoOf(EventId).js = function () {
   // Inline function 'kotlin.collections.copyOf' call
   // Inline function 'kotlin.js.asDynamic' call
-  return this.pu_1.slice();
+  return this.uu_1.slice();
 };
-protoOf(EventId).qo = function () {
-  return encodeLowerHex_2(this.pu_1);
+protoOf(EventId).np = function () {
+  return encodeLowerHex_2(this.uu_1);
 };
 protoOf(EventId).equals = function (other) {
   var tmp;
   if (other instanceof EventId) {
-    tmp = constantTimeEquals(this.pu_1, other.pu_1);
+    tmp = constantTimeEquals(this.uu_1, other.uu_1);
   } else {
     tmp = false;
   }
   return tmp;
 };
 protoOf(EventId).hashCode = function () {
-  return contentHashCode(this.pu_1);
+  return contentHashCode(this.uu_1);
 };
 protoOf(EventId).toString = function () {
   return 'EventId(redacted)';
 };
 function IdChecked(id, event, limits) {
-  this.i1g_1 = id;
-  this.j1g_1 = event;
-  this.k1g_1 = limits;
+  this.r1h_1 = id;
+  this.s1h_1 = event;
+  this.t1h_1 = limits;
 }
 protoOf(IdChecked).wd = function () {
-  return this.i1g_1;
+  return this.r1h_1;
 };
 protoOf(IdChecked).hd = function () {
-  return this.j1g_1;
+  return this.s1h_1;
 };
 protoOf(IdChecked).toString = function () {
-  return 'CheckedEvent(event=' + this.j1g_1.toString() + ', limits=' + this.k1g_1.toString() + ')';
+  return 'CheckedEvent(event=' + this.s1h_1.toString() + ', limits=' + this.t1h_1.toString() + ')';
 };
 function Companion_51() {
 }
-protoOf(Companion_51).lu = function (claimedIdHex, event, limits) {
+protoOf(Companion_51).qu = function (claimedIdHex, event, limits) {
   var claimed = Companion_instance_50.hj(claimedIdHex);
-  var recomputed = Companion_instance_50.jv(event, limits);
+  var recomputed = Companion_instance_50.ov(event, limits);
   if (!claimed.equals(recomputed)) {
     throw new WireException(WireRejection_ID_MISMATCH_getInstance(), "the claimed id is not the SHA-256 of this event's canonical serialisation (\xA74.1); the event MUST be rejected before any other processing");
   }
   return new IdChecked(recomputed, event, limits);
 };
-protoOf(Companion_51).g11 = function (claimedIdHex, event, limits, $super) {
-  limits = limits === VOID ? Companion_getInstance_53().yw_1 : limits;
-  return $super === VOID ? this.lu(claimedIdHex, event, limits) : $super.lu.call(this, claimedIdHex, event, limits);
+protoOf(Companion_51).l12 = function (claimedIdHex, event, limits, $super) {
+  limits = limits === VOID ? Companion_getInstance_53().dx_1 : limits;
+  return $super === VOID ? this.qu(claimedIdHex, event, limits) : $super.qu.call(this, claimedIdHex, event, limits);
 };
 var Companion_instance_51;
 function Companion_getInstance_51() {
@@ -19960,21 +20819,21 @@ function JsonRejection(name, ordinal) {
 function JsonException(reason, message) {
   IllegalArgumentException_init_$Init$_0(message, this);
   captureStack(this, JsonException);
-  this.hu_1 = reason;
+  this.mu_1 = reason;
 }
 function ReadEvent(event, claimedIdHex, signatureHex) {
-  this.iu_1 = event;
-  this.ju_1 = claimedIdHex;
-  this.ku_1 = signatureHex;
+  this.nu_1 = event;
+  this.ou_1 = claimedIdHex;
+  this.pu_1 = signatureHex;
 }
 protoOf(ReadEvent).toString = function () {
-  return 'ReadEvent(event=' + this.iu_1.toString() + ', signed=' + !(this.ku_1 == null) + ')';
+  return 'ReadEvent(event=' + this.nu_1.toString() + ', signed=' + !(this.pu_1 == null) + ')';
 };
 function readStringValue($this, field) {
-  if (!has($this) || !(charSequenceGet($this.l1g_1, $this.n1g_1) === _Char___init__impl__6a9atx(34))) {
-    throw new JsonException(JsonRejection_VALUE_NOT_A_STRING_getInstance(), '\xA74.1 defines `' + field + '` as a JSON string; offset ' + $this.n1g_1 + ' opens with something else');
+  if (!has($this) || !(charSequenceGet($this.u1h_1, $this.w1h_1) === _Char___init__impl__6a9atx(34))) {
+    throw new JsonException(JsonRejection_VALUE_NOT_A_STRING_getInstance(), '\xA74.1 defines `' + field + '` as a JSON string; offset ' + $this.w1h_1 + ' opens with something else');
   }
-  $this.n1g_1 = $this.n1g_1 + 1 | 0;
+  $this.w1h_1 = $this.w1h_1 + 1 | 0;
   return readStringBody($this);
 }
 function readStringBody($this) {
@@ -19982,21 +20841,21 @@ function readStringBody($this) {
   while (true) {
     if (!has($this))
       throw unterminated($this, 'a string');
-    var character = charSequenceGet($this.l1g_1, $this.n1g_1);
+    var character = charSequenceGet($this.u1h_1, $this.w1h_1);
     if (character === _Char___init__impl__6a9atx(34)) {
-      $this.n1g_1 = $this.n1g_1 + 1 | 0;
+      $this.w1h_1 = $this.w1h_1 + 1 | 0;
       return out.toString();
     } else {
       if (character === _Char___init__impl__6a9atx(92)) {
-        $this.n1g_1 = $this.n1g_1 + 1 | 0;
+        $this.w1h_1 = $this.w1h_1 + 1 | 0;
         readEscape($this, out);
       } else {
         // Inline function 'kotlin.code' call
         if (Char__toInt_impl_vasixd(character) < 32)
-          throw new JsonException(JsonRejection_RAW_CONTROL_CHARACTER_getInstance(), 'a raw character below 0x20 inside a string at offset ' + $this.n1g_1 + '; RFC 8259 ' + "requires it be escaped, which is what \xA74.1's rule 2 emits");
+          throw new JsonException(JsonRejection_RAW_CONTROL_CHARACTER_getInstance(), 'a raw character below 0x20 inside a string at offset ' + $this.w1h_1 + '; RFC 8259 ' + "requires it be escaped, which is what \xA74.1's rule 2 emits");
         else {
           out.l6(character);
-          $this.n1g_1 = $this.n1g_1 + 1 | 0;
+          $this.w1h_1 = $this.w1h_1 + 1 | 0;
         }
       }
     }
@@ -20005,8 +20864,8 @@ function readStringBody($this) {
 function readEscape($this, out) {
   if (!has($this))
     throw unterminated($this, 'an escape');
-  var marker = charSequenceGet($this.l1g_1, $this.n1g_1);
-  $this.n1g_1 = $this.n1g_1 + 1 | 0;
+  var marker = charSequenceGet($this.u1h_1, $this.w1h_1);
+  $this.w1h_1 = $this.w1h_1 + 1 | 0;
   if (marker === _Char___init__impl__6a9atx(34))
     out.l6(_Char___init__impl__6a9atx(34));
   else if (marker === _Char___init__impl__6a9atx(92))
@@ -20026,25 +20885,25 @@ function readEscape($this, out) {
   else if (marker === _Char___init__impl__6a9atx(117)) {
     readUnicodeEscape($this, out);
   } else
-    throw new JsonException(JsonRejection_BAD_ESCAPE_getInstance(), 'an escape JSON does not define, at offset ' + ($this.n1g_1 - 1 | 0));
+    throw new JsonException(JsonRejection_BAD_ESCAPE_getInstance(), 'an escape JSON does not define, at offset ' + ($this.w1h_1 - 1 | 0));
 }
 function readUnicodeEscape($this, out) {
   var unit = readFourHexDigits($this);
-  var progression = Companion_getInstance_52().t1g_1;
+  var progression = Companion_getInstance_52().c1i_1;
   var containsLower = progression.r_1;
   if (unit <= progression.s_1 ? containsLower <= unit : false) {
-    if (($this.n1g_1 + 1 | 0) >= $this.l1g_1.length || !(charSequenceGet($this.l1g_1, $this.n1g_1) === _Char___init__impl__6a9atx(92)) || !(charSequenceGet($this.l1g_1, $this.n1g_1 + 1 | 0) === _Char___init__impl__6a9atx(117))) {
+    if (($this.w1h_1 + 1 | 0) >= $this.u1h_1.length || !(charSequenceGet($this.u1h_1, $this.w1h_1) === _Char___init__impl__6a9atx(92)) || !(charSequenceGet($this.u1h_1, $this.w1h_1 + 1 | 0) === _Char___init__impl__6a9atx(117))) {
       throw unpairedSurrogate($this);
     }
-    $this.n1g_1 = $this.n1g_1 + 2 | 0;
+    $this.w1h_1 = $this.w1h_1 + 2 | 0;
     var low = readFourHexDigits($this);
-    var progression_0 = Companion_getInstance_52().u1g_1;
+    var progression_0 = Companion_getInstance_52().d1i_1;
     var containsLower_0 = progression_0.r_1;
     if (!(low <= progression_0.s_1 ? containsLower_0 <= low : false))
       throw unpairedSurrogate($this);
     out.l6(numberToChar(unit)).l6(numberToChar(low));
   } else {
-    var progression_1 = Companion_getInstance_52().u1g_1;
+    var progression_1 = Companion_getInstance_52().d1i_1;
     var containsLower_1 = progression_1.r_1;
     if (unit <= progression_1.s_1 ? containsLower_1 <= unit : false)
       throw unpairedSurrogate($this);
@@ -20054,7 +20913,7 @@ function readUnicodeEscape($this, out) {
   }
 }
 function readFourHexDigits($this) {
-  if (($this.n1g_1 + 4 | 0) > $this.l1g_1.length)
+  if (($this.w1h_1 + 4 | 0) > $this.u1h_1.length)
     throw unterminated($this, 'a `\\u` escape');
   var value = 0;
   var inductionVariable = 0;
@@ -20062,31 +20921,31 @@ function readFourHexDigits($this) {
     do {
       var offset = inductionVariable;
       inductionVariable = inductionVariable + 1 | 0;
-      var digit = nibbleOrMinusOne($this, charSequenceGet($this.l1g_1, $this.n1g_1 + offset | 0));
+      var digit = nibbleOrMinusOne($this, charSequenceGet($this.u1h_1, $this.w1h_1 + offset | 0));
       if (digit < 0) {
-        throw new JsonException(JsonRejection_BAD_ESCAPE_getInstance(), 'a `\\u` escape is four hexadecimal digits; offset ' + ($this.n1g_1 + offset | 0) + ' is not one');
+        throw new JsonException(JsonRejection_BAD_ESCAPE_getInstance(), 'a `\\u` escape is four hexadecimal digits; offset ' + ($this.w1h_1 + offset | 0) + ' is not one');
       }
       value = value << 4 | digit;
     }
      while (inductionVariable < 4);
-  $this.n1g_1 = $this.n1g_1 + 4 | 0;
+  $this.w1h_1 = $this.w1h_1 + 4 | 0;
   return value;
 }
 function readNumber($this, field) {
   if (!has($this))
     throw unterminated($this, 'a number');
-  var first = charSequenceGet($this.l1g_1, $this.n1g_1);
+  var first = charSequenceGet($this.u1h_1, $this.w1h_1);
   if (first === _Char___init__impl__6a9atx(45) || first === _Char___init__impl__6a9atx(43)) {
     throw new JsonException(JsonRejection_SIGNED_NUMBER_getInstance(), '`' + field + '` is a non-negative integer and \xA74.3 forbids accepting a signed form');
   }
   if (!(_Char___init__impl__6a9atx(48) <= first ? first <= _Char___init__impl__6a9atx(57) : false)) {
-    throw new JsonException(JsonRejection_NUMBER_EXPECTED_getInstance(), '\xA74.1 emits `' + field + '` as a bare JSON number; offset ' + $this.n1g_1 + ' opens with something ' + 'else \u2014 a quoted number, `null`, `NaN` and `Infinity` all land here');
+    throw new JsonException(JsonRejection_NUMBER_EXPECTED_getInstance(), '\xA74.1 emits `' + field + '` as a bare JSON number; offset ' + $this.w1h_1 + ' opens with something ' + 'else \u2014 a quoted number, `null`, `NaN` and `Infinity` all land here');
   }
-  var start = $this.n1g_1;
+  var start = $this.w1h_1;
   $l$loop: while (true) {
     var tmp;
     if (has($this)) {
-      var containsArg = charSequenceGet($this.l1g_1, $this.n1g_1);
+      var containsArg = charSequenceGet($this.u1h_1, $this.w1h_1);
       tmp = _Char___init__impl__6a9atx(48) <= containsArg ? containsArg <= _Char___init__impl__6a9atx(57) : false;
     } else {
       tmp = false;
@@ -20094,13 +20953,13 @@ function readNumber($this, field) {
     if (!tmp) {
       break $l$loop;
     }
-    $this.n1g_1 = $this.n1g_1 + 1 | 0;
+    $this.w1h_1 = $this.w1h_1 + 1 | 0;
   }
-  var digits = $this.n1g_1 - start | 0;
-  if (charSequenceGet($this.l1g_1, start) === _Char___init__impl__6a9atx(48) && digits > 1) {
+  var digits = $this.w1h_1 - start | 0;
+  if (charSequenceGet($this.u1h_1, start) === _Char___init__impl__6a9atx(48) && digits > 1) {
     throw new JsonException(JsonRejection_LEADING_ZERO_getInstance(), '`' + field + '` carries a leading zero; JSON has no such number, and two spellings ' + 'of one timestamp are two event ids');
   }
-  if (has($this) && (charSequenceGet($this.l1g_1, $this.n1g_1) === _Char___init__impl__6a9atx(46) || charSequenceGet($this.l1g_1, $this.n1g_1) === _Char___init__impl__6a9atx(101) || charSequenceGet($this.l1g_1, $this.n1g_1) === _Char___init__impl__6a9atx(69))) {
+  if (has($this) && (charSequenceGet($this.u1h_1, $this.w1h_1) === _Char___init__impl__6a9atx(46) || charSequenceGet($this.u1h_1, $this.w1h_1) === _Char___init__impl__6a9atx(101) || charSequenceGet($this.u1h_1, $this.w1h_1) === _Char___init__impl__6a9atx(69))) {
     throw new JsonException(JsonRejection_FRACTIONAL_OR_EXPONENTIAL_getInstance(), '\xA74.3 forbids accepting `' + field + '` in a floating-point or exponential form');
   }
   if (digits > 19) {
@@ -20108,12 +20967,12 @@ function readNumber($this, field) {
   }
   var value = new Long(0, 0);
   var inductionVariable = start;
-  var last = $this.n1g_1;
+  var last = $this.w1h_1;
   if (inductionVariable < last)
     do {
       var index = inductionVariable;
       inductionVariable = inductionVariable + 1 | 0;
-      var digit = Char__minus_impl_a2frrh(charSequenceGet($this.l1g_1, index), _Char___init__impl__6a9atx(48));
+      var digit = Char__minus_impl_a2frrh(charSequenceGet($this.u1h_1, index), _Char___init__impl__6a9atx(48));
       var tmp_0 = value;
       // Inline function 'kotlin.Long.minus' call
       var tmp$ret$0 = (new Long(-1, 2147483647)).e2(toLong(digit));
@@ -20127,40 +20986,40 @@ function readNumber($this, field) {
   return value;
 }
 function readTags($this) {
-  if (!has($this) || !(charSequenceGet($this.l1g_1, $this.n1g_1) === _Char___init__impl__6a9atx(91))) {
-    throw new JsonException(JsonRejection_TAGS_NOT_AN_ARRAY_getInstance(), '\xA74.1 defines `tags` as an array; offset ' + $this.n1g_1 + ' opens with something else');
+  if (!has($this) || !(charSequenceGet($this.u1h_1, $this.w1h_1) === _Char___init__impl__6a9atx(91))) {
+    throw new JsonException(JsonRejection_TAGS_NOT_AN_ARRAY_getInstance(), '\xA74.1 defines `tags` as an array; offset ' + $this.w1h_1 + ' opens with something else');
   }
-  $this.n1g_1 = $this.n1g_1 + 1 | 0;
+  $this.w1h_1 = $this.w1h_1 + 1 | 0;
   var tags = ArrayList_init_$Create$_0();
   var afterComma = false;
   while (true) {
     skipWhitespace($this);
     if (!has($this))
       throw unterminated($this, '`tags`');
-    if (charSequenceGet($this.l1g_1, $this.n1g_1) === _Char___init__impl__6a9atx(93)) {
+    if (charSequenceGet($this.u1h_1, $this.w1h_1) === _Char___init__impl__6a9atx(93)) {
       if (afterComma)
         throw trailingComma($this, '`tags`');
-      $this.n1g_1 = $this.n1g_1 + 1 | 0;
+      $this.w1h_1 = $this.w1h_1 + 1 | 0;
       return tags;
     }
-    if (!(charSequenceGet($this.l1g_1, $this.n1g_1) === _Char___init__impl__6a9atx(91))) {
+    if (!(charSequenceGet($this.u1h_1, $this.w1h_1) === _Char___init__impl__6a9atx(91))) {
       tagIsNotAnArray($this);
     }
-    if (tags.j() >= $this.m1g_1.w1g_1) {
-      throw new WireException(WireRejection_TOO_MANY_TAGS_getInstance(), 'the event carries more than ' + $this.m1g_1.w1g_1 + ' tags; \xA74.3 requires ' + 'rejecting rather than truncating');
+    if (tags.j() >= $this.v1h_1.f1i_1) {
+      throw new WireException(WireRejection_TOO_MANY_TAGS_getInstance(), 'the event carries more than ' + $this.v1h_1.f1i_1 + ' tags; \xA74.3 requires ' + 'rejecting rather than truncating');
     }
-    $this.n1g_1 = $this.n1g_1 + 1 | 0;
+    $this.w1h_1 = $this.w1h_1 + 1 | 0;
     tags.e(readTag($this));
     afterComma = false;
     skipWhitespace($this);
     if (!has($this))
       throw unterminated($this, '`tags`');
-    var tmp0_subject = charSequenceGet($this.l1g_1, $this.n1g_1);
+    var tmp0_subject = charSequenceGet($this.u1h_1, $this.w1h_1);
     if (tmp0_subject === _Char___init__impl__6a9atx(44)) {
-      $this.n1g_1 = $this.n1g_1 + 1 | 0;
+      $this.w1h_1 = $this.w1h_1 + 1 | 0;
       afterComma = true;
     } else if (tmp0_subject !== _Char___init__impl__6a9atx(93))
-      throw new JsonException(JsonRejection_UNEXPECTED_CHARACTER_getInstance(), 'a `,` or a `]` must follow a tag; offset ' + $this.n1g_1 + ' carries something else');
+      throw new JsonException(JsonRejection_UNEXPECTED_CHARACTER_getInstance(), 'a `,` or a `]` must follow a tag; offset ' + $this.w1h_1 + ' carries something else');
   }
 }
 function readTag($this) {
@@ -20170,52 +21029,52 @@ function readTag($this) {
     skipWhitespace($this);
     if (!has($this))
       throw unterminated($this, 'a tag');
-    if (charSequenceGet($this.l1g_1, $this.n1g_1) === _Char___init__impl__6a9atx(93)) {
+    if (charSequenceGet($this.u1h_1, $this.w1h_1) === _Char___init__impl__6a9atx(93)) {
       if (afterComma)
         throw trailingComma($this, 'a tag');
-      $this.n1g_1 = $this.n1g_1 + 1 | 0;
+      $this.w1h_1 = $this.w1h_1 + 1 | 0;
       return values;
     }
-    if (!(charSequenceGet($this.l1g_1, $this.n1g_1) === _Char___init__impl__6a9atx(34))) {
+    if (!(charSequenceGet($this.u1h_1, $this.w1h_1) === _Char___init__impl__6a9atx(34))) {
       tagElementIsNotAString($this);
     }
-    $this.n1g_1 = $this.n1g_1 + 1 | 0;
+    $this.w1h_1 = $this.w1h_1 + 1 | 0;
     values.e(readStringBody($this));
     afterComma = false;
     skipWhitespace($this);
     if (!has($this))
       throw unterminated($this, 'a tag');
-    var tmp0_subject = charSequenceGet($this.l1g_1, $this.n1g_1);
+    var tmp0_subject = charSequenceGet($this.u1h_1, $this.w1h_1);
     if (tmp0_subject === _Char___init__impl__6a9atx(44)) {
-      $this.n1g_1 = $this.n1g_1 + 1 | 0;
+      $this.w1h_1 = $this.w1h_1 + 1 | 0;
       afterComma = true;
     } else if (tmp0_subject !== _Char___init__impl__6a9atx(93))
-      throw new JsonException(JsonRejection_UNEXPECTED_CHARACTER_getInstance(), 'a `,` or a `]` must follow a tag value; offset ' + $this.n1g_1 + ' carries something else');
+      throw new JsonException(JsonRejection_UNEXPECTED_CHARACTER_getInstance(), 'a `,` or a `]` must follow a tag value; offset ' + $this.w1h_1 + ' carries something else');
   }
 }
 function tagIsNotAnArray($this) {
-  if (startsWith_0($this.l1g_1, 'null', $this.n1g_1))
+  if (startsWith_0($this.u1h_1, 'null', $this.w1h_1))
     throw nullTagElement($this);
-  throw new JsonException(JsonRejection_TAG_NOT_AN_ARRAY_getInstance(), '\xA74.3: a tag is an array of one or more strings; offset ' + $this.n1g_1 + ' opens with something else');
+  throw new JsonException(JsonRejection_TAG_NOT_AN_ARRAY_getInstance(), '\xA74.3: a tag is an array of one or more strings; offset ' + $this.w1h_1 + ' opens with something else');
 }
 function tagElementIsNotAString($this) {
-  if (charSequenceGet($this.l1g_1, $this.n1g_1) === _Char___init__impl__6a9atx(91)) {
-    throw new JsonException(JsonRejection_NESTED_ARRAY_getInstance(), 'an array where a tag value belongs, at offset ' + $this.n1g_1 + ". An event's JSON is exactly " + 'three levels deep, so this reader neither recurses nor counts depth: ' + 'anything deeper is refused at the character that opens it');
+  if (charSequenceGet($this.u1h_1, $this.w1h_1) === _Char___init__impl__6a9atx(91)) {
+    throw new JsonException(JsonRejection_NESTED_ARRAY_getInstance(), 'an array where a tag value belongs, at offset ' + $this.w1h_1 + ". An event's JSON is exactly " + 'three levels deep, so this reader neither recurses nor counts depth: ' + 'anything deeper is refused at the character that opens it');
   }
-  if (startsWith_0($this.l1g_1, 'null', $this.n1g_1))
+  if (startsWith_0($this.u1h_1, 'null', $this.w1h_1))
     throw nullTagElement($this);
-  throw new JsonException(JsonRejection_TAG_ELEMENT_NOT_A_STRING_getInstance(), '\xA74.3 requires rejecting an event containing a non-string tag element; offset ' + $this.n1g_1 + ' ' + 'is not a string');
+  throw new JsonException(JsonRejection_TAG_ELEMENT_NOT_A_STRING_getInstance(), '\xA74.3 requires rejecting an event containing a non-string tag element; offset ' + $this.w1h_1 + ' ' + 'is not a string');
 }
 function has($this) {
-  return $this.n1g_1 < $this.l1g_1.length;
+  return $this.w1h_1 < $this.u1h_1.length;
 }
 function skipWhitespace($this) {
-  while ($this.n1g_1 < $this.l1g_1.length) {
-    var tmp0_subject = charSequenceGet($this.l1g_1, $this.n1g_1);
+  while ($this.w1h_1 < $this.u1h_1.length) {
+    var tmp0_subject = charSequenceGet($this.u1h_1, $this.w1h_1);
     if (tmp0_subject === _Char___init__impl__6a9atx(32) || tmp0_subject === _Char___init__impl__6a9atx(9) || (tmp0_subject === _Char___init__impl__6a9atx(10) || tmp0_subject === _Char___init__impl__6a9atx(13))) {
-      $this.n1g_1 = $this.n1g_1 + 1 | 0;
+      $this.w1h_1 = $this.w1h_1 + 1 | 0;
     } else if (tmp0_subject === _Char___init__impl__6a9atx(47))
-      throw new JsonException(JsonRejection_COMMENT_getInstance(), 'a `/` at offset ' + $this.n1g_1 + ', where JSON has no use for one; comments are not JSON');
+      throw new JsonException(JsonRejection_COMMENT_getInstance(), 'a `/` at offset ' + $this.w1h_1 + ', where JSON has no use for one; comments are not JSON');
     else
       return Unit_instance;
   }
@@ -20235,29 +21094,29 @@ function required($this, value, key) {
   return tmp;
 }
 function unterminated($this, what) {
-  return new JsonException(JsonRejection_UNTERMINATED_getInstance(), 'the text ended inside ' + what + ', at offset ' + $this.n1g_1 + ' of ' + $this.l1g_1.length);
+  return new JsonException(JsonRejection_UNTERMINATED_getInstance(), 'the text ended inside ' + what + ', at offset ' + $this.w1h_1 + ' of ' + $this.u1h_1.length);
 }
 function trailingComma($this, what) {
-  return new JsonException(JsonRejection_TRAILING_COMMA_getInstance(), 'a trailing comma closes ' + what + ' at offset ' + $this.n1g_1 + ". NIP-59's own worked gift wrap carries " + 'one; \xA718 says a parser that accepts it is a parser that accepts malformed input ' + 'from a relay');
+  return new JsonException(JsonRejection_TRAILING_COMMA_getInstance(), 'a trailing comma closes ' + what + ' at offset ' + $this.w1h_1 + ". NIP-59's own worked gift wrap carries " + 'one; \xA718 says a parser that accepts it is a parser that accepts malformed input ' + 'from a relay');
 }
 function unpairedSurrogate($this) {
-  return new WireException(WireRejection_UNPAIRED_SURROGATE_getInstance(), 'an escaped UTF-16 surrogate before offset ' + $this.n1g_1 + ' is not part of a pair, so it is not a ' + 'character and has no UTF-8 encoding; \xA74.1 requires rejecting it rather than ' + 'substituting a replacement character, which would change the id');
+  return new WireException(WireRejection_UNPAIRED_SURROGATE_getInstance(), 'an escaped UTF-16 surrogate before offset ' + $this.w1h_1 + ' is not part of a pair, so it is not a ' + 'character and has no UTF-8 encoding; \xA74.1 requires rejecting it rather than ' + 'substituting a replacement character, which would change the id');
 }
 function nullTagElement($this) {
-  return new WireException(WireRejection_NULL_TAG_ELEMENT_getInstance(), 'a null at offset ' + $this.n1g_1 + ' where \xA74.3 requires a tag or a tag value; \xA74.3 requires ' + 'rejecting an event containing a non-string or null tag element');
+  return new WireException(WireRejection_NULL_TAG_ELEMENT_getInstance(), 'a null at offset ' + $this.w1h_1 + ' where \xA74.3 requires a tag or a tag value; \xA74.3 requires ' + 'rejecting an event containing a non-string or null tag element');
 }
 function nibbleOrMinusOne($this, character) {
   return (_Char___init__impl__6a9atx(48) <= character ? character <= _Char___init__impl__6a9atx(57) : false) ? Char__minus_impl_a2frrh(character, _Char___init__impl__6a9atx(48)) : (_Char___init__impl__6a9atx(97) <= character ? character <= _Char___init__impl__6a9atx(102) : false) ? Char__minus_impl_a2frrh(character, _Char___init__impl__6a9atx(97)) + 10 | 0 : (_Char___init__impl__6a9atx(65) <= character ? character <= _Char___init__impl__6a9atx(70) : false) ? Char__minus_impl_a2frrh(character, _Char___init__impl__6a9atx(65)) + 10 | 0 : -1;
 }
 function Companion_52() {
   Companion_instance_52 = this;
-  this.o1g_1 = 4;
-  this.p1g_1 = 19;
-  this.q1g_1 = 'null';
-  this.r1g_1 = 8;
-  this.s1g_1 = 12;
-  this.t1g_1 = numberRangeToNumber(55296, 56319);
-  this.u1g_1 = numberRangeToNumber(56320, 57343);
+  this.x1h_1 = 4;
+  this.y1h_1 = 19;
+  this.z1h_1 = 'null';
+  this.a1i_1 = 8;
+  this.b1i_1 = 12;
+  this.c1i_1 = numberRangeToNumber(55296, 56319);
+  this.d1i_1 = numberRangeToNumber(56320, 57343);
 }
 var Companion_instance_52;
 function Companion_getInstance_52() {
@@ -20269,13 +21128,13 @@ function write_0($this, event, id, sig, limits) {
   if (event.dd_1 < 0 || event.dd_1 > 65535) {
     throw new JsonException(JsonRejection_KIND_OUT_OF_RANGE_getInstance(), 'kind is ' + event.dd_1 + '; NIP-01 fixes a kind at 0..65535, and this writer will ' + 'not emit an object its own reader would refuse');
   }
-  var recomputed = Companion_instance_50.jv(event, limits);
+  var recomputed = Companion_instance_50.ov(event, limits);
   if (!recomputed.equals(id)) {
     throw new WireException(WireRejection_ID_MISMATCH_getInstance(), "the id given is not the SHA-256 of this event's canonical serialisation (\xA74.1); emitting it would produce an object every conformant reader must reject");
   }
   var out = StringBuilder_init_$Create$();
   out.k6('{"').k6('id').k6('":');
-  appendCanonicalString(out, recomputed.qo());
+  appendCanonicalString(out, recomputed.np());
   out.k6(',"').k6('pubkey').k6('":');
   appendCanonicalString(out, event.fd_1);
   out.k6(',"').k6('created_at').k6('":').g8(event.cd_1);
@@ -20315,16 +21174,16 @@ function write_0($this, event, id, sig, limits) {
 }
 function Reader(text, limits) {
   Companion_getInstance_52();
-  this.l1g_1 = text;
-  this.m1g_1 = limits;
-  this.n1g_1 = 0;
+  this.u1h_1 = text;
+  this.v1h_1 = limits;
+  this.w1h_1 = 0;
 }
-protoOf(Reader).z1g = function () {
+protoOf(Reader).i1i = function () {
   skipWhitespace(this);
-  if (!has(this) || !(charSequenceGet(this.l1g_1, this.n1g_1) === _Char___init__impl__6a9atx(123))) {
-    throw new JsonException(JsonRejection_NOT_AN_OBJECT_getInstance(), "\xA77.1's payload is one top-level JSON object; this text does not open one " + ('(at offset ' + this.n1g_1 + ')'));
+  if (!has(this) || !(charSequenceGet(this.u1h_1, this.w1h_1) === _Char___init__impl__6a9atx(123))) {
+    throw new JsonException(JsonRejection_NOT_AN_OBJECT_getInstance(), "\xA77.1's payload is one top-level JSON object; this text does not open one " + ('(at offset ' + this.w1h_1 + ')'));
   }
-  this.n1g_1 = this.n1g_1 + 1 | 0;
+  this.w1h_1 = this.w1h_1 + 1 | 0;
   var id = null;
   var pubkey = null;
   var createdAt = null;
@@ -20337,22 +21196,22 @@ protoOf(Reader).z1g = function () {
     skipWhitespace(this);
     if (!has(this))
       throw unterminated(this, 'the object');
-    if (charSequenceGet(this.l1g_1, this.n1g_1) === _Char___init__impl__6a9atx(125)) {
+    if (charSequenceGet(this.u1h_1, this.w1h_1) === _Char___init__impl__6a9atx(125)) {
       if (afterComma)
         throw trailingComma(this, 'the object');
-      this.n1g_1 = this.n1g_1 + 1 | 0;
+      this.w1h_1 = this.w1h_1 + 1 | 0;
       break $l$loop;
     }
-    if (!(charSequenceGet(this.l1g_1, this.n1g_1) === _Char___init__impl__6a9atx(34))) {
-      throw new JsonException(JsonRejection_KEY_NOT_A_STRING_getInstance(), 'an object key is a JSON string; offset ' + this.n1g_1 + ' opens with something else');
+    if (!(charSequenceGet(this.u1h_1, this.w1h_1) === _Char___init__impl__6a9atx(34))) {
+      throw new JsonException(JsonRejection_KEY_NOT_A_STRING_getInstance(), 'an object key is a JSON string; offset ' + this.w1h_1 + ' opens with something else');
     }
-    this.n1g_1 = this.n1g_1 + 1 | 0;
+    this.w1h_1 = this.w1h_1 + 1 | 0;
     var key = readStringBody(this);
     skipWhitespace(this);
-    if (!has(this) || !(charSequenceGet(this.l1g_1, this.n1g_1) === _Char___init__impl__6a9atx(58))) {
-      throw new JsonException(JsonRejection_UNEXPECTED_CHARACTER_getInstance(), 'a `:` must follow an object key; offset ' + this.n1g_1 + ' carries something else');
+    if (!has(this) || !(charSequenceGet(this.u1h_1, this.w1h_1) === _Char___init__impl__6a9atx(58))) {
+      throw new JsonException(JsonRejection_UNEXPECTED_CHARACTER_getInstance(), 'a `:` must follow an object key; offset ' + this.w1h_1 + ' carries something else');
     }
-    this.n1g_1 = this.n1g_1 + 1 | 0;
+    this.w1h_1 = this.w1h_1 + 1 | 0;
     skipWhitespace(this);
     switch (key) {
       case 'id':
@@ -20389,22 +21248,22 @@ protoOf(Reader).z1g = function () {
         sig = checkedEventSignature(readStringValue(this, 'sig'));
         break;
       default:
-        throw new JsonException(JsonRejection_UNKNOWN_KEY_getInstance(), 'an unknown top-level key before offset ' + this.n1g_1 + '. \xA77.1 permits refusing an ' + 'eighth field: it is either a different protocol or a value being ' + 'smuggled past a parser that ignores it. The key itself is not quoted ' + 'here, because a stranger chose it (\xA712).');
+        throw new JsonException(JsonRejection_UNKNOWN_KEY_getInstance(), 'an unknown top-level key before offset ' + this.w1h_1 + '. \xA77.1 permits refusing an ' + 'eighth field: it is either a different protocol or a value being ' + 'smuggled past a parser that ignores it. The key itself is not quoted ' + 'here, because a stranger chose it (\xA712).');
     }
     afterComma = false;
     skipWhitespace(this);
     if (!has(this))
       throw unterminated(this, 'the object');
-    var tmp1_subject = charSequenceGet(this.l1g_1, this.n1g_1);
+    var tmp1_subject = charSequenceGet(this.u1h_1, this.w1h_1);
     if (tmp1_subject === _Char___init__impl__6a9atx(44)) {
-      this.n1g_1 = this.n1g_1 + 1 | 0;
+      this.w1h_1 = this.w1h_1 + 1 | 0;
       afterComma = true;
     } else if (tmp1_subject !== _Char___init__impl__6a9atx(125))
-      throw new JsonException(JsonRejection_UNEXPECTED_CHARACTER_getInstance(), 'a `,` or a `}` must follow an object member; offset ' + this.n1g_1 + ' carries something else');
+      throw new JsonException(JsonRejection_UNEXPECTED_CHARACTER_getInstance(), 'a `,` or a `}` must follow an object member; offset ' + this.w1h_1 + ' carries something else');
   }
   skipWhitespace(this);
   if (has(this)) {
-    throw new JsonException(JsonRejection_TRAILING_DATA_getInstance(), '' + (this.l1g_1.length - this.n1g_1 | 0) + ' character(s) follow the closing `}`; one event object is ' + 'the whole payload (\xA77.1)');
+    throw new JsonException(JsonRejection_TRAILING_DATA_getInstance(), '' + (this.u1h_1.length - this.w1h_1 | 0) + ' character(s) follow the closing `}`; one event object is ' + 'the whole payload (\xA77.1)');
   }
   var tmp = new WireEvent(required(this, pubkey, 'pubkey'), required(this, createdAt, 'created_at'), required(this, kind, 'kind'), required(this, tags, 'tags'), required(this, content, 'content'));
   // Inline function 'kotlin.also' call
@@ -20415,34 +21274,34 @@ protoOf(Reader).z1g = function () {
   return new ReadEvent(tmp, this_0, sig);
 };
 function EventJson() {
-  this.wt_1 = 128;
-  this.xt_1 = 65535;
-  this.yt_1 = 'id';
-  this.zt_1 = 'pubkey';
-  this.au_1 = 'created_at';
-  this.bu_1 = 'kind';
-  this.cu_1 = 'tags';
-  this.du_1 = 'content';
-  this.eu_1 = 'sig';
-  this.fu_1 = 65279;
+  this.bu_1 = 128;
+  this.cu_1 = 65535;
+  this.du_1 = 'id';
+  this.eu_1 = 'pubkey';
+  this.fu_1 = 'created_at';
+  this.gu_1 = 'kind';
+  this.hu_1 = 'tags';
+  this.iu_1 = 'content';
+  this.ju_1 = 'sig';
+  this.ku_1 = 65279;
 }
-protoOf(EventJson).nw = function (event, id, limits) {
+protoOf(EventJson).sw = function (event, id, limits) {
   return write_0(this, event, id, null, limits);
 };
-protoOf(EventJson).gx = function (event, id, limits, $super) {
-  limits = limits === VOID ? Companion_getInstance_53().yw_1 : limits;
-  return $super === VOID ? this.nw(event, id, limits) : $super.nw.call(this, event, id, limits);
+protoOf(EventJson).ky = function (event, id, limits, $super) {
+  limits = limits === VOID ? Companion_getInstance_53().dx_1 : limits;
+  return $super === VOID ? this.sw(event, id, limits) : $super.sw.call(this, event, id, limits);
 };
-protoOf(EventJson).kv = function (event, id, sig, limits) {
+protoOf(EventJson).pv = function (event, id, sig, limits) {
   return write_0(this, event, id, checkedEventSignature(sig), limits);
 };
-protoOf(EventJson).gu = function (text, limits) {
+protoOf(EventJson).lu = function (text, limits) {
   // Inline function 'kotlin.text.isEmpty' call
   if (charSequenceLength(text) === 0) {
     throw new JsonException(JsonRejection_EMPTY_INPUT_getInstance(), "there is no text to read; \xA77.1's payload is one JSON object");
   }
-  if (text.length > limits.v1g_1) {
-    throw new JsonException(JsonRejection_TOO_LARGE_getInstance(), 'the text is ' + text.length + ' characters, which is already past the ' + ('' + limits.v1g_1 + '-byte bound; \xA74.3 requires rejecting rather ') + 'than truncating');
+  if (text.length > limits.e1i_1) {
+    throw new JsonException(JsonRejection_TOO_LARGE_getInstance(), 'the text is ' + text.length + ' characters, which is already past the ' + ('' + limits.e1i_1 + '-byte bound; \xA74.3 requires rejecting rather ') + 'than truncating');
   }
   // Inline function 'dev.eryalabs.nenya.wire.wireUtf8' call
   var tmp0_elvis_lhs = strictUtf8OrNull(text);
@@ -20456,19 +21315,19 @@ protoOf(EventJson).gu = function (text, limits) {
     tmp = tmp0_elvis_lhs;
   }
   var bytes = tmp.length;
-  if (bytes > limits.v1g_1) {
-    throw new JsonException(JsonRejection_TOO_LARGE_getInstance(), 'the text is ' + bytes + ' UTF-8 bytes and the bound is ' + limits.v1g_1 + '; ' + '\xA74.3 measures this one in bytes, not characters, and requires rejecting rather ' + 'than truncating');
+  if (bytes > limits.e1i_1) {
+    throw new JsonException(JsonRejection_TOO_LARGE_getInstance(), 'the text is ' + bytes + ' UTF-8 bytes and the bound is ' + limits.e1i_1 + '; ' + '\xA74.3 measures this one in bytes, not characters, and requires rejecting rather ' + 'than truncating');
   }
   // Inline function 'kotlin.code' call
   var this_0 = charSequenceGet(text, 0);
   if (Char__toInt_impl_vasixd(this_0) === 65279) {
     throw new JsonException(JsonRejection_BYTE_ORDER_MARK_getInstance(), 'the text opens with U+FEFF; RFC 8259 forbids it, and skipping it silently would read different bytes from the ones whose id is about to be checked');
   }
-  return (new Reader(text, limits)).z1g();
+  return (new Reader(text, limits)).i1i();
 };
-protoOf(EventJson).f11 = function (text, limits, $super) {
-  limits = limits === VOID ? Companion_getInstance_53().yw_1 : limits;
-  return $super === VOID ? this.gu(text, limits) : $super.gu.call(this, text, limits);
+protoOf(EventJson).k12 = function (text, limits, $super) {
+  limits = limits === VOID ? Companion_getInstance_53().dx_1 : limits;
+  return $super === VOID ? this.lu(text, limits) : $super.lu.call(this, text, limits);
 };
 var EventJson_instance;
 function EventJson_getInstance() {
@@ -20643,11 +21502,11 @@ function requirePositive($this, value, what) {
 }
 function Companion_53() {
   Companion_instance_53 = this;
-  this.uw_1 = 65536;
-  this.vw_1 = 512;
-  this.ww_1 = 1024;
-  this.xw_1 = 16384;
-  this.yw_1 = new WireLimits();
+  this.zw_1 = 65536;
+  this.ax_1 = 512;
+  this.bx_1 = 1024;
+  this.cx_1 = 16384;
+  this.dx_1 = new WireLimits();
 }
 var Companion_instance_53;
 function Companion_getInstance_53() {
@@ -20661,20 +21520,20 @@ function WireLimits(maxSerialisedEventBytes, maxTagsPerEvent, maxTagValueBytes, 
   maxTagsPerEvent = maxTagsPerEvent === VOID ? 512 : maxTagsPerEvent;
   maxTagValueBytes = maxTagValueBytes === VOID ? 1024 : maxTagValueBytes;
   maxContentBytes = maxContentBytes === VOID ? 16384 : maxContentBytes;
-  this.v1g_1 = maxSerialisedEventBytes;
-  this.w1g_1 = maxTagsPerEvent;
-  this.x1g_1 = maxTagValueBytes;
-  this.y1g_1 = maxContentBytes;
-  requirePositive(Companion_getInstance_53(), this.v1g_1, 'maxSerialisedEventBytes');
-  requirePositive(Companion_getInstance_53(), this.w1g_1, 'maxTagsPerEvent');
-  requirePositive(Companion_getInstance_53(), this.x1g_1, 'maxTagValueBytes');
-  requirePositive(Companion_getInstance_53(), this.y1g_1, 'maxContentBytes');
+  this.e1i_1 = maxSerialisedEventBytes;
+  this.f1i_1 = maxTagsPerEvent;
+  this.g1i_1 = maxTagValueBytes;
+  this.h1i_1 = maxContentBytes;
+  requirePositive(Companion_getInstance_53(), this.e1i_1, 'maxSerialisedEventBytes');
+  requirePositive(Companion_getInstance_53(), this.f1i_1, 'maxTagsPerEvent');
+  requirePositive(Companion_getInstance_53(), this.g1i_1, 'maxTagValueBytes');
+  requirePositive(Companion_getInstance_53(), this.h1i_1, 'maxContentBytes');
 }
 protoOf(WireLimits).toString = function () {
-  return 'WireLimits(maxSerialisedEventBytes=' + this.v1g_1 + ', ' + ('maxTagsPerEvent=' + this.w1g_1 + ', maxTagValueBytes=' + this.x1g_1 + ', ') + ('maxContentBytes=' + this.y1g_1 + ')');
+  return 'WireLimits(maxSerialisedEventBytes=' + this.e1i_1 + ', ' + ('maxTagsPerEvent=' + this.f1i_1 + ', maxTagValueBytes=' + this.g1i_1 + ', ') + ('maxContentBytes=' + this.h1i_1 + ')');
 };
 function Companion_54() {
-  this.a1h_1 = 64;
+  this.j1i_1 = 64;
 }
 var Companion_instance_54;
 function Companion_getInstance_54() {
@@ -20722,9 +21581,9 @@ function WireEvent(pubkey, createdAt, kind, tags, content) {
   }
   tmp.gd_1 = readOnlyListOf(destination);
 }
-protoOf(WireEvent).gv = function (limits) {
-  if (this.gd_1.j() > limits.w1g_1) {
-    throw new WireException(WireRejection_TOO_MANY_TAGS_getInstance(), 'the event carries ' + this.gd_1.j() + ' tags and the bound is ' + limits.w1g_1 + '; ' + '\xA74.3 requires rejecting rather than truncating');
+protoOf(WireEvent).lv = function (limits) {
+  if (this.gd_1.j() > limits.f1i_1) {
+    throw new WireException(WireRejection_TOO_MANY_TAGS_getInstance(), 'the event carries ' + this.gd_1.j() + ' tags and the bound is ' + limits.f1i_1 + '; ' + '\xA74.3 requires rejecting rather than truncating');
   }
   var iterator = this.gd_1.g();
   var index = 0;
@@ -20747,8 +21606,8 @@ protoOf(WireEvent).gv = function (limits) {
         tmp = tmp0_elvis_lhs;
       }
       var bytes = tmp.length;
-      if (bytes > limits.x1g_1) {
-        throw new WireException(WireRejection_TAG_VALUE_TOO_LONG_getInstance(), 'a value of tag ' + index_0 + ' is ' + bytes + ' UTF-8 bytes and the bound is ' + ('' + limits.x1g_1 + '; \xA74.3 measures this one in bytes, not characters'));
+      if (bytes > limits.g1i_1) {
+        throw new WireException(WireRejection_TAG_VALUE_TOO_LONG_getInstance(), 'a value of tag ' + index_0 + ' is ' + bytes + ' UTF-8 bytes and the bound is ' + ('' + limits.g1i_1 + '; \xA74.3 measures this one in bytes, not characters'));
       }
     }
   }
@@ -20764,8 +21623,8 @@ protoOf(WireEvent).gv = function (limits) {
     tmp_1 = tmp0_elvis_lhs_0;
   }
   var contentBytes = tmp_1.length;
-  if (contentBytes > limits.y1g_1) {
-    throw new WireException(WireRejection_CONTENT_TOO_LONG_getInstance(), 'content is ' + contentBytes + ' UTF-8 bytes and the bound is ' + limits.y1g_1 + '; ' + '\xA74.3 requires rejecting rather than truncating');
+  if (contentBytes > limits.h1i_1) {
+    throw new WireException(WireRejection_CONTENT_TOO_LONG_getInstance(), 'content is ' + contentBytes + ' UTF-8 bytes and the bound is ' + limits.h1i_1 + '; ' + '\xA74.3 requires rejecting rather than truncating');
   }
   var out = StringBuilder_init_$Create$();
   out.k6('[0,');
@@ -20812,8 +21671,8 @@ protoOf(WireEvent).gv = function (limits) {
     tmp_3 = tmp0_elvis_lhs_1;
   }
   var serialisedBytes = tmp_3.length;
-  if (serialisedBytes > limits.v1g_1) {
-    throw new WireException(WireRejection_SERIALISED_EVENT_TOO_LARGE_getInstance(), 'the canonical serialisation is ' + serialisedBytes + ' UTF-8 bytes and the bound is ' + ('' + limits.v1g_1 + '; \xA74.3 requires rejecting rather than truncating'));
+  if (serialisedBytes > limits.e1i_1) {
+    throw new WireException(WireRejection_SERIALISED_EVENT_TOO_LARGE_getInstance(), 'the canonical serialisation is ' + serialisedBytes + ' UTF-8 bytes and the bound is ' + ('' + limits.e1i_1 + '; \xA74.3 requires rejecting rather than truncating'));
   }
   return serialisation;
 };
@@ -20979,261 +21838,263 @@ function declaringEnumSimpleName(constant) {
 }
 //region block: post-declaration
 defineProp(protoOf(JsWireEvent), 'kind', protoOf(JsWireEvent).ke);
-defineProp(protoOf(JsWireEvent), 'pubkey', protoOf(JsWireEvent).ix);
-defineProp(protoOf(JsWireEvent), 'createdAtSeconds', protoOf(JsWireEvent).jx);
+defineProp(protoOf(JsWireEvent), 'pubkey', protoOf(JsWireEvent).my);
+defineProp(protoOf(JsWireEvent), 'createdAtSeconds', protoOf(JsWireEvent).ny);
 defineProp(protoOf(JsWireEvent), 'content', protoOf(JsWireEvent).uj);
 defineProp(protoOf(JsWireEvent), 'tags', protoOf(JsWireEvent).rj);
-defineProp(protoOf(JsCapabilities), 'specification', protoOf(JsCapabilities).hy);
-defineProp(protoOf(JsCapabilities), 'items', protoOf(JsCapabilities).iy);
+defineProp(protoOf(JsCapabilities), 'specification', protoOf(JsCapabilities).lz);
+defineProp(protoOf(JsCapabilities), 'items', protoOf(JsCapabilities).mz);
 defineProp(protoOf(JsCapabilities), 'notPerformedHere', protoOf(JsCapabilities).vj);
-defineProp(protoOf(JsCapabilities), 'report', protoOf(JsCapabilities).jy);
-defineProp(protoOf(JsConformanceItem), 'number', protoOf(JsConformanceItem).ly);
-defineProp(protoOf(JsConformanceItem), 'status', protoOf(JsConformanceItem).my);
-defineProp(protoOf(JsConformanceItem), 'specSections', protoOf(JsConformanceItem).ny);
-defineProp(protoOf(JsConformanceItem), 'evidenceClasses', protoOf(JsConformanceItem).oy);
-defineProp(protoOf(JsConformanceItem), 'notPerformed', protoOf(JsConformanceItem).py);
-defineProp(protoOf(JsConformanceItem), 'note', protoOf(JsConformanceItem).qy);
-defineProp(protoOf(JsOutgoingWrap), 'json', protoOf(JsOutgoingWrap).gw);
-defineProp(protoOf(JsOutgoingWrap), 'idHex', protoOf(JsOutgoingWrap).u10);
-defineProp(protoOf(JsOutgoingWrap), 'addressee', protoOf(JsOutgoingWrap).hw);
+defineProp(protoOf(JsCapabilities), 'report', protoOf(JsCapabilities).nz);
+defineProp(protoOf(JsConformanceItem), 'number', protoOf(JsConformanceItem).pz);
+defineProp(protoOf(JsConformanceItem), 'status', protoOf(JsConformanceItem).qz);
+defineProp(protoOf(JsConformanceItem), 'specSections', protoOf(JsConformanceItem).rz);
+defineProp(protoOf(JsConformanceItem), 'evidenceClasses', protoOf(JsConformanceItem).sz);
+defineProp(protoOf(JsConformanceItem), 'notPerformed', protoOf(JsConformanceItem).tz);
+defineProp(protoOf(JsConformanceItem), 'note', protoOf(JsConformanceItem).uz);
+defineProp(protoOf(JsOutgoingWrap), 'json', protoOf(JsOutgoingWrap).lw);
+defineProp(protoOf(JsOutgoingWrap), 'idHex', protoOf(JsOutgoingWrap).z11);
+defineProp(protoOf(JsOutgoingWrap), 'addressee', protoOf(JsOutgoingWrap).mw);
 defineProp(protoOf(JsSealResult), 'kind', protoOf(JsSealResult).ke);
-defineProp(protoOf(JsSealResult), 'ok', protoOf(JsSealResult).bx);
-defineProp(protoOf(JsSealResult), 'toRecipient', protoOf(JsSealResult).lw);
-defineProp(protoOf(JsSealResult), 'toSelf', protoOf(JsSealResult).mw);
+defineProp(protoOf(JsSealResult), 'ok', protoOf(JsSealResult).fy);
+defineProp(protoOf(JsSealResult), 'toRecipient', protoOf(JsSealResult).qw);
+defineProp(protoOf(JsSealResult), 'toSelf', protoOf(JsSealResult).rw);
 defineProp(protoOf(JsSealResult), 'notPerformedHere', protoOf(JsSealResult).vj);
-defineProp(protoOf(JsSealResult), 'reason', protoOf(JsSealResult).lx);
-defineProp(protoOf(JsSealResult), 'reasonVocabulary', protoOf(JsSealResult).mx);
-defineProp(protoOf(JsSealResult), 'tag', protoOf(JsSealResult).nx);
-defineProp(protoOf(JsSealResult), 'detail', protoOf(JsSealResult).dx);
+defineProp(protoOf(JsSealResult), 'reason', protoOf(JsSealResult).py);
+defineProp(protoOf(JsSealResult), 'reasonVocabulary', protoOf(JsSealResult).qy);
+defineProp(protoOf(JsSealResult), 'tag', protoOf(JsSealResult).ry);
+defineProp(protoOf(JsSealResult), 'detail', protoOf(JsSealResult).hy);
 defineProp(protoOf(JsRumor), 'author', protoOf(JsRumor).qj);
-defineProp(protoOf(JsRumor), 'idHex', protoOf(JsRumor).u10);
-defineProp(protoOf(JsRumor), 'createdAtSeconds', protoOf(JsRumor).jx);
+defineProp(protoOf(JsRumor), 'idHex', protoOf(JsRumor).z11);
+defineProp(protoOf(JsRumor), 'createdAtSeconds', protoOf(JsRumor).ny);
 defineProp(protoOf(JsRumor), 'content', protoOf(JsRumor).uj);
 defineProp(protoOf(JsRumor), 'kind', protoOf(JsRumor).ke);
-defineProp(protoOf(JsRumor), 'kindNumber', protoOf(JsRumor).z10);
+defineProp(protoOf(JsRumor), 'kindNumber', protoOf(JsRumor).e12);
 defineProp(protoOf(JsRumor), 'attribution', protoOf(JsRumor).sj);
 defineProp(protoOf(JsRumor), 'notPerformedHere', protoOf(JsRumor).vj);
 defineProp(protoOf(JsRumor), 'nenyaVersion', protoOf(JsRumor).te);
 defineProp(protoOf(JsRumor), 'counterparties', protoOf(JsRumor).zj);
 defineProp(protoOf(JsRumor), 'unknownTags', protoOf(JsRumor).ve);
-defineProp(protoOf(JsRumor), 'messageType', protoOf(JsRumor).a11);
-defineProp(protoOf(JsRumor), 'orderIdHex', protoOf(JsRumor).b11);
+defineProp(protoOf(JsRumor), 'messageType', protoOf(JsRumor).f12);
+defineProp(protoOf(JsRumor), 'orderIdHex', protoOf(JsRumor).g12);
 defineProp(protoOf(JsRumor), 'event', protoOf(JsRumor).hd);
 defineProp(protoOf(JsOpenResult), 'kind', protoOf(JsOpenResult).ke);
-defineProp(protoOf(JsOpenResult), 'ok', protoOf(JsOpenResult).bx);
-defineProp(protoOf(JsOpenResult), 'rumor', protoOf(JsOpenResult).uv);
-defineProp(protoOf(JsOpenResult), 'sealSignature', protoOf(JsOpenResult).vv);
-defineProp(protoOf(JsOpenResult), 'wrapSignature', protoOf(JsOpenResult).wv);
-defineProp(protoOf(JsOpenResult), 'wrapIdHex', protoOf(JsOpenResult).e11);
+defineProp(protoOf(JsOpenResult), 'ok', protoOf(JsOpenResult).fy);
+defineProp(protoOf(JsOpenResult), 'rumor', protoOf(JsOpenResult).zv);
+defineProp(protoOf(JsOpenResult), 'sealSignature', protoOf(JsOpenResult).aw);
+defineProp(protoOf(JsOpenResult), 'wrapSignature', protoOf(JsOpenResult).bw);
+defineProp(protoOf(JsOpenResult), 'wrapIdHex', protoOf(JsOpenResult).j12);
 defineProp(protoOf(JsOpenResult), 'notPerformedHere', protoOf(JsOpenResult).vj);
-defineProp(protoOf(JsOpenResult), 'reason', protoOf(JsOpenResult).lx);
-defineProp(protoOf(JsOpenResult), 'reasonVocabulary', protoOf(JsOpenResult).mx);
-defineProp(protoOf(JsOpenResult), 'tag', protoOf(JsOpenResult).nx);
-defineProp(protoOf(JsOpenResult), 'detail', protoOf(JsOpenResult).dx);
-defineProp(protoOf(JsListing), 'idHex', protoOf(JsListing).u10);
-defineProp(protoOf(JsListing), 'authorPubkey', protoOf(JsListing).ry);
-defineProp(protoOf(JsListing), 'createdAtSeconds', protoOf(JsListing).jx);
+defineProp(protoOf(JsOpenResult), 'reason', protoOf(JsOpenResult).py);
+defineProp(protoOf(JsOpenResult), 'reasonVocabulary', protoOf(JsOpenResult).qy);
+defineProp(protoOf(JsOpenResult), 'tag', protoOf(JsOpenResult).ry);
+defineProp(protoOf(JsOpenResult), 'detail', protoOf(JsOpenResult).hy);
+defineProp(protoOf(JsListing), 'idHex', protoOf(JsListing).z11);
+defineProp(protoOf(JsListing), 'authorPubkey', protoOf(JsListing).vz);
+defineProp(protoOf(JsListing), 'createdAtSeconds', protoOf(JsListing).ny);
 defineProp(protoOf(JsListing), 'content', protoOf(JsListing).uj);
 defineProp(protoOf(JsListing), 'kind', protoOf(JsListing).ke);
-defineProp(protoOf(JsListing), 'dValue', protoOf(JsListing).z11);
-defineProp(protoOf(JsListing), 'coordinate', protoOf(JsListing).a12);
-defineProp(protoOf(JsListing), 'title', protoOf(JsListing).b12);
-defineProp(protoOf(JsListing), 'priceMsat', protoOf(JsListing).ty);
-defineProp(protoOf(JsListing), 'status', protoOf(JsListing).my);
+defineProp(protoOf(JsListing), 'dValue', protoOf(JsListing).k13);
+defineProp(protoOf(JsListing), 'coordinate', protoOf(JsListing).l13);
+defineProp(protoOf(JsListing), 'title', protoOf(JsListing).m13);
+defineProp(protoOf(JsListing), 'priceMsat', protoOf(JsListing).xz);
+defineProp(protoOf(JsListing), 'status', protoOf(JsListing).qz);
 defineProp(protoOf(JsListing), 'side', protoOf(JsListing).qh);
-defineProp(protoOf(JsListing), 'statusToken', protoOf(JsListing).c12);
-defineProp(protoOf(JsListing), 'summary', protoOf(JsListing).d12);
-defineProp(protoOf(JsListing), 'publishedAtSeconds', protoOf(JsListing).e12);
+defineProp(protoOf(JsListing), 'statusToken', protoOf(JsListing).n13);
+defineProp(protoOf(JsListing), 'summary', protoOf(JsListing).o13);
+defineProp(protoOf(JsListing), 'publishedAtSeconds', protoOf(JsListing).p13);
 defineProp(protoOf(JsListing), 'topics', protoOf(JsListing).ue);
-defineProp(protoOf(JsListing), 'mimeType', protoOf(JsListing).zy);
-defineProp(protoOf(JsListing), 'images', protoOf(JsListing).g12);
-defineProp(protoOf(JsListing), 'expirationSeconds', protoOf(JsListing).vy);
+defineProp(protoOf(JsListing), 'mimeType', protoOf(JsListing).d10);
+defineProp(protoOf(JsListing), 'images', protoOf(JsListing).r13);
+defineProp(protoOf(JsListing), 'expirationSeconds', protoOf(JsListing).zz);
 defineProp(protoOf(JsListing), 'alt', protoOf(JsListing).se);
 defineProp(protoOf(JsListing), 'nenyaVersion', protoOf(JsListing).te);
-defineProp(protoOf(JsListing), 'pubkeyRefs', protoOf(JsListing).h12);
-defineProp(protoOf(JsListing), 'feeBasisPoints', protoOf(JsListing).uy);
+defineProp(protoOf(JsListing), 'pubkeyRefs', protoOf(JsListing).s13);
+defineProp(protoOf(JsListing), 'feeBasisPoints', protoOf(JsListing).yz);
 defineProp(protoOf(JsListing), 'feeRecipient', protoOf(JsListing).re);
-defineProp(protoOf(JsListing), 'license', protoOf(JsListing).j12);
-defineProp(protoOf(JsListing), 'deliverBySeconds', protoOf(JsListing).wy);
+defineProp(protoOf(JsListing), 'license', protoOf(JsListing).u13);
+defineProp(protoOf(JsListing), 'deliverBySeconds', protoOf(JsListing).a10);
 defineProp(protoOf(JsListing), 'unknownTags', protoOf(JsListing).ve);
-defineProp(protoOf(JsBid), 'idHex', protoOf(JsBid).u10);
-defineProp(protoOf(JsBid), 'bidderPubkey', protoOf(JsBid).l12);
-defineProp(protoOf(JsBid), 'createdAtSeconds', protoOf(JsBid).jx);
+defineProp(protoOf(JsBid), 'idHex', protoOf(JsBid).z11);
+defineProp(protoOf(JsBid), 'bidderPubkey', protoOf(JsBid).w13);
+defineProp(protoOf(JsBid), 'createdAtSeconds', protoOf(JsBid).ny);
 defineProp(protoOf(JsBid), 'content', protoOf(JsBid).uj);
 defineProp(protoOf(JsBid), 'kind', protoOf(JsBid).ke);
-defineProp(protoOf(JsBid), 'listingCoordinate', protoOf(JsBid).m12);
+defineProp(protoOf(JsBid), 'listingCoordinate', protoOf(JsBid).x13);
 defineProp(protoOf(JsBid), 'listingKind', protoOf(JsBid).le);
 defineProp(protoOf(JsBid), 'listingAuthorPubkey', protoOf(JsBid).me);
-defineProp(protoOf(JsBid), 'priceMsat', protoOf(JsBid).ty);
-defineProp(protoOf(JsBid), 'rootRelayHint', protoOf(JsBid).n12);
-defineProp(protoOf(JsBid), 'parentRelayHint', protoOf(JsBid).o12);
-defineProp(protoOf(JsBid), 'expirationSeconds', protoOf(JsBid).vy);
+defineProp(protoOf(JsBid), 'priceMsat', protoOf(JsBid).xz);
+defineProp(protoOf(JsBid), 'rootRelayHint', protoOf(JsBid).y13);
+defineProp(protoOf(JsBid), 'parentRelayHint', protoOf(JsBid).z13);
+defineProp(protoOf(JsBid), 'expirationSeconds', protoOf(JsBid).zz);
 defineProp(protoOf(JsBid), 'openEnded', protoOf(JsBid).oe);
-defineProp(protoOf(JsBid), 'deliverBySeconds', protoOf(JsBid).wy);
-defineProp(protoOf(JsBid), 'feeBasisPoints', protoOf(JsBid).uy);
+defineProp(protoOf(JsBid), 'deliverBySeconds', protoOf(JsBid).a10);
+defineProp(protoOf(JsBid), 'feeBasisPoints', protoOf(JsBid).yz);
 defineProp(protoOf(JsBid), 'feeRecipient', protoOf(JsBid).re);
 defineProp(protoOf(JsBid), 'alt', protoOf(JsBid).se);
 defineProp(protoOf(JsBid), 'nenyaVersion', protoOf(JsBid).te);
 defineProp(protoOf(JsBid), 'topics', protoOf(JsBid).ue);
 defineProp(protoOf(JsBid), 'unknownTags', protoOf(JsBid).ve);
 defineProp(protoOf(JsDeadlineCheck), 'kind', protoOf(JsDeadlineCheck).ke);
-defineProp(protoOf(JsDeadlineCheck), 'permitted', protoOf(JsDeadlineCheck).q12);
+defineProp(protoOf(JsDeadlineCheck), 'permitted', protoOf(JsDeadlineCheck).b14);
 defineProp(protoOf(JsDeadlineCheck), 'side', protoOf(JsDeadlineCheck).qh);
-defineProp(protoOf(JsDeadlineCheck), 'reason', protoOf(JsDeadlineCheck).lx);
-defineProp(protoOf(JsOrderProposal), 'buyer', protoOf(JsOrderProposal).qn);
-defineProp(protoOf(JsOrderProposal), 'idHex', protoOf(JsOrderProposal).u10);
-defineProp(protoOf(JsOrderProposal), 'createdAtSeconds', protoOf(JsOrderProposal).jx);
-defineProp(protoOf(JsOrderProposal), 'orderIdHex', protoOf(JsOrderProposal).b11);
-defineProp(protoOf(JsOrderProposal), 'itemCoordinate', protoOf(JsOrderProposal).u12);
-defineProp(protoOf(JsOrderProposal), 'itemQuantity', protoOf(JsOrderProposal).v12);
-defineProp(protoOf(JsOrderProposal), 'priceMsat', protoOf(JsOrderProposal).ty);
-defineProp(protoOf(JsOrderProposal), 'feeMsat', protoOf(JsOrderProposal).w12);
-defineProp(protoOf(JsOrderProposal), 'totalMsat', protoOf(JsOrderProposal).x12);
-defineProp(protoOf(JsOrderProposal), 'feeBasisPoints', protoOf(JsOrderProposal).uy);
-defineProp(protoOf(JsOrderProposal), 'feePayeeRequired', protoOf(JsOrderProposal).y12);
+defineProp(protoOf(JsDeadlineCheck), 'reason', protoOf(JsDeadlineCheck).py);
+defineProp(protoOf(JsOrderProposal), 'buyer', protoOf(JsOrderProposal).no);
+defineProp(protoOf(JsOrderProposal), 'idHex', protoOf(JsOrderProposal).z11);
+defineProp(protoOf(JsOrderProposal), 'createdAtSeconds', protoOf(JsOrderProposal).ny);
+defineProp(protoOf(JsOrderProposal), 'orderIdHex', protoOf(JsOrderProposal).g12);
+defineProp(protoOf(JsOrderProposal), 'itemCoordinate', protoOf(JsOrderProposal).h14);
+defineProp(protoOf(JsOrderProposal), 'itemQuantity', protoOf(JsOrderProposal).i14);
+defineProp(protoOf(JsOrderProposal), 'priceMsat', protoOf(JsOrderProposal).xz);
+defineProp(protoOf(JsOrderProposal), 'feeMsat', protoOf(JsOrderProposal).j14);
+defineProp(protoOf(JsOrderProposal), 'totalMsat', protoOf(JsOrderProposal).k14);
+defineProp(protoOf(JsOrderProposal), 'feeBasisPoints', protoOf(JsOrderProposal).yz);
+defineProp(protoOf(JsOrderProposal), 'feePayeeRequired', protoOf(JsOrderProposal).l14);
 defineProp(protoOf(JsOrderProposal), 'feeRecipient', protoOf(JsOrderProposal).re);
-defineProp(protoOf(JsOrderProposal), 'expirationSeconds', protoOf(JsOrderProposal).vy);
-defineProp(protoOf(JsOrderProposal), 'deliverBySeconds', protoOf(JsOrderProposal).wy);
+defineProp(protoOf(JsOrderProposal), 'expirationSeconds', protoOf(JsOrderProposal).zz);
+defineProp(protoOf(JsOrderProposal), 'deliverBySeconds', protoOf(JsOrderProposal).a10);
 defineProp(protoOf(JsOrderProposal), 'counterparties', protoOf(JsOrderProposal).zj);
 defineProp(protoOf(JsOrderProposal), 'event', protoOf(JsOrderProposal).hd);
 defineProp(protoOf(JsProposalResult), 'kind', protoOf(JsProposalResult).ke);
-defineProp(protoOf(JsProposalResult), 'ok', protoOf(JsProposalResult).bx);
-defineProp(protoOf(JsProposalResult), 'proposal', protoOf(JsProposalResult).b13);
-defineProp(protoOf(JsProposalResult), 'reason', protoOf(JsProposalResult).lx);
-defineProp(protoOf(JsProposalResult), 'reasonVocabulary', protoOf(JsProposalResult).mx);
-defineProp(protoOf(JsProposalResult), 'tag', protoOf(JsProposalResult).nx);
-defineProp(protoOf(JsProposalResult), 'detail', protoOf(JsProposalResult).dx);
+defineProp(protoOf(JsProposalResult), 'ok', protoOf(JsProposalResult).fy);
+defineProp(protoOf(JsProposalResult), 'proposal', protoOf(JsProposalResult).o14);
+defineProp(protoOf(JsProposalResult), 'reason', protoOf(JsProposalResult).py);
+defineProp(protoOf(JsProposalResult), 'reasonVocabulary', protoOf(JsProposalResult).qy);
+defineProp(protoOf(JsProposalResult), 'tag', protoOf(JsProposalResult).ry);
+defineProp(protoOf(JsProposalResult), 'detail', protoOf(JsProposalResult).hy);
 defineProp(protoOf(JsCommitmentMessage), 'sender', protoOf(JsCommitmentMessage).cm);
-defineProp(protoOf(JsCommitmentMessage), 'idHex', protoOf(JsCommitmentMessage).u10);
-defineProp(protoOf(JsCommitmentMessage), 'createdAtSeconds', protoOf(JsCommitmentMessage).jx);
-defineProp(protoOf(JsCommitmentMessage), 'orderIdHex', protoOf(JsCommitmentMessage).b11);
-defineProp(protoOf(JsCommitmentMessage), 'url', protoOf(JsCommitmentMessage).d13);
-defineProp(protoOf(JsCommitmentMessage), 'commitment', protoOf(JsCommitmentMessage).js);
+defineProp(protoOf(JsCommitmentMessage), 'idHex', protoOf(JsCommitmentMessage).z11);
+defineProp(protoOf(JsCommitmentMessage), 'createdAtSeconds', protoOf(JsCommitmentMessage).ny);
+defineProp(protoOf(JsCommitmentMessage), 'orderIdHex', protoOf(JsCommitmentMessage).g12);
+defineProp(protoOf(JsCommitmentMessage), 'url', protoOf(JsCommitmentMessage).q14);
+defineProp(protoOf(JsCommitmentMessage), 'commitment', protoOf(JsCommitmentMessage).os);
 defineProp(protoOf(JsCommitmentMessage), 'event', protoOf(JsCommitmentMessage).hd);
 defineProp(protoOf(JsCommitmentResult), 'kind', protoOf(JsCommitmentResult).ke);
-defineProp(protoOf(JsCommitmentResult), 'ok', protoOf(JsCommitmentResult).bx);
-defineProp(protoOf(JsCommitmentResult), 'commitment', protoOf(JsCommitmentResult).js);
-defineProp(protoOf(JsCommitmentResult), 'reason', protoOf(JsCommitmentResult).lx);
-defineProp(protoOf(JsCommitmentResult), 'reasonVocabulary', protoOf(JsCommitmentResult).mx);
-defineProp(protoOf(JsCommitmentResult), 'tag', protoOf(JsCommitmentResult).nx);
-defineProp(protoOf(JsCommitmentResult), 'detail', protoOf(JsCommitmentResult).dx);
+defineProp(protoOf(JsCommitmentResult), 'ok', protoOf(JsCommitmentResult).fy);
+defineProp(protoOf(JsCommitmentResult), 'commitment', protoOf(JsCommitmentResult).os);
+defineProp(protoOf(JsCommitmentResult), 'reason', protoOf(JsCommitmentResult).py);
+defineProp(protoOf(JsCommitmentResult), 'reasonVocabulary', protoOf(JsCommitmentResult).qy);
+defineProp(protoOf(JsCommitmentResult), 'tag', protoOf(JsCommitmentResult).ry);
+defineProp(protoOf(JsCommitmentResult), 'detail', protoOf(JsCommitmentResult).hy);
 defineProp(protoOf(JsReleaseMessage), 'sender', protoOf(JsReleaseMessage).cm);
-defineProp(protoOf(JsReleaseMessage), 'idHex', protoOf(JsReleaseMessage).u10);
-defineProp(protoOf(JsReleaseMessage), 'createdAtSeconds', protoOf(JsReleaseMessage).jx);
-defineProp(protoOf(JsReleaseMessage), 'orderIdHex', protoOf(JsReleaseMessage).b11);
-defineProp(protoOf(JsReleaseMessage), 'release', protoOf(JsReleaseMessage).h13);
+defineProp(protoOf(JsReleaseMessage), 'idHex', protoOf(JsReleaseMessage).z11);
+defineProp(protoOf(JsReleaseMessage), 'createdAtSeconds', protoOf(JsReleaseMessage).ny);
+defineProp(protoOf(JsReleaseMessage), 'orderIdHex', protoOf(JsReleaseMessage).g12);
+defineProp(protoOf(JsReleaseMessage), 'release', protoOf(JsReleaseMessage).u14);
 defineProp(protoOf(JsReleaseMessage), 'event', protoOf(JsReleaseMessage).hd);
 defineProp(protoOf(JsReleaseResult), 'kind', protoOf(JsReleaseResult).ke);
-defineProp(protoOf(JsReleaseResult), 'ok', protoOf(JsReleaseResult).bx);
-defineProp(protoOf(JsReleaseResult), 'release', protoOf(JsReleaseResult).h13);
-defineProp(protoOf(JsReleaseResult), 'reason', protoOf(JsReleaseResult).lx);
-defineProp(protoOf(JsReleaseResult), 'reasonVocabulary', protoOf(JsReleaseResult).mx);
-defineProp(protoOf(JsReleaseResult), 'tag', protoOf(JsReleaseResult).nx);
-defineProp(protoOf(JsReleaseResult), 'detail', protoOf(JsReleaseResult).dx);
+defineProp(protoOf(JsReleaseResult), 'ok', protoOf(JsReleaseResult).fy);
+defineProp(protoOf(JsReleaseResult), 'release', protoOf(JsReleaseResult).u14);
+defineProp(protoOf(JsReleaseResult), 'reason', protoOf(JsReleaseResult).py);
+defineProp(protoOf(JsReleaseResult), 'reasonVocabulary', protoOf(JsReleaseResult).qy);
+defineProp(protoOf(JsReleaseResult), 'tag', protoOf(JsReleaseResult).ry);
+defineProp(protoOf(JsReleaseResult), 'detail', protoOf(JsReleaseResult).hy);
 defineProp(protoOf(JsStatusUpdate), 'sender', protoOf(JsStatusUpdate).cm);
-defineProp(protoOf(JsStatusUpdate), 'idHex', protoOf(JsStatusUpdate).u10);
-defineProp(protoOf(JsStatusUpdate), 'createdAtSeconds', protoOf(JsStatusUpdate).jx);
-defineProp(protoOf(JsStatusUpdate), 'orderIdHex', protoOf(JsStatusUpdate).b11);
-defineProp(protoOf(JsStatusUpdate), 'status', protoOf(JsStatusUpdate).my);
-defineProp(protoOf(JsStatusUpdate), 'statusToken', protoOf(JsStatusUpdate).c12);
+defineProp(protoOf(JsStatusUpdate), 'idHex', protoOf(JsStatusUpdate).z11);
+defineProp(protoOf(JsStatusUpdate), 'createdAtSeconds', protoOf(JsStatusUpdate).ny);
+defineProp(protoOf(JsStatusUpdate), 'orderIdHex', protoOf(JsStatusUpdate).g12);
+defineProp(protoOf(JsStatusUpdate), 'status', protoOf(JsStatusUpdate).qz);
+defineProp(protoOf(JsStatusUpdate), 'statusToken', protoOf(JsStatusUpdate).n13);
 defineProp(protoOf(JsStatusUpdate), 'event', protoOf(JsStatusUpdate).hd);
 defineProp(protoOf(JsStatusUpdateResult), 'kind', protoOf(JsStatusUpdateResult).ke);
-defineProp(protoOf(JsStatusUpdateResult), 'ok', protoOf(JsStatusUpdateResult).bx);
-defineProp(protoOf(JsStatusUpdateResult), 'statusUpdate', protoOf(JsStatusUpdateResult).n13);
-defineProp(protoOf(JsStatusUpdateResult), 'reason', protoOf(JsStatusUpdateResult).lx);
-defineProp(protoOf(JsStatusUpdateResult), 'reasonVocabulary', protoOf(JsStatusUpdateResult).mx);
-defineProp(protoOf(JsStatusUpdateResult), 'tag', protoOf(JsStatusUpdateResult).nx);
-defineProp(protoOf(JsStatusUpdateResult), 'detail', protoOf(JsStatusUpdateResult).dx);
+defineProp(protoOf(JsStatusUpdateResult), 'ok', protoOf(JsStatusUpdateResult).fy);
+defineProp(protoOf(JsStatusUpdateResult), 'statusUpdate', protoOf(JsStatusUpdateResult).a15);
+defineProp(protoOf(JsStatusUpdateResult), 'reason', protoOf(JsStatusUpdateResult).py);
+defineProp(protoOf(JsStatusUpdateResult), 'reasonVocabulary', protoOf(JsStatusUpdateResult).qy);
+defineProp(protoOf(JsStatusUpdateResult), 'tag', protoOf(JsStatusUpdateResult).ry);
+defineProp(protoOf(JsStatusUpdateResult), 'detail', protoOf(JsStatusUpdateResult).hy);
 defineProp(protoOf(JsAcceptanceCheck), 'kind', protoOf(JsAcceptanceCheck).ke);
-defineProp(protoOf(JsAcceptanceCheck), 'accepted', protoOf(JsAcceptanceCheck).w13);
-defineProp(protoOf(JsAcceptanceCheck), 'orderIdHex', protoOf(JsAcceptanceCheck).b11);
-defineProp(protoOf(JsAcceptanceCheck), 'provider', protoOf(JsAcceptanceCheck).x13);
-defineProp(protoOf(JsAcceptanceCheck), 'terms', protoOf(JsAcceptanceCheck).y13);
-defineProp(protoOf(JsAcceptanceCheck), 'divergentTerms', protoOf(JsAcceptanceCheck).z13);
-defineProp(protoOf(JsAcceptanceCheck), 'claimedStatus', protoOf(JsAcceptanceCheck).a14);
-defineProp(protoOf(JsAcceptanceCheck), 'claimedStatusToken', protoOf(JsAcceptanceCheck).b14);
-defineProp(protoOf(JsAcceptanceCheck), 'reason', protoOf(JsAcceptanceCheck).lx);
-defineProp(protoOf(JsAcceptanceCheck), 'reasonVocabulary', protoOf(JsAcceptanceCheck).mx);
-defineProp(protoOf(JsAcceptanceCheck), 'tag', protoOf(JsAcceptanceCheck).nx);
-defineProp(protoOf(JsAcceptanceCheck), 'detail', protoOf(JsAcceptanceCheck).dx);
+defineProp(protoOf(JsAcceptanceCheck), 'accepted', protoOf(JsAcceptanceCheck).j15);
+defineProp(protoOf(JsAcceptanceCheck), 'orderIdHex', protoOf(JsAcceptanceCheck).g12);
+defineProp(protoOf(JsAcceptanceCheck), 'provider', protoOf(JsAcceptanceCheck).k15);
+defineProp(protoOf(JsAcceptanceCheck), 'terms', protoOf(JsAcceptanceCheck).l15);
+defineProp(protoOf(JsAcceptanceCheck), 'divergentTerms', protoOf(JsAcceptanceCheck).m15);
+defineProp(protoOf(JsAcceptanceCheck), 'claimedStatus', protoOf(JsAcceptanceCheck).n15);
+defineProp(protoOf(JsAcceptanceCheck), 'claimedStatusToken', protoOf(JsAcceptanceCheck).o15);
+defineProp(protoOf(JsAcceptanceCheck), 'reason', protoOf(JsAcceptanceCheck).py);
+defineProp(protoOf(JsAcceptanceCheck), 'reasonVocabulary', protoOf(JsAcceptanceCheck).qy);
+defineProp(protoOf(JsAcceptanceCheck), 'tag', protoOf(JsAcceptanceCheck).ry);
+defineProp(protoOf(JsAcceptanceCheck), 'detail', protoOf(JsAcceptanceCheck).hy);
 defineProp(protoOf(JsServedBytesResult), 'kind', protoOf(JsServedBytesResult).ke);
-defineProp(protoOf(JsServedBytesResult), 'ok', protoOf(JsServedBytesResult).bx);
-defineProp(protoOf(JsServedBytesResult), 'servedBytesLength', protoOf(JsServedBytesResult).ks);
-defineProp(protoOf(JsServedBytesResult), 'maxServedBytes', protoOf(JsServedBytesResult).ls);
-defineProp(protoOf(JsServedBytesResult), 'reason', protoOf(JsServedBytesResult).lx);
-defineProp(protoOf(JsServedBytesResult), 'reasonVocabulary', protoOf(JsServedBytesResult).mx);
-defineProp(protoOf(JsServedBytesResult), 'tag', protoOf(JsServedBytesResult).nx);
-defineProp(protoOf(JsServedBytesResult), 'detail', protoOf(JsServedBytesResult).dx);
-defineProp(protoOf(JsOrder), 'idHex', protoOf(JsOrder).u10);
-defineProp(protoOf(JsOrder), 'state', protoOf(JsOrder).i14);
-defineProp(protoOf(JsOrder), 'stateToken', protoOf(JsOrder).j14);
-defineProp(protoOf(JsOrder), 'terminal', protoOf(JsOrder).k14);
-defineProp(protoOf(JsOrder), 'recognised', protoOf(JsOrder).l14);
-defineProp(protoOf(JsOrder), 'priceMsat', protoOf(JsOrder).ty);
-defineProp(protoOf(JsOrder), 'feeMsat', protoOf(JsOrder).w12);
-defineProp(protoOf(JsOrder), 'totalMsat', protoOf(JsOrder).x12);
-defineProp(protoOf(JsOrder), 'feeBasisPoints', protoOf(JsOrder).uy);
-defineProp(protoOf(JsOrder), 'feePayeeRequired', protoOf(JsOrder).y12);
-defineProp(protoOf(JsOrder), 'expirationSeconds', protoOf(JsOrder).vy);
-defineProp(protoOf(JsOrder), 'deliverBySeconds', protoOf(JsOrder).wy);
-defineProp(protoOf(JsOrder), 'provider', protoOf(JsOrder).x13);
-defineProp(protoOf(JsOrder), 'commitment', protoOf(JsOrder).js);
-defineProp(protoOf(JsOrder), 'paidAtSeconds', protoOf(JsOrder).n14);
-defineProp(protoOf(JsOrder), 'releasedAtSeconds', protoOf(JsOrder).p14);
-defineProp(protoOf(JsOrder), 'disputeGround', protoOf(JsOrder).r14);
-defineProp(protoOf(JsOrder), 'paymentChecksPerformed', protoOf(JsOrder).s14);
-defineProp(protoOf(JsOrder), 'paymentChecksNotPerformedHere', protoOf(JsOrder).t14);
-defineProp(protoOf(JsOrder), 'deliveryChecksPerformed', protoOf(JsOrder).u14);
-defineProp(protoOf(JsOrder), 'deliveryChecksNotPerformedHere', protoOf(JsOrder).v14);
+defineProp(protoOf(JsServedBytesResult), 'ok', protoOf(JsServedBytesResult).fy);
+defineProp(protoOf(JsServedBytesResult), 'servedBytesLength', protoOf(JsServedBytesResult).ps);
+defineProp(protoOf(JsServedBytesResult), 'maxServedBytes', protoOf(JsServedBytesResult).qs);
+defineProp(protoOf(JsServedBytesResult), 'reason', protoOf(JsServedBytesResult).py);
+defineProp(protoOf(JsServedBytesResult), 'reasonVocabulary', protoOf(JsServedBytesResult).qy);
+defineProp(protoOf(JsServedBytesResult), 'tag', protoOf(JsServedBytesResult).ry);
+defineProp(protoOf(JsServedBytesResult), 'detail', protoOf(JsServedBytesResult).hy);
+defineProp(protoOf(JsOrder), 'idHex', protoOf(JsOrder).z11);
+defineProp(protoOf(JsOrder), 'state', protoOf(JsOrder).v15);
+defineProp(protoOf(JsOrder), 'stateToken', protoOf(JsOrder).w15);
+defineProp(protoOf(JsOrder), 'terminal', protoOf(JsOrder).x15);
+defineProp(protoOf(JsOrder), 'recognised', protoOf(JsOrder).y15);
+defineProp(protoOf(JsOrder), 'priceMsat', protoOf(JsOrder).xz);
+defineProp(protoOf(JsOrder), 'feeMsat', protoOf(JsOrder).j14);
+defineProp(protoOf(JsOrder), 'totalMsat', protoOf(JsOrder).k14);
+defineProp(protoOf(JsOrder), 'feeBasisPoints', protoOf(JsOrder).yz);
+defineProp(protoOf(JsOrder), 'feePayeeRequired', protoOf(JsOrder).l14);
+defineProp(protoOf(JsOrder), 'expirationSeconds', protoOf(JsOrder).zz);
+defineProp(protoOf(JsOrder), 'deliverBySeconds', protoOf(JsOrder).a10);
+defineProp(protoOf(JsOrder), 'provider', protoOf(JsOrder).k15);
+defineProp(protoOf(JsOrder), 'commitment', protoOf(JsOrder).os);
+defineProp(protoOf(JsOrder), 'paidAtSeconds', protoOf(JsOrder).a16);
+defineProp(protoOf(JsOrder), 'releasedAtSeconds', protoOf(JsOrder).c16);
+defineProp(protoOf(JsOrder), 'disputeGround', protoOf(JsOrder).e16);
+defineProp(protoOf(JsOrder), 'paymentChecksPerformed', protoOf(JsOrder).f16);
+defineProp(protoOf(JsOrder), 'paymentChecksNotPerformedHere', protoOf(JsOrder).g16);
+defineProp(protoOf(JsOrder), 'deliveryChecksPerformed', protoOf(JsOrder).h16);
+defineProp(protoOf(JsOrder), 'deliveryChecksNotPerformedHere', protoOf(JsOrder).i16);
 defineProp(protoOf(JsOrderResult), 'kind', protoOf(JsOrderResult).ke);
-defineProp(protoOf(JsOrderResult), 'ok', protoOf(JsOrderResult).bx);
+defineProp(protoOf(JsOrderResult), 'ok', protoOf(JsOrderResult).fy);
 defineProp(protoOf(JsOrderResult), 'order', protoOf(JsOrderResult).lk);
-defineProp(protoOf(JsOrderResult), 'reason', protoOf(JsOrderResult).lx);
-defineProp(protoOf(JsOrderResult), 'reasonVocabulary', protoOf(JsOrderResult).mx);
-defineProp(protoOf(JsOrderResult), 'tag', protoOf(JsOrderResult).nx);
-defineProp(protoOf(JsOrderResult), 'detail', protoOf(JsOrderResult).dx);
+defineProp(protoOf(JsOrderResult), 'reason', protoOf(JsOrderResult).py);
+defineProp(protoOf(JsOrderResult), 'reasonVocabulary', protoOf(JsOrderResult).qy);
+defineProp(protoOf(JsOrderResult), 'tag', protoOf(JsOrderResult).ry);
+defineProp(protoOf(JsOrderResult), 'detail', protoOf(JsOrderResult).hy);
 defineProp(protoOf(JsOrderOutcome), 'kind', protoOf(JsOrderOutcome).ke);
-defineProp(protoOf(JsOrderOutcome), 'ok', protoOf(JsOrderOutcome).bx);
+defineProp(protoOf(JsOrderOutcome), 'ok', protoOf(JsOrderOutcome).fy);
 defineProp(protoOf(JsOrderOutcome), 'order', protoOf(JsOrderOutcome).lk);
-defineProp(protoOf(JsOrderOutcome), 'reason', protoOf(JsOrderOutcome).lx);
-defineProp(protoOf(JsOrderOutcome), 'reasonVocabulary', protoOf(JsOrderOutcome).mx);
-defineProp(protoOf(JsOrderOutcome), 'tag', protoOf(JsOrderOutcome).nx);
-defineProp(protoOf(JsOrderOutcome), 'detail', protoOf(JsOrderOutcome).dx);
-defineProp(protoOf(JsOrderOutcome), 'missingChecks', protoOf(JsOrderOutcome).a15);
-defineProp(protoOf(JsSettlement), 'orderIdHex', protoOf(JsSettlement).b11);
-defineProp(protoOf(JsSettlement), 'payee', protoOf(JsSettlement).p16);
-defineProp(protoOf(JsSettlement), 'medium', protoOf(JsSettlement).q16);
-defineProp(protoOf(JsSettlement), 'evidenced', protoOf(JsSettlement).r16);
-defineProp(protoOf(JsSettlement), 'paymentHashHex', protoOf(JsSettlement).s16);
-defineProp(protoOf(JsSettlement), 'checksPerformed', protoOf(JsSettlement).ss);
-defineProp(protoOf(JsSettlement), 'checksNotPerformedHere', protoOf(JsSettlement).ts);
+defineProp(protoOf(JsOrderOutcome), 'reason', protoOf(JsOrderOutcome).py);
+defineProp(protoOf(JsOrderOutcome), 'reasonVocabulary', protoOf(JsOrderOutcome).qy);
+defineProp(protoOf(JsOrderOutcome), 'tag', protoOf(JsOrderOutcome).ry);
+defineProp(protoOf(JsOrderOutcome), 'detail', protoOf(JsOrderOutcome).hy);
+defineProp(protoOf(JsOrderOutcome), 'missingChecks', protoOf(JsOrderOutcome).n16);
+defineProp(protoOf(JsSettlement), 'orderIdHex', protoOf(JsSettlement).g12);
+defineProp(protoOf(JsSettlement), 'payee', protoOf(JsSettlement).y17);
+defineProp(protoOf(JsSettlement), 'medium', protoOf(JsSettlement).z17);
+defineProp(protoOf(JsSettlement), 'evidenced', protoOf(JsSettlement).a18);
+defineProp(protoOf(JsSettlement), 'paymentHashHex', protoOf(JsSettlement).b18);
+defineProp(protoOf(JsSettlement), 'checksPerformed', protoOf(JsSettlement).xs);
+defineProp(protoOf(JsSettlement), 'checksNotPerformedHere', protoOf(JsSettlement).ys);
 defineProp(protoOf(JsSettlementResult), 'kind', protoOf(JsSettlementResult).ke);
-defineProp(protoOf(JsSettlementResult), 'ok', protoOf(JsSettlementResult).bx);
-defineProp(protoOf(JsSettlementResult), 'settlement', protoOf(JsSettlementResult).y16);
-defineProp(protoOf(JsSettlementResult), 'reason', protoOf(JsSettlementResult).lx);
-defineProp(protoOf(JsSettlementResult), 'reasonVocabulary', protoOf(JsSettlementResult).mx);
-defineProp(protoOf(JsSettlementResult), 'tag', protoOf(JsSettlementResult).nx);
-defineProp(protoOf(JsSettlementResult), 'detail', protoOf(JsSettlementResult).dx);
-defineProp(protoOf(JsAcceptedRequest), 'orderIdHex', protoOf(JsAcceptedRequest).b11);
-defineProp(protoOf(JsAcceptedRequest), 'payee', protoOf(JsAcceptedRequest).p16);
-defineProp(protoOf(JsAcceptedRequest), 'invoice', protoOf(JsAcceptedRequest).a17);
-defineProp(protoOf(JsAcceptedRequest), 'acceptedAtSeconds', protoOf(JsAcceptedRequest).c17);
-defineProp(protoOf(JsAcceptedRequest), 'sealedBy', protoOf(JsAcceptedRequest).e17);
+defineProp(protoOf(JsSettlementResult), 'ok', protoOf(JsSettlementResult).fy);
+defineProp(protoOf(JsSettlementResult), 'settlement', protoOf(JsSettlementResult).h18);
+defineProp(protoOf(JsSettlementResult), 'reason', protoOf(JsSettlementResult).py);
+defineProp(protoOf(JsSettlementResult), 'reasonVocabulary', protoOf(JsSettlementResult).qy);
+defineProp(protoOf(JsSettlementResult), 'tag', protoOf(JsSettlementResult).ry);
+defineProp(protoOf(JsSettlementResult), 'detail', protoOf(JsSettlementResult).hy);
+defineProp(protoOf(JsAcceptedRequest), 'orderIdHex', protoOf(JsAcceptedRequest).g12);
+defineProp(protoOf(JsAcceptedRequest), 'payee', protoOf(JsAcceptedRequest).y17);
+defineProp(protoOf(JsAcceptedRequest), 'invoice', protoOf(JsAcceptedRequest).j18);
+defineProp(protoOf(JsAcceptedRequest), 'acceptedAtSeconds', protoOf(JsAcceptedRequest).l18);
+defineProp(protoOf(JsAcceptedRequest), 'sealedBy', protoOf(JsAcceptedRequest).n18);
 defineProp(protoOf(JsAcceptedRequestResult), 'kind', protoOf(JsAcceptedRequestResult).ke);
-defineProp(protoOf(JsAcceptedRequestResult), 'ok', protoOf(JsAcceptedRequestResult).bx);
-defineProp(protoOf(JsAcceptedRequestResult), 'request', protoOf(JsAcceptedRequestResult).h17);
-defineProp(protoOf(JsAcceptedRequestResult), 'reason', protoOf(JsAcceptedRequestResult).lx);
-defineProp(protoOf(JsAcceptedRequestResult), 'reasonVocabulary', protoOf(JsAcceptedRequestResult).mx);
-defineProp(protoOf(JsAcceptedRequestResult), 'tag', protoOf(JsAcceptedRequestResult).nx);
-defineProp(protoOf(JsAcceptedRequestResult), 'detail', protoOf(JsAcceptedRequestResult).dx);
-protoOf(Absent).n19 = feeOn;
-protoOf(Absent).o19 = splitOn;
-protoOf(Stated).n19 = feeOn;
-protoOf(Stated).o19 = splitOn;
+defineProp(protoOf(JsAcceptedRequestResult), 'ok', protoOf(JsAcceptedRequestResult).fy);
+defineProp(protoOf(JsAcceptedRequestResult), 'request', protoOf(JsAcceptedRequestResult).q18);
+defineProp(protoOf(JsAcceptedRequestResult), 'reason', protoOf(JsAcceptedRequestResult).py);
+defineProp(protoOf(JsAcceptedRequestResult), 'reasonVocabulary', protoOf(JsAcceptedRequestResult).qy);
+defineProp(protoOf(JsAcceptedRequestResult), 'tag', protoOf(JsAcceptedRequestResult).ry);
+defineProp(protoOf(JsAcceptedRequestResult), 'detail', protoOf(JsAcceptedRequestResult).hy);
+protoOf(Absent).w1a = feeOn;
+protoOf(Absent).x1a = splitOn;
+protoOf(Stated).w1a = feeOn;
+protoOf(Stated).x1a = splitOn;
 //endregion
 //region block: init
 Companion_instance = new Companion();
 Companion_instance_0 = new Companion_0();
+ForAnotherListing_instance = new ForAnotherListing();
+ListingOrderWriter_instance = new ListingOrderWriter();
 ChannelTerms_instance = new ChannelTerms();
 Companion_instance_5 = new Companion_5();
 Companion_instance_6 = new Companion_6();
@@ -21257,7 +22118,7 @@ Companion_instance_22 = new Companion_22();
 Companion_instance_23 = new Companion_23();
 Companion_instance_25 = new Companion_25();
 Companion_instance_26 = new Companion_26();
-Refused_instance = new Refused_5();
+Refused_instance = new Refused_6();
 FailClosedEphemeralSigners_instance = new FailClosedEphemeralSigners();
 FailClosedClock_instance = new FailClosedClock();
 FailClosedRandomness_instance = new FailClosedRandomness();
@@ -21283,6 +22144,9 @@ Companion_instance_54 = new Companion_54();
 //endregion
 //region block: exports
 export {
+  JsAsyncSigner as JsAsyncSigner,
+  sealAsync as sealAsync,
+  openAsync as openAsync,
   JsSeamAnswer as JsSeamAnswer,
   JsWireEvent as JsWireEvent,
   JsText as JsText,
@@ -21296,6 +22160,8 @@ export {
   JsRelease as JsRelease,
   buildChat as buildChat,
   buildProposal as buildProposal,
+  buildProposalAgainst as buildProposalAgainst,
+  buildAgreementAgainst as buildAgreementAgainst,
   buildStatusUpdate as buildStatusUpdate,
   buildCommitment as buildCommitment,
   buildRelease as buildRelease,
@@ -21317,9 +22183,11 @@ export {
   listingActivity as listingActivity,
   bidActivity as bidActivity,
   checkDeadlines as checkDeadlines,
+  matchesBoard as matchesBoard,
   JsListing as JsListing,
   JsBid as JsBid,
   JsDeadlineCheck as JsDeadlineCheck,
+  JsBoardQuery as JsBoardQuery,
   JsListingResult as JsListingResult,
   JsBidResult as JsBidResult,
   JsAuthoredListing as JsAuthoredListing,
