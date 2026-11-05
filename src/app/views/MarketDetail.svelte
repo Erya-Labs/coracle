@@ -45,6 +45,7 @@
 
       return app.get().repository.query(filters)
     },
+    $signer,
   ).then(pk => {
     orderReady = Boolean(pk)
   })
@@ -142,7 +143,7 @@
       </Button>
       {#if !orderReady}
         <p class="text-sm text-neutral-400">
-          Ordering needs a NIP-07 signer with nip44 — nos2x, Alby, or the dev test signer.
+          Ordering works with any login whose signer supports nip44.
         </p>
       {/if}
     {/if}

@@ -19,7 +19,7 @@
     verifyDelivery,
   } from "src/domain"
   import {env, myLoad} from "src/engine"
-  import {app, publisher} from "src/engine/core"
+  import {app, publisher, signer} from "src/engine/core"
 
   let timer
   let myPubkey = ""
@@ -35,7 +35,7 @@
   }
 
   onMount(async () => {
-    if (!orderChannelCapable()) return
+    if (!orderChannelCapable($signer)) return
 
     myPubkey =
       (await connectOrderChannel(
@@ -45,6 +45,7 @@
 
           return app.get().repository.query(filters)
         },
+        $signer,
       )) ?? ""
 
     if (!myPubkey) return
@@ -139,9 +140,8 @@
   {#if !ready}
     <Card>
       <p class="text-neutral-400">
-        The order channel needs a NIP-07 signer with nip44 encryption — a recent nos2x or Alby, or
-        this build's dev test signer. If your extension is asking for permission, approve it and
-        reload.
+        The order channel works with any login whose signer supports nip44. If your signer is asking
+        for permission, approve it and reload.
       </p>
     </Card>
   {:else if $orderThreads.size === 0}

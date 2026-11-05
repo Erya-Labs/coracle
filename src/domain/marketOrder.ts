@@ -1,4 +1,5 @@
 import * as nenya from "nenya"
+import type {ISigner} from "@welshman/signer"
 import {finalizeEvent, generateSecretKey, getPublicKey} from "nostr-tools/pure"
 import {decrypt, encrypt, getConversationKey} from "nostr-tools/nip44"
 import {writable} from "svelte/store"
@@ -7,9 +8,9 @@ import {writable} from "svelte/store"
 // commitment, release, delivery checks. Every rule is the nenya library's; this file
 // only moves its results around. Ported from the stage-1 demo page's trade flow.
 //
-// The signer is any NIP-07 extension with nip44 support (window.nostr): nenya's
-// sealAsync/openAsync drive the sealed channel through its promises, so the dev test
-// signer and a real extension like nos2x work alike. Remaining PoC shortcuts: the
+// The signer is the logged-in session's, of any kind, as long as it supports nip44:
+// nenya's sealAsync/openAsync drive the sealed channel through its promises, so an
+// extension, a signer app and the dev test signer work alike. Remaining PoC shortcuts: the
 // default bill is pretend (real BOLT-11, genuine preimage, nothing actually paid)
 // unless the seller pastes a real invoice; the encrypted file and the payment voucher
 // ride the relay, so two browser windows can trade with no other infrastructure.
@@ -40,10 +41,8 @@ const clock = () => Math.floor(Date.now() / 1000)
 
 // --- keys, signer, environment -------------------------------------------------
 
-const nostr = () => (window as any).nostr
-
 // The order channel is sealed with nip44 end to end, so the signer must support it.
-export const orderChannelCapable = () => Boolean(nostr()?.nip44)
+export const orderChannelCapable = (signer: ISigner | undefined) => Boolean(signer?.nip44)
 
 // Throwaway signers for the wrap layer are minted locally, so these stay synchronous.
 const makeSigner = (sk: Uint8Array) => {
@@ -83,46 +82,42 @@ const makeSigner = (sk: Uint8Array) => {
   )
 }
 
-// nenya's async signer: the same four calls in completion form, each answered by the
-// extension's promise, null meaning unavailable.
-const makeAsyncSigner = (n: any) =>
+// Completes exactly once: with the signer's string, or null when it refused, failed or
+// answered with anything else.
+const settle = (
+  ask: () => Promise<unknown>,
+  complete: (value: any) => void,
+  wrap = (s: string): any => s,
+) =>
+  Promise.resolve()
+    .then(ask)
+    .then(
+      value => complete(typeof value === "string" ? wrap(value) : null),
+      () => complete(null),
+    )
+
+// nenya's async signer: the same four calls in completion form, answered by the session signer.
+export const makeAsyncSigner = (signer: ISigner) =>
   new nenya.JsAsyncSigner(
-    (complete: any) => n.getPublicKey().then(complete, () => complete(null)),
-    (serialisation: string, complete: any) => {
-      try {
+    complete => settle(() => signer.getPubkey(), complete),
+    (serialisation, complete) =>
+      settle(async () => {
         const [, , created_at, kind, tags, content] = JSON.parse(serialisation)
 
-        n.signEvent({kind, created_at, tags, content}).then(
-          (e: any) => complete(e.sig),
-          () => complete(null),
-        )
-      } catch {
-        complete(null)
-      }
-    },
-    (counterparty: string, plaintext: string, complete: any) =>
-      n.nip44.encrypt(counterparty, plaintext).then(complete, () => complete(null)),
-    (counterparty: string, payload: string, complete: any) =>
-      n.nip44.decrypt(counterparty, payload).then(
-        (pt: string) => complete(new nenya.JsDecryption(true, pt)),
-        () => complete(new nenya.JsDecryption(false)),
+        return (await signer.sign({kind, created_at, tags, content}))?.sig
+      }, complete),
+    (counterparty, plaintext, complete) =>
+      settle(() => signer.nip44.encrypt(counterparty, plaintext), complete),
+    (counterparty, payload, complete) =>
+      settle(
+        () => signer.nip44.decrypt(counterparty, payload),
+        complete,
+        plaintext => new nenya.JsDecryption(true, plaintext),
       ),
   )
 
-let state: any = null
-
-const initState = async () => {
-  if (state) return state
-
-  const n = nostr()
-
-  if (!n?.nip44) return null
-
-  const pk = await n.getPublicKey().catch(() => null)
-
-  if (!pk) return null
-
-  const env = new nenya.JsEnvironment(
+export const makeEnvironment = () =>
+  new nenya.JsEnvironment(
     () => String(clock()),
     count => {
       try {
@@ -141,6 +136,24 @@ const initState = async () => {
     },
   )
 
+let state: any = null
+let pending: ISigner | undefined
+
+// Another signer is another person, so the old state and its threads are dropped.
+const initState = async (signer: ISigner | undefined) => {
+  if (state && state.source === signer) return state
+
+  state = null
+  pending = signer
+  orderThreads.set(new Map())
+
+  if (!signer?.nip44) return null
+
+  const pk = await signer.getPubkey().catch(() => null)
+
+  if (!pk || pending !== signer) return null
+
+  const env = makeEnvironment()
   const records = new Map()
   const store = new nenya.JsPaymentRequestStore(
     (orderIdHex: string, payee: string) => records.get(`${orderIdHex}:${payee}`) ?? null,
@@ -149,7 +162,8 @@ const initState = async () => {
 
   state = {
     pk,
-    signer: makeAsyncSigner(n),
+    source: signer,
+    signer: makeAsyncSigner(signer),
     env,
     machine: new nenya.JsOrderMachine(env),
     store,
@@ -240,11 +254,15 @@ let publish: Publish = () => {
 }
 let loadByFilter: LoadByFilter = async () => []
 
-export const connectOrderChannel = async (p: Publish, l: LoadByFilter) => {
+export const connectOrderChannel = async (
+  p: Publish,
+  l: LoadByFilter,
+  signer: ISigner | undefined,
+) => {
   publish = p
   loadByFilter = l
 
-  return (await initState())?.pk ?? null
+  return (await initState(signer))?.pk ?? null
 }
 
 const sealOne = (event: any, to: string) =>
@@ -275,12 +293,10 @@ const sendRumor = async (built: any, recipients: string[]) => {
 const BLOB_KIND = 9876
 
 const uploadBlob = async (bytes: Uint8Array) => {
-  const event = await nostr().signEvent({
-    kind: BLOB_KIND,
-    created_at: clock(),
-    tags: [],
-    content: b64(bytes),
-  })
+  const event = finalizeEvent(
+    {kind: BLOB_KIND, created_at: clock(), tags: [], content: b64(bytes)},
+    generateSecretKey(),
+  )
 
   publish(event)
 

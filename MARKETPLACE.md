@@ -10,10 +10,10 @@ Read the honesty box first.
 > **What is real and what is not.**
 > Everything cryptographic is real: the sealed order channel, the fingerprint commitment, the
 > payment-proof check, the verified delivery. Two notes:
-> **(1) The signer.** A real NIP-07 signer extension drives the whole trade, as long as it
-> supports nip44 encryption (recent nos2x, Alby): the library's async entry points sign and
-> decrypt through `window.nostr`, so the extension will prompt — grant it lasting permission
-> or the order polling gets noisy. The dev server (`pnpm run dev`) instead injects a
+> **(1) The signer.** Any login whose signer supports nip44 drives the whole trade — an
+> extension, a signer app or a key: the library's async entry points sign and decrypt
+> through it, so an extension or signer app will prompt — grant it lasting permission or the
+> order polling gets noisy. The dev server (`pnpm run dev`) instead injects a
 > throwaway-key test signer so one person can rehearse both sides in two browser windows;
 > that key is a real nostr key, but treat it as hot and disposable.
 > **(2) The default bill is pretend.** If the seller doesn't paste a real invoice, the app
