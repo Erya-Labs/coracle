@@ -155,6 +155,52 @@ describe("a signer that does not answer properly", () => {
   })
 })
 
+describe("the seal signature", () => {
+  // A well-formed signature that is not the right one: the last byte changed.
+  const flip = (sig: string) => sig.slice(0, -2) + (sig.endsWith("00") ? "01" : "00")
+
+  it("fails the seal when the signer returns a wrong signature", async () => {
+    const signer = new Nip01Signer(bytesToHex(generateSecretKey()))
+    const sign = signer.sign.bind(signer)
+
+    signer.sign = async (e: any) => {
+      const event = await sign(e)
+
+      return {...event, sig: flip(event.sig)}
+    }
+
+    const sealed = await seal(signer, getPublicKey(generateSecretKey()))
+
+    expect(sealed.ok).toBe(false)
+  })
+
+  it("does not open a wrap holding a seal with a bad signature", async () => {
+    const sk = generateSecretKey()
+    const me = getPublicKey(sk)
+    const peer = new Nip01Signer(bytesToHex(generateSecretKey()))
+    const sealed = await seal(peer, me)
+    const inner = sealInside(sealed.toRecipient.json, sk)
+    const wrapSk = generateSecretKey()
+    const wrap = finalizeEvent(
+      {
+        kind: 1059,
+        created_at: JSON.parse(sealed.toRecipient.json).created_at,
+        tags: [["p", me]],
+        content: encrypt(
+          JSON.stringify({...inner, sig: flip(inner.sig)}),
+          getConversationKey(wrapSk, me),
+        ),
+      },
+      wrapSk,
+    )
+
+    const opened = await open(JSON.stringify(wrap), new Nip01Signer(bytesToHex(sk)))
+
+    expect(opened.ok).toBe(false)
+    expect(opened.reason).toBe("SEAL_SIGNATURE_INVALID")
+  })
+})
+
 describe("connectOrderChannel", () => {
   it("keeps the threads for the same signer and empties them for another", async () => {
     const noop = () => {}

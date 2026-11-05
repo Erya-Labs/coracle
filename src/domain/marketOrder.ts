@@ -1,5 +1,6 @@
 import * as nenya from "nenya"
 import type {ISigner} from "@welshman/signer"
+import {schnorr} from "@noble/curves/secp256k1"
 import {finalizeEvent, generateSecretKey, getPublicKey} from "nostr-tools/pure"
 import {decrypt, encrypt, getConversationKey} from "nostr-tools/nip44"
 import {writable} from "svelte/store"
@@ -126,7 +127,13 @@ export const makeEnvironment = () =>
         return null
       }
     },
-    null,
+    (pubkey, message, signature) => {
+      try {
+        return schnorr.verify(signature, message, pubkey) ? "VALID" : "INVALID"
+      } catch {
+        return "INVALID"
+      }
+    },
     () => {
       try {
         return makeSigner(generateSecretKey())
