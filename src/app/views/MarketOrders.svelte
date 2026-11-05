@@ -7,6 +7,7 @@
   import {msatToSats} from "src/domain"
   import {
     acceptOrder,
+    cancelOrder,
     commitFile,
     connectOrderChannel,
     orderChannelCapable,
@@ -98,6 +99,18 @@
   }
 
   const release = async thread => report(await releaseKey(thread), "Key sent to the buyer.")
+
+  const cancellableStates = ["PROPOSED", "ACCEPTED", "COMMITTED", "AWAITING_PAYMENT"]
+  const cancelSent = {}
+
+  const cancel = async thread => {
+    cancelSent[thread.orderId] = true
+
+    const result = await cancelOrder(thread)
+
+    cancelSent[thread.orderId] = result.sent
+    report(result, "Cancellation sent.")
+  }
 
   $: for (const thread of $orderThreads.values()) {
     if (
@@ -208,6 +221,19 @@
               {thread.vouchers.provider
                 ? `Pay ${msatToSats(thread.order.totalMsat).toLocaleString()} sats (pretend) and send proof`
                 : "Send the payment proof"}
+            </Button>
+          </div>
+        {/if}
+        {#if cancellableStates.includes(thread.order?.state) && !thread.settlements.provider && !cancelSent[thread.orderId]}
+          <div class="mt-2 flex flex-col gap-2">
+            {#if thread.order.state === "AWAITING_PAYMENT"}
+              <p class="text-sm text-neutral-400">
+                Cancelling does not get back a payment you already made. If you paid, send the
+                payment proof instead.
+              </p>
+            {/if}
+            <Button class="btn btn-low self-start" on:click={() => cancel(thread)}>
+              Cancel the order
             </Button>
           </div>
         {/if}

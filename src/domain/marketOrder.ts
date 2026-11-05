@@ -776,6 +776,17 @@ export const acceptOrder = async (thread: any) => {
   return sendRumor(built, [thread.buyerKey])
 }
 
+export const cancelOrder = async (thread: any) => {
+  // A cancellation recovers no payment, so a buyer who sent a proof can no longer cancel.
+  if (secrets()[thread.orderId]?.paidPreimageHex) {
+    return {sent: false, words: "a payment proof was already sent for this order"}
+  }
+
+  const built = nenya.buildStatusUpdate(envelope([thread.providerKey]), thread.orderId, "cancelled")
+
+  return sendRumor(built, [thread.providerKey])
+}
+
 export const commitFile = async (thread: any, plain: Uint8Array, mimeType: string) => {
   const locked = await lockFile(plain)
   const url = await uploadBlob(locked.blob)
