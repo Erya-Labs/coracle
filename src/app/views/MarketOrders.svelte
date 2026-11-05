@@ -3,6 +3,7 @@
   import FlexColumn from "src/partials/FlexColumn.svelte"
   import Card from "src/partials/Card.svelte"
   import Button from "src/partials/Button.svelte"
+  import QRCode from "src/partials/QRCode.svelte"
   import {showInfo, showWarning} from "src/partials/Toast.svelte"
   import {msatToSats} from "src/domain"
   import {
@@ -212,6 +213,13 @@
         {#if thread.order?.state === "AWAITING_PAYMENT" && !thread.settlements.provider && thread.requests.provider}
           <div class="mt-2 flex flex-col gap-2">
             {#if !thread.vouchers.provider}
+              <p class="text-sm text-neutral-400">
+                Paying is final. Nothing makes the seller send the key after you pay. This test
+                build is for up to 1,000 sats.
+              </p>
+              {#if Number(thread.order.totalMsat) <= 1000000}
+                <QRCode code={thread.requests.provider.invoice} />
+              {/if}
               <input
                 class="rounded border border-solid border-neutral-600 bg-transparent px-3 py-2 text-sm"
                 bind:value={preimages[thread.orderId]}
