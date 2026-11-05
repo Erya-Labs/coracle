@@ -246,7 +246,7 @@ const buildWords = (result: any) =>
 
 // --- publishing: the caller supplies publish/load so engine stays out of domain --
 
-type Publish = (event: any) => void
+type Publish = (event: any) => Promise<{ok: boolean}>
 type LoadByFilter = (filters: any[]) => Promise<any[]>
 
 let publish: Publish = () => {
@@ -283,7 +283,9 @@ const sendRumor = async (built: any, recipients: string[]) => {
     if (wraps.length === 1) wraps.push(JSON.parse(sealed.toSelf.json))
   }
 
-  for (const wrap of wraps) publish(wrap)
+  const kept = await Promise.all(wraps.map(wrap => publish(wrap)))
+
+  if (!kept.every(k => k.ok)) return {sent: false, words: "no relay kept the message"}
 
   return {sent: true, words: ""}
 }
@@ -298,9 +300,7 @@ const uploadBlob = async (bytes: Uint8Array) => {
     generateSecretKey(),
   )
 
-  publish(event)
-
-  return `nostr-blob:${event.id}`
+  return (await publish(event)).ok ? `nostr-blob:${event.id}` : null
 }
 
 const downloadBlob = async (url: string) => {
@@ -803,9 +803,18 @@ export const cancelOrder = async (thread: any) => {
   return sendRumor(built, [thread.providerKey])
 }
 
+// The locked file rides the relay as one event, and relays cap an event's size.
+const MAX_FILE_BYTES = 40_000
+
 export const commitFile = async (thread: any, plain: Uint8Array, mimeType: string) => {
+  if (plain.length > MAX_FILE_BYTES) {
+    return {sent: false, words: `the file is over ${MAX_FILE_BYTES} bytes, too big for a relay`}
+  }
+
   const locked = await lockFile(plain)
   const url = await uploadBlob(locked.blob)
+
+  if (!url) return {sent: false, words: "no relay kept the locked file"}
 
   saveSecret(thread.orderId, {
     keyHex: hex(locked.key),

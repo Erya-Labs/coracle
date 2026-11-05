@@ -23,7 +23,7 @@
     readBid,
     readListing,
   } from "src/domain"
-  import {env, myLoad, sign} from "src/engine"
+  import {env, myLoad, publishOrderEvent, sign} from "src/engine"
   import {
     app,
     deriveEvents,
@@ -39,7 +39,7 @@
   let orderReady = false
 
   connectOrderChannel(
-    event => publisher.get().publish({event, relays: env.DEFAULT_RELAYS}),
+    publishOrderEvent,
     async filters => {
       await myLoad({relays: env.DEFAULT_RELAYS, filters, skipCache: true}).catch(noop)
 

@@ -12,6 +12,7 @@ import {
   uniq,
 } from "@welshman/lib"
 import {User, publish} from "@welshman/app"
+import {PublishStatus} from "@welshman/net"
 import {Nip01Signer} from "@welshman/signer"
 import {isLink, parse} from "@welshman/content"
 import {AppData, Delete, DirectMessage, Poll, RelayJoin, RelayList} from "@welshman/domain"
@@ -49,6 +50,7 @@ import {
   wraps,
   writer,
 } from "src/engine/core"
+import {env} from "src/engine/env"
 import {anonymous, getClientTags, sessionWithMeta} from "src/engine/state"
 import {DirectMessageFile, PollVote, userListKind} from "src/domain"
 import type {CompressorOpts} from "src/util/html"
@@ -441,6 +443,17 @@ export const broadcastUserRelays = (relays: string[]) => broadcast([RELAYS], rel
 
 export const broadcastUserData = (relays: string[]) =>
   broadcast([RELAYS, MESSAGING_RELAYS, FOLLOWS, PROFILE], relays)
+
+// Market orders
+
+// An order message counts as sent only once a relay has kept it.
+export const publishOrderEvent = async (event: TrustedEvent) => {
+  const pub = publisher.get().publish({event, relays: env.DEFAULT_RELAYS})
+
+  await pub.settled()
+
+  return {ok: pub.hasStatus(PublishStatus.Success)}
+}
 
 // Lightning
 

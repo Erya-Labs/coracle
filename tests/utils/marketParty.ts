@@ -15,12 +15,18 @@ const matches = (e: any, f: any) => {
   return true
 }
 
+// Refuses any message over its size limit, as a real relay does.
 export class FakeRelay {
   events: any[] = []
 
-  publish = (e: any) => {
+  constructor(public maxMessage = Infinity) {}
+
+  publish = async (e: any) => {
+    if (JSON.stringify(["EVENT", e]).length > this.maxMessage) return {ok: false}
     if (!verifyEvent(e)) throw new Error(`relay: bad signature on kind ${e.kind}`)
     if (!this.events.find(x => x.id === e.id)) this.events.push(e)
+
+    return {ok: true}
   }
 
   query = (filters: any[]) => this.events.filter(e => filters.some(f => matches(e, f)))

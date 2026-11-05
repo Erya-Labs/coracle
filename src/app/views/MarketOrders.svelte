@@ -19,8 +19,8 @@
     sendBill,
     verifyDelivery,
   } from "src/domain"
-  import {env, myLoad} from "src/engine"
-  import {app, publisher, signer} from "src/engine/core"
+  import {env, myLoad, publishOrderEvent} from "src/engine"
+  import {app, signer} from "src/engine/core"
 
   let timer
   let myPubkey = ""
@@ -40,7 +40,7 @@
 
     myPubkey =
       (await connectOrderChannel(
-        event => publisher.get().publish({event, relays: env.DEFAULT_RELAYS}),
+        publishOrderEvent,
         async filters => {
           await myLoad({relays: env.DEFAULT_RELAYS, filters, skipCache: true}).catch(() => null)
 

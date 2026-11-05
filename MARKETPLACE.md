@@ -44,8 +44,8 @@ Read the honesty box first.
    least one **write-enabled relay that accepts kinds 1059, 30402, 30404, 1111 and 9876**
    (Relays → Add Relay). For a private trade, run your own —
    [`nak serve`](https://github.com/fiatjaf/nak) gives you one in one command — and have both
-   sides join it. The encrypted file also travels as a relay event, so keep the deliverable
-   under your relay's event size limit (roughly 100 KB on most public relays).
+   sides join it. The encrypted file also travels as a relay event, so the deliverable can be
+   at most 40 KB; the app refuses a bigger file, and refuses to commit to a file no relay kept.
 
 ## The trade
 
