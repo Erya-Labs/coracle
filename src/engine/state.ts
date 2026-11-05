@@ -177,7 +177,7 @@ export const defaultSettings = {
   pow_difficulty: 0,
   muted_words: [], // Deprecated
   hide_sensitive: true,
-  report_analytics: true,
+  report_analytics: false,
   min_wot_score: 0,
   min_pow_difficulty: 0,
   enable_client_tag: false,
