@@ -55,6 +55,7 @@ export declare class JsCapabilities {
     get specification(): string;
     get items(): Array<JsConformanceItem>;
     get notPerformedHere(): Array<string>;
+    get openItems(): Array<JsOpenItem>;
     get report(): string;
     toString(): string;
 }
@@ -65,6 +66,14 @@ export declare class JsConformanceItem {
     get specSections(): Array<string>;
     get evidenceClasses(): Array<string>;
     get notPerformed(): Array<string>;
+    get note(): string;
+    toString(): string;
+}
+export declare class JsOpenItem {
+    private constructor();
+    get id(): string;
+    get status(): string;
+    get specSections(): Array<string>;
     get note(): string;
     toString(): string;
 }
@@ -105,12 +114,28 @@ export declare class JsRelease {
 export declare function buildChat(envelope: JsRumorEnvelope, orderIdHex?: Nullable<string>): JsBuildResult;
 export declare function buildProposal(envelope: JsRumorEnvelope, orderIdHex: string, itemCoordinate: string, terms: JsOrderTerms, feeRecipient?: Nullable<string>, amountSat?: Nullable<string>): JsBuildResult;
 export declare function buildProposalAgainst(listing: JsListing, environment: JsEnvironment, envelope: JsRumorEnvelope, orderIdHex: string, terms: JsOrderTerms, feeRecipient?: Nullable<string>, amountSat?: Nullable<string>): JsBuildResult;
+export declare function buildProposalForBid(listing: JsListing, bid: JsBid, environment: JsEnvironment, envelope: JsRumorEnvelope, orderIdHex: string, acceptBy?: Nullable<string>): JsBuildResult;
 export declare function buildAgreementAgainst(listing: JsListing, environment: JsEnvironment, envelope: JsRumorEnvelope, proposalRumor: JsRumor): JsBuildResult;
 export declare function buildStatusUpdate(envelope: JsRumorEnvelope, orderIdHex: string, statusToken: string, itemCoordinate?: Nullable<string>, terms?: Nullable<JsOrderTerms>, feeRecipient?: Nullable<string>): JsBuildResult;
 export declare function buildCommitment(envelope: JsRumorEnvelope, orderIdHex: string, commitment: JsCommitment, url: string): JsBuildResult;
 export declare function buildRelease(envelope: JsRumorEnvelope, orderIdHex: string, release: JsRelease, decryptionKeyHex: string, decryptionNonceHex: string): JsBuildResult;
+export declare function buildReleaseAfterPayment(envelope: JsRumorEnvelope, commitmentRumor: JsRumor, settlement: JsSettlement, decryptionKeyHex: string, decryptionNonceHex: string): JsBuildResult;
 export declare function buildPrivateBid(envelope: JsRumorEnvelope, itemCoordinate: string, terms: JsOrderTerms, feeRecipient?: Nullable<string>): JsBuildResult;
 export declare function buildPaymentRequest(envelope: JsRumorEnvelope, orderIdHex: string, payeeToken: string, invoice: string, feeRecipient?: Nullable<string>, mediumToken?: string, terms?: Nullable<JsOrderTerms>): JsBuildResult;
+export declare function buildFeeRequestFromProposal(envelope: JsRumorEnvelope, proposalRumor: JsRumor, invoice: string): JsFeeRequest;
+export declare class JsFeeRequest {
+    private constructor();
+    get kind(): string;
+    get ok(): boolean;
+    get event(): Nullable<JsWireEvent>;
+    get buyerPubkey(): Nullable<string>;
+    get reason(): Nullable<string>;
+    get reasonVocabulary(): Nullable<string>;
+    get tag(): Nullable<string>;
+    get tagReason(): Nullable<string>;
+    get detail(): Nullable<string>;
+    toString(): string;
+}
 export declare function buildReceipt(envelope: JsRumorEnvelope, orderIdHex: string, payeeToken: string, reference: string, proof: string, feeRecipient?: Nullable<string>, mediumToken?: string, terms?: Nullable<JsOrderTerms>): JsBuildResult;
 export declare function seal(rumor: JsWireEvent, recipientPubkey: string, sender: JsSigner, environment?: JsEnvironment, recipientRelayHint?: Nullable<string>): JsSealResult;
 export declare function open(wrapJson: string, me: JsSigner, environment?: JsEnvironment): JsOpenResult;
@@ -201,6 +226,7 @@ export declare class JsListing {
     get nenyaVersion(): Nullable<number>;
     get pubkeyRefs(): Array<Array<string>>;
     get feeBasisPoints(): Nullable<number>;
+    get feeConfirmationRequired(): boolean;
     get feeRecipient(): Nullable<string>;
     get license(): Nullable<string>;
     get deliverBySeconds(): Nullable<string>;
@@ -224,6 +250,7 @@ export declare class JsBid {
     get openEnded(): boolean;
     get deliverBySeconds(): Nullable<string>;
     get feeBasisPoints(): Nullable<number>;
+    get feeConfirmationRequired(): boolean;
     get feeRecipient(): Nullable<string>;
     get alt(): Nullable<string>;
     get nenyaVersion(): Nullable<number>;
@@ -327,6 +354,7 @@ export declare function decodeProposal(rumor: JsRumor): JsProposalResult;
 export declare function decodeCommitment(rumor: JsRumor): JsCommitmentResult;
 export declare function decodeRelease(rumor: JsRumor): JsReleaseResult;
 export declare function decodeStatusUpdate(rumor: JsRumor): JsStatusUpdateResult;
+export declare function decodePrivateBid(rumor: JsRumor): JsPrivateBidResult;
 export declare class JsOrderProposal {
     private constructor();
     get buyer(): string;
@@ -339,10 +367,13 @@ export declare class JsOrderProposal {
     get feeMsat(): string;
     get totalMsat(): string;
     get feeBasisPoints(): Nullable<number>;
+    get feeConfirmationRequired(): boolean;
     get feePayeeRequired(): boolean;
     get feeRecipient(): Nullable<string>;
+    feeRecipientIsProvider(providerPubkey: string): boolean;
     get expirationSeconds(): Nullable<string>;
     get deliverBySeconds(): Nullable<string>;
+    get terms(): JsOrderTerms;
     get counterparties(): Array<Array<string>>;
     get event(): JsWireEvent;
     toString(): string;
@@ -352,6 +383,37 @@ export declare class JsProposalResult {
     get kind(): string;
     get ok(): boolean;
     get proposal(): Nullable<JsOrderProposal>;
+    get reason(): Nullable<string>;
+    get reasonVocabulary(): Nullable<string>;
+    get tag(): Nullable<string>;
+    get detail(): Nullable<string>;
+    toString(): string;
+}
+export declare class JsPrivateBid {
+    private constructor();
+    get bidder(): string;
+    get idHex(): string;
+    get createdAtSeconds(): string;
+    get itemCoordinate(): string;
+    get itemQuantity(): string;
+    get priceMsat(): string;
+    get feeMsat(): string;
+    get totalMsat(): string;
+    get feeBasisPoints(): Nullable<number>;
+    get feeConfirmationRequired(): boolean;
+    get feePayeeRequired(): boolean;
+    get feeRecipient(): Nullable<string>;
+    get expirationSeconds(): Nullable<string>;
+    get deliverBySeconds(): Nullable<string>;
+    get counterparties(): Array<Array<string>>;
+    get event(): JsWireEvent;
+    toString(): string;
+}
+export declare class JsPrivateBidResult {
+    private constructor();
+    get kind(): string;
+    get ok(): boolean;
+    get privateBid(): Nullable<JsPrivateBid>;
     get reason(): Nullable<string>;
     get reasonVocabulary(): Nullable<string>;
     get tag(): Nullable<string>;
@@ -424,9 +486,15 @@ export declare class JsStatusUpdateResult {
     toString(): string;
 }
 export declare function openOrder(machine: JsOrderMachine, orderIdHex: string, terms: JsOrderTerms, createdAtSeconds?: Nullable<string>): JsOrderResult;
+export declare function openOrderFromProposal(machine: JsOrderMachine, proposalRumor: JsRumor): JsOrderResult;
 export declare function stepOrder(machine: JsOrderMachine, order: JsOrder, event: JsOrderEvent): JsOrderOutcome;
+export declare function stepOrderWithStatusUpdate(machine: JsOrderMachine, order: JsOrder, proposalRumor: JsRumor, statusRumor: JsRumor, providerPubkey: string): JsOrderOutcome;
+export declare function stepOrderWithCommitment(machine: JsOrderMachine, order: JsOrder, proposalRumor: JsRumor, commitmentRumor: JsRumor, providerPubkey: string): JsOrderOutcome;
+export declare function stepOrderWithRelease(machine: JsOrderMachine, order: JsOrder, proposalRumor: JsRumor, releaseRumor: JsRumor, providerPubkey: string): JsOrderOutcome;
 export declare function verifyServedBytes(commitment: JsCommitment, servedBytesHex: string, maxServedBytes?: Nullable<string>): JsServedBytesResult;
 export declare function checkAcceptance(proposalRumor: JsRumor, statusRumor: JsRumor, providerPubkey: string): JsAcceptanceCheck;
+export declare function partyOf(proposalRumor: JsRumor, providerPubkey: string, senderPubkey: string): JsPartyResult;
+export declare function proposalForFeeRecipient(order: JsOrder, proposalRumor: JsRumor, providerPubkey: string): JsFeeRecipientCopy;
 export declare class JsAcceptanceCheck {
     private constructor();
     get kind(): string;
@@ -443,6 +511,29 @@ export declare class JsAcceptanceCheck {
     get detail(): Nullable<string>;
     toString(): string;
 }
+export declare class JsPartyResult {
+    private constructor();
+    get kind(): string;
+    get ok(): boolean;
+    get party(): Nullable<string>;
+    get reason(): Nullable<string>;
+    get reasonVocabulary(): Nullable<string>;
+    get tag(): Nullable<string>;
+    get detail(): Nullable<string>;
+    toString(): string;
+}
+export declare class JsFeeRecipientCopy {
+    private constructor();
+    get kind(): string;
+    get ok(): boolean;
+    get recipientPubkey(): Nullable<string>;
+    get event(): Nullable<JsWireEvent>;
+    get reason(): Nullable<string>;
+    get reasonVocabulary(): Nullable<string>;
+    get tag(): Nullable<string>;
+    get detail(): Nullable<string>;
+    toString(): string;
+}
 export declare class JsServedBytesResult {
     private constructor();
     get kind(): string;
@@ -453,6 +544,7 @@ export declare class JsServedBytesResult {
     get reasonVocabulary(): Nullable<string>;
     get tag(): Nullable<string>;
     get detail(): Nullable<string>;
+    get deliveryFailure(): Nullable<string>;
     toString(): string;
 }
 export declare class JsOrderMachine {
@@ -473,10 +565,12 @@ export declare class JsOrder {
     get feeMsat(): string;
     get totalMsat(): string;
     get feeBasisPoints(): Nullable<number>;
+    get feeConfirmationRequired(): boolean;
     get feePayeeRequired(): boolean;
     get expirationSeconds(): Nullable<string>;
     get deliverBySeconds(): Nullable<string>;
     get provider(): Nullable<string>;
+    get feeRecipientIsProvider(): boolean;
     get commitment(): Nullable<JsCommitment>;
     get paidAtSeconds(): Nullable<string>;
     get releasedAtSeconds(): Nullable<string>;
@@ -508,6 +602,7 @@ export declare class JsOrderOutcome {
     get tag(): Nullable<string>;
     get detail(): Nullable<string>;
     get missingChecks(): Array<string>;
+    get deliveryFailure(): Nullable<string>;
     toString(): string;
 }
 export declare class JsOrderEvent {
@@ -556,6 +651,11 @@ export declare class JsEnvironment {
 export declare function verifySettlement(receipt: JsRumor, store: JsPaymentRequestStore, terms: JsOrderTerms): JsSettlementResult;
 export declare function verifyFeeReceipt(receipt: JsRumor, store: JsPaymentRequestStore, order: JsOrder, earlierPoints?: Array<JsFeeTermSighting>): JsSettlementResult;
 export declare function acceptPaymentRequest(request: JsRumor, proposalRumor: JsRumor, acceptanceRumor: JsRumor, providerPubkey: string, store: JsPaymentRequestStore, environment?: JsEnvironment, earlierPoints?: Array<JsFeeTermSighting>): JsAcceptedRequestResult;
+export declare function bidFeeSighting(bid: JsBid): JsFeeTermSighting;
+export declare function privateBidFeeSighting(rumor: JsRumor): JsFeeTermSightingResult;
+export declare function proposalFeeSighting(proposalRumor: JsRumor): JsFeeTermSightingResult;
+export declare function acceptanceFeeSighting(statusRumor: JsRumor): JsFeeTermSightingResult;
+export declare function paymentRequestFeeSighting(request: JsRumor, proposalRumor: JsRumor, acceptanceRumor: JsRumor, providerPubkey: string): JsFeeTermSightingResult;
 export declare class JsSettlement {
     private constructor();
     get orderIdHex(): string;
@@ -608,5 +708,16 @@ export declare class JsFeeTermSighting {
     constructor(point: string, feeTag?: Nullable<Array<string>>);
     get point(): string;
     get feeTag(): Nullable<Array<string>>;
+    toString(): string;
+}
+export declare class JsFeeTermSightingResult {
+    private constructor();
+    get kind(): string;
+    get ok(): boolean;
+    get sighting(): Nullable<JsFeeTermSighting>;
+    get reason(): Nullable<string>;
+    get reasonVocabulary(): Nullable<string>;
+    get tag(): Nullable<string>;
+    get detail(): Nullable<string>;
     toString(): string;
 }

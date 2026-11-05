@@ -2,7 +2,7 @@
 
 Prebuilt JavaScript distribution of [nenya-core](https://github.com/Erya-Labs/nenya), the
 reference implementation of the NENYA-1 marketplace spec. Built from commit
-`31fdac9597333877da19ed6213617523dcb1e06d` with:
+`49c0fa733c8ad022c6e108e5ca5865abd731f68d` with:
 
     ./gradlew :nenya-core:jsNodeProductionLibraryDistribution
 

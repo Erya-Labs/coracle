@@ -246,7 +246,7 @@ function toCollection(_this__u8e3s4, destination) {
   return destination;
 }
 function contains(_this__u8e3s4, element) {
-  return indexOf_0(_this__u8e3s4, element) >= 0;
+  return indexOf(_this__u8e3s4, element) >= 0;
 }
 function single(_this__u8e3s4) {
   var tmp;
@@ -261,7 +261,24 @@ function single(_this__u8e3s4) {
   }
   return tmp;
 }
+function toMutableList(_this__u8e3s4) {
+  return ArrayList_init_$Create$_1(asCollection(_this__u8e3s4));
+}
 function indexOf(_this__u8e3s4, element) {
+  var inductionVariable = 0;
+  var last = _this__u8e3s4.length - 1 | 0;
+  if (inductionVariable <= last)
+    do {
+      var index = inductionVariable;
+      inductionVariable = inductionVariable + 1 | 0;
+      if (element === _this__u8e3s4[index]) {
+        return index;
+      }
+    }
+     while (inductionVariable <= last);
+  return -1;
+}
+function indexOf_0(_this__u8e3s4, element) {
   if (element == null) {
     var inductionVariable = 0;
     var last = _this__u8e3s4.length - 1 | 0;
@@ -289,28 +306,11 @@ function indexOf(_this__u8e3s4, element) {
   }
   return -1;
 }
-function toMutableList(_this__u8e3s4) {
-  return ArrayList_init_$Create$_1(asCollection(_this__u8e3s4));
-}
-function indexOf_0(_this__u8e3s4, element) {
-  var inductionVariable = 0;
-  var last = _this__u8e3s4.length - 1 | 0;
-  if (inductionVariable <= last)
-    do {
-      var index = inductionVariable;
-      inductionVariable = inductionVariable + 1 | 0;
-      if (element === _this__u8e3s4[index]) {
-        return index;
-      }
-    }
-     while (inductionVariable <= last);
-  return -1;
+function contains_0(_this__u8e3s4, element) {
+  return indexOf_0(_this__u8e3s4, element) >= 0;
 }
 function get_lastIndex(_this__u8e3s4) {
   return _this__u8e3s4.length - 1 | 0;
-}
-function contains_0(_this__u8e3s4, element) {
-  return indexOf(_this__u8e3s4, element) >= 0;
 }
 function joinToString(_this__u8e3s4, separator, prefix, postfix, limit, truncated, transform) {
   separator = separator === VOID ? ', ' : separator;
@@ -477,6 +477,9 @@ function plus(_this__u8e3s4, elements) {
 function firstOrNull(_this__u8e3s4) {
   return _this__u8e3s4.p() ? null : _this__u8e3s4.k(0);
 }
+function singleOrNull(_this__u8e3s4) {
+  return _this__u8e3s4.j() === 1 ? _this__u8e3s4.k(0) : null;
+}
 function minus(_this__u8e3s4, element) {
   var result = ArrayList_init_$Create$_0(collectionSizeOrDefault(_this__u8e3s4, 10));
   var removed = false;
@@ -500,9 +503,6 @@ function minus(_this__u8e3s4, element) {
 }
 function distinct(_this__u8e3s4) {
   return toList_0(toMutableSet(_this__u8e3s4));
-}
-function singleOrNull(_this__u8e3s4) {
-  return _this__u8e3s4.j() === 1 ? _this__u8e3s4.k(0) : null;
 }
 function first(_this__u8e3s4) {
   if (_this__u8e3s4.p())
@@ -578,11 +578,11 @@ function step(_this__u8e3s4, step) {
 function coerceAtLeast(_this__u8e3s4, minimumValue) {
   return _this__u8e3s4 < minimumValue ? minimumValue : _this__u8e3s4;
 }
-function downTo(_this__u8e3s4, to) {
-  return Companion_instance_9.u(_this__u8e3s4, to, -1);
-}
 function coerceAtMost(_this__u8e3s4, maximumValue) {
   return _this__u8e3s4 > maximumValue ? maximumValue : _this__u8e3s4;
+}
+function downTo(_this__u8e3s4, to) {
+  return Companion_instance_9.u(_this__u8e3s4, to, -1);
 }
 function coerceIn(_this__u8e3s4, minimumValue, maximumValue) {
   if (minimumValue > maximumValue)
@@ -1829,6 +1829,26 @@ function primitiveArrayConcat(args) {
   // Inline function 'kotlin.js.asDynamic' call
   return result;
 }
+function arrayConcat(args) {
+  var len = args.length;
+  // Inline function 'kotlin.js.unsafeCast' call
+  var typed = Array(len);
+  var inductionVariable = 0;
+  var last = len - 1 | 0;
+  if (inductionVariable <= last)
+    do {
+      var i = inductionVariable;
+      inductionVariable = inductionVariable + 1 | 0;
+      var arr = args[i];
+      if (!(!(arr == null) ? isArray(arr) : false)) {
+        typed[i] = [].slice.call(arr);
+      } else {
+        typed[i] = arr;
+      }
+    }
+     while (!(i === last));
+  return [].concat.apply([], typed);
+}
 function toByte(a) {
   // Inline function 'kotlin.js.unsafeCast' call
   return a << 24 >> 24;
@@ -2576,7 +2596,7 @@ protoOf(ArrayList).f3 = function (index) {
   return tmp;
 };
 protoOf(ArrayList).r3 = function (element) {
-  return indexOf(this.m_1, element);
+  return indexOf_0(this.m_1, element);
 };
 protoOf(ArrayList).toString = function () {
   return arrayToString(this.m_1);
@@ -5242,11 +5262,11 @@ function throwCountOverflow() {
 function throwIndexOverflow() {
   throw ArithmeticException_init_$Create$_0('Index overflow has happened.');
 }
-function get_lastIndex_0(_this__u8e3s4) {
-  return _this__u8e3s4.j() - 1 | 0;
-}
 function asCollection(_this__u8e3s4) {
   return new ArrayAsCollection(_this__u8e3s4, false);
+}
+function get_lastIndex_0(_this__u8e3s4) {
+  return _this__u8e3s4.j() - 1 | 0;
 }
 function ArrayAsCollection(values, isVarargs) {
   this.k9_1 = values;
@@ -5866,6 +5886,16 @@ function indexOf_1(_this__u8e3s4, char, startIndex, ignoreCase) {
   }
   return tmp;
 }
+function contains_1(_this__u8e3s4, other, ignoreCase) {
+  ignoreCase = ignoreCase === VOID ? false : ignoreCase;
+  var tmp;
+  if (typeof other === 'string') {
+    tmp = indexOf_2(_this__u8e3s4, other, VOID, ignoreCase) >= 0;
+  } else {
+    tmp = indexOf_3(_this__u8e3s4, other, 0, charSequenceLength(_this__u8e3s4), ignoreCase) >= 0;
+  }
+  return tmp;
+}
 function trimStart(_this__u8e3s4, chars) {
   // Inline function 'kotlin.text.trimStart' call
   var tmp$ret$1;
@@ -5917,7 +5947,7 @@ function lastIndexOf(_this__u8e3s4, char, startIndex, ignoreCase) {
   }
   return tmp;
 }
-function contains_1(_this__u8e3s4, char, ignoreCase) {
+function contains_2(_this__u8e3s4, char, ignoreCase) {
   ignoreCase = ignoreCase === VOID ? false : ignoreCase;
   return indexOf_1(_this__u8e3s4, char, VOID, ignoreCase) >= 0;
 }
@@ -5988,6 +6018,61 @@ function indexOfAny(_this__u8e3s4, chars, startIndex, ignoreCase) {
         return index;
     }
      while (!(index === last));
+  return -1;
+}
+function indexOf_2(_this__u8e3s4, string, startIndex, ignoreCase) {
+  startIndex = startIndex === VOID ? 0 : startIndex;
+  ignoreCase = ignoreCase === VOID ? false : ignoreCase;
+  var tmp;
+  var tmp_0;
+  if (ignoreCase) {
+    tmp_0 = true;
+  } else {
+    tmp_0 = !(typeof _this__u8e3s4 === 'string');
+  }
+  if (tmp_0) {
+    tmp = indexOf_3(_this__u8e3s4, string, startIndex, charSequenceLength(_this__u8e3s4), ignoreCase);
+  } else {
+    // Inline function 'kotlin.text.nativeIndexOf' call
+    // Inline function 'kotlin.js.asDynamic' call
+    tmp = _this__u8e3s4.indexOf(string, startIndex);
+  }
+  return tmp;
+}
+function indexOf_3(_this__u8e3s4, other, startIndex, endIndex, ignoreCase, last) {
+  last = last === VOID ? false : last;
+  var indices = !last ? numberRangeToNumber(coerceAtLeast(startIndex, 0), coerceAtMost(endIndex, charSequenceLength(_this__u8e3s4))) : downTo(coerceAtMost(startIndex, get_lastIndex_1(_this__u8e3s4)), coerceAtLeast(endIndex, 0));
+  var tmp;
+  if (typeof _this__u8e3s4 === 'string') {
+    tmp = typeof other === 'string';
+  } else {
+    tmp = false;
+  }
+  if (tmp) {
+    var inductionVariable = indices.r_1;
+    var last_0 = indices.s_1;
+    var step = indices.t_1;
+    if (step > 0 && inductionVariable <= last_0 || (step < 0 && last_0 <= inductionVariable))
+      do {
+        var index = inductionVariable;
+        inductionVariable = inductionVariable + step | 0;
+        if (regionMatches(other, 0, _this__u8e3s4, index, charSequenceLength(other), ignoreCase))
+          return index;
+      }
+       while (!(index === last_0));
+  } else {
+    var inductionVariable_0 = indices.r_1;
+    var last_1 = indices.s_1;
+    var step_0 = indices.t_1;
+    if (step_0 > 0 && inductionVariable_0 <= last_1 || (step_0 < 0 && last_1 <= inductionVariable_0))
+      do {
+        var index_0 = inductionVariable_0;
+        inductionVariable_0 = inductionVariable_0 + step_0 | 0;
+        if (regionMatchesImpl(other, 0, _this__u8e3s4, index_0, charSequenceLength(other), ignoreCase))
+          return index_0;
+      }
+       while (!(index_0 === last_1));
+  }
   return -1;
 }
 function padEnd_0(_this__u8e3s4, length, padChar) {
@@ -6096,6 +6181,21 @@ function rangesDelimitedBy(_this__u8e3s4, delimiters, startIndex, ignoreCase, li
   var delimitersList = asList(delimiters);
   return new DelimitedRangesSequence(_this__u8e3s4, startIndex, limit, rangesDelimitedBy$lambda(delimitersList, ignoreCase));
 }
+function regionMatchesImpl(_this__u8e3s4, thisOffset, other, otherOffset, length, ignoreCase) {
+  if (otherOffset < 0 || thisOffset < 0 || thisOffset > (charSequenceLength(_this__u8e3s4) - length | 0) || otherOffset > (charSequenceLength(other) - length | 0)) {
+    return false;
+  }
+  var inductionVariable = 0;
+  if (inductionVariable < length)
+    do {
+      var index = inductionVariable;
+      inductionVariable = inductionVariable + 1 | 0;
+      if (!equals_0(charSequenceGet(_this__u8e3s4, thisOffset + index | 0), charSequenceGet(other, otherOffset + index | 0), ignoreCase))
+        return false;
+    }
+     while (inductionVariable < length);
+  return true;
+}
 function requireNonNegativeLimit(limit) {
   // Inline function 'kotlin.contracts.contract' call
   var tmp;
@@ -6103,25 +6203,6 @@ function requireNonNegativeLimit(limit) {
     // Inline function 'kotlin.text.requireNonNegativeLimit.<anonymous>' call
     var message = 'Limit must be non-negative, but was ' + limit;
     throw IllegalArgumentException_init_$Create$_0(toString_1(message));
-  }
-  return tmp;
-}
-function indexOf_2(_this__u8e3s4, string, startIndex, ignoreCase) {
-  startIndex = startIndex === VOID ? 0 : startIndex;
-  ignoreCase = ignoreCase === VOID ? false : ignoreCase;
-  var tmp;
-  var tmp_0;
-  if (ignoreCase) {
-    tmp_0 = true;
-  } else {
-    tmp_0 = !(typeof _this__u8e3s4 === 'string');
-  }
-  if (tmp_0) {
-    tmp = indexOf_3(_this__u8e3s4, string, startIndex, charSequenceLength(_this__u8e3s4), ignoreCase);
-  } else {
-    // Inline function 'kotlin.text.nativeIndexOf' call
-    // Inline function 'kotlin.js.asDynamic' call
-    tmp = _this__u8e3s4.indexOf(string, startIndex);
   }
   return tmp;
 }
@@ -6261,42 +6342,6 @@ function findAnyOf(_this__u8e3s4, strings, startIndex, ignoreCase, last) {
   }
   return null;
 }
-function indexOf_3(_this__u8e3s4, other, startIndex, endIndex, ignoreCase, last) {
-  last = last === VOID ? false : last;
-  var indices = !last ? numberRangeToNumber(coerceAtLeast(startIndex, 0), coerceAtMost(endIndex, charSequenceLength(_this__u8e3s4))) : downTo(coerceAtMost(startIndex, get_lastIndex_1(_this__u8e3s4)), coerceAtLeast(endIndex, 0));
-  var tmp;
-  if (typeof _this__u8e3s4 === 'string') {
-    tmp = typeof other === 'string';
-  } else {
-    tmp = false;
-  }
-  if (tmp) {
-    var inductionVariable = indices.r_1;
-    var last_0 = indices.s_1;
-    var step = indices.t_1;
-    if (step > 0 && inductionVariable <= last_0 || (step < 0 && last_0 <= inductionVariable))
-      do {
-        var index = inductionVariable;
-        inductionVariable = inductionVariable + step | 0;
-        if (regionMatches(other, 0, _this__u8e3s4, index, charSequenceLength(other), ignoreCase))
-          return index;
-      }
-       while (!(index === last_0));
-  } else {
-    var inductionVariable_0 = indices.r_1;
-    var last_1 = indices.s_1;
-    var step_0 = indices.t_1;
-    if (step_0 > 0 && inductionVariable_0 <= last_1 || (step_0 < 0 && last_1 <= inductionVariable_0))
-      do {
-        var index_0 = inductionVariable_0;
-        inductionVariable_0 = inductionVariable_0 + step_0 | 0;
-        if (regionMatchesImpl(other, 0, _this__u8e3s4, index_0, charSequenceLength(other), ignoreCase))
-          return index_0;
-      }
-       while (!(index_0 === last_1));
-  }
-  return -1;
-}
 function lastIndexOf_0(_this__u8e3s4, string, startIndex, ignoreCase) {
   startIndex = startIndex === VOID ? get_lastIndex_1(_this__u8e3s4) : startIndex;
   ignoreCase = ignoreCase === VOID ? false : ignoreCase;
@@ -6315,21 +6360,6 @@ function lastIndexOf_0(_this__u8e3s4, string, startIndex, ignoreCase) {
     tmp = _this__u8e3s4.lastIndexOf(string, startIndex);
   }
   return tmp;
-}
-function regionMatchesImpl(_this__u8e3s4, thisOffset, other, otherOffset, length, ignoreCase) {
-  if (otherOffset < 0 || thisOffset < 0 || thisOffset > (charSequenceLength(_this__u8e3s4) - length | 0) || otherOffset > (charSequenceLength(other) - length | 0)) {
-    return false;
-  }
-  var inductionVariable = 0;
-  if (inductionVariable < length)
-    do {
-      var index = inductionVariable;
-      inductionVariable = inductionVariable + 1 | 0;
-      if (!equals_0(charSequenceGet(_this__u8e3s4, thisOffset + index | 0), charSequenceGet(other, otherOffset + index | 0), ignoreCase))
-        return false;
-    }
-     while (inductionVariable < length);
-  return true;
 }
 function rangesDelimitedBy$lambda($delimitersList, $ignoreCase) {
   return function ($this$$receiver, currentIndex) {
@@ -6439,6 +6469,7 @@ Companion_instance_9 = new Companion_9();
 //endregion
 //region block: exports
 export {
+  arrayConcat as arrayConcat3qsij7vh68m69,
   getKClassFromExpression as getKClassFromExpression3vpejubogshaw,
   primitiveArrayConcat as primitiveArrayConcatwxgknw08pmlb,
   VOID as VOID7hggqo3abtya,
@@ -6533,7 +6564,8 @@ export {
   step as step18s9qzr5xwxat,
   until as until1jbpn0z3f8lbg,
   CharacterCodingException as CharacterCodingException3mvgnmpleqbz9,
-  contains_1 as contains2el4s70rdq4ld,
+  contains_1 as contains3ue2qo8xhmpf1,
+  contains_2 as contains2el4s70rdq4ld,
   encodeToByteArray as encodeToByteArray22651fhg4p67t,
   indexOf_1 as indexOf1xbs558u7wr52,
   isHighSurrogate as isHighSurrogate11jfjw70ar0zf,
