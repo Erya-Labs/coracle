@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {onMount} from "svelte"
+  import {onMount, onDestroy} from "svelte"
   import {noop, sleep, spec} from "@welshman/lib"
   import {
     RELAYS,
@@ -47,10 +47,8 @@
     }
   }
 
-  const tryDefaultRelays = () => {
-    // Pull out all the stops to try to find the user's profile
-    searchRelays([...env.DEFAULT_RELAYS, ...env.INDEXER_RELAYS])
-  }
+  // Pull out all the stops to try to find the user's profile
+  const tryDefaultRelays = () => searchRelays([...env.DEFAULT_RELAYS, ...env.INDEXER_RELAYS])
 
   const openModal = m => {
     modal = m
@@ -60,10 +58,15 @@
     modal = null
   }
 
-  let found, showFound, failed, modal
+  let found, showFound, failed, modal, destroyed
   let customRelay = ""
 
-  tryDefaultRelays()
+  tryDefaultRelays().then(() => {
+    // A new key has nothing to find, so it goes to the market instead of the failure text
+    if (env.ENABLE_MARKET && !destroyed && $events.length === 0) {
+      router.at("market").push()
+    }
+  })
 
   $: {
     const relaySelectionsEvent = $events.find(spec({kind: RELAYS}))
@@ -96,6 +99,10 @@
     sleep(8000).then(() => {
       failed = true
     })
+  })
+
+  onDestroy(() => {
+    destroyed = true
   })
 </script>
 
