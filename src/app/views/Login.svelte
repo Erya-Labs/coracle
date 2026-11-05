@@ -42,7 +42,15 @@
 
   const useSigner = async (signerApp: Nip55AppInfo) => {
     const signer = new Nip55Signer(signerApp.packageName)
-    const pubkey = await signer.getPubkey()
+
+    let pubkey
+    try {
+      pubkey = await signer.getPubkey()
+    } catch (e) {
+      console.error(e)
+
+      return showWarning("We weren't able to log you in with that signer")
+    }
 
     return logIn(toSession(nip55, {pubkey, signer: signerApp.packageName}))
   }

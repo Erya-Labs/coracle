@@ -37,7 +37,8 @@ Read the honesty box first.
    the other cannot read — which shows up as settings and messages silently resetting.
 
 3. Turn the marketplace on: **Settings → Enable the marketplace**. It is off by default, and
-   while it is off the app fetches no marketplace data.
+   while it is off the app fetches no marketplace data. A build can turn it on by default with
+   `VITE_ENABLE_MARKET=true` in `.env`.
 
 4. Pick relays. By default `.env.template` points at public relays; both people must share at
    least one **write-enabled relay that accepts kinds 1059, 30402, 30404, 1111 and 9876**
