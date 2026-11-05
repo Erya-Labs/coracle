@@ -40,6 +40,30 @@ const sha256 = async (bytes: Uint8Array) =>
 
 const clock = () => Math.floor(Date.now() / 1000)
 
+// A replayed message is judged at the moment this device first saw it, not at the moment of
+// the reload: otherwise a bill or an acceptance that was fine when it arrived is refused for
+// being old, and the whole order falls apart on reload.
+let judgedAt: number | null = null
+
+const FIRST_SEEN_KEY = "nenya-first-seen"
+
+const firstSeen = (id: string) => {
+  let all: any = {}
+
+  try {
+    all = JSON.parse(localStorage.getItem(FIRST_SEEN_KEY) || "{}")
+  } catch {
+    all = {}
+  }
+
+  if (all[id]) return all[id]
+
+  all[id] = clock()
+  localStorage.setItem(FIRST_SEEN_KEY, JSON.stringify(all))
+
+  return all[id]
+}
+
 // --- keys, signer, environment -------------------------------------------------
 
 // The order channel is sealed with nip44 end to end, so the signer must support it.
@@ -119,7 +143,7 @@ export const makeAsyncSigner = (signer: ISigner) =>
 
 export const makeEnvironment = () =>
   new nenya.JsEnvironment(
-    () => String(clock()),
+    () => String(judgedAt ?? clock()),
     count => {
       try {
         return hex(crypto.getRandomValues(new Uint8Array(count)))
@@ -176,6 +200,7 @@ const initState = async (signer: ISigner | undefined) => {
     store,
     seenWraps: new Set<string>(),
     seenRumors: new Set<string>(),
+    waiting: [] as any[],
   }
 
   return state
@@ -568,7 +593,17 @@ const handle = (rumor: any) => {
     return
   }
 
-  if (rumor.kindNumber === 16 && rumor.messageType === "PAYMENT_REQUEST") {
+  const isBill = rumor.kindNumber === 16 && rumor.messageType === "PAYMENT_REQUEST"
+
+  // Bills and payment proofs are checked against the acceptance, so with none they are dropped.
+  if ((isBill || rumor.kindNumber === 17) && !thread.acceptance) {
+    logLine(thread, "app", "payment", false, "A bill or payment proof came before any acceptance.")
+    touch(thread)
+
+    return
+  }
+
+  if (isBill) {
     const payee = tagOf(tags, "payee")?.[1] ?? "provider"
     const accepted = nenya.acceptPaymentRequest(
       rumor,
@@ -718,6 +753,19 @@ const getThreads = () => {
   return value
 }
 
+// Two messages stamped in the same second run in the order a trade makes them.
+const tradeStep = (rumor: any) => {
+  if (rumor.messageType === "PROPOSAL") return 0
+  if (rumor.messageType === "STATUS_UPDATE") return 1
+  if (rumor.messageType === "DELIVERY_COMMITMENT") return 2
+  if (rumor.messageType === "PAYMENT_REQUEST") return 3
+  if (rumor.kindNumber === 14) return 4
+  if (rumor.kindNumber === 17) return 5
+  if (rumor.kindNumber === 15) return 6
+
+  return 7
+}
+
 const openOne = (wrapJson: string) =>
   new Promise<any>(resolve => nenya.openAsync(wrapJson, state!.signer, resolve, state!.env))
 
@@ -740,16 +788,35 @@ export const processWraps = async (events: any[]) => {
     if (state.seenRumors.has(rumor.idHex)) continue
 
     state.seenRumors.add(rumor.idHex)
+    firstSeen(rumor.idHex)
     opened.push(rumor)
   }
 
-  opened.sort((a, b) =>
+  const waiting = [...state.waiting, ...opened].sort((a, b) =>
     a.createdAtSeconds === b.createdAtSeconds
-      ? a.idHex.localeCompare(b.idHex)
+      ? tradeStep(a) - tradeStep(b)
       : Number(a.createdAtSeconds) - Number(b.createdAtSeconds),
   )
 
-  for (const rumor of opened) handle(rumor)
+  state.waiting = []
+
+  // A message whose order has not arrived yet waits for the next batch.
+  for (const rumor of waiting) {
+    const orderId = rumor.orderIdHex || tagOf(rumor.event.tags, "order")?.[1]
+
+    if (rumor.messageType !== "PROPOSAL" && !getThreads().has(orderId)) {
+      state.waiting.push(rumor)
+      continue
+    }
+
+    judgedAt = firstSeen(rumor.idHex)
+
+    try {
+      handle(rumor)
+    } finally {
+      judgedAt = null
+    }
+  }
 }
 
 // --- the actions each role takes, in order ---------------------------------------

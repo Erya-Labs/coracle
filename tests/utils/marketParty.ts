@@ -42,10 +42,14 @@ export const stubFetch = () =>
 
 export const tick = (seconds = 60) => vi.setSystemTime(Date.now() + seconds * 1000)
 
-export const makeParty = async (relay: FakeRelay) => {
-  const sk = generateSecretKey()
+// Pass an earlier party's key and storage to reopen the app as that person.
+export const makeParty = async (
+  relay: FakeRelay,
+  keep?: {sk: Uint8Array; storage: Map<string, string>},
+) => {
+  const sk = keep?.sk ?? generateSecretKey()
   const pk = getPublicKey(sk)
-  const storage = new Map<string, string>()
+  const storage = keep?.storage ?? new Map<string, string>()
   const enter = () =>
     vi.stubGlobal("localStorage", {
       getItem: (k: string) => storage.get(k) ?? null,
@@ -65,6 +69,7 @@ export const makeParty = async (relay: FakeRelay) => {
   return {
     sk,
     pk,
+    storage,
     relay,
     mod,
     enter,
