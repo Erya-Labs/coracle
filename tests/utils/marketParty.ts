@@ -11,6 +11,8 @@ import {Nip01Signer} from "@welshman/signer"
 const matches = (e: any, f: any) => {
   if (f.ids && !f.ids.includes(e.id)) return false
   if (f.kinds && !f.kinds.includes(e.kind)) return false
+  if (f.authors && !f.authors.includes(e.pubkey)) return false
+  if (f["#d"] && !e.tags.some((t: string[]) => t[0] === "d" && f["#d"].includes(t[1]))) return false
   if (f["#p"] && !e.tags.some((t: string[]) => t[0] === "p" && f["#p"].includes(t[1]))) return false
   return true
 }
@@ -63,6 +65,9 @@ export const makeParty = async (relay: FakeRelay) => {
   return {
     sk,
     pk,
+    relay,
+    mod,
+    enter,
     thread,
     state: () => thread()?.order?.state,
     sync: async () => {
@@ -91,6 +96,8 @@ export const makeListing = async (seller: any) => {
   const read = market.readListing(signed)
 
   if (!read.ok) throw new Error(read.reason)
+
+  await seller.relay.publish(signed)
 
   return read.listing
 }

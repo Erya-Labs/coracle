@@ -372,13 +372,13 @@ const newThread = (orderId: string): any => ({
   providerKey: null,
   proposal: null,
   acceptance: null,
-  terms: null,
   order: null,
   acceptedOrder: null,
   sightings: [],
   requests: {},
   settlements: {},
   commitment: null,
+  commitmentRumor: null,
   fileUrl: null,
   release: null,
   vouchers: {},
@@ -438,30 +438,35 @@ const handle = (rumor: any) => {
   }
 
   if (rumor.kindNumber === 16 && rumor.messageType === "PROPOSAL") {
-    const item = tagOf(tags, "item")?.[1] ?? ""
-    const fee = tagOf(tags, "fee")
+    // The first proposal under an order id wins.
+    if (threads.has(orderId)) return
+
+    const read = nenya.decodeProposal(rumor)
+
+    if (!read.ok) return
+
+    const item = read.proposal.itemCoordinate
+    const named = item.split(":")[1] ?? null
+
+    // My own proposal names the listing I chose; anyone else's must name me.
+    if (rumor.author !== state!.pk && named !== state!.pk) return
+
     const thread = newThread(orderId)
 
     thread.item = item
     thread.buyerKey = rumor.author
-    thread.providerKey = item.split(":")[1] ?? null
+    thread.providerKey = named
     thread.proposal = rumor
-    thread.sightings = [feeSighting("ORDER_PROPOSAL", tags)]
-    thread.terms = new nenya.JsOrderTerms(
-      tagOf(tags, "amount_msat")?.[1],
-      fee ? Number(fee[1]) : null,
-      tagOf(tags, "expiration")?.[1] ?? null,
-      tagOf(tags, "deliver_by")?.[1] ?? null,
-    )
+    thread.sightings = [nenya.proposalFeeSighting(rumor).sighting]
 
-    const opened = nenya.openOrder(state!.machine, orderId, thread.terms, rumor.createdAtSeconds)
+    const opened = nenya.openOrderFromProposal(state!.machine, rumor)
 
     if (opened.ok) thread.order = opened.order
 
     logLine(
       thread,
       "nenya",
-      "openOrder",
+      "openOrderFromProposal",
       opened.ok,
       opened.ok
         ? `Nenya opened the order: ${thread.order.totalMsat} msat total, state ${thread.order.state}.`
@@ -480,45 +485,37 @@ const handle = (rumor: any) => {
     const status = tagOf(tags, "status")?.[1]
 
     if (status === "accepted") {
-      thread.acceptance = rumor
-      thread.sightings.push(feeSighting("ACCEPTANCE", tags))
-
-      const step = nenya.stepOrder(
+      const step = nenya.stepOrderWithStatusUpdate(
         state!.machine,
         thread.order,
-        orderEvent("acceptance_received", {
-          createdAt: rumor.createdAtSeconds,
-          proposalRumor: thread.proposal,
-          acceptanceRumor: rumor,
-          providerPubkey: thread.providerKey,
-        }),
+        thread.proposal,
+        rumor,
+        thread.providerKey,
       )
 
       if (step.ok) {
         thread.order = step.order
         thread.acceptedOrder = step.order
-      } else {
-        thread.acceptance = null
+        thread.acceptance = rumor
+        thread.sightings.push(nenya.acceptanceFeeSighting(rumor).sighting)
       }
 
       logLine(
         thread,
         "nenya",
-        "stepOrder(acceptance_received)",
+        "stepOrderWithStatusUpdate(accepted)",
         step.ok,
         step.ok
           ? `Nenya checked the acceptance repeats every term exactly. Order: ${thread.order.state}.`
           : `Nenya refused the acceptance: ${buildWords(step)}`,
       )
     } else {
-      const step = nenya.stepOrder(
+      const step = nenya.stepOrderWithStatusUpdate(
         state!.machine,
         thread.order,
-        orderEvent("status_update", {
-          createdAt: rumor.createdAtSeconds,
-          statusToken: status,
-          fromParty: roleOf(thread, rumor.author),
-        }),
+        thread.proposal,
+        rumor,
+        thread.providerKey,
       )
 
       if (step.order) thread.order = step.order
@@ -526,7 +523,7 @@ const handle = (rumor: any) => {
       logLine(
         thread,
         "nenya",
-        "stepOrder(status_update)",
+        "stepOrderWithStatusUpdate",
         step.ok,
         step.ok
           ? `Status "${status}" moved the order to ${thread.order.state}.`
@@ -540,27 +537,27 @@ const handle = (rumor: any) => {
   }
 
   if (rumor.kindNumber === 16 && rumor.messageType === "DELIVERY_COMMITMENT") {
-    const read = (n: string) => tagOf(tags, n)?.[1] ?? null
-
-    thread.fileUrl = read("url")
-    thread.commitment = new nenya.JsCommitment(read("x")!, read("ox")!, read("m")!, read("size")!)
-
-    const step = nenya.stepOrder(
+    const step = nenya.stepOrderWithCommitment(
       state!.machine,
       thread.order,
-      orderEvent("delivery_committed", {
-        createdAt: rumor.createdAtSeconds,
-        commitment: thread.commitment,
-        fromParty: roleOf(thread, rumor.author),
-      }),
+      thread.proposal,
+      rumor,
+      thread.providerKey,
     )
 
-    if (step.ok) thread.order = step.order
+    if (step.ok) {
+      const read = nenya.decodeCommitment(rumor)
+
+      thread.order = step.order
+      thread.commitmentRumor = rumor
+      thread.fileUrl = read.commitment.url
+      thread.commitment = read.commitment.commitment
+    }
 
     logLine(
       thread,
       "nenya",
-      "stepOrder(delivery_committed)",
+      "stepOrderWithCommitment",
       step.ok,
       step.ok
         ? `The maker committed to the file's fingerprints before any payment. Order: ${thread.order.state}.`
@@ -686,31 +683,24 @@ const handle = (rumor: any) => {
 
   if (rumor.kindNumber === 15) {
     const read = (n: string) => tagOf(tags, n)?.[1] ?? null
-    const release = new nenya.JsRelease(read("x")!, read("ox")!, read("file-type"), read("size")!)
-
-    thread.release = {
-      release,
-      keyHex: read("decryption-key"),
-      nonceHex: read("decryption-nonce"),
-    }
-
-    const step = nenya.stepOrder(
+    const step = nenya.stepOrderWithRelease(
       state!.machine,
       thread.order,
-      orderEvent("deliverable_released", {
-        createdAt: rumor.createdAtSeconds,
-        release,
-        fromParty: roleOf(thread, rumor.author),
-        orderIdHex: orderId,
-      }),
+      thread.proposal,
+      rumor,
+      thread.providerKey,
     )
 
     if (step.order) thread.order = step.order
 
+    if (step.ok) {
+      thread.release = {keyHex: read("decryption-key"), nonceHex: read("decryption-nonce")}
+    }
+
     logLine(
       thread,
       "nenya",
-      "stepOrder(deliverable_released)",
+      "stepOrderWithRelease",
       step.ok,
       step.ok
         ? `The key message matches the commitment. Order: ${thread.order.state}.`
@@ -719,9 +709,6 @@ const handle = (rumor: any) => {
     touch(thread)
   }
 }
-
-const roleOf = (thread: any, pk: string) =>
-  pk === thread.providerKey ? "PROVIDER" : pk === thread.buyerKey ? "BUYER" : null
 
 const getThreads = () => {
   let value: Map<string, any> = new Map()
@@ -775,10 +762,11 @@ export const proposeOrder = async (listing: any) => {
     String(clock() + 2 * 86_400),
     listing.deliverBySeconds ?? null,
   )
-  const built = nenya.buildProposal(
+  const built = nenya.buildProposalAgainst(
+    listing,
+    state!.env,
     envelope([listing.authorPubkey]),
     orderId,
-    listing.coordinate,
     terms,
     listing.feeRecipient ?? null,
   )
@@ -787,13 +775,19 @@ export const proposeOrder = async (listing: any) => {
 }
 
 export const acceptOrder = async (thread: any) => {
-  const built = nenya.buildStatusUpdate(
+  const [kind, author, ...d] = thread.item.split(":")
+  const events = await loadByFilter([
+    {kinds: [parseInt(kind)], authors: [author], "#d": [d.join(":")]},
+  ])
+  const read = events.length > 0 ? nenya.decodeListing(JSON.stringify(events[0])) : null
+
+  if (!read?.ok) return {sent: false, words: "the listing this order is for could not be read"}
+
+  const built = nenya.buildAgreementAgainst(
+    read.listing,
+    state!.env,
     envelope([thread.buyerKey]),
-    thread.orderId,
-    "accepted",
-    thread.item,
-    thread.terms,
-    null,
+    thread.proposal,
   )
 
   return sendRumor(built, [thread.buyerKey])
@@ -910,10 +904,13 @@ export const releaseKey = async (thread: any) => {
 
   if (!secret?.keyHex) return {sent: false, words: "this window never locked the file"}
 
-  const built = nenya.buildRelease(
+  // The library takes the settlement itself and throws on none.
+  if (!thread.settlements.provider) return {sent: false, words: "no verified payment yet"}
+
+  const built = nenya.buildReleaseAfterPayment(
     envelope([thread.buyerKey]),
-    thread.orderId,
-    new nenya.JsRelease(secret.x, secret.ox, secret.mimeType, secret.size),
+    thread.commitmentRumor,
+    thread.settlements.provider,
     secret.keyHex,
     secret.nonceHex,
   )
@@ -990,16 +987,11 @@ export const verifyDelivery = async (thread: any) => {
     thread.order = step.order
     thread.delivered = plain
   } else if (thread.order.state === "RELEASED") {
-    const failure = {
-      SERVED_BYTES_MISMATCH: "SERVED_BYTES_HASH_MISMATCH",
-      PLAINTEXT_BYTES_MISMATCH: "PLAINTEXT_BYTES_HASH_MISMATCH",
-    }[step.reason as string]
-
-    if (failure) {
+    if (step.deliveryFailure) {
       const report = nenya.stepOrder(
         state!.machine,
         thread.order,
-        orderEvent("delivery_refused", {deliveryFailure: failure}),
+        orderEvent("delivery_refused", {deliveryFailure: step.deliveryFailure}),
       )
 
       if (report.order) thread.order = report.order
