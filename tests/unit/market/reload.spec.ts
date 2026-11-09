@@ -1,4 +1,5 @@
 import {afterEach, beforeEach, describe, expect, it, vi} from "vitest"
+import {Nip01Signer} from "@welshman/signer"
 import {FakeRelay, makeListing, makeParty, stubFetch, tick} from "../../utils/marketParty"
 
 const PNG = new Uint8Array(2048).map((_, i) => i % 251)
@@ -37,9 +38,28 @@ const toCommitted = async ({seller, buyer, listing}: any, step = both) => {
   await step(buyer, seller)
 }
 
-const settled = async () => {
-  const ctx = await start()
-  const {seller, buyer} = ctx
+// Runs fn on a device whose clock is this many seconds off.
+const offBy =
+  (seconds: number, fn: any) =>
+  async (...args: any[]) => {
+    tick(seconds)
+
+    try {
+      return await fn(...args)
+    } finally {
+      tick(-seconds)
+    }
+  }
+
+const settled = async (skew = 0) => {
+  const fresh = await start()
+  const seller = {
+    ...fresh.seller,
+    call: offBy(skew, fresh.seller.call),
+    sync: offBy(skew, fresh.seller.sync),
+  }
+  const ctx = {...fresh, seller}
+  const {buyer} = ctx
 
   await toCommitted(ctx)
   await seller.call((m: any, t: any) => m.sendBill(t))
@@ -102,6 +122,20 @@ describe("reopening the app", () => {
       expect(s2.state()).toBe("RELEASED")
     }
   })
+
+  for (const skew of [-600, 600]) {
+    it(`keeps a trade whose seller's clock is ${skew} seconds off through a reopen`, async () => {
+      const {seller, buyer} = await settled(skew)
+
+      tick()
+
+      const b2 = await reopen(buyer)
+      const s2 = await offBy(skew, reopen)(seller)
+
+      expect(b2.state()).toBe("RELEASED")
+      expect(s2.state()).toBe("RELEASED")
+    })
+  }
 
   it("falls back at +25 hours once the first-seen times are gone", async () => {
     const {buyer} = await settled()
@@ -181,5 +215,33 @@ describe("reopening the app", () => {
     await b2.call((m: any) => m.processWraps(mine.slice(0, 1)))
 
     expect(b2.state()).toBe("ACCEPTED")
+  })
+
+  it("stamps one batch with one clock reading, however slow the signer", async () => {
+    const {relay, seller, buyer, listing} = await start()
+
+    await buyer.call((m: any) => m.proposeOrder(listing))
+    tick()
+    await seller.sync()
+    await seller.call((m: any, t: any) => m.acceptOrder(t))
+    tick()
+    await seller.call((m: any, t: any) => m.commitFile(t, PNG, "image/png"))
+    tick()
+    await seller.call((m: any, t: any) => m.sendBill(t))
+    tick()
+
+    const slow = new Nip01Signer(Buffer.from(buyer.sk).toString("hex"))
+    const decrypt = slow.nip44.decrypt
+
+    slow.nip44.decrypt = async (pk: string, message: string) => {
+      tick(1)
+      return decrypt(pk, message)
+    }
+
+    buyer.enter()
+    await buyer.mod.connectOrderChannel(relay.publish, async (f: any[]) => relay.query(f), slow)
+    await buyer.mod.processWraps(relay.query([{kinds: [1059], "#p": [buyer.pk]}]).reverse())
+
+    expect(buyer.state()).toBe("AWAITING_PAYMENT")
   })
 })

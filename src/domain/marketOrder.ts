@@ -47,7 +47,7 @@ let judgedAt: number | null = null
 
 const FIRST_SEEN_KEY = "nenya-first-seen"
 
-const firstSeen = (id: string) => {
+const firstSeen = (id: string, now = clock()) => {
   let all: any = {}
 
   try {
@@ -58,7 +58,7 @@ const firstSeen = (id: string) => {
 
   if (all[id]) return all[id]
 
-  all[id] = clock()
+  all[id] = now
   localStorage.setItem(FIRST_SEEN_KEY, JSON.stringify(all))
 
   return all[id]
@@ -755,7 +755,7 @@ const getThreads = () => {
   return value
 }
 
-// Two messages stamped in the same second run in the order a trade makes them.
+// Two messages first seen in the same second run in the order a trade makes them.
 const tradeStep = (rumor: any) => {
   if (rumor.messageType === "PROPOSAL") return 0
   if (rumor.messageType === "STATUS_UPDATE") return 1
@@ -777,6 +777,9 @@ const RETRIED = ["COULD_NOT_DECRYPT_WRAP", "COULD_NOT_DECRYPT_SEAL"]
 export const processWraps = async (events: any[]) => {
   if (!state) return
 
+  // One clock reading for the whole batch: a slow signer must not spread it over several
+  // seconds, or the order the relay sent the wraps in would replace trade order.
+  const now = clock()
   const opened = []
 
   for (const wrap of events) {
@@ -804,14 +807,13 @@ export const processWraps = async (events: any[]) => {
     if (state.seenRumors.has(rumor.idHex)) continue
 
     state.seenRumors.add(rumor.idHex)
-    firstSeen(rumor.idHex)
+    firstSeen(rumor.idHex, now)
     opened.push(rumor)
   }
 
-  const waiting = [...state.waiting, ...opened].sort((a, b) =>
-    a.createdAtSeconds === b.createdAtSeconds
-      ? tradeStep(a) - tradeStep(b)
-      : Number(a.createdAtSeconds) - Number(b.createdAtSeconds),
+  // In the order this device first saw them, never by the sender's clock.
+  const waiting = [...state.waiting, ...opened].sort(
+    (a, b) => firstSeen(a.idHex) - firstSeen(b.idHex) || tradeStep(a) - tradeStep(b),
   )
 
   state.waiting = []

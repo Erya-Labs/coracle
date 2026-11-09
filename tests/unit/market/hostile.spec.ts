@@ -106,6 +106,37 @@ describe("an order under attack", () => {
     expect(seller.state()).toBe("COMMITTED")
   })
 
+  it("keeps the first proposal on reopen when a second one is back-dated before it", async () => {
+    const ctx = await start()
+    const {seller, buyer, listing} = ctx
+
+    await toCommitted(ctx)
+
+    const before = seller.thread()
+    const back = String(Number(before.proposal.createdAtSeconds) - 1)
+    const built = nenya.buildProposal(
+      new nenya.JsRumorEnvelope(buyer.pk, back, [[seller.pk]], ""),
+      before.orderId,
+      listing.coordinate,
+      new nenya.JsOrderTerms("1000", null, String(Number(back) + 3600), null),
+      null,
+    )
+
+    expect(built.ok).toBe(true)
+
+    await sealAs(buyer, built.event, seller.pk)
+    tick()
+    await seller.sync()
+
+    const again = await makeParty(seller.relay, seller)
+
+    await again.sync()
+
+    expect(again.thread().order.priceMsat).toBe(before.order.priceMsat)
+    expect(again.thread().commitment.xHex).toBe(before.commitment.xHex)
+    expect(again.state()).toBe("COMMITTED")
+  })
+
   it("ignores a proposal sent to me that names someone else's listing", async () => {
     const {relay, seller} = await start()
     const other = await makeParty(relay)
