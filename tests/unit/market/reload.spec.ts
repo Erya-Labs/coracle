@@ -217,6 +217,64 @@ describe("reopening the app", () => {
     expect(b2.state()).toBe("ACCEPTED")
   })
 
+  it("moves a buyer on when the bill was opened before the commitment", async () => {
+    const {relay, seller, buyer, listing} = await start()
+
+    await buyer.call((m: any) => m.proposeOrder(listing))
+    await seller.sync()
+    await seller.call((m: any, t: any) => m.acceptOrder(t))
+    await seller.sync()
+    await seller.call((m: any, t: any) => m.commitFile(t, PNG, "image/png"))
+    await seller.sync()
+    await seller.call((m: any, t: any) => m.sendBill(t))
+    await seller.sync()
+
+    // Proposal, acceptance, commitment, bill, voucher, in the order the relay holds them.
+    const mine = relay.query([{kinds: [1059], "#p": [buyer.pk]}])
+
+    expect(mine.length).toBe(5)
+
+    for (const batch of [mine.slice(0, 2), mine.slice(3), mine.slice(2, 3)]) {
+      tick()
+      await buyer.call((m: any) => m.processWraps(batch))
+    }
+
+    expect(buyer.state()).toBe("AWAITING_PAYMENT")
+
+    await buyer.call((m: any, t: any) => m.payAndProve(t))
+    await both(buyer, seller)
+    await seller.call((m: any, t: any) => m.releaseKey(t))
+    await both(buyer, seller)
+    await buyer.call((m: any, t: any) => m.verifyDelivery(t))
+
+    expect(buyer.state()).toBe("SETTLED")
+  })
+
+  it("moves a seller's new device on when the proof was opened before its commitment", async () => {
+    const ctx = await start()
+    const {relay, seller, buyer} = ctx
+
+    await toCommitted(ctx)
+    await seller.call((m: any, t: any) => m.sendBill(t))
+    await both(buyer, seller)
+    await buyer.call((m: any, t: any) => m.payAndProve(t))
+    tick()
+
+    const fresh = await makeParty(relay, {sk: seller.sk, storage: new Map()})
+
+    // Proposal, acceptance, commitment, bill, voucher, proof, in the order the relay holds them.
+    const mine = relay.query([{kinds: [1059], "#p": [seller.pk]}])
+
+    expect(mine.length).toBe(6)
+
+    for (const batch of [mine.slice(0, 2), mine.slice(3), mine.slice(2, 3)]) {
+      tick()
+      await fresh.call((m: any) => m.processWraps(batch))
+    }
+
+    expect(fresh.state()).toBe("PAID")
+  })
+
   it("stamps one batch with one clock reading, however slow the signer", async () => {
     const {relay, seller, buyer, listing} = await start()
 

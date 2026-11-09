@@ -432,6 +432,50 @@ const agreedTerms = (thread: any) => {
 const neededPayees = (thread: any) =>
   thread.order?.feePayeeRequired ? ["provider", "fee"] : ["provider"]
 
+// The library keeps a bill or a proof whatever the order's state, so a bill that came before
+// the commitment, or a proof before the seller's own copy of it, moves the order on later.
+const stepPayments = (thread: any) => {
+  const needed = neededPayees(thread)
+
+  if (thread.order?.state === "COMMITTED" && needed.every(p => thread.requests[p])) {
+    const step = nenya.stepOrder(
+      state!.machine,
+      thread.order,
+      orderEvent("payment_requests_received", {requests: needed.map(p => thread.requests[p])}),
+    )
+
+    if (step.ok) thread.order = step.order
+
+    logLine(
+      thread,
+      "nenya",
+      "stepOrder(payment_requests_received)",
+      step.ok,
+      step.ok ? `All bills in. Order: ${thread.order.state}.` : buildWords(step),
+    )
+  }
+
+  if (thread.order?.state === "AWAITING_PAYMENT" && needed.every(p => thread.settlements[p])) {
+    const step = nenya.stepOrder(
+      state!.machine,
+      thread.order,
+      orderEvent("receipts_verified", {settlements: needed.map(p => thread.settlements[p])}),
+    )
+
+    if (step.ok) thread.order = step.order
+
+    logLine(
+      thread,
+      "nenya",
+      "stepOrder(receipts_verified)",
+      step.ok,
+      step.ok
+        ? `Every needed payment is evidenced. Order: ${thread.order.state}.`
+        : buildWords(step),
+    )
+  }
+}
+
 const handle = (rumor: any) => {
   const orderId = rumor.orderIdHex
   const tags: string[][] = rumor.event.tags.map((t: string[]) => [...t])
@@ -591,6 +635,7 @@ const handle = (rumor: any) => {
         ? `The maker committed to the file's fingerprints before any payment. Order: ${thread.order.state}.`
         : buildWords(step),
     )
+    stepPayments(thread)
     touch(thread)
 
     return
@@ -638,29 +683,7 @@ const handle = (rumor: any) => {
 
     if (payee === "fee") thread.sightings.push(feeSighting("FEE_PAYMENT_REQUEST", tags))
 
-    const needed = neededPayees(thread)
-
-    if (thread.order.state === "COMMITTED" && needed.every(p => thread.requests[p])) {
-      const step = nenya.stepOrder(
-        state!.machine,
-        thread.order,
-        orderEvent("payment_requests_received", {
-          createdAt: rumor.createdAtSeconds,
-          requests: needed.map(p => thread.requests[p]),
-        }),
-      )
-
-      if (step.ok) thread.order = step.order
-
-      logLine(
-        thread,
-        "nenya",
-        "stepOrder(payment_requests_received)",
-        step.ok,
-        step.ok ? `All bills in. Order: ${thread.order.state}.` : buildWords(step),
-      )
-    }
-
+    stepPayments(thread)
     touch(thread)
 
     return
@@ -691,29 +714,7 @@ const handle = (rumor: any) => {
     }
 
     thread.settlements[payee] = result.settlement
-
-    const needed = neededPayees(thread)
-
-    if (thread.order.state === "AWAITING_PAYMENT" && needed.every(p => thread.settlements[p])) {
-      const step = nenya.stepOrder(
-        state!.machine,
-        thread.order,
-        orderEvent("receipts_verified", {settlements: needed.map(p => thread.settlements[p])}),
-      )
-
-      if (step.ok) thread.order = step.order
-
-      logLine(
-        thread,
-        "nenya",
-        "stepOrder(receipts_verified)",
-        step.ok,
-        step.ok
-          ? `Every needed payment is evidenced. Order: ${thread.order.state}.`
-          : buildWords(step),
-      )
-    }
-
+    stepPayments(thread)
     touch(thread)
 
     return
