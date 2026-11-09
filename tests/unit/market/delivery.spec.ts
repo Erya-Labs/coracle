@@ -75,6 +75,16 @@ describe("delivering the locked file", () => {
     expect(buyer.state()).toBe("COMMITTED")
   })
 
+  it("keeps the file type the seller committed to", async () => {
+    const relay = new FakeRelay()
+    const {seller, buyer} = await toAccepted(relay)
+
+    await seller.call((m: any, t: any) => m.commitFile(t, file(2048), "image/jpeg"))
+    await both(buyer, seller)
+
+    expect(buyer.thread().commitment.mimeType).toBe("image/jpeg")
+  })
+
   it("answers not sent when a relay does not keep a message", async () => {
     const relay = new FakeRelay()
     const {buyer} = await toAccepted(relay)

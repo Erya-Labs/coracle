@@ -53,7 +53,7 @@
   const orderThis = async () => {
     const {sent, words} = await proposeOrder(listing)
 
-    if (!sent) return showWarning(`Nenya refused the proposal: ${words}`)
+    if (!sent) return showWarning(`The proposal was not sent: ${words}`)
 
     showInfo("Order proposed — the maker has it now.")
     router.at("market/orders").push()

@@ -74,8 +74,7 @@
   const roleIn = thread =>
     myPubkey === thread.providerKey ? "maker" : myPubkey === thread.buyerKey ? "buyer" : "watcher"
 
-  const report = ({sent, words}, did) =>
-    sent ? showInfo(did) : showWarning(`Nenya refused: ${words}`)
+  const report = ({sent, words}, did) => (sent ? showInfo(did) : showWarning(`Not sent: ${words}`))
 
   const accept = async thread => report(await acceptOrder(thread), "Acceptance sent.")
 
@@ -129,7 +128,7 @@
 
   const pictureUrl = thread =>
     URL.createObjectURL(
-      new Blob([thread.delivered], {type: thread.release?.release?.fileType || "image/png"}),
+      new Blob([thread.delivered], {type: thread.commitment?.mimeType || "image/png"}),
     )
 </script>
 
