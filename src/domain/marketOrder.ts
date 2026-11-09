@@ -411,6 +411,7 @@ const newThread = (orderId: string): any => ({
   vouchers: {},
   paid: {},
   delivered: null,
+  downloads: 0,
   log: [],
 })
 
@@ -1012,9 +1013,12 @@ export const releaseKey = async (thread: any) => {
 }
 
 export const verifyDelivery = async (thread: any) => {
+  if (thread.downloads >= 5) return
+
   const blob = await downloadBlob(thread.fileUrl)
 
   if (!blob) {
+    thread.downloads++
     logLine(thread, "app", "download", false, "The locked file could not be downloaded.")
     touch(thread)
 

@@ -33,6 +33,19 @@
 
     await myLoad({relays: env.DEFAULT_RELAYS, filters, skipCache: true}).catch(() => null)
     await processWraps(app.get().repository.query(filters))
+
+    for (const thread of $orderThreads.values()) {
+      if (
+        roleIn(thread) === "buyer" &&
+        thread.order?.state === "RELEASED" &&
+        thread.release &&
+        !thread.delivered &&
+        !verifying.has(thread.orderId)
+      ) {
+        verifying.add(thread.orderId)
+        verifyDelivery(thread).finally(() => verifying.delete(thread.orderId))
+      }
+    }
   }
 
   onMount(async () => {
@@ -112,19 +125,6 @@
 
     cancelSent[thread.orderId] = result.sent
     report(result, "Cancellation sent.")
-  }
-
-  $: for (const thread of $orderThreads.values()) {
-    if (
-      roleIn(thread) === "buyer" &&
-      thread.order?.state === "RELEASED" &&
-      thread.release &&
-      !thread.delivered &&
-      !verifying.has(thread.orderId)
-    ) {
-      verifying.add(thread.orderId)
-      verifyDelivery(thread)
-    }
   }
 
   const pictureUrl = thread =>

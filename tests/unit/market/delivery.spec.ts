@@ -155,3 +155,64 @@ describe("committing again after a copy was not kept", () => {
     expect(buyer.state()).toBe("COMMITTED")
   })
 })
+
+describe("downloading the locked file again", () => {
+  beforeEach(() => {
+    vi.useFakeTimers({toFake: ["Date"], now: Date.UTC(2026, 10, 5, 12)})
+    stubFetch()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+    vi.unstubAllGlobals()
+  })
+
+  // Brings the buyer to RELEASED, then takes the locked file off the relay.
+  const toReleasedWithoutFile = async (relay: FakeRelay) => {
+    const {seller, buyer} = await toAccepted(relay)
+
+    await seller.call((m: any, t: any) => m.commitFile(t, file(2048), "image/png"))
+    await both(buyer, seller)
+    await seller.call((m: any, t: any) => m.sendBill(t))
+    await both(buyer, seller)
+    await buyer.call((m: any, t: any) => m.payAndProve(t))
+    await both(buyer, seller)
+    await seller.call((m: any, t: any) => m.releaseKey(t))
+    await both(buyer, seller)
+
+    expect(buyer.state()).toBe("RELEASED")
+
+    const blob = relay.events.find(e => e.kind === 9876)
+
+    relay.events = relay.events.filter(e => e !== blob)
+
+    return {buyer, blob}
+  }
+
+  const downloads = (buyer: any) => buyer.thread().log.filter((l: any) => l.call === "download")
+
+  it("stops trying after five failed downloads", async () => {
+    const relay = new FakeRelay()
+    const {buyer} = await toReleasedWithoutFile(relay)
+
+    for (let i = 0; i < 7; i++) await buyer.call((m: any, t: any) => m.verifyDelivery(t))
+
+    expect(downloads(buyer).length).toBe(5)
+    expect(buyer.state()).toBe("RELEASED")
+  })
+
+  it("delivers the file once it is back on the relay", async () => {
+    const relay = new FakeRelay()
+    const {buyer, blob} = await toReleasedWithoutFile(relay)
+
+    await buyer.call((m: any, t: any) => m.verifyDelivery(t))
+
+    expect(buyer.state()).toBe("RELEASED")
+
+    relay.events.push(blob)
+    await buyer.call((m: any, t: any) => m.verifyDelivery(t))
+
+    expect(buyer.state()).toBe("SETTLED")
+    expect(Array.from(buyer.thread().delivered)).toEqual(Array.from(file(2048)))
+  })
+})
