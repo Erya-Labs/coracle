@@ -275,6 +275,131 @@ describe("reopening the app", () => {
     expect(fresh.state()).toBe("PAID")
   })
 
+  it("tries a commitment again once the acceptance opened a call later", async () => {
+    const ctx = await start()
+    const {relay, buyer} = ctx
+
+    await toCommitted(ctx)
+
+    const fresh = await makeParty(relay, {sk: buyer.sk, storage: new Map()})
+
+    // Proposal, acceptance, commitment, in the order the relay holds them.
+    const mine = relay.query([{kinds: [1059], "#p": [buyer.pk]}])
+
+    expect(mine.length).toBe(3)
+
+    for (const batch of [[mine[0], mine[2]], [mine[1]]]) {
+      tick()
+      await fresh.call((m: any) => m.processWraps(batch))
+    }
+
+    expect(fresh.state()).toBe("COMMITTED")
+    expect(fresh.thread().log.filter((l: any) => l.call === "wait").length).toBe(1)
+  })
+
+  it("tries a release again once the buyer's own proof opened a call later", async () => {
+    const ctx = await start()
+    const {relay, seller, buyer} = ctx
+
+    await toCommitted(ctx)
+    await seller.call((m: any, t: any) => m.sendBill(t))
+    await both(buyer, seller)
+    await buyer.call((m: any, t: any) => m.payAndProve(t))
+    await both(buyer, seller)
+    await seller.call((m: any, t: any) => m.releaseKey(t))
+    tick()
+
+    const fresh = await makeParty(relay, {sk: buyer.sk, storage: new Map()})
+
+    // Proposal, acceptance, commitment, bill, voucher, proof, release.
+    const mine = relay.query([{kinds: [1059], "#p": [buyer.pk]}])
+
+    expect(mine.length).toBe(7)
+
+    for (const batch of [mine.slice(0, 5), mine.slice(6), mine.slice(5, 6)]) {
+      tick()
+      await fresh.call((m: any) => m.processWraps(batch))
+    }
+
+    expect(fresh.state()).toBe("RELEASED")
+
+    await fresh.call((m: any, t: any) => m.verifyDelivery(t))
+
+    expect(fresh.state()).toBe("SETTLED")
+  })
+
+  it("tries a held message at most 3 times and logs the hold once", async () => {
+    const ctx = await start()
+    const {relay, seller, buyer} = ctx
+
+    await toCommitted(ctx)
+    await seller.call((m: any, t: any) => m.sendBill(t))
+    await both(buyer, seller)
+    await buyer.call((m: any, t: any) => m.payAndProve(t))
+    await both(buyer, seller)
+    await seller.call((m: any, t: any) => m.releaseKey(t))
+    tick()
+
+    const fresh = await makeParty(relay, {sk: buyer.sk, storage: new Map()})
+    const mine = relay.query([{kinds: [1059], "#p": [buyer.pk]}])
+
+    expect(mine.length).toBe(7)
+
+    // The release is tried at ACCEPTED, COMMITTED and AWAITING_PAYMENT, then dropped.
+    for (const batch of [[mine[0], mine[1], mine[6]], [mine[2]], mine.slice(3, 5), [mine[5]]]) {
+      tick()
+      await fresh.call((m: any) => m.processWraps(batch))
+    }
+
+    expect(fresh.state()).toBe("PAID")
+    expect(fresh.thread().log.filter((l: any) => l.call === "wait").length).toBe(1)
+  })
+
+  it("tries a bill again once the acceptance opened a call later", async () => {
+    const ctx = await start()
+    const {relay, seller, buyer} = ctx
+
+    await toCommitted(ctx)
+    await seller.call((m: any, t: any) => m.sendBill(t))
+    await both(buyer, seller)
+
+    const fresh = await makeParty(relay, {sk: buyer.sk, storage: new Map()})
+
+    // Proposal, acceptance, commitment, bill, voucher.
+    const mine = relay.query([{kinds: [1059], "#p": [buyer.pk]}])
+
+    expect(mine.length).toBe(5)
+
+    for (const batch of [[mine[0], mine[3], mine[4]], [mine[1]], [mine[2]]]) {
+      tick()
+      await fresh.call((m: any) => m.processWraps(batch))
+    }
+
+    expect(fresh.state()).toBe("AWAITING_PAYMENT")
+  })
+
+  it("does not try a stranger's cancel again when the order moves on", async () => {
+    const {relay, seller, buyer, listing} = await start()
+    const stranger = await makeParty(relay)
+
+    await buyer.call((m: any) => m.proposeOrder(listing))
+    await both(buyer, seller)
+
+    const orderId = seller.thread().orderId
+
+    await stranger.call((m: any) => m.cancelOrder({orderId, providerKey: seller.pk}))
+    await both(buyer, seller)
+    await seller.call((m: any, t: any) => m.acceptOrder(t))
+    await both(buyer, seller)
+    await seller.call((m: any, t: any) => m.commitFile(t, PNG, "image/png"))
+    await both(buyer, seller)
+
+    const statuses = seller.thread().log.filter((l: any) => l.call === "stepOrderWithStatusUpdate")
+
+    expect(seller.state()).toBe("COMMITTED")
+    expect(statuses.length).toBe(1)
+  })
+
   it("stamps one batch with one clock reading, however slow the signer", async () => {
     const {relay, seller, buyer, listing} = await start()
 

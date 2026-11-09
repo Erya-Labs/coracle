@@ -203,6 +203,7 @@ const initState = async (signer: ISigner | undefined) => {
     tries: new Map<string, number>(),
     seenRumors: new Set<string>(),
     waiting: [] as any[],
+    held: [] as any[],
   }
 
   return state
@@ -476,7 +477,13 @@ const stepPayments = (thread: any) => {
   }
 }
 
-const handle = (rumor: any) => {
+// Refusals that only mean the order is not there yet: the message waits for the order to move.
+const WAITS = ["WRONG_STATE_FOR_EVENT", "RELEASE_ORDER_NOT_PAID", "NO_STORED_REQUEST"]
+
+const waits = (result: any) => !result.ok && WAITS.includes(result.reason)
+
+// Answers the refusal's words when the message waits, and nothing when it was handled.
+const handle = (rumor: any): string | void => {
   const orderId = rumor.orderIdHex
   const tags: string[][] = rumor.event.tags.map((t: string[]) => [...t])
   const threads = new Map(getThreads())
@@ -555,16 +562,17 @@ const handle = (rumor: any) => {
 
   if (rumor.kindNumber === 16 && rumor.messageType === "STATUS_UPDATE") {
     const status = tagOf(tags, "status")?.[1]
+    const step = nenya.stepOrderWithStatusUpdate(
+      state!.machine,
+      thread.order,
+      thread.proposal,
+      rumor,
+      thread.providerKey,
+    )
+
+    if (waits(step)) return buildWords(step)
 
     if (status === "accepted") {
-      const step = nenya.stepOrderWithStatusUpdate(
-        state!.machine,
-        thread.order,
-        thread.proposal,
-        rumor,
-        thread.providerKey,
-      )
-
       if (step.ok) {
         thread.order = step.order
         thread.acceptedOrder = step.order
@@ -582,14 +590,6 @@ const handle = (rumor: any) => {
           : `Nenya refused the acceptance: ${buildWords(step)}`,
       )
     } else {
-      const step = nenya.stepOrderWithStatusUpdate(
-        state!.machine,
-        thread.order,
-        thread.proposal,
-        rumor,
-        thread.providerKey,
-      )
-
       if (step.order) thread.order = step.order
 
       logLine(
@@ -617,6 +617,8 @@ const handle = (rumor: any) => {
       thread.providerKey,
     )
 
+    if (waits(step)) return buildWords(step)
+
     if (step.ok) {
       const read = nenya.decodeCommitment(rumor)
 
@@ -643,12 +645,9 @@ const handle = (rumor: any) => {
 
   const isBill = rumor.kindNumber === 16 && rumor.messageType === "PAYMENT_REQUEST"
 
-  // Bills and payment proofs are checked against the acceptance, so with none they are dropped.
+  // Bills and payment proofs are checked against the acceptance, so with none they wait.
   if ((isBill || rumor.kindNumber === 17) && !thread.acceptance) {
-    logLine(thread, "app", "payment", false, "A bill or payment proof came before any acceptance.")
-    touch(thread)
-
-    return
+    return "a bill or payment proof came before any acceptance"
   }
 
   if (isBill) {
@@ -662,6 +661,8 @@ const handle = (rumor: any) => {
       state!.env,
       thread.sightings.slice(),
     )
+
+    if (waits(accepted)) return buildWords(accepted)
 
     logLine(
       thread,
@@ -697,6 +698,8 @@ const handle = (rumor: any) => {
         : nenya.verifySettlement(rumor, state!.store, agreedTerms(thread))
     const good = result.ok && result.settlement?.evidenced
 
+    if (waits(result)) return buildWords(result)
+
     logLine(
       thread,
       "nenya",
@@ -729,6 +732,8 @@ const handle = (rumor: any) => {
       rumor,
       thread.providerKey,
     )
+
+    if (waits(step)) return buildWords(step)
 
     if (step.order) thread.order = step.order
 
@@ -822,21 +827,50 @@ export const processWraps = async (events: any[]) => {
 
   // A message whose order has not arrived yet waits for the next batch.
   for (const rumor of waiting) {
-    const orderId = rumor.orderIdHex || tagOf(rumor.event.tags, "order")?.[1]
-
-    if (rumor.messageType !== "PROPOSAL" && !getThreads().has(orderId)) {
+    if (rumor.messageType !== "PROPOSAL" && !getThreads().has(orderOf(rumor))) {
       state.waiting.push(rumor)
       continue
     }
 
-    judgedAt = firstSeen(rumor.idHex)
-
-    try {
-      handle(rumor)
-    } finally {
-      judgedAt = null
-    }
+    run(rumor, 1)
   }
+}
+
+const orderOf = (rumor: any) => rumor.orderIdHex || tagOf(rumor.event.tags, "order")?.[1]
+
+// A message refused only because its order was not ready is held, and handed back in each time
+// that order moves on, for at most 3 tries in all.
+const run = (rumor: any, tries: number) => {
+  const orderId = orderOf(rumor)
+  const thread = getThreads().get(orderId)
+  const before = thread?.order?.state
+  let words
+
+  judgedAt = firstSeen(rumor.idHex)
+
+  try {
+    words = handle(rumor)
+  } finally {
+    judgedAt = null
+  }
+
+  if (words) {
+    if (tries === 1) {
+      logLine(thread, "app", "wait", false, `Held until the order moves on: ${words}`)
+      touch(thread)
+    }
+
+    if (tries < 3) state.held.push({rumor, tries: tries + 1})
+
+    return
+  }
+
+  if (getThreads().get(orderId)?.order?.state === before) return
+
+  const again = state.held.filter((h: any) => orderOf(h.rumor) === orderId)
+
+  state.held = state.held.filter((h: any) => orderOf(h.rumor) !== orderId)
+  again.forEach((h: any) => run(h.rumor, h.tries))
 }
 
 // --- the actions each role takes, in order ---------------------------------------
