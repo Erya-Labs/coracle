@@ -893,29 +893,37 @@ export const cancelOrder = async (thread: any) => {
 const MAX_FILE_BYTES = 40_000
 
 export const commitFile = async (thread: any, plain: Uint8Array, mimeType: string) => {
-  if (plain.length > MAX_FILE_BYTES) {
-    return {sent: false, words: `the file is over ${MAX_FILE_BYTES} bytes, too big for a relay`}
+  // Committing again resends the very same rumor, so the buyer never sees a second key.
+  let saved = secrets()[thread.orderId]
+
+  if (!saved?.url) {
+    if (plain.length > MAX_FILE_BYTES) {
+      return {sent: false, words: `the file is over ${MAX_FILE_BYTES} bytes, too big for a relay`}
+    }
+
+    const locked = await lockFile(plain)
+    const url = await uploadBlob(locked.blob)
+
+    if (!url) return {sent: false, words: "no relay kept the locked file"}
+
+    saved = {
+      keyHex: hex(locked.key),
+      nonceHex: hex(locked.nonce),
+      x: locked.x,
+      ox: locked.ox,
+      size: String(locked.blob.length),
+      mimeType,
+      url,
+      at: String(clock()),
+    }
+    saveSecret(thread.orderId, saved)
   }
 
-  const locked = await lockFile(plain)
-  const url = await uploadBlob(locked.blob)
-
-  if (!url) return {sent: false, words: "no relay kept the locked file"}
-
-  saveSecret(thread.orderId, {
-    keyHex: hex(locked.key),
-    nonceHex: hex(locked.nonce),
-    x: locked.x,
-    ox: locked.ox,
-    size: String(locked.blob.length),
-    mimeType,
-  })
-
   const built = nenya.buildCommitment(
-    envelope([thread.buyerKey]),
+    new nenya.JsRumorEnvelope(state!.pk, saved.at, [[thread.buyerKey]]),
     thread.orderId,
-    new nenya.JsCommitment(locked.x, locked.ox, mimeType, String(locked.blob.length)),
-    url,
+    new nenya.JsCommitment(saved.x, saved.ox, saved.mimeType, saved.size),
+    saved.url,
   )
 
   return sendRumor(built, [thread.buyerKey])

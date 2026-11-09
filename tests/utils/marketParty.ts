@@ -23,7 +23,10 @@ export class FakeRelay {
 
   constructor(public maxMessage = Infinity) {}
 
+  refuse = (e: any) => false
+
   publish = async (e: any) => {
+    if (this.refuse(e)) return {ok: false}
     if (JSON.stringify(["EVENT", e]).length > this.maxMessage) return {ok: false}
     if (!verifyEvent(e)) throw new Error(`relay: bad signature on kind ${e.kind}`)
     if (!this.events.find(x => x.id === e.id)) this.events.push(e)
