@@ -199,6 +199,8 @@ const initState = async (signer: ISigner | undefined) => {
     machine: new nenya.JsOrderMachine(env),
     store,
     seenWraps: new Set<string>(),
+    opening: new Set<string>(),
+    tries: new Map<string, number>(),
     seenRumors: new Set<string>(),
     waiting: [] as any[],
   }
@@ -769,17 +771,31 @@ const tradeStep = (rumor: any) => {
 const openOne = (wrapJson: string) =>
   new Promise<any>(resolve => nenya.openAsync(wrapJson, state!.signer, resolve, state!.env))
 
+// A signer that declined or timed out may answer on a later poll.
+const RETRIED = ["COULD_NOT_DECRYPT_WRAP", "COULD_NOT_DECRYPT_SEAL"]
+
 export const processWraps = async (events: any[]) => {
   if (!state) return
 
   const opened = []
 
   for (const wrap of events) {
-    if (state.seenWraps.has(wrap.id)) continue
+    if (state.seenWraps.has(wrap.id) || state.opening.has(wrap.id)) continue
 
-    state.seenWraps.add(wrap.id)
+    state.opening.add(wrap.id)
 
     const result = await openOne(JSON.stringify(wrap))
+    const tries = (state.tries.get(wrap.id) ?? 0) + 1
+
+    state.opening.delete(wrap.id)
+
+    if (!result.ok && RETRIED.includes(result.reason) && tries < 3) {
+      state.tries.set(wrap.id, tries)
+      continue
+    }
+
+    state.tries.delete(wrap.id)
+    state.seenWraps.add(wrap.id)
 
     if (!result.ok) continue
 

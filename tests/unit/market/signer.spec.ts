@@ -12,6 +12,7 @@ import {
   makeEnvironment,
   orderThreads,
 } from "../../../src/domain/marketOrder"
+import {FakeRelay, makeListing, makeParty} from "../../utils/marketParty"
 
 const TEXT = "50% off, order #7? yes"
 
@@ -85,6 +86,9 @@ const sealInside = (wrapJson: string, sk: Uint8Array) => {
   return JSON.parse(decrypt(wrap.content, getConversationKey(sk, wrap.pubkey)))
 }
 
+// A well-formed signature that is not the right one: the last byte changed.
+const flip = (sig: string) => sig.slice(0, -2) + (sig.endsWith("00") ? "01" : "00")
+
 afterEach(() => {
   vi.unstubAllGlobals()
   setNip55Plugin(undefined)
@@ -156,9 +160,6 @@ describe("a signer that does not answer properly", () => {
 })
 
 describe("the seal signature", () => {
-  // A well-formed signature that is not the right one: the last byte changed.
-  const flip = (sig: string) => sig.slice(0, -2) + (sig.endsWith("00") ? "01" : "00")
-
   it("fails the seal when the signer returns a wrong signature", async () => {
     const signer = new Nip01Signer(bytesToHex(generateSecretKey()))
     const sign = signer.sign.bind(signer)
@@ -198,6 +199,127 @@ describe("the seal signature", () => {
 
     expect(opened.ok).toBe(false)
     expect(opened.reason).toBe("SEAL_SIGNATURE_INVALID")
+  })
+})
+
+describe("a decrypt that was declined or timed out", () => {
+  // Reopens the party's order channel over a signer whose first decrypts fail.
+  const flaky = async (party: any, failures: number) => {
+    const signer = new Nip01Signer(bytesToHex(party.sk))
+    const decrypt = signer.nip44.decrypt
+    const calls = {count: 0}
+
+    signer.nip44.decrypt = async (peer: string, payload: string) => {
+      if (++calls.count <= failures) throw new Error("declined")
+
+      return decrypt(peer, payload)
+    }
+
+    party.enter()
+    await party.mod.connectOrderChannel(
+      party.relay.publish,
+      async (f: any[]) => party.relay.query(f),
+      signer,
+    )
+
+    return calls
+  }
+
+  const proposals = (party: any) =>
+    party.thread()?.log.filter((l: any) => l.call === "openOrderFromProposal").length ?? 0
+
+  const proposed = async () => {
+    const relay = new FakeRelay()
+    const seller = await makeParty(relay)
+    const buyer = await makeParty(relay)
+    const listing = await makeListing(seller)
+
+    await buyer.call((m: any) => m.proposeOrder(listing))
+
+    return seller
+  }
+
+  it("is tried again and the message arrives exactly once", async () => {
+    const seller = await proposed()
+
+    await flaky(seller, 1)
+    await seller.sync()
+
+    expect(proposals(seller)).toBe(0)
+
+    await seller.sync()
+    await seller.sync()
+
+    expect(proposals(seller)).toBe(1)
+  })
+
+  it("asks the signer for one pass when polls overlap", async () => {
+    const seller = await proposed()
+    const calls = await flaky(seller, 0)
+
+    await Promise.all([seller.sync(), seller.sync(), seller.sync()])
+
+    expect(calls.count).toBe(2)
+    expect(proposals(seller)).toBe(1)
+  })
+
+  it("costs one try for one outage during overlapping polls", async () => {
+    const seller = await proposed()
+    const calls = await flaky(seller, 1)
+
+    await Promise.all([seller.sync(), seller.sync(), seller.sync()])
+
+    expect(calls.count).toBe(1)
+    expect(proposals(seller)).toBe(0)
+
+    await seller.sync()
+
+    expect(proposals(seller)).toBe(1)
+  })
+
+  it("stops after three tries when the signer always rejects", async () => {
+    const seller = await proposed()
+    const calls = await flaky(seller, Infinity)
+
+    for (let i = 0; i < 5; i++) await seller.sync()
+
+    expect(calls.count).toBe(3)
+    expect(proposals(seller)).toBe(0)
+  })
+
+  it("does not try again a seal with a bad signature", async () => {
+    const relay = new FakeRelay()
+    const me = await makeParty(relay)
+    const peer = new Nip01Signer(bytesToHex(generateSecretKey()))
+    const sealed = await seal(peer, me.pk)
+    const inner = sealInside(sealed.toRecipient.json, me.sk)
+    const wrapSk = generateSecretKey()
+
+    await relay.publish(
+      finalizeEvent(
+        {
+          kind: 1059,
+          created_at: JSON.parse(sealed.toRecipient.json).created_at,
+          tags: [["p", me.pk]],
+          content: encrypt(
+            JSON.stringify({...inner, sig: flip(inner.sig)}),
+            getConversationKey(wrapSk, me.pk),
+          ),
+        },
+        wrapSk,
+      ),
+    )
+
+    const calls = await flaky(me, 0)
+
+    await me.sync()
+
+    expect(calls.count).toBe(1)
+
+    await me.sync()
+    await me.sync()
+
+    expect(calls.count).toBe(1)
   })
 })
 
