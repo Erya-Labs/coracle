@@ -78,7 +78,8 @@ judges anything itself. If a step is refused, the log quotes the library's reaso
 
 - A refused bill, proof, or delivery is not a bug — it is the library catching a mismatch.
   Read the quoted reason.
-- A buyer can end an order with **Cancel the order** until the payment proof is sent. A
+- A buyer can end an order with **Cancel the order**
+  until they press **Send the payment proof**, even if that proof is then refused. A
   cancellation does not get back a payment already made.
 - Settings or messages reset after a reload → a signer extension is fighting the dev signer
   over `window.nostr`. Disable the extension for this site and log in again.
