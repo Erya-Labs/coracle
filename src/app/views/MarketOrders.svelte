@@ -184,7 +184,7 @@
             Accept the order
           </Button>
         {:else if thread.order?.state === "ACCEPTED"}
-          <div class="mt-2 flex items-center gap-2">
+          <div class="mt-2 flex flex-wrap items-center gap-2">
             <input type="file" accept="image/*" bind:this={fileInputs[thread.orderId]} />
             <Button class="btn btn-accent" on:click={() => commit(thread)}>
               Lock, upload and commit
