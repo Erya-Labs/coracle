@@ -31,7 +31,9 @@
   const filters = pubkey ? [{kinds, authors: [pubkey]}] : []
   const events = deriveEvents(filters)
 
-  const skip = () => router.at("notes").push()
+  const home = env.ENABLE_MARKET ? "market" : "notes"
+
+  const skip = () => router.at(home).push()
 
   const searchRelays = relays => myLoad({filters, relays}).catch(noop)
 
@@ -62,8 +64,9 @@
   let customRelay = ""
 
   tryDefaultRelays().then(() => {
-    // A new key has nothing to find, so it goes to the market instead of the failure text
-    if (env.ENABLE_MARKET && !destroyed && $events.length === 0) {
+    // A key with none or only some of its profile, relays and follows goes to the market instead of the failure text
+    if (env.ENABLE_MARKET && !destroyed && !found) {
+      loadUserData().catch(noop)
       router.at("market").push()
     }
   })
@@ -90,7 +93,7 @@
         // Give them a couple seconds to see the loading screen
         await sleep(2500)
 
-        router.at("notes").push()
+        router.at(home).push()
       })
     }
   }
