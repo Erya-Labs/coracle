@@ -199,7 +199,7 @@
                 thread.order.priceMsat,
               ).toLocaleString()} sats (leave empty for a pretend bill)" />
             <Button class="btn btn-accent self-start" on:click={() => bill(thread)}>
-              Send the bill
+              {invoices[thread.orderId]?.trim() ? "Send the bill" : "Send a pretend bill"}
             </Button>
           </div>
         {:else if thread.order?.state === "PAID" && !thread.release}
