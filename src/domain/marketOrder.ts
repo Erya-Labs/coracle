@@ -977,6 +977,8 @@ export const sendBill = async (thread: any, realInvoice = "") => {
 
     preimage = crypto.getRandomValues(new Uint8Array(32))
     invoice = writer.write(BigInt(thread.order.priceMsat), await sha256(preimage), clock())
+  } else {
+    invoice = invoice.toLowerCase().replace(/^lightning:/, "")
   }
 
   const built = nenya.buildPaymentRequest(

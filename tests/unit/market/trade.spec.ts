@@ -113,4 +113,39 @@ describe("a trade between two parties", () => {
 
     await finish(ctx)
   })
+
+  it("reads a pasted bill in capitals with a lightning: prefix", async () => {
+    const hash = crypto.getRandomValues(new Uint8Array(32))
+    const wrong = await billFor(99000n, hash)
+    const right = await billFor(21000n, hash)
+    const ctx = await start()
+    const {seller, buyer} = ctx
+
+    await toCommitted(ctx)
+
+    for (const address of [
+      "Someone@Example.com",
+      "LIGHTNING:LNURL1DP68GURN8GHJ7UM9WFMXJCM99E3K7MF0V9CXJ0M385EKVCENXC6R2C35XVUKXEFCV5MKVV34X5EKZD3EV56NYD3HXQURZEPEXEJXXEPNXSCRVWFNV9NXZCN9XQ6XYEFHVGCXXCMYXYMNSERXFQ5FNS",
+    ]) {
+      const result = await seller.call((m: any, t: any) => m.sendBill(t, address))
+
+      expect(result.sent).toBe(false)
+      expect(result.words).toContain("INVOICE_STATIC_ADDRESS")
+    }
+
+    expect((await seller.call((m: any, t: any) => m.sendBill(t, " lightning: "))).sent).toBe(false)
+
+    await seller.call((m: any, t: any) => m.sendBill(t, " LIGHTNING:" + wrong.toUpperCase() + " "))
+    await both(buyer, seller)
+
+    expect(buyer.state()).toBe("COMMITTED")
+    expect(lastWords(buyer)).toContain("INVOICE_AMOUNT_MISMATCH")
+
+    await seller.call((m: any, t: any) => m.sendBill(t, " LIGHTNING:" + right.toUpperCase() + " "))
+    await both(buyer, seller)
+
+    expect(buyer.state()).toBe("AWAITING_PAYMENT")
+    expect(buyer.thread().requests.provider.invoice).toBe(right)
+    expect(buyer.thread().vouchers.provider).toBeUndefined()
+  })
 })
