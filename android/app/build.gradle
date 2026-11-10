@@ -16,7 +16,11 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
-    buildTypes 
+    buildTypes {
+        debug {
+            applicationIdSuffix ".nostrasia"
+        }
+    }
 }
 
 repositories {
