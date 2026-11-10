@@ -195,7 +195,7 @@
     },
   })
 
-  router.register("/", Home)
+  router.register("/", engine.env.ENABLE_MARKET ? MarketList : Home)
   router.register("/topics/:topic", Home)
   router.register("/notes", Home)
   router.register("/notes/create", NoteCreate, {
