@@ -9,7 +9,7 @@ const start = async () => {
   const buyer = await makeParty(relay)
   const listing = await makeListing(seller)
 
-  return {seller, buyer, listing}
+  return {relay, seller, buyer, listing}
 }
 
 const both = async (a: any, b: any) => {
@@ -147,5 +147,44 @@ describe("a trade between two parties", () => {
     expect(buyer.state()).toBe("AWAITING_PAYMENT")
     expect(buyer.thread().requests.provider.invoice).toBe(right)
     expect(buyer.thread().vouchers.provider).toBeUndefined()
+  })
+
+  it("sends only the first real bill again after a send that looked failed", async () => {
+    const preimage = crypto.getRandomValues(new Uint8Array(32))
+    const hash = new Uint8Array(await crypto.subtle.digest("SHA-256", preimage))
+    const right = await billFor(21000n, hash)
+    const other = await billFor(21000n, crypto.getRandomValues(new Uint8Array(32)))
+    const ctx = await start()
+    const {relay, seller, buyer} = ctx
+
+    await toCommitted(ctx)
+
+    relay.refuse = (e: any) => e.kind === 1059 && e.tags.some((t: string[]) => t[1] === seller.pk)
+
+    expect((await seller.call((m: any, t: any) => m.sendBill(t, right))).sent).toBe(false)
+    await both(buyer, seller)
+
+    expect(buyer.state()).toBe("AWAITING_PAYMENT")
+
+    relay.refuse = () => false
+
+    for (const field of [other, ""]) {
+      const result = await seller.call((m: any, t: any) => m.sendBill(t, field))
+
+      expect(result.sent).toBe(false)
+      expect(result.words).toContain("already sent")
+    }
+
+    expect((await seller.call((m: any, t: any) => m.sendBill(t, right))).sent).toBe(true)
+    await both(buyer, seller)
+
+    expect(seller.thread().requests.provider.invoice).toBe(right)
+
+    await buyer.call((m: any, t: any) => m.payAndProve(t, Buffer.from(preimage).toString("hex")))
+    await both(buyer, seller)
+
+    expect(seller.state()).toBe("PAID")
+
+    await finish(ctx)
   })
 })

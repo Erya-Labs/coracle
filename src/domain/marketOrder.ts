@@ -413,6 +413,7 @@ const newThread = (orderId: string): any => ({
   paid: {},
   delivered: null,
   downloads: 0,
+  billRefused: false,
   log: [],
 })
 
@@ -675,6 +676,7 @@ const handle = (rumor: any): string | void => {
     )
 
     if (!accepted.ok) {
+      thread.billRefused = true
       touch(thread)
 
       return
@@ -969,16 +971,24 @@ export const sendBill = async (thread: any, realInvoice = "") => {
   // With a real invoice from the seller's own wallet, the trade is a real one: the
   // buyer pays it in their wallet and proves it with the preimage the wallet shows.
   // Without one, the demo writes a pretend bill and vouchers its preimage across.
-  let invoice = realInvoice.trim()
+  const pasted = realInvoice.trim()
+  let invoice = pasted.toLowerCase().replace(/^lightning:/, "")
   let preimage: Uint8Array | null = null
+  // A send that looked failed may still have reached the buyer, who keeps the first bill it reads.
+  const first = thread.billRefused ? null : secrets()[thread.orderId]?.bill
 
-  if (!invoice) {
+  if (first && invoice !== first) {
+    return {
+      sent: false,
+      words: "a real bill was already sent for this order; paste that same bill again",
+    }
+  }
+
+  if (!pasted) {
     const writer = await getBillWriter()
 
     preimage = crypto.getRandomValues(new Uint8Array(32))
     invoice = writer.write(BigInt(thread.order.priceMsat), await sha256(preimage), clock())
-  } else {
-    invoice = invoice.toLowerCase().replace(/^lightning:/, "")
   }
 
   const built = nenya.buildPaymentRequest(
@@ -987,6 +997,12 @@ export const sendBill = async (thread: any, realInvoice = "") => {
     "provider",
     invoice,
   )
+
+  if (built.ok && !preimage) {
+    saveSecret(thread.orderId, {bill: invoice})
+    thread.billRefused = false
+  }
+
   const sent = await sendRumor(built, [thread.buyerKey])
 
   if (!sent.sent || !preimage) return sent
