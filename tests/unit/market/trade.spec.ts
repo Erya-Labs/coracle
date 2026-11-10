@@ -187,4 +187,121 @@ describe("a trade between two parties", () => {
 
     await finish(ctx)
   })
+
+  it("keeps the guard on the bill that went out, after a reload and in a second tab", async () => {
+    const preimage = crypto.getRandomValues(new Uint8Array(32))
+    const hash = new Uint8Array(await crypto.subtle.digest("SHA-256", preimage))
+    const wrong = await billFor(99000n, hash)
+    const right = await billFor(21000n, hash)
+    const other = await billFor(21000n, crypto.getRandomValues(new Uint8Array(32)))
+    const ctx = await start()
+    const {relay, seller, buyer} = ctx
+
+    await toCommitted(ctx)
+    await seller.call((m: any, t: any) => m.sendBill(t, wrong))
+    await both(buyer, seller)
+
+    expect(lastWords(seller)).toContain("INVOICE_AMOUNT_MISMATCH")
+
+    relay.refuse = (e: any) => e.kind === 1059 && e.tags.some((t: string[]) => t[1] === seller.pk)
+
+    expect((await seller.call((m: any, t: any) => m.sendBill(t, right))).sent).toBe(false)
+    await both(buyer, seller)
+
+    expect(buyer.state()).toBe("AWAITING_PAYMENT")
+
+    relay.refuse = () => false
+
+    const reopened = await makeParty(relay, {sk: seller.sk, storage: seller.storage})
+
+    await reopened.sync()
+
+    const tab = await makeParty(relay, {sk: seller.sk, storage: seller.storage})
+
+    await tab.sync()
+
+    for (const party of [reopened, tab, seller]) {
+      for (const field of [other, ""]) {
+        const result = await party.call((m: any, t: any) => m.sendBill(t, field))
+
+        expect(result.sent).toBe(false)
+        expect(result.words).toContain("already sent")
+      }
+    }
+
+    expect((await tab.call((m: any, t: any) => m.sendBill(t, right))).sent).toBe(true)
+    await both(buyer, tab)
+
+    expect(tab.thread().requests.provider.invoice).toBe(right)
+
+    await tab.call((m: any, t: any) => m.sendBill(t, right))
+    await both(buyer, tab)
+
+    expect(lastWords(tab)).toContain("REQUEST_ALREADY_STORED")
+    expect((await tab.call((m: any, t: any) => m.sendBill(t, other))).words).toContain(
+      "already sent",
+    )
+
+    await buyer.call((m: any, t: any) => m.payAndProve(t, Buffer.from(preimage).toString("hex")))
+    await both(buyer, tab)
+
+    expect(tab.state()).toBe("PAID")
+
+    await finish({seller: tab, buyer})
+  })
+
+  it("saves no bill when the signer declined to seal it", async () => {
+    const hash = crypto.getRandomValues(new Uint8Array(32))
+    const right = await billFor(21000n, hash)
+    const other = await billFor(21000n, crypto.getRandomValues(new Uint8Array(32)))
+    const ctx = await start()
+    const {seller, buyer} = ctx
+    const sign = seller.signer.sign
+
+    await toCommitted(ctx)
+
+    seller.signer.sign = async () => {
+      throw new Error("declined")
+    }
+
+    expect((await seller.call((m: any, t: any) => m.sendBill(t, other))).sent).toBe(false)
+
+    seller.signer.sign = sign
+
+    expect((await seller.call((m: any, t: any) => m.sendBill(t, right))).sent).toBe(true)
+    await both(buyer, seller)
+
+    expect(buyer.state()).toBe("AWAITING_PAYMENT")
+    expect(buyer.thread().requests.provider.invoice).toBe(right)
+  })
+
+  it("lets one of two bills sent at once go out, and ignores a bill refused from the buyer", async () => {
+    const right = await billFor(21000n, crypto.getRandomValues(new Uint8Array(32)))
+    const other = await billFor(21000n, crypto.getRandomValues(new Uint8Array(32)))
+    const ctx = await start()
+    const {seller, buyer} = ctx
+
+    await toCommitted(ctx)
+
+    const results = await seller.call((m: any, t: any) =>
+      Promise.all([m.sendBill(t, right), m.sendBill(t, other)]),
+    )
+
+    expect(results.map((r: any) => r.sent)).toEqual([true, false])
+    expect(results[1].words).toContain("already sent")
+
+    const forged = await buyer.call((m: any, t: any) =>
+      m.sendBill({...t, buyerKey: seller.pk}, right),
+    )
+
+    expect(forged.sent).toBe(true)
+
+    await both(buyer, seller)
+
+    expect(lastWords(seller)).toContain("Nenya refused the bill")
+    expect((await seller.call((m: any, t: any) => m.sendBill(t, other))).words).toContain(
+      "already sent",
+    )
+    expect(buyer.thread().requests.provider.invoice).toBe(right)
+  })
 })

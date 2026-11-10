@@ -303,7 +303,7 @@ export const connectOrderChannel = async (
 const sealOne = (event: any, to: string) =>
   new Promise<any>(resolve => nenya.sealAsync(event, to, state!.signer, resolve, state!.env))
 
-const sendRumor = async (built: any, recipients: string[]) => {
+const sendRumor = async (built: any, recipients: string[], beforePublish = () => "") => {
   if (!built.ok) return {sent: false, words: buildWords(built)}
 
   const wraps = []
@@ -317,6 +317,10 @@ const sendRumor = async (built: any, recipients: string[]) => {
 
     if (wraps.length === 1) wraps.push(JSON.parse(sealed.toSelf.json))
   }
+
+  const refused = beforePublish()
+
+  if (refused) return {sent: false, words: refused}
 
   const kept = await Promise.all(wraps.map(wrap => publish(wrap)))
 
@@ -413,7 +417,6 @@ const newThread = (orderId: string): any => ({
   paid: {},
   delivered: null,
   downloads: 0,
-  billRefused: false,
   log: [],
 })
 
@@ -676,7 +679,10 @@ const handle = (rumor: any): string | void => {
     )
 
     if (!accepted.ok) {
-      thread.billRefused = true
+      if (rumor.author === state!.pk && accepted.reason !== "REQUEST_ALREADY_STORED") {
+        saveSecret(orderId, {refusedBill: tagOf(tags, "payment")?.[2]})
+      }
+
       touch(thread)
 
       return
@@ -974,15 +980,18 @@ export const sendBill = async (thread: any, realInvoice = "") => {
   const pasted = realInvoice.trim()
   let invoice = pasted.toLowerCase().replace(/^lightning:/, "")
   let preimage: Uint8Array | null = null
-  // A send that looked failed may still have reached the buyer, who keeps the first bill it reads.
-  const first = thread.billRefused ? null : secrets()[thread.orderId]?.bill
+  // A send that looked failed may still have reached the buyer, who keeps the first bill it
+  // reads. Only a bill this device's library refused can be replaced. Asked again once
+  // sealed, because another send may have gone out while the signer was busy.
+  const already = () => {
+    const {bill, refusedBill} = secrets()[thread.orderId] ?? {}
 
-  if (first && invoice !== first) {
-    return {
-      sent: false,
-      words: "a real bill was already sent for this order; paste that same bill again",
-    }
+    return bill && bill !== refusedBill && invoice !== bill
+      ? "a real bill was already sent for this order; paste that same bill again"
+      : ""
   }
+
+  if (already()) return {sent: false, words: already()}
 
   if (!pasted) {
     const writer = await getBillWriter()
@@ -998,12 +1007,13 @@ export const sendBill = async (thread: any, realInvoice = "") => {
     invoice,
   )
 
-  if (built.ok && !preimage) {
-    saveSecret(thread.orderId, {bill: invoice})
-    thread.billRefused = false
-  }
+  const sent = await sendRumor(built, [thread.buyerKey], () => {
+    const words = already()
 
-  const sent = await sendRumor(built, [thread.buyerKey])
+    if (!words && !preimage) saveSecret(thread.orderId, {bill: invoice})
+
+    return words
+  })
 
   if (!sent.sent || !preimage) return sent
 

@@ -74,6 +74,7 @@ export const makeParty = async (
     pk,
     storage,
     relay,
+    signer,
     mod,
     enter,
     thread,
