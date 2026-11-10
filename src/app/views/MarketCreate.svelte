@@ -12,10 +12,10 @@
   import {env, sign} from "src/engine"
   import {getWriteRelays, pubkey, publisher} from "src/engine/core"
 
-  let side = "request"
+  let side = "offer"
   let title = ""
   let summary = ""
-  let priceSats = 100000
+  let priceSats = 21
   let content = ""
   let loading = false
 
