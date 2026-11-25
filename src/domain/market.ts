@@ -76,6 +76,9 @@ export const makeMarketOffer = ({pubkey, title, summary, priceSats, content = ""
 }
 
 export const makeMarketBid = ({pubkey, coordinate, priceSats, content = ""}) => {
+  // A bid of nothing can never be billed, so it is refused before nenya builds it.
+  if (!(Number(priceSats) > 0)) return {error: "a bid needs a price above 0 sats"}
+
   const now = String(Math.floor(Date.now() / 1000))
   const result = nenya.buildBid(
     new nenya.JsAuthoredBid(pubkey, now, coordinate, satsToMsat(priceSats), content),

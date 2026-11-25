@@ -65,7 +65,11 @@
 
     if (!sent) return showWarning(`The order was not sent: ${words}`)
 
-    showInfo("Order sent to the bidder — they accept it next.")
+    showInfo(
+      listing.kind === 30404
+        ? "Order sent to the bidder — they accept it next."
+        : "Order sent to the seller at your bid's price — they accept it next.",
+    )
     router.at("market/orders").push()
   }
 
@@ -88,13 +92,19 @@
     )
     .catch(noop)
 
-  let bidSats = 0
+  let bidSats = null
+  let bidPrefilled = false
   let bidContent = ""
   let loading = false
 
   $: result = $listingEvents.length > 0 ? readListing($listingEvents[0]) : null
   $: listing = result?.ok ? result.listing : null
   $: bids = $bidEvents.map(event => readBid(event))
+  // The bid form starts once at the listing's own price instead of 0.
+  $: if (listing && !bidPrefilled) {
+    bidSats = msatToSats(listing.priceMsat)
+    bidPrefilled = true
+  }
 
   const submitBid = async () => {
     const {template, error} = makeMarketBid({
@@ -105,7 +115,7 @@
     })
 
     if (error) {
-      return showWarning(`Nenya refused to build the bid: ${error}`)
+      return showWarning(`The bid was not published: ${error}`)
     }
 
     loading = true
@@ -194,6 +204,14 @@
                 <i class="fa fa-handshake" /> Order from this bid
               </Button>
             {/if}
+            {#if listing.kind === 30402 && $signer && bid.bid.bidderPubkey === $pubkey}
+              <Button
+                class="btn btn-accent mt-3"
+                disabled={!orderReady || !(msatToSats(bid.bid.priceMsat) > 0)}
+                on:click={() => orderFromBid(bid.bid)}>
+                <i class="fa fa-handshake" /> Order at my bid price
+              </Button>
+            {/if}
           </Card>
         {:else}
           <Card>
@@ -204,6 +222,12 @@
         {/if}
       </div>
     {/each}
+    {#if bids.length > 0 && listing.kind === 30402 && $signer && listing.authorPubkey === $pubkey}
+      <p class="text-sm text-neutral-400">
+        A bid on your offer becomes an order when its bidder taps "Order at my bid price". Accept it
+        in Orders.
+      </p>
+    {/if}
     {#if bids.length === 0}
       <p class="text-neutral-400">No bids yet.</p>
     {:else if listing.kind === 30404 && $signer && listing.authorPubkey === $pubkey && !orderReady}

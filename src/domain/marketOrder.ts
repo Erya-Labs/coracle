@@ -914,9 +914,11 @@ export const proposeOrder = async (listing: any) => {
   return sendRumor(built, [listing.authorPubkey])
 }
 
-// On my own request I buy from a bidder: the proposal goes to the bidder, at the bid's price
-// and terms, and must be accepted before the bid's delivery deadline.
+// An order at a bid's price and terms, accepted before the bid's delivery deadline. The buyer
+// always proposes (NENYA-1 decision H): on my own request I buy from the bidder, and on an offer
+// my own bid is my counter-offer, so I buy from the offer's author.
 export const proposeOrderForBid = async (listing: any, bid: any) => {
+  const provider = listing.kind === 30404 ? bid.bidderPubkey : listing.authorPubkey
   const orderId = hex(crypto.getRandomValues(new Uint8Array(32)))
   const twoDays = clock() + 2 * 86_400
   const deliverBy =
@@ -928,12 +930,12 @@ export const proposeOrderForBid = async (listing: any, bid: any) => {
     listing,
     bid,
     state!.env,
-    envelope([bid.bidderPubkey]),
+    envelope([provider]),
     orderId,
     String(acceptBy),
   )
 
-  return sendRumor(built, [bid.bidderPubkey])
+  return sendRumor(built, [provider])
 }
 
 export const acceptOrder = async (thread: any) => {
