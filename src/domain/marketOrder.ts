@@ -529,16 +529,27 @@ const handle = (rumor: any): string | void => {
     if (!read.ok) return
 
     const item = read.proposal.itemCoordinate
-    const named = item.split(":")[1] ?? null
+    const [itemKind, itemAuthor] = item.split(":")
 
-    // My own proposal names the listing I chose; anyone else's must name me.
-    if (rumor.author !== state!.pk && named !== state!.pk) return
+    // On an offer the maker is the offer's author. On a request the requester buys from the
+    // bidder the proposal is addressed to (NENYA-1 decision H), so the request must be the
+    // proposer's own.
+    let maker = itemAuthor ?? null
+
+    if (itemKind === "30404") {
+      maker = itemAuthor === rumor.author ? (read.proposal.counterparties[0]?.[0] ?? null) : null
+    }
+
+    if (!maker) return
+
+    // My own proposal names the maker I chose; anyone else's must name me.
+    if (rumor.author !== state!.pk && maker !== state!.pk) return
 
     const thread = newThread(orderId)
 
     thread.item = item
     thread.buyerKey = rumor.author
-    thread.providerKey = named
+    thread.providerKey = maker
     thread.proposal = rumor
     thread.sightings = [nenya.proposalFeeSighting(rumor).sighting]
 
@@ -901,6 +912,28 @@ export const proposeOrder = async (listing: any) => {
   )
 
   return sendRumor(built, [listing.authorPubkey])
+}
+
+// On my own request I buy from a bidder: the proposal goes to the bidder, at the bid's price
+// and terms, and must be accepted before the bid's delivery deadline.
+export const proposeOrderForBid = async (listing: any, bid: any) => {
+  const orderId = hex(crypto.getRandomValues(new Uint8Array(32)))
+  const twoDays = clock() + 2 * 86_400
+  const deliverBy =
+    bid.deliverBySeconds === null || bid.deliverBySeconds === undefined
+      ? null
+      : Number(bid.deliverBySeconds)
+  const acceptBy = deliverBy === null ? twoDays : Math.min(twoDays, deliverBy - 60)
+  const built = nenya.buildProposalForBid(
+    listing,
+    bid,
+    state!.env,
+    envelope([bid.bidderPubkey]),
+    orderId,
+    String(acceptBy),
+  )
+
+  return sendRumor(built, [bid.bidderPubkey])
 }
 
 export const acceptOrder = async (thread: any) => {

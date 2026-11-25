@@ -20,6 +20,7 @@
     makeMarketBid,
     msatToSats,
     proposeOrder,
+    proposeOrderForBid,
     readBid,
     readListing,
   } from "src/domain"
@@ -56,6 +57,15 @@
     if (!sent) return showWarning(`The proposal was not sent: ${words}`)
 
     showInfo("Order proposed — the maker has it now.")
+    router.at("market/orders").push()
+  }
+
+  const orderFromBid = async bid => {
+    const {sent, words} = await proposeOrderForBid(listing, bid)
+
+    if (!sent) return showWarning(`The order was not sent: ${words}`)
+
+    showInfo("Order sent to the bidder — they accept it next.")
     router.at("market/orders").push()
   }
 
@@ -176,6 +186,14 @@
                 <span class="text-xs uppercase text-neutral-400">{bidActivity(bid.bid)}</span>
               </div>
             </div>
+            {#if listing.kind === 30404 && $signer && listing.authorPubkey === $pubkey}
+              <Button
+                class="btn btn-accent mt-3"
+                disabled={!orderReady}
+                on:click={() => orderFromBid(bid.bid)}>
+                <i class="fa fa-handshake" /> Order from this bid
+              </Button>
+            {/if}
           </Card>
         {:else}
           <Card>
@@ -188,8 +206,12 @@
     {/each}
     {#if bids.length === 0}
       <p class="text-neutral-400">No bids yet.</p>
+    {:else if listing.kind === 30404 && $signer && listing.authorPubkey === $pubkey && !orderReady}
+      <p class="text-sm text-neutral-400">
+        Ordering works with any login whose signer supports nip44.
+      </p>
     {/if}
-    {#if $signer}
+    {#if $signer && listing.authorPubkey !== $pubkey}
       <form on:submit|preventDefault={submitBid}>
         <FlexColumn small>
           <Field label="Your bid (sats)">

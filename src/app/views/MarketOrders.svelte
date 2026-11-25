@@ -1,5 +1,7 @@
 <script lang="ts">
   import {onDestroy, onMount} from "svelte"
+  import {Capacitor} from "@capacitor/core"
+  import {Filesystem, Directory} from "@capacitor/filesystem"
   import FlexColumn from "src/partials/FlexColumn.svelte"
   import Card from "src/partials/Card.svelte"
   import Button from "src/partials/Button.svelte"
@@ -130,6 +132,47 @@
     URL.createObjectURL(
       new Blob([thread.delivered], {type: thread.commitment?.mimeType || "image/png"}),
     )
+
+  const pictureName = thread => {
+    const subtype = (thread.commitment?.mimeType || "image/png").split("/")[1] || "bin"
+
+    return `nenya-${thread.orderId.slice(0, 8)}.${subtype === "jpeg" ? "jpg" : subtype}`
+  }
+
+  // A long press on the picture offers no save in the Android app, so save it on purpose:
+  // to Documents in the app, as a download in a browser.
+  const savePicture = async thread => {
+    const name = pictureName(thread)
+
+    if (!Capacitor.isNativePlatform()) {
+      const a = document.createElement("a")
+
+      a.href = pictureUrl(thread)
+      a.download = name
+      a.click()
+
+      return
+    }
+
+    try {
+      const status = await Filesystem.checkPermissions()
+
+      if (status.publicStorage !== "granted") await Filesystem.requestPermissions()
+
+      const bytes = Uint8Array.from(thread.delivered)
+
+      await Filesystem.writeFile({
+        path: name,
+        data: btoa(Array.from(bytes, b => String.fromCharCode(b)).join("")),
+        directory: Directory.Documents,
+      })
+      showInfo(`Saved to your Documents folder as ${name}.`)
+    } catch (error) {
+      showWarning(
+        `The picture was not saved: ${error instanceof Error ? error.message : String(error)}`,
+      )
+    }
+  }
 </script>
 
 <FlexColumn>
@@ -147,7 +190,8 @@
   {:else if $orderThreads.size === 0}
     <Card>
       <p class="py-8 text-center text-neutral-400">
-        No orders yet. Open an offer in the market and choose "Order this".
+        No orders yet. Open an offer in the market and choose "Order this", or open your own request
+        and choose "Order from this bid".
       </p>
     </Card>
   {/if}
@@ -253,6 +297,9 @@
               class="max-h-64 rounded"
               src={pictureUrl(thread)}
               alt="The delivered file, verified by nenya" />
+            <Button class="btn btn-low mt-2" on:click={() => savePicture(thread)}>
+              <i class="fa fa-download" /> Save picture
+            </Button>
           </div>
         {/if}
       {/if}
