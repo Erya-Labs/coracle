@@ -45,12 +45,12 @@ describe("delivering the locked file", () => {
     const r = await seller.call((m: any, t: any) => m.commitFile(t, file(8192), "image/png"))
     await both(buyer, seller)
 
-    expect(r).toEqual({sent: false, words: "no relay kept the locked file"})
+    expect(r).toEqual({sent: false, words: "no file host or relay kept the locked file"})
     expect(relay.events.length).toBe(kept)
     expect(buyer.state()).toBe("ACCEPTED")
   })
 
-  it("refuses a file over 40,000 bytes before uploading it", async () => {
+  it("does not put a file over 40,000 bytes on a relay when no file host takes it", async () => {
     const relay = new FakeRelay(65536)
     const {seller, buyer} = await toAccepted(relay)
     const kept = relay.events.length
@@ -58,8 +58,24 @@ describe("delivering the locked file", () => {
     const r = await seller.call((m: any, t: any) => m.commitFile(t, file(40_001), "image/png"))
     await both(buyer, seller)
 
-    expect(r.sent).toBe(false)
-    expect(r.words).toContain("40000 bytes")
+    expect(r).toEqual({sent: false, words: "no file host accepted the locked file"})
+    expect(relay.events.length).toBe(kept)
+    expect(buyer.state()).toBe("ACCEPTED")
+  })
+
+  it("refuses an empty file and a file over 25 MB before locking it", async () => {
+    const relay = new FakeRelay()
+    const {seller, buyer} = await toAccepted(relay)
+    const kept = relay.events.length
+
+    const empty = await seller.call((m: any, t: any) => m.commitFile(t, file(0), "text/plain"))
+    const huge = await seller.call((m: any, t: any) =>
+      m.commitFile(t, file(25 * 1024 * 1024 + 1), "video/mp4"),
+    )
+    await both(buyer, seller)
+
+    expect(empty).toEqual({sent: false, words: "the file is empty"})
+    expect(huge).toEqual({sent: false, words: "the file is over 25 MB"})
     expect(relay.events.length).toBe(kept)
     expect(buyer.state()).toBe("ACCEPTED")
   })

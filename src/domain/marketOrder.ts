@@ -4,6 +4,7 @@ import {schnorr} from "@noble/curves/secp256k1"
 import {finalizeEvent, generateSecretKey, getPublicKey} from "nostr-tools/pure"
 import {decrypt, encrypt, getConversationKey} from "nostr-tools/nip44"
 import {writable} from "svelte/store"
+import {stripMetadata} from "src/util/stripMetadata"
 
 // The whole private side of a trade: proposal, acceptance, bills, payment proofs,
 // commitment, release, delivery checks. Every rule is the nenya library's; this file
@@ -13,13 +14,27 @@ import {writable} from "svelte/store"
 // nenya's sealAsync/openAsync drive the sealed channel through its promises, so an
 // extension, a signer app and the dev test signer work alike. Remaining PoC shortcuts: the
 // default bill is pretend (real BOLT-11, genuine preimage, nothing actually paid)
-// unless the seller pastes a real invoice; the encrypted file and the payment voucher
-// ride the relay, so two browser windows can trade with no other infrastructure.
+// unless the seller pastes a real invoice; the payment voucher rides the relay. The encrypted
+// file goes to a Blossom file host, and a small one may ride the relay when no host takes it.
 
-const hex = (bytes: Uint8Array) =>
-  Array.from(bytes)
-    .map(b => b.toString(16).padStart(2, "0"))
-    .join("")
+const HEX = Array.from({length: 256}, (_, i) => i.toString(16).padStart(2, "0"))
+
+// In pieces with a lookup table: a 25 MB delivery must not become 25 million small strings at
+// once on a phone.
+const hex = (bytes: Uint8Array) => {
+  let out = ""
+
+  for (let at = 0; at < bytes.length; at += 0x10000) {
+    const end = Math.min(at + 0x10000, bytes.length)
+    const part = new Array(end - at)
+
+    for (let i = at; i < end; i++) part[i - at] = HEX[bytes[i]]
+
+    out += part.join("")
+  }
+
+  return out
+}
 
 const unhex = (s: string) => Uint8Array.from(s.match(/../g)!.map(h => parseInt(h, 16)))
 
@@ -329,11 +344,163 @@ const sendRumor = async (built: any, recipients: string[], beforePublish = () =>
   return {sent: true, words: ""}
 }
 
-// --- the encrypted file rides the relay as a plain event -------------------------
+// --- where the encrypted file lives ------------------------------------------------
+// NENYA-1 §10: the locked file sits at a URL. It goes to a Blossom file host (BUD-02) at the
+// address of its own SHA-256, which is the commitment's `x`. A small file may still ride a
+// relay as one event when no file host takes it, because relays cap an event's size.
 
 const BLOB_KIND = 9876
+// A 40,000-byte file plus its 16-byte AES-GCM tag: about 54 KB as an event, under the
+// 64 KB many relays take.
+const RELAY_BLOB_MAX = 40_016
 
-const uploadBlob = async (bytes: Uint8Array) => {
+// The largest file a phone comfortably locks, hashes, checks and saves in one go.
+export const MAX_FILE_MB = 25
+const MAX_FILE_BYTES = MAX_FILE_MB * 1024 * 1024
+// Its locked form: the file plus the 16-byte AES-GCM tag.
+const MAX_BLOB_BYTES = MAX_FILE_BYTES + 16
+
+// A transfer gets two minutes, or longer for a big file on a slow phone link (64 KB/s).
+const transferDeadline = (bytes: number) => Math.max(120_000, Math.ceil(bytes / 65_536) * 1000)
+
+const blossomServers = (): string[] =>
+  String(import.meta.env.VITE_BLOSSOM_SERVERS || "https://nostr.download")
+    .split(",")
+    .map(s => s.trim().replace(/\/+$/, ""))
+    .filter(s => s.startsWith("https://"))
+
+// The deadline also covers reading the body, so a host that sends its headers and then
+// stalls is cut off instead of holding the order forever. Any failure answers null.
+const fetchWithin = async <T>(
+  url: string,
+  init: RequestInit,
+  ms: number,
+  read: (response: Response, controller: AbortController) => Promise<T | null>,
+): Promise<T | null> => {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), ms)
+
+  try {
+    return await read(await fetch(url, {...init, signal: controller.signal}), controller)
+  } catch {
+    return null
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+// At most limit bytes: a bigger answer is refused as soon as it shows, before it fills memory.
+const readCapped = async (response: Response, limit: number, controller: AbortController) => {
+  if (!response.ok) return null
+
+  if (Number(response.headers.get("content-length")) > limit) {
+    controller.abort()
+
+    return null
+  }
+
+  if (!response.body) {
+    const bytes = new Uint8Array(await response.arrayBuffer())
+
+    return bytes.length <= limit ? bytes : null
+  }
+
+  const reader = response.body.getReader()
+  const parts: Uint8Array[] = []
+  let total = 0
+
+  for (;;) {
+    const {done, value} = await reader.read()
+
+    if (done) break
+
+    total += value.length
+
+    if (total > limit) {
+      controller.abort()
+
+      return null
+    }
+
+    parts.push(value)
+  }
+
+  const bytes = new Uint8Array(total)
+  let at = 0
+
+  for (const part of parts) {
+    bytes.set(part, at)
+    at += part.length
+  }
+
+  return bytes
+}
+
+// A file at one of this app's own file hosts, at the address of its own hash. Only such a
+// file is fetched without asking, because fetching shows the host the buyer's internet address.
+const isOwnHostUrl = (url: string, x: string) => {
+  try {
+    const u = new URL(url)
+
+    return (
+      blossomServers().includes(u.origin) &&
+      u.pathname === `/${x}` &&
+      !u.search &&
+      !u.username &&
+      !u.password
+    )
+  } catch {
+    return false
+  }
+}
+
+export const fileHostOf = (url: string) => {
+  try {
+    return new URL(url).host
+  } catch {
+    return url
+  }
+}
+
+// The upload is authorised by a key made for this one file, so the file host never learns
+// who the seller is.
+const uploadToBlossom = async (server: string, bytes: Uint8Array, x: string) => {
+  const auth = finalizeEvent(
+    {
+      kind: 24242,
+      created_at: clock(),
+      tags: [
+        ["t", "upload"],
+        ["x", x],
+        ["expiration", String(clock() + 600)],
+      ],
+      content: "Upload a locked file",
+    },
+    generateSecretKey(),
+  )
+
+  return fetchWithin(
+    `${server}/upload`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `Nostr ${btoa(JSON.stringify(auth))}`,
+        "Content-Type": "application/octet-stream",
+      },
+      body: bytes,
+    },
+    transferDeadline(bytes.length),
+    async response => {
+      if (!response.ok) return null
+
+      const descriptor = await response.json()
+
+      return descriptor?.sha256 === x ? `${server}/${x}` : null
+    },
+  )
+}
+
+const uploadToRelay = async (bytes: Uint8Array) => {
   const event = finalizeEvent(
     {kind: BLOB_KIND, created_at: clock(), tags: [], content: b64(bytes)},
     generateSecretKey(),
@@ -342,11 +509,30 @@ const uploadBlob = async (bytes: Uint8Array) => {
   return (await publish(event)).ok ? `nostr-blob:${event.id}` : null
 }
 
-const downloadBlob = async (url: string) => {
-  const id = url.replace("nostr-blob:", "")
-  const events = await loadByFilter([{ids: [id]}])
+const uploadBlob = async (bytes: Uint8Array, x: string) => {
+  for (const server of blossomServers()) {
+    const url = await uploadToBlossom(server, bytes, x)
 
-  return events.length > 0 ? unb64(events[0].content) : null
+    if (url) return url
+  }
+
+  return bytes.length <= RELAY_BLOB_MAX ? uploadToRelay(bytes) : null
+}
+
+// At most limit bytes, the size the commitment states.
+const downloadBlob = async (url: string, limit: number) => {
+  if (url.startsWith("nostr-blob:")) {
+    const events = await loadByFilter([{ids: [url.slice("nostr-blob:".length)]}])
+
+    return events.length > 0 ? unb64(events[0].content) : null
+  }
+
+  // Only https: a commitment cannot point the buyer's app at a local or plain-text address.
+  if (!url.startsWith("https://")) return null
+
+  return fetchWithin(url, {}, transferDeadline(limit), (response, controller) =>
+    readCapped(response, limit, controller),
+  )
 }
 
 // --- file locking (AES-256-GCM, same as the demo page) ---------------------------
@@ -968,44 +1154,98 @@ export const cancelOrder = async (thread: any) => {
   return sendRumor(built, [thread.providerKey])
 }
 
-// The locked file rides the relay as one event, and relays cap an event's size.
-const MAX_FILE_BYTES = 40_000
+// The file is locked once per order: a second commit while the first is still uploading
+// would make a second key and a second file.
+const committing = new Set<string>()
 
 export const commitFile = async (thread: any, plain: Uint8Array, mimeType: string) => {
-  // Committing again resends the very same rumor, so the buyer never sees a second key.
-  let saved = secrets()[thread.orderId]
-
-  if (!saved?.url) {
-    if (plain.length > MAX_FILE_BYTES) {
-      return {sent: false, words: `the file is over ${MAX_FILE_BYTES} bytes, too big for a relay`}
-    }
-
-    const locked = await lockFile(plain)
-    const url = await uploadBlob(locked.blob)
-
-    if (!url) return {sent: false, words: "no relay kept the locked file"}
-
-    saved = {
-      keyHex: hex(locked.key),
-      nonceHex: hex(locked.nonce),
-      x: locked.x,
-      ox: locked.ox,
-      size: String(locked.blob.length),
-      mimeType,
-      url,
-      at: String(clock()),
-    }
-    saveSecret(thread.orderId, saved)
+  if (committing.has(thread.orderId)) {
+    return {sent: false, words: "this order's file is still being locked and uploaded"}
   }
 
-  const built = nenya.buildCommitment(
-    new nenya.JsRumorEnvelope(state!.pk, saved.at, [[thread.buyerKey]]),
-    thread.orderId,
-    new nenya.JsCommitment(saved.x, saved.ox, saved.mimeType, saved.size),
-    saved.url,
-  )
+  committing.add(thread.orderId)
 
-  return sendRumor(built, [thread.buyerKey])
+  try {
+    // Committing again resends the very same rumor, so the buyer never sees a second key.
+    let saved = secrets()[thread.orderId]
+
+    if (!saved?.url) {
+      if (plain.length === 0) return {sent: false, words: "the file is empty"}
+
+      if (plain.length > MAX_FILE_BYTES) {
+        return {sent: false, words: `the file is over ${MAX_FILE_MB} MB`}
+      }
+
+      const clean = stripMetadata(plain)
+
+      // A picture whose metadata could not be removed is not sent at all.
+      if (clean.format && !clean.checked) {
+        return {
+          sent: false,
+          words: "this picture could not be read, so its place and time details were not removed",
+        }
+      }
+
+      // The file's own first bytes name its type when they show a JPEG or PNG.
+      const type = clean.format ? `image/${clean.format}` : mimeType
+
+      if (clean.removed > 0) {
+        logLine(
+          thread,
+          "app",
+          "strip",
+          true,
+          `Removed ${clean.removed} metadata part(s), such as place, time and camera, before locking.`,
+        )
+      } else if (!clean.format && /^(image|video|audio)\//.test(type)) {
+        logLine(
+          thread,
+          "app",
+          "strip",
+          true,
+          `Metadata is removed from JPEG and PNG only; this ${type} file is sent as it is.`,
+        )
+      }
+
+      touch(thread)
+
+      const locked = await lockFile(clean.bytes)
+      const url = await uploadBlob(locked.blob, locked.x)
+
+      if (!url) {
+        return {
+          sent: false,
+          words:
+            locked.blob.length > RELAY_BLOB_MAX
+              ? "no file host accepted the locked file"
+              : "no file host or relay kept the locked file",
+        }
+      }
+
+      saved = {
+        keyHex: hex(locked.key),
+        nonceHex: hex(locked.nonce),
+        x: locked.x,
+        ox: locked.ox,
+        size: String(locked.blob.length),
+        mimeType: type,
+        url,
+        at: String(clock()),
+      }
+      saveSecret(thread.orderId, saved)
+    }
+
+    const built = nenya.buildCommitment(
+      new nenya.JsRumorEnvelope(state!.pk, saved.at, [[thread.buyerKey]]),
+      thread.orderId,
+      new nenya.JsCommitment(saved.x, saved.ox, saved.mimeType, saved.size),
+      saved.url,
+    )
+
+    return await sendRumor(built, [thread.buyerKey])
+  } finally {
+    committing.delete(thread.orderId)
+  }
 }
 
 export const sendBill = async (thread: any, realInvoice = "") => {
@@ -1110,10 +1350,40 @@ export const releaseKey = async (thread: any) => {
   return sendRumor(built, [thread.buyerKey])
 }
 
+// The buyer agreed to fetch the file from a host this app does not use by itself.
+export const allowFileHost = (thread: any) => {
+  thread.hostAllowed = true
+  touch(thread)
+}
+
 export const verifyDelivery = async (thread: any) => {
   if (thread.downloads >= 5) return
 
-  const blob = await downloadBlob(thread.fileUrl)
+  const url = thread.fileUrl
+
+  // The seller chose this address. Fetching it shows that host the buyer's internet address,
+  // so a host other than this app's own waits for the buyer to agree.
+  if (url.startsWith("https://") && !isOwnHostUrl(url, thread.commitment.xHex)) {
+    if (!thread.hostAllowed) {
+      if (!thread.unknownHost) {
+        thread.unknownHost = fileHostOf(url)
+        logLine(
+          thread,
+          "app",
+          "download",
+          true,
+          `The file is on ${thread.unknownHost}, a host this app does not use by itself. Fetching it shows that host your internet address.`,
+        )
+        touch(thread)
+      }
+
+      return
+    }
+  }
+
+  const committed = Number(thread.commitment.sizeBytes)
+  const limit = committed > 0 && committed <= MAX_BLOB_BYTES ? committed : MAX_BLOB_BYTES
+  const blob = await downloadBlob(url, limit)
 
   if (!blob) {
     thread.downloads++

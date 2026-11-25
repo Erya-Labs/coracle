@@ -10,9 +10,11 @@
   import {msatToSats} from "src/domain"
   import {
     acceptOrder,
+    allowFileHost,
     cancelOrder,
     commitFile,
     connectOrderChannel,
+    MAX_FILE_MB,
     orderChannelCapable,
     orderThreads,
     payAndProve,
@@ -71,7 +73,11 @@
     timer = setInterval(poll, 3000)
   })
 
-  onDestroy(() => clearInterval(timer))
+  onDestroy(() => {
+    clearInterval(timer)
+
+    for (const url of Object.values(objectUrls)) URL.revokeObjectURL(url as string)
+  })
 
   const roleIn = thread =>
     myPubkey === thread.providerKey ? "maker" : myPubkey === thread.buyerKey ? "buyer" : "watcher"
@@ -80,17 +86,64 @@
 
   const accept = async thread => report(await acceptOrder(thread), "Acceptance sent.")
 
+  const messages = {}
+  const committing = {}
+
+  // A phone often gives no type for a file; its name's ending is the next best guess.
+  const TYPES_BY_ENDING = {
+    jpg: "image/jpeg",
+    jpeg: "image/jpeg",
+    png: "image/png",
+    gif: "image/gif",
+    webp: "image/webp",
+    heic: "image/heic",
+    mp4: "video/mp4",
+    mov: "video/quicktime",
+    webm: "video/webm",
+    mp3: "audio/mpeg",
+    m4a: "audio/mp4",
+    wav: "audio/wav",
+    ogg: "audio/ogg",
+    txt: "text/plain",
+    md: "text/markdown",
+    pdf: "application/pdf",
+    zip: "application/zip",
+    epub: "application/epub+zip",
+  }
+
+  const typeOf = (file: File) =>
+    file.type ||
+    TYPES_BY_ENDING[file.name.split(".").pop()?.toLowerCase() ?? ""] ||
+    "application/octet-stream"
+
+  // A file, or else a written message, delivered as plain text.
   const commit = async thread => {
+    if (committing[thread.orderId]) return
+
     const file = fileInputs[thread.orderId]?.files?.[0]
+    const message = messages[thread.orderId]?.trim()
 
-    if (!file) return showWarning("Pick the file to deliver first.")
+    if (!file && !message) return showWarning("Pick a file or write a message first.")
 
-    const plain = new Uint8Array(await file.arrayBuffer())
+    // Checked before reading, so a large video is not loaded into memory only to be refused.
+    if (file && file.size > MAX_FILE_MB * 1024 * 1024) {
+      return showWarning(`Not sent: the file is over ${MAX_FILE_MB} MB`)
+    }
 
-    report(
-      await commitFile(thread, plain, file.type || "image/png"),
-      "Locked, uploaded, and committed.",
-    )
+    committing[thread.orderId] = true
+
+    try {
+      const plain = file
+        ? new Uint8Array(await file.arrayBuffer())
+        : new TextEncoder().encode(messages[thread.orderId])
+      const mimeType = file ? typeOf(file) : "text/plain"
+
+      report(await commitFile(thread, plain, mimeType), "Locked, uploaded, and committed.")
+    } catch (error) {
+      showWarning(`Not sent: ${error instanceof Error ? error.message : String(error)}`)
+    } finally {
+      committing[thread.orderId] = false
+    }
   }
 
   const invoices = {}
@@ -128,26 +181,67 @@
     report(result, "Cancellation sent.")
   }
 
-  const pictureUrl = thread =>
-    URL.createObjectURL(
-      new Blob([thread.delivered], {type: thread.commitment?.mimeType || "image/png"}),
-    )
+  const mimeOf = thread => thread.commitment?.mimeType || "application/octet-stream"
 
-  const pictureName = thread => {
-    const subtype = (thread.commitment?.mimeType || "image/png").split("/")[1] || "bin"
+  const kindOf = thread => {
+    const [type] = mimeOf(thread).split("/")
 
-    return `nenya-${thread.orderId.slice(0, 8)}.${subtype === "jpeg" ? "jpg" : subtype}`
+    return ["image", "video", "audio", "text"].includes(type) ? type : "file"
   }
 
-  // A long press on the picture offers no save in the Android app, so save it on purpose:
+  // One object URL per delivery, made once instead of on every render.
+  const objectUrls = {}
+
+  const deliveredUrl = thread =>
+    (objectUrls[thread.orderId] ??= URL.createObjectURL(
+      new Blob([thread.delivered], {type: mimeOf(thread)}),
+    ))
+
+  // A long text shows its first 64 KB, decoded once; Save file keeps all of it.
+  const PREVIEW_BYTES = 64 * 1024
+  const texts = {}
+
+  const deliveredText = thread =>
+    (texts[thread.orderId] ??= new TextDecoder().decode(
+      Uint8Array.from(thread.delivered.slice(0, PREVIEW_BYTES)),
+    ))
+
+  const EXTENSIONS = {
+    "image/jpeg": "jpg",
+    "image/svg+xml": "svg",
+    "text/plain": "txt",
+    "audio/mpeg": "mp3",
+    "video/quicktime": "mov",
+    "application/octet-stream": "bin",
+  }
+
+  const fileName = thread => {
+    const mime = mimeOf(thread).split(";")[0].toLowerCase()
+    const subtype = (mime.split("/")[1] || "bin").replace(/[^a-z0-9]/g, "")
+
+    return `nenya-${thread.orderId.slice(0, 8)}.${EXTENSIONS[mime] || subtype || "bin"}`
+  }
+
+  // In pieces, because one call with a whole large file overflows the call stack.
+  const toBase64 = (bytes: Uint8Array) => {
+    let binary = ""
+
+    for (let at = 0; at < bytes.length; at += 0x8000) {
+      binary += String.fromCharCode(...bytes.subarray(at, at + 0x8000))
+    }
+
+    return btoa(binary)
+  }
+
+  // A long press on the delivery offers no save in the Android app, so save it on purpose:
   // to Documents in the app, as a download in a browser.
-  const savePicture = async thread => {
-    const name = pictureName(thread)
+  const saveDelivery = async thread => {
+    const name = fileName(thread)
 
     if (!Capacitor.isNativePlatform()) {
       const a = document.createElement("a")
 
-      a.href = pictureUrl(thread)
+      a.href = deliveredUrl(thread)
       a.download = name
       a.click()
 
@@ -159,17 +253,28 @@
 
       if (status.publicStorage !== "granted") await Filesystem.requestPermissions()
 
+      // In 1 MB pieces, so a large file never crosses to Android as one huge message.
       const bytes = Uint8Array.from(thread.delivered)
+      const piece = 1024 * 1024
 
       await Filesystem.writeFile({
         path: name,
-        data: btoa(Array.from(bytes, b => String.fromCharCode(b)).join("")),
+        data: toBase64(bytes.subarray(0, piece)),
         directory: Directory.Documents,
       })
+
+      for (let at = piece; at < bytes.length; at += piece) {
+        await Filesystem.appendFile({
+          path: name,
+          data: toBase64(bytes.subarray(at, at + piece)),
+          directory: Directory.Documents,
+        })
+      }
+
       showInfo(`Saved to your Documents folder as ${name}.`)
     } catch (error) {
       showWarning(
-        `The picture was not saved: ${error instanceof Error ? error.message : String(error)}`,
+        `The file was not saved: ${error instanceof Error ? error.message : String(error)}`,
       )
     }
   }
@@ -228,9 +333,21 @@
             Accept the order
           </Button>
         {:else if thread.order?.state === "ACCEPTED"}
-          <div class="mt-2 flex flex-wrap items-center gap-2">
-            <input type="file" accept="image/*" bind:this={fileInputs[thread.orderId]} />
-            <Button class="btn btn-accent" on:click={() => commit(thread)}>
+          <div class="mt-2 flex flex-col gap-2">
+            <input type="file" bind:this={fileInputs[thread.orderId]} />
+            <textarea
+              class="rounded border border-solid border-neutral-600 bg-transparent px-3 py-2 text-sm"
+              rows="3"
+              bind:value={messages[thread.orderId]}
+              placeholder="Or write a message to deliver instead of a file" />
+            <p class="text-xs text-neutral-400">
+              Any file up to {MAX_FILE_MB} MB. Place, time and camera details are removed from JPEG and
+              PNG pictures before they are locked.
+            </p>
+            <Button
+              class="btn btn-accent self-start"
+              loading={committing[thread.orderId]}
+              on:click={() => commit(thread)}>
               Lock, upload and commit
             </Button>
           </div>
@@ -288,17 +405,53 @@
             </Button>
           </div>
         {/if}
+        {#if thread.order?.state === "RELEASED" && thread.unknownHost && !thread.hostAllowed && !thread.delivered}
+          <div class="mt-2 flex flex-col gap-2">
+            <p class="text-sm text-neutral-400">
+              The seller put the file on {thread.unknownHost}, a host this app does not use by
+              itself. Downloading it shows that host your internet address.
+            </p>
+            <Button class="btn btn-accent self-start" on:click={() => allowFileHost(thread)}>
+              Download from {thread.unknownHost}
+            </Button>
+          </div>
+        {/if}
         {#if thread.delivered}
           <div class="mt-2">
             <p class="mb-1 text-sm text-neutral-400">
               The delivery, unlocked only after every fingerprint matched:
             </p>
-            <img
-              class="max-h-64 rounded"
-              src={pictureUrl(thread)}
-              alt="The delivered file, verified by nenya" />
-            <Button class="btn btn-low mt-2" on:click={() => savePicture(thread)}>
-              <i class="fa fa-download" /> Save picture
+            {#if kindOf(thread) === "image"}
+              <img
+                class="max-h-64 rounded"
+                src={deliveredUrl(thread)}
+                alt="The delivered file, verified by nenya" />
+            {:else if kindOf(thread) === "video"}
+              <video class="max-h-64 rounded" controls src={deliveredUrl(thread)}>
+                <track kind="captions" />
+              </video>
+            {:else if kindOf(thread) === "audio"}
+              <audio controls src={deliveredUrl(thread)} />
+            {:else if kindOf(thread) === "text"}
+              <pre
+                class="max-h-96 overflow-auto whitespace-pre-wrap rounded bg-neutral-800 p-3 text-sm">{deliveredText(
+                  thread,
+                )}</pre>
+              {#if thread.delivered.length > PREVIEW_BYTES}
+                <p class="text-xs text-neutral-400">
+                  Showing the first 64 KB of {thread.delivered.length.toLocaleString()} bytes. Save the
+                  file to read all of it.
+                </p>
+              {/if}
+            {:else}
+              <p class="text-sm">
+                A file ({mimeOf(thread)}, {thread.delivered.length.toLocaleString()} bytes). Save it
+                to open it.
+              </p>
+            {/if}
+            <Button class="btn btn-low mt-2" on:click={() => saveDelivery(thread)}>
+              <i class="fa fa-download" />
+              {kindOf(thread) === "image" ? "Save picture" : "Save file"}
             </Button>
           </div>
         {/if}
