@@ -247,7 +247,7 @@ const saveSecret = (orderId: string, patch: any) => {
 
 // --- threads -------------------------------------------------------------------
 
-// `words` is the full account of a step, kept for tests and as a hover title. The Orders screen
+// `words` is the full account of a step, kept for tests and as a hover title. The My Orders screen
 // shows the step's name or code and its few words, which orderSteps.ts defines and explains.
 export type OrderLine = {by: string; call: string; ok: boolean; words: string} & Shown
 
@@ -308,7 +308,7 @@ const buildWords = (result: any) =>
 // --- publishing: the caller supplies publish/load so engine stays out of domain --
 
 type Publish = (event: any) => Promise<{ok: boolean}>
-type LoadByFilter = (filters: any[]) => Promise<any[]>
+type LoadByFilter = (filters: any[], options?: {includeDeleted?: boolean}) => Promise<any[]>
 
 let publish: Publish = () => {
   throw new Error("order channel not connected")
@@ -699,9 +699,10 @@ const handle = (rumor: any): string | void => {
     try {
       const voucher = JSON.parse(rumor.event.content)
 
-      if (voucher.lnsim && chatOrderId && threads.has(chatOrderId)) {
-        const thread = threads.get(chatOrderId)
+      const thread = chatOrderId ? threads.get(chatOrderId) : null
 
+      // Only the seller, who issued the bill, can send its practice payment.
+      if (voucher.lnsim && thread && [thread.providerKey, state!.pk].includes(rumor.author)) {
         thread.vouchers[voucher.payee] = voucher
         logLine(
           thread,
@@ -1084,6 +1085,7 @@ const run = (rumor: any, tries: number) => {
   const orderId = orderOf(rumor)
   const thread = getThreads().get(orderId)
   const before = thread?.order?.state
+  const linesBefore = thread?.log.length ?? 0
   let words
 
   judgedAt = firstSeen(rumor.idHex)
@@ -1112,6 +1114,8 @@ const run = (rumor: any, tries: number) => {
     return
   }
 
+  noteNews(rumor, orderId, linesBefore)
+
   if (getThreads().get(orderId)?.order?.state === before) return
 
   const again = state.held.filter((h: any) => orderOf(h.rumor) === orderId)
@@ -1119,6 +1123,72 @@ const run = (rumor: any, tries: number) => {
   state.held = state.held.filter((h: any) => orderOf(h.rumor) !== orderId)
   again.forEach((h: any) => run(h.rumor, h.tries))
 }
+
+// --- news: what reached an order since the user last looked ------------------------------
+
+// An order has news when a message from the other person changed it. Each such message is
+// counted once by its id, so processing the same messages again after a reload counts the same,
+// and the count the user has seen is kept per account and order.
+const SEEN_KEY = "nenya-orders-seen"
+
+const noteNews = (rumor: any, orderId: string, linesBefore: number) => {
+  const thread = getThreads().get(orderId)
+
+  if (!thread || thread.log.length === linesBefore) return
+
+  // Only the other party of the order brings news, never a stranger who knows its id.
+  const other = state!.pk === thread.providerKey ? thread.buyerKey : thread.providerKey
+
+  if (rumor.author !== other) return
+
+  const heard: string[] = thread.fromOther ?? []
+
+  if (heard.includes(rumor.idHex)) return
+
+  thread.fromOther = [...heard, rumor.idHex]
+  touch(thread)
+}
+
+const seenAll = (): any => {
+  try {
+    return JSON.parse(localStorage.getItem(SEEN_KEY) || "{}")
+  } catch {
+    return {}
+  }
+}
+
+// The ids seen are kept, not a count, so messages a relay returns late or not at all after a
+// reload neither come back as news nor hide a new one.
+export const newsCount = (thread: any) => {
+  const stored = seenAll()[state?.pk ?? ""]?.[thread.orderId]
+  const seen = new Set(Array.isArray(stored) ? stored : [])
+
+  return (thread.fromOther ?? []).filter((id: string) => !seen.has(id)).length
+}
+
+export const markSeen = (threads: any[]) => {
+  if (!state?.pk) return
+
+  const all = seenAll()
+  const mine = (all[state.pk] = all[state.pk] ?? {})
+
+  for (const thread of threads) {
+    const before = Array.isArray(mine[thread.orderId]) ? mine[thread.orderId] : []
+
+    mine[thread.orderId] = [...new Set([...before, ...(thread.fromOther ?? [])])]
+  }
+
+  localStorage.setItem(SEEN_KEY, JSON.stringify(all))
+  orderThreads.update(m => new Map(m))
+}
+
+// Closed: the library's final states, and a seller's order once the key is out, since nothing
+// is left for the seller to do.
+const FINAL_STATES = ["SETTLED", "CANCELLED", "EXPIRED", "DISPUTED"]
+
+export const isClosedOrder = (thread: any, role: string) =>
+  FINAL_STATES.includes(thread.order?.state) ||
+  (role === "maker" && thread.order?.state === "RELEASED")
 
 // --- the actions each role takes, in order ---------------------------------------
 
@@ -1166,14 +1236,31 @@ export const proposeOrderForBid = async (listing: any, bid: any) => {
   return sendRumor(built, [provider])
 }
 
+// A deleted or closed listing takes no more orders, so an order not yet accepted stays so. The
+// library checks the listing's deadlines but not its status, which is the app's to judge.
 export const acceptOrder = async (thread: any) => {
   const [kind, author, ...d] = thread.item.split(":")
-  const events = await loadByFilter([
-    {kinds: [parseInt(kind)], authors: [author], "#d": [d.join(":")]},
-  ])
-  const read = events.length > 0 ? nenya.decodeListing(JSON.stringify(events[0])) : null
+  const events = await loadByFilter(
+    [
+      {kinds: [parseInt(kind)], authors: [author], "#d": [d.join(":")]},
+      {kinds: [5], authors: [author], "#a": [thread.item]},
+    ],
+    {includeDeleted: true},
+  )
+  const versions = events
+    .filter((e: any) => e.kind === parseInt(kind))
+    .sort((a: any, b: any) => b.created_at - a.created_at)
+  const deletedAt = Math.max(
+    0,
+    ...events.filter((e: any) => e.kind === 5).map((e: any) => e.created_at),
+  )
+  const read = versions.length > 0 ? nenya.decodeListing(JSON.stringify(versions[0])) : null
 
   if (!read?.ok) return {sent: false, words: "the listing this order is for could not be read"}
+
+  if (deletedAt >= versions[0].created_at || read.listing.status !== "ACTIVE") {
+    return {sent: false, words: "this listing was deleted or closed, so it takes no more orders"}
+  }
 
   const built = nenya.buildAgreementAgainst(
     read.listing,

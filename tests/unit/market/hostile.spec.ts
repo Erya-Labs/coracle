@@ -218,10 +218,14 @@ describe("an order under attack", () => {
 
     const orderId = seller.thread().orderId
 
+    const newsBefore = await seller.call((m: any, t: any) => m.newsCount(t))
+
     await stranger.call((m: any) => m.cancelOrder({orderId, providerKey: seller.pk}))
     await both(buyer, seller)
 
     expect(seller.state()).toBe("PROPOSED")
+    // A stranger's message is not news to the seller.
+    expect(await seller.call((m: any, t: any) => m.newsCount(t))).toBe(newsBefore)
 
     await buyer.call((m: any, t: any) => m.cancelOrder(t))
     await both(buyer, seller)

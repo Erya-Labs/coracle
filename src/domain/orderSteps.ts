@@ -1,7 +1,7 @@
 // Names and codes for the steps of an order's handshake.
 //
 // Each step has a one-word name. Each way a step can fail has a three-digit code, grouped like
-// HTTP status codes: the first digit names the stage. The Orders screen shows only the name or
+// HTTP status codes: the first digit names the stage. The My Orders screen shows only the name or
 // code and a few words. The step guide in the app (MarketSteps.svelte) and MARKETPLACE.md
 // explain each one, and a unit test keeps MARKETPLACE.md in step with this file.
 

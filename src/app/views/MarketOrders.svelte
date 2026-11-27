@@ -1,20 +1,26 @@
 <script lang="ts">
   import {onDestroy, onMount} from "svelte"
+  import {noop} from "@welshman/lib"
   import {Capacitor} from "@capacitor/core"
   import {Filesystem, Directory} from "@capacitor/filesystem"
   import FlexColumn from "src/partials/FlexColumn.svelte"
   import Card from "src/partials/Card.svelte"
   import Button from "src/partials/Button.svelte"
   import QRCode from "src/partials/QRCode.svelte"
+  import Input from "src/partials/Input.svelte"
+  import FilterChip from "src/app/shared/FilterChip.svelte"
   import {showInfo, showWarning} from "src/partials/Toast.svelte"
-  import {msatToSats} from "src/domain"
+  import {listingFilter, msatToSats, readListing} from "src/domain"
   import {
     acceptOrder,
     allowFileHost,
     cancelOrder,
     commitFile,
     connectOrderChannel,
+    isClosedOrder,
+    markSeen,
     MAX_FILE_MB,
+    newsCount,
     orderChannelCapable,
     orderThreads,
     payAndProve,
@@ -59,10 +65,10 @@
     myPubkey =
       (await connectOrderChannel(
         publishOrderEvent,
-        async filters => {
+        async (filters, options) => {
           await myLoad({relays: env.DEFAULT_RELAYS, filters, skipCache: true}).catch(() => null)
 
-          return app.get().repository.query(filters)
+          return app.get().repository.query(filters, options)
         },
         $signer,
       )) ?? ""
@@ -94,12 +100,152 @@
   // step still shows if it failed, so a current problem is never hidden.
   const showDetails: Record<string, boolean> = {}
 
-  const toggleDetails = orderId => {
-    showDetails[orderId] = !showDetails[orderId]
+  // Opening an order's details counts as having seen its news.
+  const toggleDetails = thread => {
+    showDetails[thread.orderId] = !showDetails[thread.orderId]
+
+    if (showDetails[thread.orderId]) {
+      if (filter === "news") keptInUpdates = new Set([...keptInUpdates, thread.orderId])
+
+      markSeen([thread])
+    }
   }
 
-  // Opened over the Orders screen, so a pasted bill or proof on a card is kept.
+  // Opened over the My Orders screen, so a pasted bill or proof on a card is kept.
   const openGuide = () => router.at("market/steps").open()
+
+  // --- finding an order: search, filters and news ----------------------------------------
+
+  const STAGES = [
+    ["PROPOSED", "Proposed"],
+    ["ACCEPTED", "Accepted"],
+    ["COMMITTED", "Committed"],
+    ["AWAITING_PAYMENT", "Awaiting payment"],
+    ["PAID", "Paid"],
+    ["RELEASED", "Released"],
+    ["SETTLED", "Settled"],
+    ["CANCELLED", "Cancelled"],
+    ["EXPIRED", "Expired"],
+    ["DISPUTED", "Disputed"],
+  ]
+
+  let query = ""
+
+  // "all", "open", "closed", "news", or one order state.
+  let filter = "all"
+
+  // Each order's listing title, read once the listing has loaded. A deleted listing still names
+  // its orders.
+  let titles: Record<string, string> = {}
+  const askedTitles = new Set<string>()
+
+  const listingTitle = (coordinate: string) => {
+    const events = app.get().repository.query([listingFilter(coordinate)], {includeDeleted: true})
+    const read = events.length > 0 ? readListing(events[0]) : null
+
+    return read?.ok ? read.listing.title : null
+  }
+
+  // Fills in every title still missing; runs again whenever the event store changes, since a
+  // listing can arrive after its load has answered.
+  const fillTitles = () => {
+    let found = false
+
+    for (const c of askedTitles) {
+      if (titles[c]) continue
+
+      const title = listingTitle(c)
+
+      if (title) {
+        titles[c] = title
+        found = true
+      }
+    }
+
+    if (found) titles = titles
+  }
+
+  onMount(() => {
+    const repository = app.get().repository
+
+    repository.on("update", fillTitles)
+
+    return () => repository.off("update", fillTitles)
+  })
+
+  $: {
+    const fresh = [...$orderThreads.values()].map(t => t.item).filter(c => c && !askedTitles.has(c))
+
+    if (fresh.length > 0) {
+      fresh.forEach(c => askedTitles.add(c))
+      fillTitles()
+      myLoad({relays: env.DEFAULT_RELAYS, filters: fresh.map(listingFilter)}).catch(noop)
+    }
+  }
+
+  const toEntries = (threads: Map<string, any>, me: string, named: Record<string, string>) =>
+    [...threads.values()].map(thread => {
+      const role =
+        me === thread.providerKey ? "maker" : me === thread.buyerKey ? "buyer" : "watcher"
+
+      return {
+        thread,
+        role,
+        news: newsCount(thread),
+        closed: isClosedOrder(thread, role),
+        title: named[thread.item] ?? null,
+      }
+    })
+
+  const matches = (entry, words: string[]) => {
+    const {thread, role, title} = entry
+    const text = [
+      title,
+      thread.orderId,
+      thread.order?.state,
+      role,
+      role === "maker" ? "seller" : "",
+      thread.order ? `${msatToSats(thread.order.totalMsat)} sats` : "",
+      thread.order ? `${msatToSats(thread.order.totalMsat).toLocaleString()} sats` : "",
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase()
+
+    return words.every(word => text.includes(word))
+  }
+
+  const inFilter = (entry, f: string) =>
+    f === "all"
+      ? true
+      : f === "open"
+        ? !entry.closed
+        : f === "closed"
+          ? entry.closed
+          : f === "news"
+            ? entry.news > 0
+            : entry.thread.order?.state === f
+
+  $: entries = toEntries($orderThreads, myPubkey, titles)
+  $: words = query.toLowerCase().split(/\s+/).filter(Boolean)
+  $: searched = entries.filter(e => matches(e, words))
+  // An order opened from Updates stays listed there until the filter changes, though its news
+  // is now seen.
+  let keptInUpdates = new Set<string>()
+
+  $: if (filter !== "news") keptInUpdates = new Set()
+  $: shown = searched.filter(
+    e => inFilter(e, filter) || (filter === "news" && keptInUpdates.has(e.thread.orderId)),
+  )
+  $: count = (f: string) => searched.filter(e => inFilter(e, f)).length
+  $: stages = STAGES.filter(([state]) => entries.some(e => e.thread.order?.state === state))
+  // A stage chip goes once its last order moves on; the filter it set goes with it.
+  $: if (
+    !["all", "open", "closed", "news"].includes(filter) &&
+    !stages.some(([state]) => state === filter)
+  ) {
+    filter = "all"
+  }
 
   // A phone often gives no type for a file; its name's ending is the next best guess.
   const TYPES_BY_ENDING = {
@@ -296,7 +442,7 @@
   <div class="flex items-center justify-between gap-4">
     <div class="flex items-center gap-3">
       <i class="fa fa-handshake fa-lg text-accent" />
-      <h2 class="staatliches text-2xl">Orders</h2>
+      <h2 class="staatliches text-2xl">My Orders</h2>
     </div>
     <button
       type="button"
@@ -319,16 +465,71 @@
         and choose "Order from this bid".
       </p>
     </Card>
+  {:else}
+    <Input bind:value={query} placeholder="Search orders">
+      <i slot="before" class="fa fa-search" />
+    </Input>
+    <div class="flex flex-wrap items-center gap-2">
+      <FilterChip active={filter === "all"} on:click={() => (filter = "all")}>
+        All <span class="opacity-70">{count("all")}</span>
+      </FilterChip>
+      <FilterChip active={filter === "open"} on:click={() => (filter = "open")}>
+        Open <span class="opacity-70">{count("open")}</span>
+      </FilterChip>
+      <FilterChip active={filter === "closed"} on:click={() => (filter = "closed")}>
+        Closed <span class="opacity-70">{count("closed")}</span>
+      </FilterChip>
+      <FilterChip active={filter === "news"} on:click={() => (filter = "news")}>
+        <i class="fa fa-bell" /> Updates
+        {#if count("news") > 0}
+          <span class="ml-1 rounded-full bg-danger px-1.5 text-xs text-white">{count("news")}</span>
+        {:else}
+          <span class="opacity-70">0</span>
+        {/if}
+      </FilterChip>
+      {#each stages as [state, label] (state)}
+        <FilterChip active={filter === state} on:click={() => (filter = state)}>
+          {label} <span class="opacity-70">{count(state)}</span>
+        </FilterChip>
+      {/each}
+    </div>
+    {#if filter === "news" && shown.length > 0}
+      <button
+        type="button"
+        class="cursor-pointer self-start text-sm text-tinted-400 underline"
+        on:click={() => markSeen(shown.map(e => e.thread))}>
+        Mark all as seen
+      </button>
+    {/if}
+    {#if shown.length === 0}
+      <Card>
+        <p class="py-8 text-center text-neutral-400">
+          {filter === "news" && words.length === 0
+            ? "No new updates. Updates appear here when the other person moves an order on."
+            : "No orders match."}
+        </p>
+      </Card>
+    {/if}
   {/if}
-  {#each [...$orderThreads.values()] as thread (thread.orderId)}
+  {#each shown as { thread, news, title } (thread.orderId)}
     {@const open = Boolean(showDetails[thread.orderId])}
     {@const last = thread.log[thread.log.length - 1]}
-    {@const lines = open ? thread.log : last && !last.ok ? [last] : []}
+    {@const lines = open ? thread.log : last && (!last.ok || news > 0) ? [last] : []}
     <Card>
       <div class="flex items-center justify-between gap-4">
         <div class="flex min-w-0 flex-col">
-          <span class="truncate font-bold">Order {thread.orderId.slice(0, 8)}…</span>
+          <span class="flex min-w-0 items-center gap-2">
+            <span class="truncate font-bold">
+              {title ?? `Order ${thread.orderId.slice(0, 8)}…`}
+            </span>
+            {#if news > 0}
+              <span class="whitespace-nowrap rounded-full bg-danger px-2 text-xs text-white">
+                New
+              </span>
+            {/if}
+          </span>
           <span class="text-sm text-neutral-400">
+            {#if title}Order {thread.orderId.slice(0, 8)}… ·{/if}
             You are the {roleIn(thread)} · {thread.order
               ? `${msatToSats(thread.order.totalMsat).toLocaleString()} sats`
               : ""}
@@ -345,7 +546,7 @@
             type="button"
             class="cursor-pointer text-tinted-400 underline"
             aria-expanded={open}
-            on:click={() => toggleDetails(thread.orderId)}>
+            on:click={() => toggleDetails(thread)}>
             {open ? "Hide details" : "Show details"}
           </button>
           {#if lines.length > 0}

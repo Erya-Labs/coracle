@@ -1,4 +1,5 @@
 <script lang="ts">
+  import {tick} from "svelte"
   import {noop, uniq} from "@welshman/lib"
   import {inbox} from "@welshman/util"
   import {fly} from "src/util/transition"
@@ -16,14 +17,21 @@
     bidFilters,
     bidActivity,
     connectOrderChannel,
+    isOpenListing,
     listingActivity,
+    listingFilter,
+    makeListingDeletion,
+    makeListingRemoval,
     makeMarketBid,
     msatToSats,
     proposeOrder,
     proposeOrderForBid,
+    listingDeletionFilters,
     readBid,
     readListing,
+    removalTimes,
   } from "src/domain"
+  import {PublishStatus} from "@welshman/net"
   import {env, myLoad, publishOrderEvent, sign} from "src/engine"
   import {
     app,
@@ -41,10 +49,10 @@
 
   connectOrderChannel(
     publishOrderEvent,
-    async filters => {
+    async (filters, options) => {
       await myLoad({relays: env.DEFAULT_RELAYS, filters, skipCache: true}).catch(noop)
 
-      return app.get().repository.query(filters)
+      return app.get().repository.query(filters, options)
     },
     $signer,
   ).then(pk => {
@@ -73,9 +81,7 @@
     router.at("market/orders").push()
   }
 
-  const [kind, author, dValue] = address.split(":")
-
-  const listingFilters = [{kinds: [parseInt(kind)], authors: [author], "#d": [dValue]}]
+  const listingFilters = [listingFilter(address)]
 
   const listingEvents = deriveEvents(listingFilters)
 
@@ -83,14 +89,84 @@
 
   const relaySelections = $pubkey ? resolveRelays([inbox($pubkey)]) : Promise.resolve([])
 
+  let loaded = false
+
   relaySelections
     .then(relays =>
       myLoad({
         relays: uniq([...relays, ...env.DEFAULT_RELAYS]),
-        filters: [...listingFilters, ...bidFilters(address)],
+        filters: [...listingFilters, ...bidFilters(address), ...listingDeletionFilters([address])],
       }),
     )
     .catch(noop)
+    // The load answers once half the relays have; a slower one may still bring the listing.
+    .then(() => setTimeout(() => (loaded = true), 3000))
+
+  let confirmingDelete = false
+  let deleting = false
+  let removed = false
+  let confirmBox
+  let deleteButton
+
+  const askToDelete = async () => {
+    confirmingDelete = true
+    await tick()
+    confirmBox?.focus()
+  }
+
+  const keepListing = async () => {
+    confirmingDelete = false
+    await tick()
+    deleteButton?.querySelector("button")?.focus()
+  }
+
+  // Counts as sent only once a relay has kept it.
+  const publishToRelays = async event => {
+    const pub = publisher.get().publish({
+      event,
+      relays: uniq([...getWriteRelays($pubkey), ...env.DEFAULT_RELAYS]),
+    })
+
+    await pub.settled()
+
+    return pub.hasStatus(PublishStatus.Success)
+  }
+
+  // The listing goes out again marked sold or cancelled, with a deletion request dated between
+  // the open and the closed versions (see removalTimes).
+  const deleteListing = async () => {
+    const {deletionAt, closedAt} = removalTimes(listing)
+    const {template, error} = makeListingRemoval(listing, closedAt)
+
+    if (error) return showWarning(`Nenya refused to build the closed listing: ${error}`)
+
+    deleting = true
+
+    try {
+      const closed = await sign(template)
+      const deletion = await sign(makeListingDeletion(listing, deletionAt))
+      const [closedKept, deletionKept] = await Promise.all([
+        publishToRelays(closed),
+        publishToRelays(deletion),
+      ])
+
+      if (!closedKept && !deletionKept) {
+        showWarning("No relay accepted the deletion. Check your connection and try again.")
+      } else {
+        removed = true
+        showInfo(
+          deletionKept
+            ? "Listing deleted. Relays were asked to remove it; some may keep a copy."
+            : "Listing closed, but no relay accepted the deletion request. Tap Delete again later.",
+        )
+      }
+    } catch (e) {
+      showWarning(`The listing was not deleted: ${e instanceof Error ? e.message : String(e)}`)
+    } finally {
+      deleting = false
+      confirmingDelete = false
+    }
+  }
 
   let bidSats = null
   let bidPrefilled = false
@@ -135,8 +211,23 @@
 </script>
 
 <FlexColumn>
-  {#if !result}
-    <Spinner delay={500} />
+  {#if removed}
+    <Card>
+      <p>
+        This listing was deleted and no longer shows in this app's market. Relays were asked to
+        remove it; some may keep a copy, and other apps may still show it.
+      </p>
+      <Button class="btn mt-3" on:click={() => router.at("market").push()}
+        >Back to the market</Button>
+    </Card>
+  {:else if !result}
+    {#if loaded}
+      <Card>
+        <p class="text-neutral-400">This listing was not found on your relays.</p>
+      </Card>
+    {:else}
+      <Spinner delay={500} />
+    {/if}
   {:else if !listing}
     <Card>
       <p class="text-neutral-400">
@@ -154,10 +245,57 @@
       </div>
       <div class="flex flex-col items-end whitespace-nowrap">
         <span class="font-bold">{msatToSats(listing.priceMsat).toLocaleString()} sats</span>
-        <span class="text-xs uppercase text-neutral-400">{listingActivity(listing)}</span>
+        <span class="text-xs uppercase text-neutral-400">
+          {isOpenListing(listing) ? listingActivity(listing) : listing.status}
+        </span>
       </div>
     </div>
-    {#if listing.kind === 30402 && $signer && listing.authorPubkey !== $pubkey}
+    {#if listing.status === "UNKNOWN"}
+      <Card>
+        <p class="text-neutral-400">
+          This listing has a status this app does not recognise ("{listing.statusToken}"). It cannot
+          be ordered or bid on here.
+        </p>
+      </Card>
+    {:else if !isOpenListing(listing)}
+      <Card>
+        <p class="text-neutral-400">
+          This listing is closed ({listing.status.toLowerCase()}). It can no longer be ordered or
+          bid on.
+        </p>
+      </Card>
+    {/if}
+    {#if $signer && listing.authorPubkey === $pubkey}
+      {#if confirmingDelete}
+        <div
+          bind:this={confirmBox}
+          tabindex="-1"
+          role="alertdialog"
+          aria-labelledby="delete-question"
+          class="outline-none">
+          <Card>
+            <p id="delete-question">
+              Delete this listing? It is marked {listing.kind === 30404 ? "cancelled" : "sold"} so it
+              leaves the market, and relays are asked to remove it. Some relays may keep a copy. Orders
+              not yet accepted can no longer be accepted.
+            </p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <Button class="btn btn-danger" loading={deleting} on:click={deleteListing}>
+                Delete listing
+              </Button>
+              <Button class="btn" disabled={deleting} on:click={keepListing}>Keep it</Button>
+            </div>
+          </Card>
+        </div>
+      {:else}
+        <div bind:this={deleteButton}>
+          <Button class="btn btn-danger" on:click={askToDelete}>
+            <i class="fa fa-trash" /> Delete
+          </Button>
+        </div>
+      {/if}
+    {/if}
+    {#if listing.kind === 30402 && $signer && listing.authorPubkey !== $pubkey && isOpenListing(listing)}
       <Button class="btn btn-accent" disabled={!orderReady} on:click={orderThis}>
         <i class="fa fa-handshake" /> Order this
       </Button>
@@ -196,7 +334,7 @@
                 <span class="text-xs uppercase text-neutral-400">{bidActivity(bid.bid)}</span>
               </div>
             </div>
-            {#if listing.kind === 30404 && $signer && listing.authorPubkey === $pubkey}
+            {#if listing.kind === 30404 && $signer && listing.authorPubkey === $pubkey && isOpenListing(listing)}
               <Button
                 class="btn btn-accent mt-3"
                 disabled={!orderReady}
@@ -204,7 +342,7 @@
                 <i class="fa fa-handshake" /> Order from this bid
               </Button>
             {/if}
-            {#if listing.kind === 30402 && $signer && bid.bid.bidderPubkey === $pubkey}
+            {#if listing.kind === 30402 && $signer && bid.bid.bidderPubkey === $pubkey && isOpenListing(listing)}
               <Button
                 class="btn btn-accent mt-3"
                 disabled={!orderReady || !(msatToSats(bid.bid.priceMsat) > 0)}
@@ -222,20 +360,20 @@
         {/if}
       </div>
     {/each}
-    {#if bids.length > 0 && listing.kind === 30402 && $signer && listing.authorPubkey === $pubkey}
+    {#if bids.length > 0 && listing.kind === 30402 && $signer && listing.authorPubkey === $pubkey && isOpenListing(listing)}
       <p class="text-sm text-neutral-400">
         A bid on your offer becomes an order when its bidder taps "Order at my bid price". Accept it
-        in Orders.
+        in My Orders.
       </p>
     {/if}
     {#if bids.length === 0}
       <p class="text-neutral-400">No bids yet.</p>
-    {:else if listing.kind === 30404 && $signer && listing.authorPubkey === $pubkey && !orderReady}
+    {:else if listing.kind === 30404 && $signer && listing.authorPubkey === $pubkey && !orderReady && isOpenListing(listing)}
       <p class="text-sm text-neutral-400">
         Ordering works with any login whose signer supports nip44.
       </p>
     {/if}
-    {#if $signer && listing.authorPubkey !== $pubkey}
+    {#if $signer && listing.authorPubkey !== $pubkey && isOpenListing(listing)}
       <form on:submit|preventDefault={submitBid}>
         <FlexColumn small>
           <Field label="Your bid (sats)">

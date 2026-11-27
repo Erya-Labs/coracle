@@ -49,9 +49,9 @@ Read the honesty box first.
 
 ## The trade
 
-**Seller:** Market → **+ Listing** → _Offer_ → describe the work and price it in sats → publish.
+**Seller:** Market → **Create** → _Offer_ → describe the work and price it in sats → publish.
 
-**Buyer:** open the offer → **Order this**. Both sides now work from **Market → Orders**; each
+**Buyer:** open the offer → **Order this**. Both sides now work from **Market → My Orders**; each
 window refreshes itself every few seconds.
 
 1. **Seller — Accept the order.** The acceptance repeats every term; the buyer's app verifies
@@ -75,11 +75,33 @@ Every step marked **Nenya** in an order's details is a check made by the library
 judges anything itself. [Order steps and codes](#order-steps-and-codes) explains each step and
 each problem code.
 
+## Finding listings and orders
+
+- **Market** shows open listings only. Search matches every word typed against a listing's
+  title, summary, description and topics. **Sort by date** shows the newest first, **Sort by
+  price** the cheapest first, and **Reverse order** flips either.
+- **My Orders** has a search box (listing title, order number, state, role or amount) and
+  filters: **All**, **Open**, **Closed**, **Updates**, and one filter for each order state that
+  has orders. **Closed** covers settled, cancelled, expired and disputed orders, and a seller's
+  orders once the key is released.
+- **Updates** lists the orders that a message from the other person changed since their details
+  were last opened. Opening an order's details, or **Mark all as seen**, clears its update. The
+  app looks for messages only while **My Orders** is open; it sends no phone notifications.
+
+## Deleting a listing
+
+The author of a listing can delete it from the listing's page with **Delete**. The app publishes
+the listing again marked `sold` (an offer) or `cancelled` (a request), then a NIP-09 deletion
+request naming its coordinate, as NENYA-1 §5.6 requires. The market hides closed and deleted
+listings. A deletion request is advisory: relays may keep a copy, and a client that already
+fetched the listing may still show it. Orders already started from the listing stay in My
+Orders, but an order not yet accepted can no longer be accepted.
+
 ## Order steps and codes
 
-Each order card on the **Orders** screen lists the steps of its handshake under **Show details**. A
-step that passed shows its name. A step that failed shows a three-digit code instead, followed by
-the Nenya library's reason when there is one. The same guide is in the app under **Orders → Step
+Each order card on the **My Orders** screen lists the steps of its handshake under **Show details**.
+A step that passed shows its name. A step that failed shows a three-digit code instead, followed by
+the Nenya library's reason when there is one. The same guide is in the app under **My Orders → Step
 guide**.
 
 **Nenya** marks a check made by the Nenya library; **App** marks something this app did. Hovering

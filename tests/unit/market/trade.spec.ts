@@ -406,4 +406,83 @@ describe("a trade between two parties", () => {
       reason: "RELEASE_DOES_NOT_MATCH_COMMITMENT",
     })
   })
+
+  it("counts only the other person's messages as news, until the order is seen", async () => {
+    const ctx = await start()
+    const {seller, buyer, listing} = ctx
+    const news = (party: any) => party.call((m: any, t: any) => m.newsCount(t))
+
+    await buyer.call((m: any) => m.proposeOrder(listing))
+    await both(buyer, seller)
+
+    expect(await news(seller)).toBe(1)
+    expect(await news(buyer)).toBe(0)
+
+    await seller.call((m: any, t: any) => m.acceptOrder(t))
+    await both(buyer, seller)
+
+    // The seller's own acceptance is not news to the seller.
+    expect(await news(seller)).toBe(1)
+    expect(await news(buyer)).toBe(1)
+
+    await buyer.call((m: any, t: any) => m.markSeen([t]))
+
+    expect(await news(buyer)).toBe(0)
+
+    // Processing the same messages again does not bring the news back.
+    await both(buyer, seller)
+
+    expect(await news(buyer)).toBe(0)
+    expect(await news(seller)).toBe(1)
+  })
+
+  it("counts a settled order as closed, and a seller's order once the key is out", async () => {
+    const ctx = await start()
+    const {seller, buyer} = ctx
+    const closed = (party: any, role: string) =>
+      party.call((m: any, t: any) => m.isClosedOrder(t, role))
+
+    await toCommitted(ctx)
+
+    expect(await closed(seller, "maker")).toBe(false)
+    expect(await closed(buyer, "buyer")).toBe(false)
+
+    await seller.call((m: any, t: any) => m.sendBill(t))
+    await both(buyer, seller)
+    await buyer.call((m: any, t: any) => m.payAndProve(t))
+    await both(buyer, seller)
+    await finish(ctx)
+
+    expect(await closed(seller, "maker")).toBe(true)
+    expect(await closed(buyer, "buyer")).toBe(true)
+  })
+
+  it("takes no more acceptances once the listing is closed or deleted", async () => {
+    const {finalizeEvent} = await import("nostr-tools/pure")
+    const market: any = await import("src/domain/market")
+
+    for (const step of ["closed", "deleted"]) {
+      const ctx = await start()
+      const {relay, seller, buyer, listing} = ctx
+
+      await buyer.call((m: any) => m.proposeOrder(listing))
+      await both(buyer, seller)
+
+      const {deletionAt, closedAt} = market.removalTimes(listing)
+
+      if (step === "closed") {
+        relay.publish(
+          finalizeEvent(market.makeListingRemoval(listing, closedAt).template, seller.sk),
+        )
+      } else {
+        relay.publish(finalizeEvent(market.makeListingDeletion(listing, deletionAt), seller.sk))
+      }
+
+      const result = await seller.call((m: any, t: any) => m.acceptOrder(t))
+
+      expect(result.sent).toBe(false)
+      expect(result.words).toContain("deleted or closed")
+      expect(seller.state()).toBe("PROPOSED")
+    }
+  })
 })

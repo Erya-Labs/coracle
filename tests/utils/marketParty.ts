@@ -13,8 +13,12 @@ const matches = (e: any, f: any) => {
   if (f.ids && !f.ids.includes(e.id)) return false
   if (f.kinds && !f.kinds.includes(e.kind)) return false
   if (f.authors && !f.authors.includes(e.pubkey)) return false
-  if (f["#d"] && !e.tags.some((t: string[]) => t[0] === "d" && f["#d"].includes(t[1]))) return false
-  if (f["#p"] && !e.tags.some((t: string[]) => t[0] === "p" && f["#p"].includes(t[1]))) return false
+  for (const key of Object.keys(f).filter(k => k.startsWith("#"))) {
+    const name = key.slice(1)
+
+    if (!e.tags.some((t: string[]) => t[0] === name && f[key].includes(t[1]))) return false
+  }
+
   return true
 }
 
