@@ -25,6 +25,7 @@
   } from "src/domain"
   import {env, myLoad, publishOrderEvent} from "src/engine"
   import {app, signer} from "src/engine/core"
+  import {router} from "src/app/util/router"
 
   let timer
   let myPubkey = ""
@@ -96,6 +97,9 @@
   const toggleDetails = orderId => {
     showDetails[orderId] = !showDetails[orderId]
   }
+
+  // Opened over the Orders screen, so a pasted bill or proof on a card is kept.
+  const openGuide = () => router.at("market/steps").open()
 
   // A phone often gives no type for a file; its name's ending is the next best guess.
   const TYPES_BY_ENDING = {
@@ -289,9 +293,17 @@
 </script>
 
 <FlexColumn>
-  <div class="flex items-center gap-3">
-    <i class="fa fa-handshake fa-lg text-accent" />
-    <h2 class="staatliches text-2xl">Orders</h2>
+  <div class="flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <i class="fa fa-handshake fa-lg text-accent" />
+      <h2 class="staatliches text-2xl">Orders</h2>
+    </div>
+    <button
+      type="button"
+      class="cursor-pointer text-sm text-tinted-400 underline"
+      on:click={openGuide}>
+      Step guide
+    </button>
   </div>
   {#if !ready}
     <Card>
@@ -328,23 +340,42 @@
         </span>
       </div>
       {#if thread.log.length > 0}
-        <button
-          type="button"
-          class="mt-2 cursor-pointer text-sm text-tinted-400 underline"
-          aria-expanded={open}
-          on:click={() => toggleDetails(thread.orderId)}>
-          {open ? "Hide details" : "Show details"}
-        </button>
+        <div class="mt-2 flex gap-4 text-sm">
+          <button
+            type="button"
+            class="cursor-pointer text-tinted-400 underline"
+            aria-expanded={open}
+            on:click={() => toggleDetails(thread.orderId)}>
+            {open ? "Hide details" : "Show details"}
+          </button>
+          {#if lines.length > 0}
+            <button
+              type="button"
+              class="cursor-pointer text-tinted-400 underline"
+              on:click={openGuide}>
+              Step guide
+            </button>
+          {/if}
+        </div>
       {/if}
       {#if lines.length > 0}
         <div class="mt-2 flex flex-col gap-1">
           {#each lines as line}
-            <p class="text-sm" class:text-neutral-400={line.ok} class:text-danger={!line.ok}>
+            <p
+              class="text-sm"
+              class:text-neutral-400={line.ok}
+              class:text-danger={!line.ok}
+              title={line.words}>
               <span class="rounded bg-neutral-800 px-1 text-xs uppercase">
                 {line.by === "nenya" ? "Nenya" : "App"}
               </span>
-              <span class="text-xs text-tinted-500">{line.call}</span>
-              {line.words}
+              <span class="font-mono text-xs font-bold" class:text-neutral-100={line.ok}>
+                {line.code ?? line.name}
+              </span>
+              {line.short}
+              {#if line.reason}
+                <span class="break-all font-mono text-xs text-neutral-500">{line.reason}</span>
+              {/if}
             </p>
           {/each}
         </div>

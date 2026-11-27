@@ -5,6 +5,8 @@ import {finalizeEvent, generateSecretKey, getPublicKey} from "nostr-tools/pure"
 import {decrypt, encrypt, getConversationKey} from "nostr-tools/nip44"
 import {writable} from "svelte/store"
 import {stripMetadata} from "src/util/stripMetadata"
+import {done, failed, reasonCode, sizeWords} from "src/domain/orderSteps"
+import type {Shown} from "src/domain/orderSteps"
 
 // The whole private side of a trade: proposal, acceptance, bills, payment proofs,
 // commitment, release, delivery checks. Every rule is the nenya library's; this file
@@ -245,12 +247,21 @@ const saveSecret = (orderId: string, patch: any) => {
 
 // --- threads -------------------------------------------------------------------
 
-export type OrderLine = {by: string; call: string; ok: boolean; words: string}
+// `words` is the full account of a step, kept for tests and as a hover title. The Orders screen
+// shows the step's name or code and its few words, which orderSteps.ts defines and explains.
+export type OrderLine = {by: string; call: string; ok: boolean; words: string} & Shown
 
 export const orderThreads = writable(new Map<string, any>())
 
-const logLine = (thread: any, by: string, call: string, ok: boolean, words: string) => {
-  thread.log = [...thread.log, {by, call, ok, words}]
+const logLine = (
+  thread: any,
+  by: string,
+  call: string,
+  ok: boolean,
+  words: string,
+  shown: Shown,
+) => {
+  thread.log = [...thread.log, {by, call, ok, words, ...shown}]
 }
 
 const touch = (thread: any) =>
@@ -643,6 +654,7 @@ const stepPayments = (thread: any) => {
       "stepOrder(payment_requests_received)",
       step.ok,
       step.ok ? `All bills in. Order: ${thread.order.state}.` : buildWords(step),
+      step.ok ? done("BILLS", "All bills in") : failed(302, step.reason),
     )
   }
 
@@ -663,6 +675,7 @@ const stepPayments = (thread: any) => {
       step.ok
         ? `Every needed payment is evidenced. Order: ${thread.order.state}.`
         : buildWords(step),
+      step.ok ? done("PAID", "Order paid") : failed(403, step.reason),
     )
   }
 }
@@ -696,6 +709,7 @@ const handle = (rumor: any): string | void => {
           "voucher",
           true,
           `A pretend-lightning voucher arrived for the ${voucher.payee} bill.`,
+          done("VOUCHER", voucher.payee === "fee" ? "Practice fee payment" : "Practice payment"),
         )
         touch(thread)
       }
@@ -751,6 +765,7 @@ const handle = (rumor: any): string | void => {
       opened.ok
         ? `Nenya opened the order: ${thread.order.totalMsat} msat total, state ${thread.order.state}.`
         : buildWords(opened),
+      opened.ok ? done("OPEN", "Order opened") : failed(101, opened.reason),
     )
     touch(thread)
 
@@ -789,6 +804,7 @@ const handle = (rumor: any): string | void => {
         step.ok
           ? `Nenya checked the acceptance repeats every term exactly. Order: ${thread.order.state}.`
           : `Nenya refused the acceptance: ${buildWords(step)}`,
+        step.ok ? done("ACCEPT", "Terms match") : failed(102, step.reason),
       )
     } else {
       if (step.order) thread.order = step.order
@@ -801,6 +817,9 @@ const handle = (rumor: any): string | void => {
         step.ok
           ? `Status "${status}" moved the order to ${thread.order.state}.`
           : `Nenya: a bare status decides nothing (${buildWords(step)}).`,
+        step.ok
+          ? done("STATUS", status ? `Status: ${status}` : "Status update")
+          : failed(103, step.reason),
       )
     }
 
@@ -837,6 +856,7 @@ const handle = (rumor: any): string | void => {
       step.ok
         ? `The maker committed to the file's fingerprints before any payment. Order: ${thread.order.state}.`
         : buildWords(step),
+      step.ok ? done("COMMIT", "File committed") : failed(201, step.reason),
     )
     stepPayments(thread)
     touch(thread)
@@ -873,6 +893,9 @@ const handle = (rumor: any): string | void => {
       accepted.ok
         ? `Nenya checked the ${payee} bill against the agreed terms and stored it.`
         : `Nenya refused the bill: ${buildWords(accepted)}`,
+      accepted.ok
+        ? done("BILL", payee === "fee" ? "Fee bill checked" : "Bill checked")
+        : failed(payee === "fee" ? 303 : 301, accepted.reason),
     )
 
     if (!accepted.ok) {
@@ -913,6 +936,9 @@ const handle = (rumor: any): string | void => {
       good
         ? `The payment proof is genuine: the secret matches the bill's payment fingerprint.`
         : `Nenya refused the payment proof: ${buildWords(result)}`,
+      good
+        ? done("PROOF", payee === "fee" ? "Fee proven" : "Payment proven")
+        : failed(payee === "fee" ? 402 : 401, result.reason),
     )
 
     if (!good) {
@@ -946,14 +972,23 @@ const handle = (rumor: any): string | void => {
       thread.release = {keyHex: read("decryption-key"), nonceHex: read("decryption-nonce")}
     }
 
+    // A key message that differs from the commitment is not refused: the library moves the
+    // order to DISPUTED and names the ground. Only a key that left the order RELEASED passed.
+    const released = step.ok && thread.order.state === "RELEASED"
+
     logLine(
       thread,
       "nenya",
       "stepOrderWithRelease",
-      step.ok,
-      step.ok
+      released,
+      released
         ? `The key message matches the commitment. Order: ${thread.order.state}.`
-        : `Nenya refused the key message: ${buildWords(step)} — order: ${thread.order.state}.`,
+        : step.ok
+          ? `The key message does not match the commitment (${thread.order.disputeGround}). Order: ${thread.order.state}.`
+          : `Nenya refused the key message: ${buildWords(step)} — order: ${thread.order.state}.`,
+      released
+        ? done("KEY", "Key released")
+        : failed(501, step.ok ? thread.order.disputeGround : step.reason),
     )
     touch(thread)
   }
@@ -1061,7 +1096,14 @@ const run = (rumor: any, tries: number) => {
 
   if (words) {
     if (tries === 1) {
-      logLine(thread, "app", "wait", false, `Held until the order moves on: ${words}`)
+      logLine(
+        thread,
+        "app",
+        "wait",
+        false,
+        `Held until the order moves on: ${words}`,
+        failed(900, reasonCode(words.split(" — ")[0])),
+      )
       touch(thread)
     }
 
@@ -1196,6 +1238,7 @@ export const commitFile = async (thread: any, plain: Uint8Array, mimeType: strin
           "strip",
           true,
           `Removed ${clean.removed} metadata part(s), such as place, time and camera, before locking.`,
+          done("STRIP", "Metadata removed"),
         )
       } else if (!clean.format && /^(image|video|audio)\//.test(type)) {
         logLine(
@@ -1204,6 +1247,7 @@ export const commitFile = async (thread: any, plain: Uint8Array, mimeType: strin
           "strip",
           true,
           `Metadata is removed from JPEG and PNG only; this ${type} file is sent as it is.`,
+          done("STRIP", "Sent unchanged"),
         )
       }
 
@@ -1356,9 +1400,21 @@ export const allowFileHost = (thread: any) => {
   touch(thread)
 }
 
+// One run at a time per order: a second run racing the first would find the order already
+// settled and log a refused delivery for a file that was delivered.
 export const verifyDelivery = async (thread: any) => {
-  if (thread.downloads >= 5) return
+  if (thread.downloads >= 5 || thread.verifyingDelivery) return
 
+  thread.verifyingDelivery = true
+
+  try {
+    await verifyDeliveryOnce(thread)
+  } finally {
+    thread.verifyingDelivery = false
+  }
+}
+
+const verifyDeliveryOnce = async (thread: any) => {
   const url = thread.fileUrl
 
   // The seller chose this address. Fetching it shows that host the buyer's internet address,
@@ -1373,6 +1429,7 @@ export const verifyDelivery = async (thread: any) => {
           "download",
           true,
           `The file is on ${thread.unknownHost}, a host this app does not use by itself. Fetching it shows that host your internet address.`,
+          done("HOST", "Other file host"),
         )
         touch(thread)
       }
@@ -1387,13 +1444,27 @@ export const verifyDelivery = async (thread: any) => {
 
   if (!blob) {
     thread.downloads++
-    logLine(thread, "app", "download", false, "The locked file could not be downloaded.")
+    logLine(
+      thread,
+      "app",
+      "download",
+      false,
+      "The locked file could not be downloaded.",
+      failed(601),
+    )
     touch(thread)
 
     return
   }
 
-  logLine(thread, "app", "download", true, `Downloaded the locked file (${blob.length} bytes).`)
+  logLine(
+    thread,
+    "app",
+    "download",
+    true,
+    `Downloaded the locked file (${blob.length} bytes).`,
+    done("DOWNLOAD", `Downloaded ${sizeWords(blob.length)}`),
+  )
 
   const served = nenya.verifyServedBytes(thread.commitment, hex(blob), null)
 
@@ -1405,6 +1476,7 @@ export const verifyDelivery = async (thread: any) => {
     served.ok
       ? "The downloaded file matches the commitment. Only now may it be unlocked."
       : `Nenya refused the downloaded file before anything was unlocked: ${buildWords(served)}`,
+    served.ok ? done("CHECK", "File matches") : failed(602, served.reason),
   )
 
   if (!served.ok) {
@@ -1432,7 +1504,7 @@ export const verifyDelivery = async (thread: any) => {
 
     if (step.order) thread.order = step.order
 
-    logLine(thread, "app", "unlock", false, "The key did not unlock the file.")
+    logLine(thread, "app", "unlock", false, "The key did not unlock the file.", failed(603))
     touch(thread)
 
     return
@@ -1471,6 +1543,7 @@ export const verifyDelivery = async (thread: any) => {
     step.ok
       ? `Both fingerprints match the promise. Order: ${thread.order.state}.`
       : `Nenya refused the delivery: ${buildWords(step)} — order: ${thread.order.state}.`,
+    step.ok ? done("DELIVER", "Delivered") : failed(604, step.reason),
   )
   touch(thread)
 }

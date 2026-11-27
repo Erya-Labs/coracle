@@ -38,9 +38,33 @@ const finish = async ({seller, buyer}: any) => {
   expect(seller.state()).toBe("RELEASED")
   expect(buyer.state()).toBe("SETTLED")
   expect(Array.from(buyer.thread().delivered)).toEqual(Array.from(PNG))
+
+  // Every line carries a step name and a few words, never the full account.
+  for (const line of [...buyer.thread().log, ...seller.thread().log]) {
+    expect(line.name).toMatch(/^[A-Z]+$/)
+    expect(line.short.split(" ").length).toBeLessThanOrEqual(4)
+  }
+
+  const names = buyer.thread().log.map((l: any) => l.name)
+
+  for (const name of [
+    "OPEN",
+    "ACCEPT",
+    "COMMIT",
+    "BILL",
+    "PROOF",
+    "PAID",
+    "KEY",
+    "CHECK",
+    "DELIVER",
+  ]) {
+    expect(names).toContain(name)
+  }
 }
 
 const lastWords = (party: any) => party.thread().log.at(-1).words
+
+const lastLine = (party: any) => party.thread().log.at(-1)
 
 const billFor = async (msat: bigint, hash: Uint8Array) => {
   const {billWriter} = await import("src/util/bolt11.js")
@@ -93,6 +117,12 @@ describe("a trade between two parties", () => {
 
     expect(buyer.state()).toBe("COMMITTED")
     expect(lastWords(buyer)).toContain("INVOICE_AMOUNT_MISMATCH")
+    expect(lastLine(buyer)).toMatchObject({
+      ok: false,
+      code: 301,
+      short: "Bill refused",
+      reason: "INVOICE_AMOUNT_MISMATCH",
+    })
 
     await seller.call((m: any, t: any) => m.sendBill(t, right))
     await both(buyer, seller)
@@ -105,6 +135,7 @@ describe("a trade between two parties", () => {
 
     expect(seller.state()).toBe("AWAITING_PAYMENT")
     expect(lastWords(seller)).toContain("PREIMAGE_MISMATCH")
+    expect(lastLine(seller)).toMatchObject({code: 401, reason: "PREIMAGE_MISMATCH"})
 
     await buyer.call((m: any, t: any) => m.payAndProve(t, Buffer.from(preimage).toString("hex")))
     await both(buyer, seller)
@@ -303,5 +334,76 @@ describe("a trade between two parties", () => {
       "already sent",
     )
     expect(buyer.thread().requests.provider.invoice).toBe(right)
+  })
+
+  it("runs one delivery check at a time, so two at once log no refusal", async () => {
+    const ctx = await start()
+    const {seller, buyer} = ctx
+
+    await toCommitted(ctx)
+    await seller.call((m: any, t: any) => m.sendBill(t))
+    await both(buyer, seller)
+    await buyer.call((m: any, t: any) => m.payAndProve(t))
+    await both(buyer, seller)
+    await seller.call((m: any, t: any) => m.releaseKey(t))
+    await both(buyer, seller)
+    await buyer.call((m: any, t: any) => Promise.all([m.verifyDelivery(t), m.verifyDelivery(t)]))
+
+    const log = buyer.thread().log
+
+    expect(buyer.state()).toBe("SETTLED")
+    expect(log.filter((l: any) => l.name === "DOWNLOAD").length).toBe(1)
+    expect(log.some((l: any) => l.code === 604)).toBe(false)
+  })
+
+  it("shows a key that left the order DISPUTED as 501, not as a released key", async () => {
+    const relay = new FakeRelay()
+    const seller = await makeParty(relay)
+    const listing = await makeListing(seller)
+
+    // The library answers a key message that differs from the commitment with ok and a
+    // DISPUTED order. The buyer's library is made to answer so for an honest key.
+    vi.doMock("nenya", async () => {
+      const real: any = await vi.importActual("nenya")
+
+      return {
+        ...real,
+        stepOrderWithRelease: (...args: any[]) => {
+          const step = real.stepOrderWithRelease(...args)
+
+          return {
+            ok: true,
+            reason: null,
+            order: {
+              ...step.order,
+              state: "DISPUTED",
+              disputeGround: "RELEASE_DOES_NOT_MATCH_COMMITMENT",
+            },
+          }
+        },
+      }
+    })
+
+    const buyer = await makeParty(relay)
+
+    vi.doUnmock("nenya")
+
+    const ctx = {relay, seller, buyer, listing}
+
+    await toCommitted(ctx)
+    await seller.call((m: any, t: any) => m.sendBill(t))
+    await both(buyer, seller)
+    await buyer.call((m: any, t: any) => m.payAndProve(t))
+    await both(buyer, seller)
+    await seller.call((m: any, t: any) => m.releaseKey(t))
+    await both(buyer, seller)
+
+    expect(buyer.state()).toBe("DISPUTED")
+    expect(lastLine(buyer)).toMatchObject({
+      ok: false,
+      code: 501,
+      short: "Key refused",
+      reason: "RELEASE_DOES_NOT_MATCH_COMMITMENT",
+    })
   })
 })
