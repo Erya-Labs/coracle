@@ -89,6 +89,14 @@
   const messages = {}
   const committing = {}
 
+  // Each order's handshake steps stay folded away until asked for. While folded, the latest
+  // step still shows if it failed, so a current problem is never hidden.
+  const showDetails: Record<string, boolean> = {}
+
+  const toggleDetails = orderId => {
+    showDetails[orderId] = !showDetails[orderId]
+  }
+
   // A phone often gives no type for a file; its name's ending is the next best guess.
   const TYPES_BY_ENDING = {
     jpg: "image/jpeg",
@@ -301,6 +309,9 @@
     </Card>
   {/if}
   {#each [...$orderThreads.values()] as thread (thread.orderId)}
+    {@const open = Boolean(showDetails[thread.orderId])}
+    {@const last = thread.log[thread.log.length - 1]}
+    {@const lines = open ? thread.log : last && !last.ok ? [last] : []}
     <Card>
       <div class="flex items-center justify-between gap-4">
         <div class="flex min-w-0 flex-col">
@@ -316,17 +327,28 @@
           {thread.order?.state ?? "…"}
         </span>
       </div>
-      <div class="mt-2 flex flex-col gap-1">
-        {#each thread.log as line}
-          <p class="text-sm" class:text-neutral-400={line.ok} class:text-danger={!line.ok}>
-            <span class="rounded bg-neutral-800 px-1 text-xs uppercase">
-              {line.by === "nenya" ? "Nenya" : "App"}
-            </span>
-            <span class="text-xs text-tinted-500">{line.call}</span>
-            {line.words}
-          </p>
-        {/each}
-      </div>
+      {#if thread.log.length > 0}
+        <button
+          type="button"
+          class="mt-2 cursor-pointer text-sm text-tinted-400 underline"
+          aria-expanded={open}
+          on:click={() => toggleDetails(thread.orderId)}>
+          {open ? "Hide details" : "Show details"}
+        </button>
+      {/if}
+      {#if lines.length > 0}
+        <div class="mt-2 flex flex-col gap-1">
+          {#each lines as line}
+            <p class="text-sm" class:text-neutral-400={line.ok} class:text-danger={!line.ok}>
+              <span class="rounded bg-neutral-800 px-1 text-xs uppercase">
+                {line.by === "nenya" ? "Nenya" : "App"}
+              </span>
+              <span class="text-xs text-tinted-500">{line.call}</span>
+              {line.words}
+            </p>
+          {/each}
+        </div>
+      {/if}
       {#if roleIn(thread) === "maker"}
         {#if thread.order?.state === "PROPOSED"}
           <Button class="btn btn-accent mt-2" on:click={() => accept(thread)}>
